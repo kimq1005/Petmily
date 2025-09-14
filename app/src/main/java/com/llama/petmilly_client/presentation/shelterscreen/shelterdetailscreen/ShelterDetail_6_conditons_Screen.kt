@@ -25,8 +25,6 @@ import androidx.navigation.NavController
 import com.llama.petmilly_client.R
 import com.llama.petmilly_client.presentation.dialog.SetAlomostCompletedDialog
 import com.llama.petmilly_client.presentation.shelterscreen.ShelterDetailTitleBar
-import com.llama.petmilly_client.ui.theme.Button_NoneClicked
-import com.llama.petmilly_client.ui.theme.Grey_50_CBC4C4
 import com.llama.petmilly_client.ui.theme.TextField_BackgroudColor
 import com.llama.petmilly_client.utils.ButtonScreen
 import com.llama.petmilly_client.utils.SpacerHeight
@@ -104,7 +102,7 @@ fun ShelterDetail_6_conditons_Screen(
 
 
             Image(
-                painter = painterResource(id = R.drawable.img_shelter_plus),
+                painter = painterResource(id = R.drawable.img_test_dog4),
                 contentDescription = null,
                 modifier = Modifier
                     .align(Alignment.CenterVertically)
@@ -181,7 +179,7 @@ fun ShelterDetail_6_conditons_Screen(
 
 
             Image(
-                painter = painterResource(id = R.drawable.img_shelter_plus),
+                painter = painterResource(id = R.drawable.img_test_dog4),
                 contentDescription = null,
                 modifier = Modifier
                     .align(Alignment.CenterVertically)

@@ -1,7 +1,6 @@
 package com.llama.petmilly_client.presentation.signupscreen
 
 import android.annotation.SuppressLint
-import android.util.Log
 import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -23,7 +22,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.llama.petmilly_client.MainApplication
@@ -33,9 +31,7 @@ import com.llama.petmilly_client.ui.theme.Button_Clicked
 import com.llama.petmilly_client.ui.theme.Button_NoneClicked
 import com.llama.petmilly_client.utils.ButtonScreen
 import com.llama.petmilly_client.utils.notosans_bold
-import llama.test.jetpack_dagger_plz.utils.Common
 import llama.test.jetpack_dagger_plz.utils.Common.SIGNUPSCREEN_3_JOB
-import llama.test.jetpack_dagger_plz.utils.Common.TAG
 
 @SuppressLint("InvalidColorHexValue")
 @Composable
@@ -103,7 +99,7 @@ fun SignUpScreen_2_gender(navController: NavController, viewModel: SignUpViewMod
                     verticalArrangement = Arrangement.Center
                 ) {
                     Image(
-                        painter = painterResource(id = com.llama.petmilly_client.R.drawable.img_man),
+                        painter = painterResource(id = com.llama.petmilly_client.R.drawable.img_test_dog4),
                         contentDescription = null,
                         modifier = Modifier
                             .height(145.dp)
@@ -152,12 +148,13 @@ fun SignUpScreen_2_gender(navController: NavController, viewModel: SignUpViewMod
                     verticalArrangement = Arrangement.Center
                 ) {
                     Image(
-                        painter = painterResource(id = com.llama.petmilly_client.R.drawable.img_woman),
+                        painter = painterResource(id = com.llama.petmilly_client.R.drawable.img_test_dog4),
                         contentDescription = null,
                         modifier = Modifier
                             .height(145.dp)
                             .width(145.dp)
                     )
+
                     Text(
                         text = "여성",
                         modifier = Modifier.fillMaxWidth(),

@@ -1,6 +1,5 @@
 package com.llama.petmilly_client.presentation.shelterscreen.shelterdetailscreen
 
-import android.icu.text.CaseMap.Title
 import android.os.Build
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -10,7 +9,6 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
@@ -24,12 +22,12 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.llama.petmilly_client.R
-import com.llama.petmilly_client.presentation.shelterscreen.TitleBar
 import com.llama.petmilly_client.utils.notosans_bold
 import com.llama.petmilly_client.utils.notosans_regular
 import dagger.hilt.android.AndroidEntryPoint
 import llama.test.jetpack_dagger_plz.utils.Common
 import llama.test.jetpack_dagger_plz.utils.Common.SHELTERDETAIL_SPECIES_SCREEN
+
 @AndroidEntryPoint
 class ShelterDetailActivity : ComponentActivity() {
     @RequiresApi(Build.VERSION_CODES.O)
@@ -131,7 +129,7 @@ fun ShelterDetailSuvTitle(text: String) {
                 .padding(horizontal = 24.dp)
         ) {
             Image(
-                painter = painterResource(id = R.drawable.img_jong),
+                painter = painterResource(id = R.drawable.img_test_dog4),
                 contentDescription = null,
                 modifier = Modifier
                     .width(44.dp)

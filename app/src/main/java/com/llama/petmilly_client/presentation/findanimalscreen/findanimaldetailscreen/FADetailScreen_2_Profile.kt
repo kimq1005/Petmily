@@ -232,17 +232,17 @@ fun FADetail_2_Profile_1_Screen(
         }
 
         Row(Modifier.fillMaxWidth()) {
-            Image(
-                painter = painterResource(id = R.drawable.img_comment_camera),
-                contentDescription = null,
-                modifier = Modifier
-                    .padding(start = 20.dp)
-                    .height(47.dp)
-                    .width(47.dp)
-                    .clickable {
-                        launcher.launch("image/*")
-                    }
-            )
+//            Image(
+//                painter = painterResource(id = R.drawable.img_comment_camera),
+//                contentDescription = null,
+//                modifier = Modifier
+//                    .padding(start = 20.dp)
+//                    .height(47.dp)
+//                    .width(47.dp)
+//                    .clickable {
+//                        launcher.launch("image/*")
+//                    }
+//            )
 
             SpacerWidth(dp = 10.dp)
 

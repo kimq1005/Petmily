@@ -31,7 +31,12 @@ import com.llama.petmilly_client.presentation.signupscreen.viewmodel.SignUpViewM
 import com.llama.petmilly_client.ui.theme.Button_Clicked
 import com.llama.petmilly_client.ui.theme.Button_NoneClicked
 import com.llama.petmilly_client.ui.theme.Category_Cliked
-import com.llama.petmilly_client.utils.*
+import com.llama.petmilly_client.utils.ButtonScreen
+import com.llama.petmilly_client.utils.ButtonShapeScreen
+import com.llama.petmilly_client.utils.CheckedCheckBox
+import com.llama.petmilly_client.utils.NoneCheckBox
+import com.llama.petmilly_client.utils.notosans_bold
+import com.llama.petmilly_client.utils.notosans_regular
 import llama.test.jetpack_dagger_plz.utils.Common.SIGNUPSCREEN_4_3_CALLYOUTANIMAL_First
 
 @OptIn(ExperimentalComposeUiApi::class)
@@ -51,7 +56,6 @@ fun SignUpScreen_4_2_CallYourAnimal(navController: NavController, viewModel: Sig
         }
 
         CommonSignDescription()
-//
 
         Text(
             text = "반려동물에 대해\n알려주세요!",

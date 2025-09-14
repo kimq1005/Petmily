@@ -4,7 +4,4 @@ import java.security.KeyStore
 
 class KeyStoreTest {
     private val keyStoretype = KeyStore.getDefaultType()
-
-
-
 }

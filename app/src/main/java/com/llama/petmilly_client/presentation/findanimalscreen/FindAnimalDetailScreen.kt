@@ -1,8 +1,6 @@
 package com.llama.petmilly_client.presentation.findanimalscreen
 
-import android.net.Uri
 import android.util.Log
-import android.view.SurfaceControlViewHost.SurfacePackage
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -25,19 +23,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.node.modifierElementOf
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.PlatformTextStyle
 import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
-import androidx.navigation.compose.rememberNavController
 import coil.compose.rememberImagePainter
 import com.llama.petmilly_client.R
 import com.llama.petmilly_client.presentation.shelterscreen.TitleBar
@@ -48,11 +41,9 @@ import com.llama.petmilly_client.utils.notosans_bold
 import com.llama.petmilly_client.utils.notosans_regular
 import llama.test.jetpack_dagger_plz.utils.Common
 import llama.test.jetpack_dagger_plz.utils.Common.TAG
-import retrofit2.http.Url
 
 @Composable
 fun FindAnimalDetailScreen(navController: NavController, viewModel: FindAnimalViewModel) {
-
 
     val (value, setvaluse) = rememberSaveable {
         mutableStateOf("")
@@ -492,20 +483,17 @@ fun FindAnimalDetailScreen(navController: NavController, viewModel: FindAnimalVi
                 },
             )
 
-            Image(
-                painter = painterResource(id = R.drawable.img_send),
-                contentDescription = null,
-                modifier = Modifier
-                    .weight(1f)
-                    .align(Alignment.CenterVertically)
-                    .height(25.dp)
-                    .width(25.dp)
-            )
-
+//            Image(
+//                painter = painterResource(id = R.drawable.img_send),
+//                contentDescription = null,
+//                modifier = Modifier
+//                    .weight(1f)
+//                    .align(Alignment.CenterVertically)
+//                    .height(25.dp)
+//                    .width(25.dp)
+//            )
         }
-
     }
-
 }
 
 @Composable

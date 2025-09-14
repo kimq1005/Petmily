@@ -2,9 +2,7 @@ package com.llama.petmilly_client.presentation.signupscreen.viewmodel
 
 import android.annotation.SuppressLint
 import android.util.Log
-import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -13,7 +11,6 @@ import com.llama.petmilly_client.MainApplication
 import com.llama.petmilly_client.data.model.additonal.reponse.AdditionalResponse
 import com.llama.petmilly_client.data.model.additonal.reponse.CompanionAnimalInfo
 import com.llama.petmilly_client.data.model.additonal.reponse.FamilyInfo
-import com.llama.petmilly_client.data.model.kakaologin.respones.KaKaoResponse
 import com.llama.petmilly_client.domain.repository.PetMillyRepo
 import com.llama.petmilly_client.utils.Event
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -21,7 +18,6 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import llama.test.jetpack_dagger_plz.utils.Common.TAG
 import llama.test.jetpack_dagger_plz.utils.RemoteResult
-import java.util.Collections.list
 import javax.inject.Inject
 
 @HiltViewModel

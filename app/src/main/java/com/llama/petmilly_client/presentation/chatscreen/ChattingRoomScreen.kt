@@ -30,7 +30,6 @@ import com.llama.petmilly_client.presentation.chatscreen.items.EntityChatModel
 import com.llama.petmilly_client.presentation.chatscreen.items.PlzChatModel
 import com.llama.petmilly_client.presentation.dialog.AdoptionApplicationDialog
 import com.llama.petmilly_client.presentation.dialog.ChatRoomDialog
-import com.llama.petmilly_client.presentation.myprofilescreen.MyProfileActivity
 import com.llama.petmilly_client.presentation.myprofilescreen.ProfileActivity
 import com.llama.petmilly_client.presentation.shelterscreen.TitleBar
 import com.llama.petmilly_client.ui.theme.Black_60_Transfer
@@ -96,15 +95,15 @@ fun ChattingRoomScreen(navController: NavController, name: String, viewModel: Ch
         ) {
             Spacer(modifier = Modifier.width(30.dp))
 
-            Image(
-                painter = painterResource(id = R.drawable.img_testcat),
-                contentDescription = null,
-                modifier = Modifier
-                    .height(50.dp)
-                    .width(50.dp)
-                    .align(Alignment.CenterVertically),
-                contentScale = ContentScale.Crop
-            )
+//            Image(
+//                painter = painterResource(id = R.drawable.img_testcat),
+//                contentDescription = null,
+//                modifier = Modifier
+//                    .height(50.dp)
+//                    .width(50.dp)
+//                    .align(Alignment.CenterVertically),
+//                contentScale = ContentScale.Crop
+//            )
 
             Spacer(modifier = Modifier.width(10.dp))
 
@@ -219,15 +218,15 @@ fun ChattingRoomScreen(navController: NavController, name: String, viewModel: Ch
                 .padding(start = 15.dp, end = 15.dp, bottom = 65.dp, top = 10.dp)
         ) {
 
-            Image(
-                painter = painterResource(id = R.drawable.img_plus),
-                contentDescription = null,
-                modifier = Modifier
-                    .weight(1f)
-                    .height(25.dp)
-                    .width(25.dp)
-                    .align(Alignment.CenterVertically),
-            )
+//            Image(
+//                painter = painterResource(id = R.drawable.img_plus),
+//                contentDescription = null,
+//                modifier = Modifier
+//                    .weight(1f)
+//                    .height(25.dp)
+//                    .width(25.dp)
+//                    .align(Alignment.CenterVertically),
+//            )
 
             TextField(
                 value = value,
@@ -252,17 +251,16 @@ fun ChattingRoomScreen(navController: NavController, name: String, viewModel: Ch
                 },
             )
 
-            Image(
-                painter = painterResource(id = R.drawable.img_send),
-                contentDescription = null,
-                modifier = Modifier
-                    .weight(1f)
-                    .align(Alignment.CenterVertically)
-                    .height(25.dp)
-                    .width(25.dp)
-
-            )
-
+//            Image(
+//                painter = painterResource(id = R.drawable.img_send),
+//                contentDescription = null,
+//                modifier = Modifier
+//                    .weight(1f)
+//                    .align(Alignment.CenterVertically)
+//                    .height(25.dp)
+//                    .width(25.dp)
+//
+//            )
         }
 
     SetDialog(viewModel = viewModel)

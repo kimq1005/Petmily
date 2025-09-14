@@ -35,5 +35,4 @@ class MyFirebaseMessagingService :FirebaseMessagingService() {
         super.onNewToken(token)
         Log.d(TAG, "onNewToken: $token")
     }
-
 }

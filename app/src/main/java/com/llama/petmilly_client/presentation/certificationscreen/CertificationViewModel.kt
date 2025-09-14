@@ -1,7 +1,6 @@
 package com.llama.petmilly_client.presentation.certificationscreen
 
 import android.util.Log
-import android.view.View
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -9,7 +8,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.llama.petmilly_client.MainApplication
 import com.llama.petmilly_client.data.model.locationauthenticationResponse.LocationauthenticationResponse
-import com.llama.petmilly_client.domain.repository.GetLibraryRepo
 import com.llama.petmilly_client.domain.repository.PetMillyRepo
 import com.llama.petmilly_client.utils.Event
 import dagger.hilt.android.lifecycle.HiltViewModel

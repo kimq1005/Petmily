@@ -198,15 +198,15 @@ fun IsOpenCommentText(viewModel: FADetailViewModel) {
         verticalAlignment = Alignment.CenterVertically
 
     ) {
-        Image(
-            painter = painterResource(id = R.drawable.icon_main_puppy),
-            contentDescription = null,
-            modifier = Modifier
-                .width(50.dp)
-                .height(40.dp)
-                .align(Alignment.CenterVertically)
-                .padding(start = 20.dp)
-        )
+//        Image(
+//            painter = painterResource(id = R.drawable.icon_main_puppy),
+//            contentDescription = null,
+//            modifier = Modifier
+//                .width(50.dp)
+//                .height(40.dp)
+//                .align(Alignment.CenterVertically)
+//                .padding(start = 20.dp)
+//        )
 
         SpacerWidth(dp = 15.dp)
 

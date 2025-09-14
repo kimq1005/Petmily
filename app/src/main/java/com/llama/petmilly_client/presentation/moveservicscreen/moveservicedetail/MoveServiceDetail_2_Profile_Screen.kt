@@ -234,7 +234,7 @@ fun MoveServiceDetail_2_Profile_1_Screen(
 
         Row(Modifier.fillMaxWidth()) {
             Image(
-                painter = painterResource(id = R.drawable.img_comment_camera),
+                painter = painterResource(id = R.drawable.img_test_dog4),
                 contentDescription = null,
                 modifier = Modifier
                     .padding(start = 20.dp)

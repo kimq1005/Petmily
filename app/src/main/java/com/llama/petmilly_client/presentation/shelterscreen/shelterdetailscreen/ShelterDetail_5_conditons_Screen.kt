@@ -1,7 +1,6 @@
 package com.llama.petmilly_client.presentation.shelterscreen.shelterdetailscreen
 
 import android.app.Activity
-import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -21,19 +20,15 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.PlatformTextStyle
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import androidx.navigation.compose.rememberNavController
 import com.llama.petmilly_client.R
 import com.llama.petmilly_client.presentation.dialog.SetAlomostCompletedDialog
 import com.llama.petmilly_client.presentation.shelterscreen.ShelterDetailTitleBar
 import com.llama.petmilly_client.ui.theme.*
 import com.llama.petmilly_client.utils.*
 import llama.test.jetpack_dagger_plz.utils.Common
-import llama.test.jetpack_dagger_plz.utils.Common.TAG
 
 @Composable
 fun ShelterDetail_5_conditons_Screen(
@@ -164,7 +159,7 @@ fun ShelterDetail_5_conditons_Screen(
 
 
             Image(
-                painter = painterResource(id = R.drawable.img_shelter_plus),
+                painter = painterResource(id = R.drawable.img_test_dog4),
                 contentDescription = null,
                 modifier = Modifier
                     .align(Alignment.CenterVertically)
@@ -261,7 +256,7 @@ fun TemporaryProtectionCondition(yesorno: Boolean, text: String, ondelete: () ->
         SpacerWidth(dp = 5.dp)
 
         Image(
-            painter = painterResource(id = R.drawable.img_cancle),
+            painter = painterResource(id = R.drawable.img_test_dog4),
             contentDescription = null,
             modifier = Modifier
                 .width(15.dp)

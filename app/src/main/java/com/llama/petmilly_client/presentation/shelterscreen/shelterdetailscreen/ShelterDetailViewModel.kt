@@ -24,11 +24,9 @@ import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import okhttp3.RequestBody.Companion.toRequestBody
-import okhttp3.internal.format
 import java.time.LocalDateTime
 import java.time.LocalTime
 import java.time.format.DateTimeFormatter
-import java.util.*
 import javax.inject.Inject
 
 @HiltViewModel
@@ -226,7 +224,7 @@ class ShelterDetailViewModel @Inject constructor(
                     }
                     else -> {
                         Log.d(TAG, "posttemporaryprotection ERROR: $it")
-                        _setnotcompleted.postValue(it.message)
+//                        _setnotcompleted.postValue(it.message)
                     }
 
                 }

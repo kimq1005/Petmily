@@ -66,15 +66,12 @@ class FADetailActivity : ComponentActivity() {
                 }
 
                 composable(Common.FADETAILSCREEN_5_COMMENT_ISOPEN) {
-                    FADetailScreen_5_Comment_IsOpen(
-                        navController = navController,
-                        viewModel = viewModel,
-                        activity = this@FADetailActivity
-                    )
+//                    FADetailScreen_5_Comment_IsOpen(
+//                        navController = navController,
+//                        viewModel = viewModel,
+//                        activity = this@FADetailActivity
+//                    )
                 }
-
-
-
             }
         }
     }

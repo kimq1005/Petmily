@@ -142,7 +142,7 @@ fun NotificationTitleBar(navController: NavController) {
             .padding(16.dp),
     ) {
         Image(
-            painter = painterResource(id = R.drawable.img_back),
+            painter = painterResource(id = R.drawable.img_test_dog4),
             contentDescription = null,
             modifier = Modifier
                 .width(20.dp)

@@ -235,19 +235,15 @@ fun FADetailScreen_3_DetailInfo(
                 )
             }
 
-
-
-            Image(
-                painter = painterResource(id = R.drawable.img_shelter_plus),
-                contentDescription = null,
-                modifier = Modifier
-                    .align(Alignment.CenterVertically)
-                    .height(35.dp)
-                    .width(35.dp),
-                contentScale = ContentScale.Crop
-            )
-
-
+//            Image(
+//                painter = painterResource(id = R.drawable.img_shelter_plus),
+//                contentDescription = null,
+//                modifier = Modifier
+//                    .align(Alignment.CenterVertically)
+//                    .height(35.dp)
+//                    .width(35.dp),
+//                contentScale = ContentScale.Crop
+//            )
         }
 
 
@@ -310,17 +306,16 @@ fun FADetailScreen_3_DetailInfo(
                 }
             )
 
-            Image(
-                painter = painterResource(id = R.drawable.img_shelter_plus),
-                contentDescription = null,
-                modifier = Modifier
-                    .align(Alignment.CenterVertically)
-                    .weight(1f)
-                    .height(45.dp)
-                    .width(45.dp),
-                contentScale = ContentScale.Crop
-            )
-
+//            Image(
+//                painter = painterResource(id = R.drawable.img_shelter_plus),
+//                contentDescription = null,
+//                modifier = Modifier
+//                    .align(Alignment.CenterVertically)
+//                    .weight(1f)
+//                    .height(45.dp)
+//                    .width(45.dp),
+//                contentScale = ContentScale.Crop
+//            )
         }
 
 
@@ -360,13 +355,13 @@ fun FADetailSuvTitle(text: String) {
                 .fillMaxWidth()
                 .padding(horizontal = 24.dp)
         ) {
-            Image(
-                painter = painterResource(id = R.drawable.img_jong),
-                contentDescription = null,
-                modifier = Modifier
-                    .width(44.dp)
-                    .height(44.dp)
-            )
+//            Image(
+//                painter = painterResource(id = R.drawable.img_jong),
+//                contentDescription = null,
+//                modifier = Modifier
+//                    .width(44.dp)
+//                    .height(44.dp)
+//            )
             Spacer(modifier = Modifier.width(5.dp))
 
             Text(
@@ -397,7 +392,5 @@ fun FADetailSuvTitle(text: String) {
             ),
             color = Color.Black
         )
-
     }
-
 }

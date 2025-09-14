@@ -3,21 +3,9 @@ package com.llama.petmilly_client
 import android.app.Application
 import android.content.Context
 import android.content.SharedPreferences
-import android.util.Log
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import com.kakao.auth.KakaoAdapter
-import com.kakao.auth.KakaoSDK
-import com.kakao.sdk.common.KakaoSdk
-import com.kakao.sdk.common.util.Utility
-import com.llama.petmilly_client.login.kakao.KaKaoSDKAdapter
-import com.llama.petmilly_client.presentation.homescreen.items.ShelterListCategory
+//import com.kakao.sdk.common.KakaoSdk
+//import com.kakao.sdk.common.util.Utility
 import dagger.hilt.android.HiltAndroidApp
-import llama.test.jetpack_dagger_plz.utils.Common
-import llama.test.jetpack_dagger_plz.utils.Common.ACCESSTOKEN
-import llama.test.jetpack_dagger_plz.utils.Common.ISLOGIN
-import llama.test.jetpack_dagger_plz.utils.Common.REFRESHTOKEN
-import llama.test.jetpack_dagger_plz.utils.Common.TAG
 
 @HiltAndroidApp
 class MainApplication : Application() {
@@ -86,8 +74,8 @@ class MainApplication : Application() {
         sharedPreferences = getSharedPreferences("prefs", Context.MODE_PRIVATE)
 
 //        Log.d(TAG, "로그인 확인 : ${getisLogin()}")
-        var keyHash = Utility.getKeyHash(this)
-        KakaoSdk.init(this, getString(R.string.kakao_api_key))
+//        var keyHash = Utility.getKeyHash(this)
+//        KakaoSdk.init(this, getString(R.string.kakao_api_key))
 
     }
 

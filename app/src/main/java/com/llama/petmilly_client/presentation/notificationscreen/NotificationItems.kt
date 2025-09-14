@@ -52,16 +52,16 @@ fun NotificationItems(
 
             val image = when(type){
                 0->{
-                    R.drawable.img_petmilly_heart_menu_2
+                    R.drawable.img_test_dog4
                 }
                 1->{
                     R.drawable.img_application_alarm
                 }
                 2->{
-                    R.drawable.img_petmilly_notification
+                    R.drawable.img_test_dog4
                 }
                 else->{
-                    R.drawable.img_normal_alarm
+                    R.drawable.img_test_dog4
                 }
             }
             Image(

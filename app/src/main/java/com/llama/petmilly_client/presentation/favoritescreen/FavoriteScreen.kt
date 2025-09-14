@@ -33,10 +33,8 @@ import kotlinx.coroutines.launch
 fun FavoriteEntityScreen() {
     val navController = rememberNavController()
     val viewModel: FavoriteViewModel = hiltViewModel()
-
 }
 
-@OptIn(ExperimentalPagerApi::class)
 @Composable
 fun FavoriteScreen(navController: NavController) {
 
@@ -60,12 +58,12 @@ fun FavoriteScreen(navController: NavController) {
             "찾아요 이동봉사",
         )
 
-        FavroiteTabs(pagerState, tabslist)
-        TabsContent(
-            pagerState = pagerState,
-            navController,
-            4
-        )
+//        FavroiteTabs(pagerState, tabslist)
+//        TabsContent(
+//            pagerState = pagerState,
+//            navController,
+//            4
+//        )
     }
 
 

@@ -65,7 +65,6 @@ class FADetailViewModel @Inject constructor(
     val missing_month = mutableStateOf("")
     val missing_day = mutableStateOf("")
 
-
     var isAlmostCompletedDialog by mutableStateOf(false)
         private set
 

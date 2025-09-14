@@ -18,13 +18,11 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.PlatformTextStyle
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
 import com.llama.petmilly_client.R
-import com.llama.petmilly_client.presentation.shelterscreen.shelterdetailscreen.ShelterDetailViewModel
 import com.llama.petmilly_client.ui.theme.Black_80_Transfer
 import com.llama.petmilly_client.ui.theme.Category_Cliked
 import com.llama.petmilly_client.utils.SpacerHeight
@@ -32,7 +30,6 @@ import com.llama.petmilly_client.utils.SpacerWidth
 import com.llama.petmilly_client.utils.notosans_bold
 import com.llama.petmilly_client.utils.notosans_regular
 
-@OptIn(ExperimentalComposeUiApi::class)
 @Composable
 fun AlmostCompletedDialog(
     onDismiss: () -> Unit,
@@ -51,29 +48,29 @@ fun AlmostCompletedDialog(
                 .fillMaxHeight(0.47f)
         ) {
             Column {
-                Image(
-                    painter = painterResource(id = R.drawable.img_cancle),
-                    contentDescription = null,
-                    modifier = Modifier
-                        .height(40.dp)
-                        .width(40.dp)
-                        .align(Alignment.End)
-                        .padding(top = 16.dp, end = 16.dp)
-                        .clickable { onDismiss() },
-                    contentScale = ContentScale.Crop
-                )
-
-                Spacer(modifier = Modifier.height(5.dp))
-
-                Image(
-                    painter = painterResource(id = R.drawable.img_yello_trash),
-                    contentDescription = null,
-                    modifier = Modifier
-                        .height(40.dp)
-                        .width(40.dp)
-                        .align(Alignment.CenterHorizontally),
-                    contentScale = ContentScale.Crop
-                )
+//                Image(
+//                    painter = painterResource(id = R.drawable.img_cancle),
+//                    contentDescription = null,
+//                    modifier = Modifier
+//                        .height(40.dp)
+//                        .width(40.dp)
+//                        .align(Alignment.End)
+//                        .padding(top = 16.dp, end = 16.dp)
+//                        .clickable { onDismiss() },
+//                    contentScale = ContentScale.Crop
+//                )
+//
+//                Spacer(modifier = Modifier.height(5.dp))
+//
+//                Image(
+//                    painter = painterResource(id = R.drawable.img_yello_trash),
+//                    contentDescription = null,
+//                    modifier = Modifier
+//                        .height(40.dp)
+//                        .width(40.dp)
+//                        .align(Alignment.CenterHorizontally),
+//                    contentScale = ContentScale.Crop
+//                )
 
                 SpacerHeight(dp = 16.dp)
 

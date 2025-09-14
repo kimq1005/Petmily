@@ -8,12 +8,9 @@ import javax.inject.Inject
 
 @HiltViewModel
 class AppPushViewModel @Inject constructor() : ViewModel() {
-
     val commentCheck = mutableStateOf(false)
     val chattingCheck = mutableStateOf<Boolean>(false)
     val favoriteanimalstateCheck = mutableStateOf<Boolean>(false)
     val temporaryCheck = mutableStateOf<Boolean>(false)
     val marketingCheck = mutableStateOf<Boolean>(false)
-
-
 }

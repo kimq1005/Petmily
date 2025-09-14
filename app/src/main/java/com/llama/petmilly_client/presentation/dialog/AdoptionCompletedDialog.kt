@@ -1,12 +1,16 @@
 package com.llama.petmilly_client.presentation.dialog
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Button
-import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.Card
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -14,21 +18,15 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.dimensionResource
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.PlatformTextStyle
 import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
-import com.llama.petmilly_client.R
 import com.llama.petmilly_client.ui.theme.Button_Clicked
-import com.llama.petmilly_client.ui.theme.Button_NoneClicked
-import com.llama.petmilly_client.ui.theme.Purple200
 import com.llama.petmilly_client.utils.ButtonScreen
 import com.llama.petmilly_client.utils.Cancle
 import com.llama.petmilly_client.utils.notosans_bold
@@ -68,15 +66,14 @@ fun AdoptionCompletedDialog(
                         }
                 )
 
-                Image(
-                    painter = painterResource(id = R.drawable.img_blue_circle_check),
-                    contentDescription = null,
-                    modifier = Modifier
-                        .align(Alignment.CenterHorizontally)
-                        .height(45.dp)
-                        .width(45.dp)
-
-                )
+//                Image(
+//                    painter = painterResource(id = R.drawable.img_blue_circle_check),
+//                    contentDescription = null,
+//                    modifier = Modifier
+//                        .align(Alignment.CenterHorizontally)
+//                        .height(45.dp)
+//                        .width(45.dp)
+//                )
 
                 Text(
                     text = "신청이 완료되었어요.",

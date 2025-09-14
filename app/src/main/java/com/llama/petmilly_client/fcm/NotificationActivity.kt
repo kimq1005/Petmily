@@ -46,27 +46,27 @@ fun ButtonWithNotification() {
 
 
 private fun sendNotification(context: Context) {
-    val notificationManager =
-        ContextCompat.getSystemService(context, NotificationManager::class.java) as NotificationManager
+//    val notificationManager =
+//        ContextCompat.getSystemService(context, NotificationManager::class.java) as NotificationManager
+//
+//    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+//        val channel = NotificationChannel(
+//            "CHANNEL_ID",
+//            "CHANNEL_NAME",
+//            NotificationManager.IMPORTANCE_HIGH
+//        ).apply {
+//            description = "This is the notification channel"
+//        }
+//        notificationManager.createNotificationChannel(channel)
+//    }
+//
+//    val notification = NotificationCompat.Builder(context, "CHANNEL_ID")
+//        .setContentTitle("Notification Title")
+//        .setContentText("Notification Text")
+//        .setSmallIcon(R.drawable.icon_main_puppy)
+//        .setPriority(NotificationCompat.PRIORITY_HIGH)
+//        .build()
 
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-        val channel = NotificationChannel(
-            "CHANNEL_ID",
-            "CHANNEL_NAME",
-            NotificationManager.IMPORTANCE_HIGH
-        ).apply {
-            description = "This is the notification channel"
-        }
-        notificationManager.createNotificationChannel(channel)
-    }
-
-    val notification = NotificationCompat.Builder(context, "CHANNEL_ID")
-        .setContentTitle("Notification Title")
-        .setContentText("Notification Text")
-        .setSmallIcon(R.drawable.icon_main_puppy)
-        .setPriority(NotificationCompat.PRIORITY_HIGH)
-        .build()
-
-    notificationManager.notify(0, notification)
+//    notificationManager.notify(0, notification)
 }
 

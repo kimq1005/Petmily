@@ -264,7 +264,7 @@ fun MyProfileScreen(navController: NavController) {
                 }
 
                 Image(
-                    painter = painterResource(id = R.drawable.img_exclamation_mark_circle_blue),
+                    painter = painterResource(id = R.drawable.img_test_dog4),
                     contentDescription = null,
                     modifier = Modifier
                         .height(15.dp)
@@ -305,7 +305,7 @@ fun MyProfileScreen(navController: NavController) {
             SpacerWidth(dp = 6.dp)
 
             Image(
-                painter = painterResource(id = R.drawable.img_exclamation_mark_circle_blue),
+                painter = painterResource(id = R.drawable.img_test_dog4),
                 contentDescription = null,
                 modifier = Modifier
                     .height(15.dp)

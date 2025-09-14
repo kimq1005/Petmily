@@ -205,16 +205,16 @@ fun AdoptionDetailScreen(navController: NavController, viewModel: AdoptionViewMo
                             .align(Alignment.CenterStart),
                         contentScale = ContentScale.Crop
                     )
-
-                    Image(
-                        painter = painterResource(id = R.drawable.ic_none_heart),
-                        contentDescription = null,
-                        modifier = Modifier
-                            .height(31.dp)
-                            .width(31.dp)
-                            .align(Alignment.TopStart)
-                            .padding(start = 8.dp, top = 8.dp)
-                    )
+//
+//                    Image(
+//                        painter = painterResource(id = R.drawable.ic_none_heart),
+//                        contentDescription = null,
+//                        modifier = Modifier
+//                            .height(31.dp)
+//                            .width(31.dp)
+//                            .align(Alignment.TopStart)
+//                            .padding(start = 8.dp, top = 8.dp)
+//                    )
                 }
 
 
@@ -739,20 +739,20 @@ fun AdoptionDetailScreen(navController: NavController, viewModel: AdoptionViewMo
 
         }//Column
 
-
-        Image(
-            painter = painterResource(id = R.drawable.img_chat_contact),
-            contentDescription = null,
-
-            modifier = Modifier
-                .align(Alignment.BottomEnd)
-                .padding(bottom = 40.dp, end = 15.dp)
-                .width(55.dp)
-                .height(55.dp)
-                .clickable {
-
-                }
-        )
+//
+//        Image(
+//            painter = painterResource(id = R.drawable.img_chat_contact),
+//            contentDescription = null,
+//
+//            modifier = Modifier
+//                .align(Alignment.BottomEnd)
+//                .padding(bottom = 40.dp, end = 15.dp)
+//                .width(55.dp)
+//                .height(55.dp)
+//                .clickable {
+//
+//                }
+//        )
 
 
     }//Box

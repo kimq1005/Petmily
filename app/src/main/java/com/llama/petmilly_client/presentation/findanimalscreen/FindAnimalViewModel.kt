@@ -3,7 +3,6 @@ package com.llama.petmilly_client.presentation.findanimalscreen
 import android.net.Uri
 import android.os.Build
 import android.util.Log
-import android.widget.ExpandableListView
 import androidx.annotation.RequiresApi
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
@@ -11,10 +10,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import androidx.lifecycle.viewmodel.compose.viewModel
 import com.llama.petmilly_client.MainApplication
 import com.llama.petmilly_client.data.model.findmypet.findmypetdetail.Comment
-import com.llama.petmilly_client.data.model.temporary.detail.PhotoUrl
 import com.llama.petmilly_client.domain.repository.PetMillyRepo
 import com.llama.petmilly_client.presentation.homescreen.CategoryTest
 import com.llama.petmilly_client.presentation.shelterscreen.shelterdetailscreen.ImageTestUriData
@@ -29,7 +26,6 @@ import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import okhttp3.RequestBody.Companion.toRequestBody
-import okio.utf8Size
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import javax.inject.Inject
@@ -84,6 +80,7 @@ class FindAnimalViewModel @Inject constructor(
     val sightingAddress = mutableStateOf("")
     val comment = mutableStateOf("")
     val sightingDate = mutableStateOf("")
+
     fun uploadimage(uri: Uri) {
         imageTestUriData.add(ImageTestUriData(uri))
     }

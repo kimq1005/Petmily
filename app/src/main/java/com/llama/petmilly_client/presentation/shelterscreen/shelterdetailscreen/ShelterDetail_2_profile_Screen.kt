@@ -36,8 +36,6 @@ fun ShelterDetail_2_profile_Screen(
     viewModel: ShelterDetailViewModel,
     activity: Activity,
 ) {
-
-
     SetAlomostCompletedDialog(
         viewModel.isAlmostCompletedDialog, onDismiss = {
             viewModel.onDismissAlmostCompetedDialog()

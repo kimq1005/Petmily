@@ -185,7 +185,7 @@ fun ShelterDetail_8_Application_Period_Screen(
             ) {
 
                 Image(
-                    painter = painterResource(id = R.drawable.img_puppy),
+                    painter = painterResource(id = R.drawable.img_test_dog4),
                     contentDescription = null,
                     modifier = Modifier
                         .width(50.dp)
@@ -194,7 +194,7 @@ fun ShelterDetail_8_Application_Period_Screen(
                 )
 
                 Image(
-                    painter = painterResource(id = R.drawable.img_puppy_star),
+                    painter = painterResource(id = R.drawable.img_test_dog4),
                     contentDescription = null,
                     modifier = Modifier
                         .height(10.dp)
@@ -266,7 +266,7 @@ fun ShelterDetail_8_Application_Period_Screen(
             ) {
 
                 Image(
-                    painter = painterResource(id = R.drawable.img_puppy),
+                    painter = painterResource(id = R.drawable.img_test_dog4),
                     contentDescription = null,
                     modifier = Modifier
                         .width(50.dp)
@@ -275,7 +275,7 @@ fun ShelterDetail_8_Application_Period_Screen(
                 )
 
                 Image(
-                    painter = painterResource(id = R.drawable.img_puppy_star),
+                    painter = painterResource(id = R.drawable.img_test_dog4),
                     contentDescription = null,
                     modifier = Modifier
                         .height(10.dp)

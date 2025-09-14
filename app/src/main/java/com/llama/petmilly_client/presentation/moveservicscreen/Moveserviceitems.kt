@@ -101,7 +101,7 @@ fun Moveserviceitems(
                     )
 
                     Image(
-                        painter = painterResource(id = R.drawable.img_arrow_go),
+                        painter = painterResource(id = R.drawable.img_test_dog4),
                         contentDescription = null,
                         modifier = Modifier
                             .width(14.dp)

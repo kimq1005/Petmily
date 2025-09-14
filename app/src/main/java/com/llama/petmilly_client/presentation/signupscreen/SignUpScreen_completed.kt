@@ -46,7 +46,7 @@ fun SignUpScreen_completed(navController: NavController, viewModel: SignUpViewMo
         ) {
 
             Image(
-                painter = (painterResource(id = com.llama.petmilly_client.R.drawable.img_blue_circle)),
+                painter = (painterResource(id = com.llama.petmilly_client.R.drawable.img_test_dog4)),
                 contentDescription = null,
                 modifier = Modifier
                     .width(40.dp)

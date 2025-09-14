@@ -2,14 +2,30 @@ package com.llama.petmilly_client.presentation.shelterscreen
 
 import android.content.Intent
 import android.util.Log
-import androidx.compose.foundation.*
-import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.aspectRatio
+import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.heightIn
+import androidx.compose.foundation.layout.offset
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
-import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Divider
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -30,9 +46,14 @@ import com.llama.petmilly_client.R
 import com.llama.petmilly_client.presentation.certificationscreen.CertificationActivity
 import com.llama.petmilly_client.presentation.dialog.AdoptionApplicationDialog
 import com.llama.petmilly_client.presentation.dialog.AdoptionCompletedDialog
-import com.llama.petmilly_client.presentation.findanimalscreen.ImageTestData
-import com.llama.petmilly_client.ui.theme.*
-import com.llama.petmilly_client.utils.*
+import com.llama.petmilly_client.ui.theme.Background_FDFCE1
+import com.llama.petmilly_client.ui.theme.Black_60_Transfer
+import com.llama.petmilly_client.ui.theme.Name_Speech_Bubble
+import com.llama.petmilly_client.ui.theme.Pink_5_Transfer
+import com.llama.petmilly_client.utils.SpacerHeight
+import com.llama.petmilly_client.utils.SpacerWidth
+import com.llama.petmilly_client.utils.notosans_bold
+import com.llama.petmilly_client.utils.notosans_regular
 import llama.test.jetpack_dagger_plz.utils.Common.TAG
 
 @Composable
@@ -81,7 +102,7 @@ fun AnimalInfoDetailScreen(
                     )
 
                     Image(
-                        painter = painterResource(id = R.drawable.ic_none_heart),
+                        painter = painterResource(id = R.drawable.img_test_dog4),
                         contentDescription = null,
                         modifier = Modifier
                             .height(31.dp)
@@ -399,7 +420,7 @@ fun AnimalInfoDetailScreen(
                     ) {
 
                         Image(
-                            painter = painterResource(id = R.drawable.img_puppy),
+                            painter = painterResource(id = R.drawable.img_test_dog4),
                             contentDescription = null,
                             modifier = Modifier
                                 .width(50.dp)
@@ -408,7 +429,7 @@ fun AnimalInfoDetailScreen(
                         )
 
                         Image(
-                            painter = painterResource(id = R.drawable.img_puppy_star),
+                            painter = painterResource(id = R.drawable.img_test_dog4),
                             contentDescription = null,
                             modifier = Modifier
                                 .height(10.dp)
@@ -769,7 +790,7 @@ fun AnimalInfoDetailScreen(
 
         if (viewModel.isjudge.value == 0) {
             Image(
-                painter = painterResource(id = R.drawable.img_chat_contact),
+                painter = painterResource(id = R.drawable.img_test_dog4),
                 contentDescription = null,
 
                 modifier = Modifier
@@ -783,7 +804,7 @@ fun AnimalInfoDetailScreen(
             )
         } else if (viewModel.isjudge.value == 1) {
             Image(
-                painter = painterResource(id = R.drawable.img_shelter_icon_aplication),
+                painter = painterResource(id = R.drawable.img_test_dog4),
                 contentDescription = null,
 
                 modifier = Modifier
@@ -845,8 +866,6 @@ fun ProtectionConditionItems(
             maxLines = 1,
         )
     }
-
-
 }
 
 

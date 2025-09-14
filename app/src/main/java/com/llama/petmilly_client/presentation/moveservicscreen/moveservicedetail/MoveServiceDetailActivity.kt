@@ -2,7 +2,6 @@ package com.llama.petmilly_client.presentation.moveservicscreen.moveservicedetai
 
 import android.app.Activity
 import android.app.ProgressDialog
-import android.content.Context
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
@@ -34,9 +33,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.PlatformTextStyle
 import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -48,7 +45,6 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.llama.petmilly_client.R
 import com.llama.petmilly_client.presentation.shelterscreen.ShelterDetailTitleBar
-import com.llama.petmilly_client.presentation.signupscreen.viewmodel.SignUpViewModel
 import com.llama.petmilly_client.ui.theme.Button_NoneClicked
 import com.llama.petmilly_client.ui.theme.Grey_100_CBC4C4
 import com.llama.petmilly_client.ui.theme.Grey_50_CBC4C4
@@ -57,7 +53,6 @@ import com.llama.petmilly_client.utils.ButtonScreen
 import com.llama.petmilly_client.utils.notosans_bold
 import com.llama.petmilly_client.utils.notosans_regular
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.delay
 import llama.test.jetpack_dagger_plz.utils.Common
 
 
@@ -210,7 +205,7 @@ fun MoveServiceDetailScreen_3_Input(
 
 
             Image(
-                painter = painterResource(id = R.drawable.img_comment_location),
+                painter = painterResource(id = R.drawable.img_test_dog4),
                 contentDescription = null,
                 modifier = Modifier
                     .align(Alignment.CenterVertically)
@@ -265,7 +260,7 @@ fun MoveServiceDetailScreen_3_Input(
 
 
             Image(
-                painter = painterResource(id = R.drawable.img_comment_location),
+                painter = painterResource(id = R.drawable.img_test_dog4),
                 contentDescription = null,
                 modifier = Modifier
                     .align(Alignment.CenterVertically)
@@ -516,7 +511,7 @@ fun MoveServiceDetailScreen_4_Input(
 
 
             Image(
-                painter = painterResource(id = R.drawable.img_shelter_plus),
+                painter = painterResource(id = R.drawable.img_test_dog4),
                 contentDescription = null,
                 modifier = Modifier
                     .align(Alignment.CenterVertically)
@@ -645,7 +640,7 @@ fun MoveServiceDetailSuvTitle(text: String) {
                 .padding(horizontal = 24.dp)
         ) {
             Image(
-                painter = painterResource(id = R.drawable.img_jong),
+                painter = painterResource(id = R.drawable.img_test_dog4),
                 contentDescription = null,
                 modifier = Modifier
                     .width(44.dp)

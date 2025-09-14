@@ -24,6 +24,7 @@ coroutines = "1.7.3"
 # Hilt
 hilt = "2.48.1"
 hilt-compiler = "1.0.0"
+hilt-navigation-compose = "1.1.0"
 
 # Retrofit & OkHttp
 retrofit = "2.9.0"
@@ -63,7 +64,7 @@ appcompat = "1.6.1"
 # MQTT
 paho = "1.2.5"
 
-# Firebase BOM
+# Firebase BOM ㅔ
 firebase-bom = "31.3.0"
 firebase-analytics = "21.2.1"
 firebase-messaging = "23.0.0"
@@ -108,7 +109,7 @@ coroutines-play-services = { group = "org.jetbrains.kotlinx", name = "kotlinx-co
 hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref = "hilt" }
 hilt-android-compiler = { group = "com.google.dagger", name = "hilt-android-compiler", version.ref = "hilt" }
 hilt-compiler = { group = "androidx.hilt", name = "hilt-compiler", version.ref = "hilt-compiler" }
-hilt-navigation-compose = { group = "androidx.hilt", name = "hilt-navigation-compose", version.ref = "hilt-compiler" }
+hilt-navigation-compose = { group = "androidx.hilt", name = "hilt-navigation-compose", version.ref = "hilt-navigation-compose" }
 
 # Retrofit
 retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit" }
@@ -148,6 +149,6 @@ constraintlayout-compose = { group = "androidx.constraintlayout", name = "constr
 paho = { group = "org.eclipse.paho", name = "org.eclipse.paho.client.mqttv3", version.ref = "paho" }
 
 # Firebase
-firebase-bom = { group = "com.google.firebase", name = "firebase-bom", version.ref = "firebase-bom" }
+#firebase-bom = { group = "com.google.firebase", name = "firebase-bom", version.ref = "firebase-bom" }
 firebase-analytics = { group = "com.google.firebase", name = "firebase-analytics", version.ref = "firebase-analytics" }
 firebase-messaging = { group = "com.google.firebase", name = "firebase-messaging-ktx", version.ref = "firebase-messaging" }

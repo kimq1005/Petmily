@@ -1,14 +1,24 @@
 package com.llama.petmilly_client.presentation.serachscreen
 
-import android.util.Log
 import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.*
+import androidx.compose.material.Button
+import androidx.compose.material.ButtonDefaults
+import androidx.compose.material.Text
+import androidx.compose.material.TextField
+import androidx.compose.material.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
@@ -24,9 +34,11 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.llama.petmilly_client.R
-import com.llama.petmilly_client.ui.theme.*
+import com.llama.petmilly_client.ui.theme.Black_30_Transfer
+import com.llama.petmilly_client.ui.theme.Black_40_Transfer
+import com.llama.petmilly_client.ui.theme.Search_ButtonColor
+import com.llama.petmilly_client.ui.theme.TextField_BackgroudColor
 import com.llama.petmilly_client.utils.notosans_regular
-import llama.test.jetpack_dagger_plz.utils.Common.TAG
 
 @Composable
 fun SerachScreen() {
@@ -73,7 +85,7 @@ fun SerachScreen() {
 
             ) {
                 Image(
-                    painter = painterResource(id = R.drawable.icon_search),
+                    painter = painterResource(id = R.drawable.img_test_dog4),
                     contentDescription = null,
                     modifier = Modifier
                         .width(16.dp)

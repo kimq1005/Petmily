@@ -56,17 +56,17 @@ fun SecessionDialog(
 
                 ) {
 
-                Image(
-                    painter = painterResource(id = R.drawable.img_cancle),
-                    contentDescription = null,
-                    modifier = Modifier
-                        .height(35.dp)
-                        .width(35.dp)
-                        .align(Alignment.End)
-                        .padding(top = 16.dp, end = 16.dp)
-                        .clickable { onDismiss() },
-                    contentScale = ContentScale.Crop
-                )
+//                Image(
+//                    painter = painterResource(id = R.drawable.img_cancle),
+//                    contentDescription = null,
+//                    modifier = Modifier
+//                        .height(35.dp)
+//                        .width(35.dp)
+//                        .align(Alignment.End)
+//                        .padding(top = 16.dp, end = 16.dp)
+//                        .clickable { onDismiss() },
+//                    contentScale = ContentScale.Crop
+//                )
 
                 Spacer(modifier = Modifier.padding(top = 30.dp))
 

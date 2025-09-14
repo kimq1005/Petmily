@@ -1,11 +1,7 @@
 package com.llama.petmilly_client.presentation.homescreen
 
 import android.util.Log
-import androidx.compose.runtime.State
-import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -14,7 +10,6 @@ import com.llama.petmilly_client.data.model.LibraryDTO.LibraryDTO
 import com.llama.petmilly_client.data.model.LibraryDTO.Row
 import com.llama.petmilly_client.domain.repository.GetLibraryRepo
 import com.llama.petmilly_client.utils.Event
-import com.naver.maps.geometry.LatLng
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

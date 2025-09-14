@@ -1,6 +1,5 @@
 package com.llama.petmilly_client.login.kakao
 
-import com.kakao.auth.*
 import com.llama.petmilly_client.MainApplication
 
 class KaKaoSDKAdapter(context:MainApplication){

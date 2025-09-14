@@ -1,6 +1,5 @@
 package com.llama.petmilly_client.presentation.myprofilescreen
 
-import android.view.View
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel

@@ -43,7 +43,6 @@ fun SignUpScreen_5_istemporarycare(navController: NavController, viewModel: Sign
         }
 
         CommonSignDescription()
-//
 
         Text(
             text = "${MainApplication.signupname}님,\n'임시보호' 해보신 적\n있으신가요?",

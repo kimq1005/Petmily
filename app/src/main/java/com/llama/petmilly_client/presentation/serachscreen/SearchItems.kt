@@ -36,7 +36,7 @@ fun SearchItems(
         Spacer(modifier = Modifier.weight(1f))
 
         Image(
-            painter = painterResource(id = R.drawable.img_cancle),
+            painter = painterResource(id = R.drawable.img_test_dog4),
             contentDescription = null,
             modifier = Modifier
                 .height(20.dp)

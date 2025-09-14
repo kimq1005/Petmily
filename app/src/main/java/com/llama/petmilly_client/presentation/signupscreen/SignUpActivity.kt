@@ -97,9 +97,7 @@ class SignUpActivity : ComponentActivity() {
                 composable(SIGNUPSCREEN_COMPLETED){
                     SignUpScreen_completed(navController = navController,viewModel)
                 }
-
             }
         }
-
     }
 }
