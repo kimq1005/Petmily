@@ -372,7 +372,7 @@ fun TextScreen_HOUSE(
 @Composable
 fun Cancle(modifier: Modifier) {
     Image(
-        painter = painterResource(id = R.drawable.img_cancle),
+        painter = painterResource(id = R.drawable.img_petmilly_chatting),
         contentDescription = null,
         modifier = modifier
             .height(25.dp)

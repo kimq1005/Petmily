@@ -63,7 +63,7 @@ fun AdoptionApplicationDialog(
             Column() {
 
                 Image(
-                    painter = painterResource(id = R.drawable.img_cancle),
+                    painter = painterResource(id = R.drawable.img_test_dog4),
                     contentDescription = null,
                     modifier = Modifier
                         .height(35.dp)
@@ -77,7 +77,7 @@ fun AdoptionApplicationDialog(
                 Spacer(modifier = Modifier.height(5.dp))
 
                 Image(
-                    painter = painterResource(id = R.drawable.img_shelter_application),
+                    painter = painterResource(id = R.drawable.img_testcat_2),
                     contentDescription = null,
                     modifier = Modifier
                         .height(27.dp)

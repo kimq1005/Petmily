@@ -36,11 +36,11 @@ import com.llama.petmilly_client.ui.theme.Category_Cliked
 import llama.test.jetpack_dagger_plz.utils.Common.TAG
 
 sealed class BottomNavItem(var title: String, var icon: Int, var screen_route: String) {
-    object Home : BottomNavItem("펫밀리", R.drawable.img_petmilly_home_2, "home")
+    object Home : BottomNavItem("펫밀리", R.drawable.img_petmilly_chatting, "home")
     object Chatting : BottomNavItem("채팅", R.drawable.img_petmilly_chatting, "my_network")
-    object Heart : BottomNavItem("관심", R.drawable.img_petmilly_heart_menu_2, "add_post")
-    object Notification : BottomNavItem("알림", R.drawable.img_petmilly_notification, "notification")
-    object Person : BottomNavItem("MY", R.drawable.img_petmilly_person, "my")
+    object Heart : BottomNavItem("관심", R.drawable.img_petmilly_chatting, "add_post")
+    object Notification : BottomNavItem("알림", R.drawable.img_petmilly_chatting, "notification")
+    object Person : BottomNavItem("MY", R.drawable.img_petmilly_chatting, "my")
 }
 
 @Composable
