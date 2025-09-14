@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+
+    <permission
+        android:name="패키지명.permission.C2D_MESSAGE"
+        android:protectionLevel="signature" />
+
+    <uses-permission android:name="com.llama.petmilly_client.permission.C2D_MESSAGE" />
+
+    <application
+        android:name=".MainApplication"
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.PET_MILLY_CLIENT"
+        tools:targetApi="31">
+        <activity
+            android:name=".MainActivity2ASDSAD"
+            android:exported="false"
+            android:label="@string/title_activity_main_activity2_asdsad"
+            android:theme="@style/Theme.PET_MILLY_CLIENT" />
+
+        <service
+            android:name=".fcm.MyFirebaseMessagingService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+
+        <activity
+            android:name=".fcm.NotificationActivity"
+            android:exported="true"
+            android:theme="@style/Theme.PET_MILLY_CLIENT" />
+        <activity
+            android:name=".mqtt.MqttActivity"
+            android:exported="true"
+            android:theme="@style/Theme.PET_MILLY_CLIENT" />
+        <activity
+            android:name=".presentation.findanimalscreen.findanimaldetailscreen.FADetailActivity"
+            android:exported="false"
+            android:theme="@style/Theme.PET_MILLY_CLIENT" />
+        <activity
+            android:name=".presentation.moveservicscreen.moveservicedetail.MoveServiceDetailActivity"
+            android:exported="false"
+            android:theme="@style/Theme.PET_MILLY_CLIENT" />
+        <activity
+            android:name=".presentation.shelterscreen.shelterdetailscreen.ShelterDetailActivity"
+            android:exported="false"
+            android:theme="@style/Theme.PET_MILLY_CLIENT" />
+        <activity
+            android:name=".presentation.adoptionscreen.AdoptionActivity"
+            android:exported="false"
+            android:theme="@style/Theme.PET_MILLY_CLIENT" />
+        <activity
+            android:name=".presentation.findanimalscreen.FindAnimalActivity"
+            android:exported="false"
+            android:theme="@style/Theme.PET_MILLY_CLIENT" />
+        <activity
+            android:name=".presentation.moveservicscreen.MoveServiceActivity"
+            android:exported="false"
+            android:theme="@style/Theme.PET_MILLY_CLIENT" />
+        <activity
+            android:name=".presentation.signupscreen.SignUpActivity"
+            android:exported="false"
+            android:theme="@style/Theme.PET_MILLY_CLIENT" />
+        <activity
+            android:name=".presentation.certificationscreen.CertificationActivity"
+            android:exported="false"
+            android:label="@string/title_activity_certification"
+            android:theme="@style/Theme.PET_MILLY_CLIENT" />
+        <activity
+            android:name=".presentation.homescreen.HomeActivity"
+            android:exported="false"
+            android:label="@string/title_activity_main2"
+            android:theme="@style/Theme.PET_MILLY_CLIENT.TransparentStatusBar" />
+        <activity
+            android:name=".presentation.shelterscreen.ShelterActivity"
+            android:exported="false"
+            android:label="ShelterActivity"
+            android:theme="@style/Theme.PET_MILLY_CLIENT" />
+        <activity
+            android:name=".presentation.myprofilescreen.ProfileActivity"
+            android:exported="false"
+            android:label="ProfileActivity"
+            android:theme="@style/Theme.PET_MILLY_CLIENT" />
+        <activity
+            android:name=".presentation.MainActivity"
+            android:exported="true"
+            android:label="@string/app_name"
+            android:theme="@style/Theme.PET_MILLY_CLIENT">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.kakao.sdk.auth.AuthCodeHandlerActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <!-- Redirect URI: "kakao${NATIVE_APP_KEY}://oauth" -->
+                <data
+                    android:host="oauth"
+                    android:scheme="kakao28e95ae82917c57494ce6f9b42022bc8" />
+            </intent-filter>
+        </activity>
+
+        <meta-data
+            android:name="com.kakao.sdk.AppKey"
+            android:value="@string/kakao_api_key" />
+        <meta-data
+            android:name="com.naver.maps.map.CLIENT_ID"
+            android:value="9ix7hj50f3" />
+    </application>
+
+</manifest>

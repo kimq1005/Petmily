@@ -1,0 +1,153 @@
+[versions]
+# Core / Compose
+core-ktx = "1.12.0"
+compose = "1.5.3"
+lifecycle = "2.6.2"
+activity-compose = "1.8.2"
+compose-bom = "2023.03.00"
+
+# Test
+junit = "4.13.2"
+androidx-junit = "1.1.5"
+espresso = "3.5.1"
+
+# Paging
+paging = "3.1.1"
+paging-compose = "1.0.0-alpha14"
+
+# Navigation
+navigation-compose = "2.7.3"
+
+# Coroutines
+coroutines = "1.7.3"
+
+# Hilt
+hilt = "2.48.1"
+hilt-compiler = "1.0.0"
+
+# Retrofit & OkHttp
+retrofit = "2.9.0"
+okhttp = "5.0.0-alpha.2"
+
+# Coil
+coil = "2.4.0" # 1.4.0 → 최신 버전 추천
+
+# Accompanist
+accompanist-systemuicontroller = "0.32.0"
+accompanist-flowlayout = "0.32.0"
+accompanist-pager = "0.32.0"
+accompanist-pager-indicators = "0.32.0"
+
+# Naver & Lottie
+naver-map-compose = "1.3.1"
+naver-map-sdk = "3.16.1"
+tedclustering-naver = "1.0.2"
+lottie-compose = "5.0.3"
+
+# Play Services
+play-services-maps = "18.1.0"
+play-services-location = "21.0.1"
+
+# Flexbox
+flexbox = "3.0.0"
+
+# Kakao
+kakao-v2 = "2.11.0"
+kakao-v1 = "1.30.7"
+
+# ConstraintLayout
+constraintlayout-compose = "1.0.1"
+
+appcompat = "1.6.1"
+
+# MQTT
+paho = "1.2.5"
+
+# Firebase BOM
+firebase-bom = "31.3.0"
+firebase-analytics = "21.2.1"
+firebase-messaging = "23.0.0"
+
+
+[libraries]
+# Core & Compose
+core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "core-ktx" }
+compose-ui = { group = "androidx.compose.ui", name = "ui", version.ref = "compose" }
+compose-material = { group = "androidx.compose.material", name = "material", version.ref = "compose" }
+compose-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview", version.ref = "compose" }
+activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "activity-compose" }
+lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "lifecycle" }
+lifecycle-viewmodel-ktx = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-ktx", version.ref = "lifecycle" }
+compose-runtime-livedata = { group = "androidx.compose.runtime", name = "runtime-livedata", version.ref = "compose" }
+compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "compose-bom" }
+
+# AppCompat
+appcompat = { group = "androidx.appcompat", name = "appcompat", version = "1.6.1" }
+
+# Tests
+junit = { group = "junit", name = "junit", version.ref = "junit" }
+androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "androidx-junit" }
+espresso = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espresso" }
+compose-ui-test = { group = "androidx.compose.ui", name = "ui-test-junit4", version.ref = "compose" }
+compose-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling", version.ref = "compose" }
+compose-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest", version.ref = "compose" }
+
+# Paging
+paging-runtime = { group = "androidx.paging", name = "paging-runtime-ktx", version.ref = "paging" }
+paging-compose = { group = "androidx.paging", name = "paging-compose", version.ref = "paging-compose" }
+
+# Navigation
+navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navigation-compose" }
+
+# Coroutines
+coroutines-core = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version.ref = "coroutines" }
+coroutines-android = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-android", version.ref = "coroutines" }
+coroutines-play-services = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-play-services", version.ref = "coroutines" }
+
+# Hilt
+hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref = "hilt" }
+hilt-android-compiler = { group = "com.google.dagger", name = "hilt-android-compiler", version.ref = "hilt" }
+hilt-compiler = { group = "androidx.hilt", name = "hilt-compiler", version.ref = "hilt-compiler" }
+hilt-navigation-compose = { group = "androidx.hilt", name = "hilt-navigation-compose", version.ref = "hilt-compiler" }
+
+# Retrofit
+retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit" }
+converter-gson = { group = "com.squareup.retrofit2", name = "converter-gson", version.ref = "retrofit" }
+okhttp = { group = "com.squareup.okhttp3", name = "okhttp", version.ref = "okhttp" }
+
+# Coil
+coil-compose = { group = "io.coil-kt", name = "coil-compose", version.ref = "coil" }
+
+# Accompanist
+accompanist-systemuicontroller = { group = "com.google.accompanist", name = "accompanist-systemuicontroller", version.ref = "accompanist-systemuicontroller" }
+accompanist-flowlayout = { group = "com.google.accompanist", name = "accompanist-flowlayout", version.ref = "accompanist-flowlayout" }
+accompanist-pager = { group = "com.google.accompanist", name = "accompanist-pager", version.ref = "accompanist-pager" }
+accompanist-pager-indicators = { group = "com.google.accompanist", name = "accompanist-pager-indicators", version.ref = "accompanist-pager-indicators" }
+
+# Naver & Lottie
+naver-map-compose = { group = "io.github.fornewid", name = "naver-map-compose", version.ref = "naver-map-compose" }
+naver-map-sdk = { group = "com.naver.maps", name = "map-sdk", version.ref = "naver-map-sdk" }
+tedclustering-naver = { group = "io.github.ParkSangGwon", name = "tedclustering-naver", version.ref = "tedclustering-naver" }
+lottie-compose = { group = "com.airbnb.android", name = "lottie-compose", version.ref = "lottie-compose" }
+
+# Play Services
+play-services-maps = { group = "com.google.android.gms", name = "play-services-maps", version.ref = "play-services-maps" }
+play-services-location = { group = "com.google.android.gms", name = "play-services-location", version.ref = "play-services-location" }
+
+# Flexbox
+flexbox = { group = "com.google.android.flexbox", name = "flexbox", version.ref = "flexbox" }
+
+# Kakao
+kakao-v2 = { group = "com.kakao.sdk", name = "v2-all", version.ref = "kakao-v2" }
+kakao-v1 = { group = "com.kakao.sdk", name = "usermgmt", version.ref = "kakao-v1" }
+
+# ConstraintLayout
+constraintlayout-compose = { group = "androidx.constraintlayout", name = "constraintlayout-compose", version.ref = "constraintlayout-compose" }
+
+# MQTT
+paho = { group = "org.eclipse.paho", name = "org.eclipse.paho.client.mqttv3", version.ref = "paho" }
+
+# Firebase
+firebase-bom = { group = "com.google.firebase", name = "firebase-bom", version.ref = "firebase-bom" }
+firebase-analytics = { group = "com.google.firebase", name = "firebase-analytics", version.ref = "firebase-analytics" }
+firebase-messaging = { group = "com.google.firebase", name = "firebase-messaging-ktx", version.ref = "firebase-messaging" }
