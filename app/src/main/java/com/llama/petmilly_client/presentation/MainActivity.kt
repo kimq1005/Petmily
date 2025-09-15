@@ -8,8 +8,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.toArgb
 import androidx.core.view.WindowCompat
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.navigation.compose.rememberNavController
-import com.llama.petmilly_client.presentation.loginscreen.LoginScreen
+import com.llama.petmilly_client.presentation.login.LoginScreen
+import com.llama.petmilly_client.presentation.login.LoginSuccessScreen
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -22,12 +22,9 @@ class MainActivity : ComponentActivity() {
             SideEffect {
                 WindowCompat.setDecorFitsSystemWindows(window, false)
                 window.statusBarColor = Color.Transparent.toArgb()
-//                window.navigationBarColor = Color.Transparent.toArgb()
             }
 
-            val viewModel:MainViewModel = hiltViewModel()
-            val navController = rememberNavController()
-            LoginScreen(navController = navController, viewModel = viewModel)
+            LoginSuccessScreen()
         }
     }
 }

@@ -1,38 +1,50 @@
 package com.llama.petmilly_client.presentation
 
 import android.util.Log
-import androidx.compose.runtime.*
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.llama.petmilly_client.MainApplication
 import com.llama.petmilly_client.data.model.kakaologin.respones.KaKaoResponse
 import com.llama.petmilly_client.domain.repository.PetMillyRepo
-import com.llama.petmilly_client.domain.repository.TestRepo
-import com.llama.petmilly_client.utils.Event
+import com.llama.petmilly_client.presentation.login.model.LoginSideEffect
+import com.llama.petmilly_client.presentation.login.model.LoginState
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import llama.test.jetpack_dagger_plz.utils.Common.TAG
 import llama.test.jetpack_dagger_plz.utils.RemoteResult
+import org.orbitmvi.orbit.Container
+import org.orbitmvi.orbit.ContainerHost
+import org.orbitmvi.orbit.syntax.simple.intent
+import org.orbitmvi.orbit.syntax.simple.postSideEffect
+import org.orbitmvi.orbit.viewmodel.container
 import javax.inject.Inject
 
 @HiltViewModel
-class MainViewModel @Inject constructor(private val petMillyRepo: PetMillyRepo) : ViewModel() {
+class MainViewModel @Inject constructor(
+    private val petMillyRepo: PetMillyRepo
+) : ViewModel(), ContainerHost<LoginState, LoginSideEffect> {
 
-    private val _model1 = MutableLiveData<Event<Unit>>()
-    val model1: LiveData<Event<Unit>> = _model1
+    override val container: Container<LoginState, LoginSideEffect> = container(
+        initialState = LoginState(),
+        buildSettings = {
+            this.exceptionHandler = CoroutineExceptionHandler { _, throwable ->
+                intent {
+                    postSideEffect(
+                        LoginSideEffect.Error(message = throwable.message.orEmpty()))
+                }
+            }
+        }
+    )
 
-    private val _setHomeIntent = MutableLiveData<Event<Unit>>()
-    val setHomeIntent: LiveData<Event<Unit>> = _setHomeIntent
+    fun onConfirm() = intent {
+        postSideEffect(LoginSideEffect.NavigateToHomeActivity)
+    }
 
-    private val _setsignupIntent = MutableLiveData<Event<Unit>>()
-    val setsignupIntent: LiveData<Event<Unit>> = _setsignupIntent
-
-    private val _yeah = mutableStateOf(Event(Unit))
-    val yeah: State<Event<Unit>> = _yeah
-
+    fun onDisConfirm() = intent {
+        postSideEffect(LoginSideEffect.NavigateToNotificationActivity)
+    }
 
     fun postkakaotoken() {
         if (MainApplication.kakaoaccesesstoken != "") {
@@ -52,10 +64,10 @@ class MainViewModel @Inject constructor(private val petMillyRepo: PetMillyRepo) 
                                 MainApplication.refreshToken = refreshToken ?: ""
 
                                 if (!data.data.isExistAdditionalInfo) {
-                                    _setsignupIntent.postValue(Event(Unit))
+
                                 } else {
                                     if (MainApplication.accessToken != "" && MainApplication.refreshToken != "") {
-//                                        _setHomeIntent.postValue(Event(Unit))
+
                                     }
                                 }
 
@@ -80,16 +92,5 @@ class MainViewModel @Inject constructor(private val petMillyRepo: PetMillyRepo) 
             }
         }
 
-    }
-
-    var isDialogShown by mutableStateOf(false)
-        private set
-
-    fun onBuyClick() {
-        isDialogShown = true
-    }
-
-    fun onDismissDialog() {
-        isDialogShown = false
     }
 }

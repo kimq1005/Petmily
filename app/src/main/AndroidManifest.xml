@@ -24,11 +24,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PET_MILLY_CLIENT"
         tools:targetApi="31">
-        <activity
-            android:name=".MainActivity2ASDSAD"
-            android:exported="false"
-            android:label="@string/title_activity_main_activity2_asdsad"
-            android:theme="@style/Theme.PET_MILLY_CLIENT" />
 
         <service
             android:name=".fcm.MyFirebaseMessagingService"
