@@ -164,7 +164,6 @@ fun kakaoLogin(context: Context, viewModel: MainViewModel) {
 //    Log.d(TAG, "kakaoLogin: siba")
     viewModel.postkakaotoken()
 
-
 //    val callback: (OAuthToken?, Throwable?) -> Unit = { token, error ->
 //        if (error != null) {
 //            Log.d(TAG, "로그인 실패 -> $error ")
