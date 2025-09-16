@@ -109,16 +109,15 @@
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
 
-                <!-- Redirect URI: "kakao${NATIVE_APP_KEY}://oauth" -->
                 <data
                     android:host="oauth"
-                    android:scheme="kakao28e95ae82917c57494ce6f9b42022bc8" />
+                    android:scheme="kakao${KAKAO_V2_KEY_ID}" />
             </intent-filter>
         </activity>
 
         <meta-data
             android:name="com.kakao.sdk.AppKey"
-            android:value="@string/kakao_api_key" />
+            android:value="${KAKAO_V2_KEY_ID}" />
         <meta-data
             android:name="com.naver.maps.map.CLIENT_ID"
             android:value="9ix7hj50f3" />

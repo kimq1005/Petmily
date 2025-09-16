@@ -160,7 +160,10 @@ fun LoginScreen(
     }
 }
 
-fun kakaoLogin(context: Context, viewModel: MainViewModel) {
+fun kakaoLogin(
+    context: Context,
+    viewModel: MainViewModel
+) {
 //    Log.d(TAG, "kakaoLogin: siba")
     viewModel.postkakaotoken()
 

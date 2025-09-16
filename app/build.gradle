@@ -5,6 +5,13 @@ plugins {
     id 'dagger.hilt.android.plugin'
 }
 
+//def localProperties = new Properties()
+//file("${rootDir}/local.properties").withInputStream { stream ->
+//    localProperties.load(stream)
+//}
+//
+//def kakaoSdkKey = localProperties.getProperty("KAKAO_V2_KEY_ID", "")
+
 android {
     namespace 'com.llama.petmilly_client'
     compileSdk 34
@@ -20,6 +27,18 @@ android {
         vectorDrawables {
             useSupportLibrary true
         }
+
+        // 로컬 프로퍼티 읽기
+        def localProperties = new Properties()
+        file("${rootDir}/local.properties").withInputStream { stream ->
+            localProperties.load(stream)
+        }
+        def kakaoSdkKey = localProperties.getProperty("KAKAO_V2_KEY_ID", "")
+
+        // manifest 치환
+        manifestPlaceholders = [KAKAO_V2_KEY_ID: kakaoSdkKey]
+
+        buildConfigField "String", "KAKAO_V2_KEY_ID", "\"${kakaoSdkKey}\""
     }
 
     flavorDimensions += "version"
@@ -139,9 +158,8 @@ dependencies {
     // Flexbox
     implementation(libs.flexbox)
 
-//    // Kakao
-//    implementation(libs.kakao.v2)
-//    implementation(libs.kakao.v1)
+//    // kakao
+    implementation(libs.kakao.v2)
 
     // ConstraintLayout
     implementation(libs.constraintlayout.compose)

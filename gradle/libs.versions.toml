@@ -54,7 +54,6 @@ flexbox = "3.0.0"
 
 # Kakao
 kakao-v2 = "2.11.0"
-kakao-v1 = "1.30.7"
 
 # ConstraintLayout
 constraintlayout-compose = "1.0.1"
@@ -143,7 +142,6 @@ flexbox = { group = "com.google.android.flexbox", name = "flexbox", version.ref 
 
 # Kakao
 kakao-v2 = { group = "com.kakao.sdk", name = "v2-all", version.ref = "kakao-v2" }
-kakao-v1 = { group = "com.kakao.sdk", name = "usermgmt", version.ref = "kakao-v1" }
 
 # ConstraintLayout
 constraintlayout-compose = { group = "androidx.constraintlayout", name = "constraintlayout-compose", version.ref = "constraintlayout-compose" }
