@@ -70,6 +70,7 @@ firebase-messaging = "23.0.0"
 
 # Orbit
 orbit = "6.1.0"
+media3-common-ktx = "1.8.0"
 
 
 [libraries]
@@ -158,3 +159,4 @@ firebase-messaging = { group = "com.google.firebase", name = "firebase-messaging
 orbit-core = { group = "org.orbit-mvi", name = "orbit-core", version.ref = "orbit"}
 orbit-viewmodel = { group = "org.orbit-mvi", name = "orbit-viewmodel", version.ref = "orbit"}
 orbit-compose = { group = "org.orbit-mvi", name = "orbit-compose", version.ref = "orbit"}
+androidx-media3-common-ktx = { group = "androidx.media3", name = "media3-common-ktx", version.ref = "media3-common-ktx" }

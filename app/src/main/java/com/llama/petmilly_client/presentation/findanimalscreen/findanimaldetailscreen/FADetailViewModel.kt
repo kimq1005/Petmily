@@ -18,10 +18,9 @@ import com.llama.petmilly_client.presentation.shelterscreen.shelterdetailscreen.
 import com.llama.petmilly_client.utils.Event
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import llama.test.jetpack_dagger_plz.utils.Common.TAG
-import llama.test.jetpack_dagger_plz.utils.RemoteResult
+import com.llama.petmilly_client.utils.RemoteResult
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody

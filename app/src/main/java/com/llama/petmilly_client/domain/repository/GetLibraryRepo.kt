@@ -1,10 +1,7 @@
 package com.llama.petmilly_client.domain.repository
 
 import com.llama.petmilly_client.data.model.LibraryDTO.LibraryDTO
-import llama.test.jetpack_dagger_plz.utils.RemoteResult
-import retrofit2.Response
-import retrofit2.http.GET
-import retrofit2.http.Path
+import com.llama.petmilly_client.utils.RemoteResult
 
 interface GetLibraryRepo {
 

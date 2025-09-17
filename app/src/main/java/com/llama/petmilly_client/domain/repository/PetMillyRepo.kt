@@ -15,11 +15,9 @@ import com.llama.petmilly_client.data.model.post.postdto.PostDTO
 import com.llama.petmilly_client.data.model.refreshtoken.RefreshTokenDTO
 import com.llama.petmilly_client.data.model.temporary.TemporaryprotectionDTO
 import com.llama.petmilly_client.data.model.temporary.detail.TemporarydetailDTO
-import llama.test.jetpack_dagger_plz.utils.RemoteResult
+import com.llama.petmilly_client.utils.RemoteResult
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
-import retrofit2.Response
-import retrofit2.http.*
 
 interface PetMillyRepo {
     suspend fun postkakaotoken(

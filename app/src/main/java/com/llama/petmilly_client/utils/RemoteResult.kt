@@ -1,4 +1,4 @@
-package llama.test.jetpack_dagger_plz.utils
+package com.llama.petmilly_client.utils
 
 data class RemoteResult<out T>(val status: Status, val data: T?, val message: String?) {
 

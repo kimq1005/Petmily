@@ -2,8 +2,8 @@ package llama.test.jetpack_dagger_plz.utils
 
 import android.util.Log
 import com.google.gson.Gson
+import com.llama.petmilly_client.utils.RemoteResult
 import llama.test.jetpack_dagger_plz.utils.Common.TAG
-import org.json.JSONObject
 import retrofit2.Response
 
 /**

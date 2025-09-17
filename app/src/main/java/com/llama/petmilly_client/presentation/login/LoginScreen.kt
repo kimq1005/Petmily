@@ -2,6 +2,8 @@ package com.llama.petmilly_client.presentation.login
 
 import android.content.Context
 import android.content.Intent
+import android.util.Log
+import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -35,6 +37,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.kakao.sdk.auth.model.OAuthToken
+import com.kakao.sdk.user.UserApiClient
 import com.llama.petmilly_client.R
 import com.llama.petmilly_client.fcm.NotificationActivity
 import com.llama.petmilly_client.presentation.MainViewModel
@@ -160,60 +164,75 @@ fun LoginScreen(
     }
 }
 
-fun kakaoLogin(
-    context: Context,
-    viewModel: MainViewModel
-) {
-//    Log.d(TAG, "kakaoLogin: siba")
-    viewModel.postkakaotoken()
+fun wow() {
+    val callback: (OAuthToken?, Throwable?) -> Unit = { token, error ->
+        if (error != null) {
+            Log.d("TAG", "로그인 실패 -> $error ")
+            Toast.makeText(context, "카카오톡 로그인 실패", Toast.LENGTH_SHORT).show()
+        } else if (token != null) {
+            Log.d("TAG", "로그인 성공: ${token.accessToken}")
 
-//    val callback: (OAuthToken?, Throwable?) -> Unit = { token, error ->
-//        if (error != null) {
-//            Log.d(TAG, "로그인 실패 -> $error ")
-//            Toast.makeText(context, "카카오톡 로그인 실패", Toast.LENGTH_SHORT).show()
-//        } else if (token != null) {
-//            Log.d(TAG, "로그인 성공: ${token.accessToken}")
-//            viewModel.postkakaotoken()
-//
-////            val intent = Intent(context, HomeActivity::class.java)
-////            context.startActivity(intent)
-//
-//        }
-//    }
+//            val intent = Intent(context, HomeActivity::class.java)
+//            context.startActivity(intent)
 
-//    if (UserApiClient.instance.isKakaoTalkLoginAvailable(context)) {
-//        UserApiClient.instance.loginWithKakaoTalk(context) { token, error ->
-//            if (error != null) {
-//                // 사용자가 카카오톡 설치 후 디바이스 권한 요청 화면에서 로그인을 취소한 경우
-//                Log.d(TAG, "로그인 실패 두번째 -> $error")
-//                if (error is ClientError && error.reason == ClientErrorCause.Cancelled) {
-//                    return@loginWithKakaoTalk
-//                }
-//                // 카카오톡에 연결된 카카오계정이 없는 경우, 카카오계정으로 로그인 시도
-//                UserApiClient.instance.loginWithKakaoAccount(context, callback = callback)
-//
-//            } else if (token != null) {
-//                MainApplication.kakaoaccesesstoken = token.accessToken
-//                Log.d(TAG, "카카오 로그인 성공! 두번째 : ${MainApplication.kakaoaccesesstoken} ")
-//                viewModel.postkakaotoken()
-//
-//
-//                UserApiClient.instance.me { user, error ->
-//                    if (error != null) {
-//                        Log.d(TAG, "사용자 정보 요청 실패", error)
-//                    } else if (user != null) {
-//
-//                    }
-//                }
-//
-//            } else {
-//                UserApiClient.instance.loginWithKakaoAccount(context, callback = callback)
-//                Log.d(TAG, "넌 뭐니? : ")
-//            }
-//
-//        }
-//    }
+            val wow = UserApiClient
+        }
+    }
 }
+
+//fun kakaoLogin(
+//    context: Context,
+//    viewModel: MainViewModel
+//) {
+//    viewModel.postkakaotoken()
+//
+////    val callback: (OAuthToken?, Throwable?) -> Unit = { token, error ->
+////        if (error != null) {
+////            Log.d(TAG, "로그인 실패 -> $error ")
+////            Toast.makeText(context, "카카오톡 로그인 실패", Toast.LENGTH_SHORT).show()
+////        } else if (token != null) {
+////            Log.d(TAG, "로그인 성공: ${token.accessToken}")
+////            viewModel.postkakaotoken()
+////
+//////            val intent = Intent(context, HomeActivity::class.java)
+//////            context.startActivity(intent)
+////
+////        }
+////    }
+//
+//    if (UserApiClient.instance.isKakaoTalkLoginAvailable(context)) {
+////        UserApiClient.instance.loginWithKakaoTalk(context) { token, error ->
+////            if (error != null) {
+////                // 사용자가 카카오톡 설치 후 디바이스 권한 요청 화면에서 로그인을 취소한 경우
+////                Log.d(TAG, "로그인 실패 두번째 -> $error")
+////                if (error is ClientError && error.reason == ClientErrorCause.Cancelled) {
+////                    return@loginWithKakaoTalk
+////                }
+////                // 카카오톡에 연결된 카카오계정이 없는 경우, 카카오계정으로 로그인 시도
+////                UserApiClient.instance.loginWithKakaoAccount(context, callback = callback)
+////
+////            } else if (token != null) {
+////                MainApplication.kakaoaccesesstoken = token.accessToken
+////                Log.d(TAG, "카카오 로그인 성공! 두번째 : ${MainApplication.kakaoaccesesstoken} ")
+////                viewModel.postkakaotoken()
+////
+////
+////                UserApiClient.instance.me { user, error ->
+////                    if (error != null) {
+////                        Log.d(TAG, "사용자 정보 요청 실패", error)
+////                    } else if (user != null) {
+////
+////                    }
+////                }
+////
+////            } else {
+////                UserApiClient.instance.loginWithKakaoAccount(context, callback = callback)
+////                Log.d(TAG, "넌 뭐니? : ")
+////            }
+////
+////        }
+////    }
+//}
 
 @Preview
 @Composable

@@ -18,7 +18,7 @@ import com.llama.petmilly_client.data.model.temporary.detail.TemporarydetailDTO
 import com.llama.petmilly_client.data.network.PetMillYApiService
 import com.llama.petmilly_client.domain.repository.PetMillyRepo
 import llama.test.jetpack_dagger_plz.utils.BaseDataSource
-import llama.test.jetpack_dagger_plz.utils.RemoteResult
+import com.llama.petmilly_client.utils.RemoteResult
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import javax.inject.Inject
