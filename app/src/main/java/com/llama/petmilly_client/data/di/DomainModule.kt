@@ -1,4 +1,4 @@
-package com.llama.petmilly_client.domain.di
+package com.llama.petmilly_client.data.di
 
 import com.llama.petmilly_client.data.network.ApiService
 import com.llama.petmilly_client.data.network.LibraryApiService
@@ -19,7 +19,6 @@ import com.llama.petmilly_client.domain.repository.TestRepo
 @InstallIn(SingletonComponent::class)
 @Module
 object DomainModule {
-
     @Provides
     fun provideGetNewRepo(apiService: ApiService) : GetNewsArticleRepo {
         return GetNewsArticleRepoImpl(apiService)
@@ -39,5 +38,4 @@ object DomainModule {
     fun providePetMillyRepo(petMillYApiService: PetMillYApiService) : PetMillyRepo{
         return PetMillyRepoImpl(petMillYApiService)
     }
-
 }
