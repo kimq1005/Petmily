@@ -67,7 +67,11 @@ fun LoginSuccessScreen(
 
     viewModel.collectSideEffect { sideEffect ->
         when (sideEffect) {
-            is LoginSideEffect.Error -> {}
+            is LoginSideEffect.Error -> {
+                val errorMessage = sideEffect.message
+                Log.e("TAG", "LoginSuccessScreen Error: $errorMessage")
+            }
+
             is LoginSideEffect.NavigateToHomeActivity -> {
                 val intent = Intent(context, HomeActivity::class.java)
                 context.startActivity(intent)

@@ -9,8 +9,6 @@ import dagger.hilt.android.HiltAndroidApp
 
 @HiltAndroidApp
 class MainApplication : Application() {
-
-
     companion object {
         private lateinit var sharedPreferences: SharedPreferences
         lateinit var instance: MainApplication

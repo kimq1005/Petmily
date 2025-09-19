@@ -5,13 +5,6 @@ plugins {
     id 'dagger.hilt.android.plugin'
 }
 
-//def localProperties = new Properties()
-//file("${rootDir}/local.properties").withInputStream { stream ->
-//    localProperties.load(stream)
-//}
-//
-//def kakaoSdkKey = localProperties.getProperty("KAKAO_V2_KEY_ID", "")
-
 android {
     namespace 'com.llama.petmilly_client'
     compileSdk 34
@@ -105,7 +98,7 @@ dependencies {
     implementation(libs.lifecycle.viewmodel.ktx)
     implementation(libs.compose.runtime.livedata)
     implementation(libs.appcompat)
-    implementation libs.androidx.media3.common.ktx
+//    implementation libs.androidx.media3.common.ktx
 
     // Tests
     testImplementation(libs.junit)
@@ -172,7 +165,11 @@ dependencies {
     implementation(libs.firebase.analytics)
     implementation(libs.firebase.messaging)
 
+    //orbit
     implementation(libs.orbit.compose)
     implementation(libs.orbit.core)
     implementation(libs.orbit.viewmodel)
+
+    //DataStore
+    implementation(libs.datastore)
 }

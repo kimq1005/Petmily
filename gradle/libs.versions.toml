@@ -63,6 +63,9 @@ appcompat = "1.6.1"
 # MQTT
 paho = "1.2.5"
 
+# DatStore
+dataStore = "1.0.0"
+
 # Firebase BOM ㅔ
 firebase-bom = "31.3.0"
 firebase-analytics = "21.2.1"
@@ -70,7 +73,7 @@ firebase-messaging = "23.0.0"
 
 # Orbit
 orbit = "6.1.0"
-media3-common-ktx = "1.8.0"
+#media3-common-ktx = "1.6.0"
 
 
 [libraries]
@@ -84,6 +87,9 @@ lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtim
 lifecycle-viewmodel-ktx = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-ktx", version.ref = "lifecycle" }
 compose-runtime-livedata = { group = "androidx.compose.runtime", name = "runtime-livedata", version.ref = "compose" }
 compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "compose-bom" }
+
+# DataStore
+datastore = { module = "androidx.datastore:datastore-preferences", version = "dataStore" }
 
 # AppCompat
 appcompat = { group = "androidx.appcompat", name = "appcompat", version = "1.6.1" }
@@ -159,4 +165,4 @@ firebase-messaging = { group = "com.google.firebase", name = "firebase-messaging
 orbit-core = { group = "org.orbit-mvi", name = "orbit-core", version.ref = "orbit"}
 orbit-viewmodel = { group = "org.orbit-mvi", name = "orbit-viewmodel", version.ref = "orbit"}
 orbit-compose = { group = "org.orbit-mvi", name = "orbit-compose", version.ref = "orbit"}
-androidx-media3-common-ktx = { group = "androidx.media3", name = "media3-common-ktx", version.ref = "media3-common-ktx" }
+#androidx-media3-common-ktx = { group = "androidx.media3", name = "media3-common-ktx", version.ref = "media3-common-ktx" }
