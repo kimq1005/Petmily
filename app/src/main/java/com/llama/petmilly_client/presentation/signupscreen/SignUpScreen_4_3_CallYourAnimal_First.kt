@@ -125,10 +125,8 @@ fun SignUpScreen_4_3_CallYourAnimal_First(
                 .padding(start = 20.dp, end = 20.dp, bottom = 25.dp)
                 .height(55.dp)
                ,
-            keyboardOptions = KeyboardOptions.Default.copy(keyboardType = KeyboardType.Number),
-            keyboardActions = KeyboardActions(onDone = {
-                keyboardController?.hide()
-            }),
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
+            keyboardActions = KeyboardActions(onDone = { keyboardController?.hide() }),
             shape = RoundedCornerShape(10.dp),
             colors = TextFieldDefaults.textFieldColors(
                 backgroundColor = TextField_BackgroudColor,

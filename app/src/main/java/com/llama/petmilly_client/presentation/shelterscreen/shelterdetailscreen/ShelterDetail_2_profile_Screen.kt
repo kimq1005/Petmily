@@ -209,7 +209,7 @@ fun ShelterDetail_2_profile_Screen(
                     cursorColor = Color.Black,
                     ),
                 enabled = viewModel.animalage.value != "모르겠어요",
-                keyboardOptions = KeyboardOptions.Default.copy(keyboardType = KeyboardType.Number),
+                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
                 placeholder = { Text(text = "예) 2개월 = 0.2 / 2살 = 2") }
             )
 

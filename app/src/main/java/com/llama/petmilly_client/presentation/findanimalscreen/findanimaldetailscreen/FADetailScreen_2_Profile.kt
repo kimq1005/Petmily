@@ -502,7 +502,7 @@ fun FADetail_2_Profile_2_Screen(
                     cursorColor = Color.Black,
                 ),
                 enabled = viewModel.age.value != "모르겠어요",
-                keyboardOptions = KeyboardOptions.Default.copy(keyboardType = KeyboardType.Number),
+                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
                 placeholder = { Text(text = "예) 2개월 = 0.2 / 2살 = 2") }
             )
 

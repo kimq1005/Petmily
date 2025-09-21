@@ -103,11 +103,9 @@ fun ShelterDetail_8_Application_Period_Screen(
                     backgroundColor = Color.Transparent,
                     focusedIndicatorColor = Color.Transparent,
                     unfocusedIndicatorColor = Color.Transparent,
-//                        focusedLabelColor = Color.White,
                     cursorColor = Color.Black,
                 ),
-                keyboardOptions = KeyboardOptions.Default.copy(keyboardType = KeyboardType.Number),
-
+                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
                 textStyle = TextStyle(
                     fontSize = 30.sp, fontFamily = notosans_bold,
                     platformStyle = PlatformTextStyle(
@@ -143,8 +141,7 @@ fun ShelterDetail_8_Application_Period_Screen(
                     unfocusedIndicatorColor = Color.Transparent,
                     cursorColor = Color.Black,
                 ),
-                keyboardOptions = KeyboardOptions.Default.copy(keyboardType = KeyboardType.Number),
-
+                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
                 textStyle = TextStyle(
                     fontSize = 30.sp, fontFamily = notosans_bold,
                     platformStyle = PlatformTextStyle(

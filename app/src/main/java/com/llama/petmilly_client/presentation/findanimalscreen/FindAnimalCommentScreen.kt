@@ -264,11 +264,9 @@ fun FindAnimalCommentScreen(navController: NavController, viewModel: FindAnimalV
                         backgroundColor = Color.Transparent,
                         focusedIndicatorColor = Color.Transparent,
                         unfocusedIndicatorColor = Color.Transparent,
-//                        focusedLabelColor = Color.White,
                         cursorColor = Color.Black,
                     ),
-                    keyboardOptions = KeyboardOptions.Default.copy(keyboardType = KeyboardType.Number),
-
+                    keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
                     textStyle = TextStyle(
                         fontSize = 30.sp, fontFamily = notosans_bold,
                         platformStyle = PlatformTextStyle(
@@ -290,10 +288,7 @@ fun FindAnimalCommentScreen(navController: NavController, viewModel: FindAnimalV
                         )
                     }
                 )
-
-
             }
-
 
             Row(modifier = Modifier.weight(2f)) {
                 TextField(
@@ -308,7 +303,7 @@ fun FindAnimalCommentScreen(navController: NavController, viewModel: FindAnimalV
 
                         }
                     },
-                    keyboardOptions = KeyboardOptions.Default.copy(keyboardType = KeyboardType.Number),
+                    keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
                     maxLines = 1,
                     modifier = Modifier.focusRequester(monthFocusRequest),
                     colors = TextFieldDefaults.textFieldColors(
@@ -352,8 +347,7 @@ fun FindAnimalCommentScreen(navController: NavController, viewModel: FindAnimalV
                             }
                         }
                     },
-                    keyboardOptions = KeyboardOptions.Default.copy(keyboardType = KeyboardType.Number),
-
+                    keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
                     maxLines = 1,
                     modifier = Modifier.focusRequester(dayFocusRequest),
                     colors = TextFieldDefaults.textFieldColors(

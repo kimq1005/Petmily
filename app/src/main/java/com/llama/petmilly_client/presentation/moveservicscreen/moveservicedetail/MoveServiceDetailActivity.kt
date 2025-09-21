@@ -385,7 +385,7 @@ fun MoveServiceDetailScreen_4_Input(
 //                        focusedLabelColor = Color.White,
                         cursorColor = Color.Black,
                     ),
-                    keyboardOptions = KeyboardOptions.Default.copy(keyboardType = KeyboardType.Number),
+                    keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
 
                     textStyle = TextStyle(
                         fontSize = 30.sp, fontFamily = notosans_bold,
@@ -426,7 +426,7 @@ fun MoveServiceDetailScreen_4_Input(
 
                         }
                     },
-                    keyboardOptions = KeyboardOptions.Default.copy(keyboardType = KeyboardType.Number),
+                    keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
                     maxLines = 1,
                     modifier = Modifier.focusRequester(monthFocusRequest),
                     colors = TextFieldDefaults.textFieldColors(
@@ -470,19 +470,13 @@ fun MoveServiceDetailScreen_4_Input(
                             }
                         }
                     },
-                    keyboardOptions = KeyboardOptions.Default.copy(keyboardType = KeyboardType.Number),
-
-//                    keyboardOptions = KeyboardOptions(imeAction = ImeAction.Done),
-//                    keyboardActions = KeyboardActions(onNext = {
-//                        focusManager.moveFocus(FocusDirection.Down)
-//                    }),
+                    keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
                     maxLines = 1,
                     modifier = Modifier.focusRequester(dayFocusRequest),
                     colors = TextFieldDefaults.textFieldColors(
                         backgroundColor = Color.Transparent,
                         focusedIndicatorColor = Color.Transparent,
                         unfocusedIndicatorColor = Color.Transparent,
-//                        focusedLabelColor = Color.White,
                         cursorColor = Color.Black,
                     ),
                     textStyle = TextStyle(

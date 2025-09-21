@@ -121,7 +121,7 @@ fun SignUpScreen_4_3_CallYourAnimal_Third(
                 .fillMaxWidth()
                 .padding(start = 20.dp, end = 20.dp, bottom = 25.dp)
                 .height(55.dp),
-            keyboardOptions = KeyboardOptions.Default.copy(keyboardType = KeyboardType.Number),
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
             keyboardActions = KeyboardActions(onDone = {
                 keyboardController?.hide()
             }),
