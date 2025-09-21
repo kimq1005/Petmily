@@ -18,8 +18,8 @@ import com.llama.petmilly_client.data.model.temporary.detail.ProtectionHope
 import com.llama.petmilly_client.data.model.temporary.detail.ProtectionNo
 import com.llama.petmilly_client.data.model.temporary.detail.TemporarydetailDTO
 import com.llama.petmilly_client.domain.repository.PetMillyRepo
-import com.llama.petmilly_client.presentation.homescreen.CategoryTest
-import com.llama.petmilly_client.presentation.homescreen.items.ShelterListCategory
+import com.llama.petmilly_client.presentation.home.CategoryTest
+import com.llama.petmilly_client.presentation.home.items.ShelterListCategory
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

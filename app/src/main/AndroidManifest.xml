@@ -75,7 +75,7 @@
             android:label="@string/title_activity_certification"
             android:theme="@style/Theme.PET_MILLY_CLIENT" />
         <activity
-            android:name=".presentation.homescreen.HomeActivity"
+            android:name=".presentation.home.HomeActivity"
             android:exported="false"
             android:label="@string/title_activity_main2"
             android:theme="@style/Theme.PET_MILLY_CLIENT.TransparentStatusBar" />
@@ -118,9 +118,9 @@
         <meta-data
             android:name="com.kakao.sdk.AppKey"
             android:value="${KAKAO_V2_KEY_ID}" />
-        <meta-data
-            android:name="com.naver.maps.map.CLIENT_ID"
-            android:value="9ix7hj50f3" />
-    </application>
 
+        <meta-data
+            android:name="com.naver.maps.map.NCP_KEY_ID"
+            android:value="${NAVER_SDK_KEY}"/>
+    </application>
 </manifest>

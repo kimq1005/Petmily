@@ -1,7 +1,6 @@
 package com.llama.petmilly_client.presentation.signupscreen
 
 import android.content.Intent
-import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Text
@@ -13,24 +12,18 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.PlatformTextStyle
 import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
-import androidx.navigation.compose.rememberNavController
 import com.llama.petmilly_client.MainApplication
-import com.llama.petmilly_client.presentation.homescreen.HomeActivity
-import com.llama.petmilly_client.presentation.shelterscreen.TitleBar
+import com.llama.petmilly_client.presentation.home.HomeActivity
 import com.llama.petmilly_client.presentation.signupscreen.viewmodel.SignUpViewModel
 import com.llama.petmilly_client.ui.theme.Button_Clicked
 import com.llama.petmilly_client.utils.ButtonScreen
 import com.llama.petmilly_client.utils.SpacerHeight
 import com.llama.petmilly_client.utils.notosans_bold
 import com.llama.petmilly_client.utils.notosans_regular
-import llama.test.jetpack_dagger_plz.utils.Common.TAG
 
 @Composable
 fun SignUpScreen_completed(navController: NavController, viewModel: SignUpViewModel) {

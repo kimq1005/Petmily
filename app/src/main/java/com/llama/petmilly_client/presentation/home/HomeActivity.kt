@@ -1,4 +1,4 @@
-package com.llama.petmilly_client.presentation.homescreen
+package com.llama.petmilly_client.presentation.home
 
 import android.os.Build
 import android.os.Bundle
@@ -6,20 +6,9 @@ import android.view.View
 import android.view.WindowManager
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material.Scaffold
-import androidx.compose.material.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.SideEffect
-import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.toArgb
-import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsControllerCompat
-import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.navigation.compose.rememberNavController
-import com.llama.petmilly_client.presentation.homescreen.HomeScreen
 import dagger.hilt.android.AndroidEntryPoint
 
 
@@ -29,13 +18,7 @@ class HomeActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setTransperStatusBar()
         setContent {
-//            val navController = rememberNavController()
-//            Scaffold(bottomBar = {
-//                BottomNavigation(navController = navController)
-//            }) {
-//                NavigationGraph(navController = navController)
-//
-//            }
+            HomeNavHost()
         }
     }
 

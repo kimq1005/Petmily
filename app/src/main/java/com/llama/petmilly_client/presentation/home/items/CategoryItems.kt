@@ -1,4 +1,4 @@
-package com.llama.petmilly_client.presentation.homescreen.items
+package com.llama.petmilly_client.presentation.home.items
 
 import android.util.Log
 import androidx.compose.foundation.background
@@ -26,7 +26,7 @@ import androidx.compose.ui.unit.sp
 import com.google.accompanist.flowlayout.FlowRow
 import com.google.accompanist.flowlayout.MainAxisAlignment
 import com.google.accompanist.flowlayout.SizeMode
-import com.llama.petmilly_client.presentation.homescreen.CategoryTest
+import com.llama.petmilly_client.presentation.home.CategoryTest
 import com.llama.petmilly_client.ui.theme.Black_60_Transfer
 import com.llama.petmilly_client.ui.theme.Category_Cliked
 import llama.test.jetpack_dagger_plz.utils.Common.TAG

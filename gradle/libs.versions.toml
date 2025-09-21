@@ -40,8 +40,9 @@ accompanist-pager = "0.32.0"
 accompanist-pager-indicators = "0.32.0"
 
 # Naver & Lottie
-naver-map-compose = "1.3.1"
-naver-map-sdk = "3.16.1"
+naver-map-location = "21.0.1"
+naver_map_compose = "1.7.2"
+naver-maps-sdk = "3.22.1"
 tedclustering-naver = "1.0.2"
 lottie-compose = "5.0.3"
 
@@ -73,6 +74,7 @@ firebase-messaging = "23.0.0"
 
 # Orbit
 orbit = "6.1.0"
+material3Android = "1.3.2"
 #media3-common-ktx = "1.6.0"
 
 
@@ -135,10 +137,11 @@ accompanist-pager = { group = "com.google.accompanist", name = "accompanist-page
 accompanist-pager-indicators = { group = "com.google.accompanist", name = "accompanist-pager-indicators", version.ref = "accompanist-pager-indicators" }
 
 # Naver & Lottie
-naver-map-compose = { group = "io.github.fornewid", name = "naver-map-compose", version.ref = "naver-map-compose" }
-naver-map-sdk = { group = "com.naver.maps", name = "map-sdk", version.ref = "naver-map-sdk" }
 tedclustering-naver = { group = "io.github.ParkSangGwon", name = "tedclustering-naver", version.ref = "tedclustering-naver" }
 lottie-compose = { group = "com.airbnb.android", name = "lottie-compose", version.ref = "lottie-compose" }
+naver-maps-sdk = { group = "com.naver.maps", name = "map-sdk", version.ref = "naver-maps-sdk" }
+naver-maps-forenewid-compose = { group = "io.github.fornewid", name = "naver-map-compose", version.ref = "naver_map_compose" }
+naver-maps-forenewid-location = { group = "io.github.fornewid", name = "naver-map-location", version.ref = "naver-map-location"}
 
 # Play Services
 play-services-maps = { group = "com.google.android.gms", name = "play-services-maps", version.ref = "play-services-maps" }
@@ -165,4 +168,5 @@ firebase-messaging = { group = "com.google.firebase", name = "firebase-messaging
 orbit-core = { group = "org.orbit-mvi", name = "orbit-core", version.ref = "orbit"}
 orbit-viewmodel = { group = "org.orbit-mvi", name = "orbit-viewmodel", version.ref = "orbit"}
 orbit-compose = { group = "org.orbit-mvi", name = "orbit-compose", version.ref = "orbit"}
+androidx-material3-android = { group = "androidx.compose.material3", name = "material3-android", version.ref = "material3Android" }
 #androidx-media3-common-ktx = { group = "androidx.media3", name = "media3-common-ktx", version.ref = "media3-common-ktx" }

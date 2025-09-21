@@ -1,9 +1,7 @@
 package com.llama.petmilly_client.presentation.login
 
-import android.content.Context
 import android.content.Intent
 import android.util.Log
-import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -37,12 +35,10 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.kakao.sdk.auth.model.OAuthToken
-import com.kakao.sdk.user.UserApiClient
 import com.llama.petmilly_client.R
 import com.llama.petmilly_client.fcm.NotificationActivity
 import com.llama.petmilly_client.presentation.MainViewModel
-import com.llama.petmilly_client.presentation.homescreen.HomeActivity
+import com.llama.petmilly_client.presentation.home.HomeActivity
 import com.llama.petmilly_client.presentation.login.component.CustomDialog
 import com.llama.petmilly_client.presentation.login.model.LoginSideEffect
 import com.llama.petmilly_client.ui.theme.KaKao_BackgroundColor

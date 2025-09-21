@@ -1,9 +1,8 @@
 package com.llama.petmilly_client.presentation.adoptionscreen
 
-import android.util.Log
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
-import com.llama.petmilly_client.presentation.homescreen.CategoryTest
+import com.llama.petmilly_client.presentation.home.CategoryTest
 import javax.inject.Inject
 
 class AdoptionViewModel @Inject constructor(

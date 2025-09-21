@@ -13,7 +13,7 @@ import com.llama.petmilly_client.data.model.moveservice.moveservicedetail.Data
 import com.llama.petmilly_client.data.model.moveservice.postmoveservice.MoveServicePostDTO
 import com.llama.petmilly_client.data.model.moveservice.postmoveservice.MoveServicePostList
 import com.llama.petmilly_client.domain.repository.PetMillyRepo
-import com.llama.petmilly_client.presentation.homescreen.CategoryTest
+import com.llama.petmilly_client.presentation.home.CategoryTest
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

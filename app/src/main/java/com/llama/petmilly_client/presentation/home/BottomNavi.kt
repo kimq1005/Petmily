@@ -1,26 +1,16 @@
-package com.llama.petmilly_client.presentation.homescreen
+package com.llama.petmilly_client.presentation.home
 
-import android.util.Log
-import android.widget.Toast
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.BottomNavigationItem
 import androidx.compose.material.Icon
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.colorResource
-import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
@@ -28,12 +18,10 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.llama.petmilly_client.R
 import com.llama.petmilly_client.presentation.chatscreen.ChatEntityScreen
-import com.llama.petmilly_client.presentation.chatscreen.ChatScreen
 import com.llama.petmilly_client.presentation.favoritescreen.FavoriteScreen
 import com.llama.petmilly_client.presentation.myprofilescreen.MyProfileScreen
 import com.llama.petmilly_client.presentation.notificationscreen.NotificationScreen
 import com.llama.petmilly_client.ui.theme.Category_Cliked
-import llama.test.jetpack_dagger_plz.utils.Common.TAG
 
 sealed class BottomNavItem(var title: String, var icon: Int, var screen_route: String) {
     object Home : BottomNavItem("펫밀리", R.drawable.img_petmilly_chatting, "home")
@@ -64,12 +52,8 @@ fun NavigationGraph(navController: NavHostController) {
         composable(BottomNavItem.Person.screen_route) {
             MyProfileScreen(navController = navController)
         }
-
-
     }
-
 }
-
 
 @Composable
 fun BottomNavigation(navController: NavController) {

@@ -17,13 +17,10 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.PlatformTextStyle
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -32,9 +29,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.llama.petmilly_client.R
-import com.llama.petmilly_client.presentation.findanimalscreen.FindAnimalDetailImage
-import com.llama.petmilly_client.presentation.findanimalscreen.ImageTestData
-import com.llama.petmilly_client.presentation.homescreen.items.BorderCategoryItems
+import com.llama.petmilly_client.presentation.home.items.BorderCategoryItems
 import com.llama.petmilly_client.presentation.shelterscreen.TitleBar
 import com.llama.petmilly_client.ui.theme.*
 import com.llama.petmilly_client.utils.notosans_bold

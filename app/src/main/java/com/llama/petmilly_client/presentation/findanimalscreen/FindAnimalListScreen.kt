@@ -21,9 +21,8 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.llama.petmilly_client.R
 import com.llama.petmilly_client.presentation.findanimalscreen.findanimaldetailscreen.FADetailActivity
-import com.llama.petmilly_client.presentation.homescreen.items.BorderCategoryItems
+import com.llama.petmilly_client.presentation.home.items.BorderCategoryItems
 import com.llama.petmilly_client.presentation.shelterscreen.TitleBar
-import llama.test.jetpack_dagger_plz.utils.Common
 
 @Composable
 fun FindAnimalListScreen(

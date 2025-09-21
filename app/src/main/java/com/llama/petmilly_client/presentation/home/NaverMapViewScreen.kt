@@ -1,18 +1,26 @@
-package com.llama.petmilly_client.presentation.homescreen
+package com.llama.petmilly_client.presentation.home
 
-//
+import android.app.ProgressDialog
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.padding
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
+import com.llama.petmilly_client.presentation.home.component.HomeMapTopTextField
+
+
 //private var navermapyeah: NaverMap? = null
 //private var myMarker: Marker? = null
 //private var tedNaverClustering: TedNaverClustering<ClusterItem>? = null
-//
-//private lateinit var progressDialog: ProgressDialog
-//
-//@Composable
-//fun NaverMapViewScreen(viewModel: HomeViewModel = hiltViewModel()) {
-//
-//
-//    val map = naverMapComposable()
-//    val context = LocalContext.current
+
+@Composable
+fun HomeMapScreen(
+    viewModel: HomeViewModel = hiltViewModel()
+) {
+//    val map = navermap()
+    val context = LocalContext.current
 //    val lifecycleOwner = LocalLifecycleOwner.current
 //    val (search, setsearch) = rememberSaveable {
 //        mutableStateOf("")
@@ -21,16 +29,8 @@ package com.llama.petmilly_client.presentation.homescreen
 //    var checkBoolean by remember {
 //        mutableStateOf(false)
 //    }
-//
-//
-//    progressDialog = ProgressDialog(context, R.style.ProgressBarDialog)
-//    progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER)
-//    progressDialog.setCanceledOnTouchOutside(false)
-//    progressDialog.setCancelable(false)
-//
-//
-//
-//    Box() {
+
+    Box() {
 //        AndroidView(
 //            factory = { map },
 //            update = { mapview ->
@@ -50,57 +50,17 @@ package com.llama.petmilly_client.presentation.homescreen
 //                }
 //            }
 //        )
-//
-//        //여기에 내가 풀리퀘스트 한다
-//        //1월 16일 풀리퀘스트 테스트
-//
-//
-//        Column(modifier = Modifier.padding(top = 30.dp)) {
-//            Row(
-//                modifier = Modifier
-//                    .fillMaxWidth()
-//                    .padding(start = 16.dp, end = 16.dp, top = 16.dp)
-//            ) {
-//                TextField(
-//                    value = search,
-//                    onValueChange = setsearch,
-//                    modifier = Modifier
-//                        .weight(8f)
-//                        .height(55.dp),
-//                    shape = RoundedCornerShape(10.dp),
-//                    colors = TextFieldDefaults.textFieldColors(
-//                        backgroundColor = TextField_BackgroudColor,
-//                        focusedIndicatorColor = Color.Transparent,
-//                        unfocusedIndicatorColor = Color.Transparent,
-//                        focusedLabelColor = Color.White,
-//                        cursorColor = Color.Black,
-//                    ),
-//                    placeholder = { Text(text = "정보를 검색해보세요.") },
-//                )
-//
-//                Spacer(modifier = Modifier.width(5.dp))
-//
-//                Button(
-//                    onClick = { },
-//                    modifier = Modifier
-//                        .weight(1.5f)
-//                        .width(55.dp)
-//                        .height(55.dp),
-//                    colors = ButtonDefaults.buttonColors(backgroundColor = Search_ButtonColor),
-//                    shape = RoundedCornerShape(10.dp)
-//
-//                ) {
-//                    Image(
-//                        painter = painterResource(id = R.drawable.icon_search),
-//                        contentDescription = null,
-//                        modifier = Modifier
-//                            .width(16.dp)
-//                            .height(16.dp)
-//                    )
-//                }
-//            }
+
+        HomeMapTopTextField(
+            modifier = Modifier
+                .padding(top = 30.dp),
+            value = "",
+            onValueChange = {},
+            onBtnClick = {}
+        )
+
 //            viewModel.setcategory()
-//
+
 //            if (viewModel.categorytest.size > 5) {
 //                LazyRow(
 //                    modifier = Modifier
@@ -158,15 +118,16 @@ package com.llama.petmilly_client.presentation.homescreen
 //                }
 //            }
 //        }
-//
 //    }
-//
-//    LaunchedEffect(context){
+
+//    LaunchedEffect(context) {
 //        setObserve(viewModel, context, lifecycleOwner)
 //    }
-//
-//
-//}
+
+    }
+}
+
+
 //@Composable
 //fun naverMapComposable(): MapView {
 //    val context = LocalContext.current

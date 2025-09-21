@@ -52,7 +52,7 @@ import com.llama.petmilly_client.R
 import com.llama.petmilly_client.presentation.dialog.MoveServiceDetailDialog
 import com.llama.petmilly_client.presentation.findanimalscreen.FindAnimalDetailImage
 import com.llama.petmilly_client.presentation.findanimalscreen.ImageTestData
-import com.llama.petmilly_client.presentation.homescreen.items.BorderCategoryItems
+import com.llama.petmilly_client.presentation.home.items.BorderCategoryItems
 import com.llama.petmilly_client.presentation.moveservicscreen.moveservicedetail.MoveServiceDetailActivity
 import com.llama.petmilly_client.presentation.shelterscreen.TitleBar
 import com.llama.petmilly_client.ui.theme.Black_30_Transfer

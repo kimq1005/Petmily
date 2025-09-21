@@ -1,4 +1,4 @@
-package com.llama.petmilly_client.presentation.homescreen
+package com.llama.petmilly_client.presentation.home
 
 import android.util.Log
 import androidx.compose.runtime.mutableStateOf

@@ -21,17 +21,20 @@ android {
             useSupportLibrary true
         }
 
-        // 로컬 프로퍼티 읽기
         def localProperties = new Properties()
         file("${rootDir}/local.properties").withInputStream { stream ->
             localProperties.load(stream)
         }
         def kakaoSdkKey = localProperties.getProperty("KAKAO_V2_KEY_ID", "")
+        def naverMapKey = localProperties.getProperty("NAVER_SDK_KEY", "")
 
-        // manifest 치환
-        manifestPlaceholders = [KAKAO_V2_KEY_ID: kakaoSdkKey]
+        manifestPlaceholders = [
+                KAKAO_V2_KEY_ID: kakaoSdkKey,
+                NAVER_SDK_KEY  : naverMapKey
+        ]
 
         buildConfigField "String", "KAKAO_V2_KEY_ID", "\"${kakaoSdkKey}\""
+        buildConfigField "String", "NAVER_SDK_KEY", "\"${naverMapKey}\""
     }
 
     flavorDimensions += "version"
@@ -140,10 +143,10 @@ dependencies {
     implementation(libs.accompanist.pager)
     implementation(libs.accompanist.pager.indicators)
 
-//    implementation(libs.naver.map.compose)
-//    implementation(libs.naver.map.sdk)
-//    implementation(libs.tedclustering.naver)
-//    implementation(libs.lottie.compose)
+    implementation(libs.naver.maps.sdk)
+    implementation(libs.naver.maps.forenewid.compose)
+    implementation(libs.tedclustering.naver)
+    implementation(libs.lottie.compose)
 
     // Play Services
     implementation(libs.play.services.maps)
