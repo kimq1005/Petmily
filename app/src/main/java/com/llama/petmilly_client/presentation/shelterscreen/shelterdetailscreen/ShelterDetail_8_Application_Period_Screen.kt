@@ -245,7 +245,7 @@ fun ShelterDetail_8_Application_Period_Screen(
                     )
 
             }//Column
-        }//Row
+        }//LibraryDetailDTO
 
         Spacer(modifier = Modifier.height(19.dp))
 
@@ -313,7 +313,7 @@ fun ShelterDetail_8_Application_Period_Screen(
                     )
 
             }//Column
-        }//Row
+        }//LibraryDetailDTO
 
         Spacer(modifier = Modifier.weight(1f))
 

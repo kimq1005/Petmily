@@ -27,7 +27,7 @@ fun HomeNavHost() {
                     startDestination = HomeRoute.HOME.route
                 ) {
                     composable(route = HomeRoute.HOME.route) {
-                        HomeScreen()
+                        HomeMapScreen()
                     }
 
                     composable(route = HomeRoute.CHAT.route) {

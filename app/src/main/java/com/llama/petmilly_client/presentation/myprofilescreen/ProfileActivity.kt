@@ -133,7 +133,7 @@ fun ProfileScreen(navController: NavController, viewModel: ProfileViewModel) {
 
             }
 
-        }//Row
+        }//LibraryDetailDTO
 
         SpacerHeight(dp = 20.dp)
 
@@ -300,7 +300,7 @@ fun ProfileScreen(navController: NavController, viewModel: ProfileViewModel) {
                 contentScale = ContentScale.Crop
 
             )
-        }//Row
+        }//LibraryDetailDTO
 
         SpacerHeight(dp = 15.dp)
 
@@ -350,7 +350,7 @@ fun ProfileScreen(navController: NavController, viewModel: ProfileViewModel) {
                 )
 
 
-            }//Row
+            }//LibraryDetailDTO
 
             SpacerHeight(dp = 40.dp)
 
@@ -397,7 +397,7 @@ fun ProfileScreen(navController: NavController, viewModel: ProfileViewModel) {
                 )
 
 
-            }//Row
+            }//LibraryDetailDTO
 
             SpacerHeight(dp = 40.dp)
 
@@ -445,7 +445,7 @@ fun ProfileScreen(navController: NavController, viewModel: ProfileViewModel) {
                 )
 
 
-            }//Row
+            }//LibraryDetailDTO
 
             SpacerHeight(dp = 40.dp)
 

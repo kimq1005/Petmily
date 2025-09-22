@@ -89,7 +89,7 @@ fun SignUpScreen_6_isallergy(navController: NavController, viewModel: SignUpView
                 viewModel.isallery.value = "네, 알러지 있어요."
             }
 
-        }//Row
+        }//LibraryDetailDTO
 
 
         Row(
@@ -120,7 +120,7 @@ fun SignUpScreen_6_isallergy(navController: NavController, viewModel: SignUpView
                 viewModel.isallery.value = "아니요, 없어요."
             }
 
-        }//Row
+        }//LibraryDetailDTO
 
 
         Row(
@@ -151,7 +151,7 @@ fun SignUpScreen_6_isallergy(navController: NavController, viewModel: SignUpView
                 viewModel.isallery.value = "모르겠어요."
             }
 
-        }//Row
+        }//LibraryDetailDTO
 
 
         Spacer(modifier = Modifier.weight(1f))

@@ -115,5 +115,5 @@ fun MoveServiceBtn(species: String, viewModel: MoveServiceDetailViewModel) {
             viewModel.animalTypes.value = species
         }
 
-    }//Row
+    }//LibraryDetailDTO
 }

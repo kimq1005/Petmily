@@ -177,7 +177,7 @@ fun createMqttClient(): MqttClient {
 //        Spacer(Modifier.height(16.dp))
 //
 //        //SendText
-//        Row(Modifier.fillMaxWidth()) {
+//        LibraryDetailDTO(Modifier.fillMaxWidth()) {
 //            TextField(
 //                value = text,
 //                onValueChange = { text = it },
@@ -198,18 +198,18 @@ fun createMqttClient(): MqttClient {
 //            ) {
 //                Text("Send")
 //            }
-//        }//Row
+//        }//LibraryDetailDTO
 //
 //
 //        SpacerHeight(dp = 20.dp)
 //
 //
-//        Row(Modifier.fillMaxWidth()) {
+//        LibraryDetailDTO(Modifier.fillMaxWidth()) {
 //            //change
 //            Text(receiveEventText.value)
 //            Spacer(modifier = Modifier.weight(1f))
 //
-//        }//Row
+//        }//LibraryDetailDTO
 //
 //
 //

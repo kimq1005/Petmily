@@ -152,7 +152,7 @@ fun SignUpScreen_8_1_callworkingtime(navController: NavController, viewModel: Si
 
             }
 
-        }//Row
+        }//LibraryDetailDTO
 
         Row(
             modifier = Modifier
@@ -190,7 +190,7 @@ fun SignUpScreen_8_1_callworkingtime(navController: NavController, viewModel: Si
 
             }
 
-        }//Row
+        }//LibraryDetailDTO
 
         Row(
             modifier = Modifier
@@ -231,7 +231,7 @@ fun SignUpScreen_8_1_callworkingtime(navController: NavController, viewModel: Si
 
             }
 
-        }//Row
+        }//LibraryDetailDTO
 
         Row(
             modifier = Modifier
@@ -270,7 +270,7 @@ fun SignUpScreen_8_1_callworkingtime(navController: NavController, viewModel: Si
 
             }
 
-        }//Row
+        }//LibraryDetailDTO
 
         Row(
             modifier = Modifier
@@ -310,7 +310,7 @@ fun SignUpScreen_8_1_callworkingtime(navController: NavController, viewModel: Si
 
             }
 
-        }//Row
+        }//LibraryDetailDTO
 
         SpacerHeight(dp = 53.dp)
 

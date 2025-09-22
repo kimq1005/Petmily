@@ -9,6 +9,7 @@
 
     <string name="signup_top_description">아이들의 안전한 입양을 위해 기본정보가 필요합니다.\n입력하신 정보는 입양/임보 신청 시에만 사용됩니다.</string>
 
+
     <string name="modifiy"><u>수정하기</u></string>
     <string name="entity_read"><u>전체읽기</u></string>
     <string name="locationconfirm"><u>제보위치확인하기</u></string>
@@ -19,6 +20,8 @@
     <string name="logout"><u>로그아웃</u></string>
     <string name="title_activity_main_activity2_asdsad">MainActivity2ASDSAD</string>
     <string name="test_string">테스트 텍스트</string>
+
+    <string name="home_top_edit_hint">정보를 검색해보세요.</string>
 
     <string name="nav_home">메인</string>
     <string name="nav_chat">체팅</string>

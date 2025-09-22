@@ -147,7 +147,7 @@ fun MyProfileScreen(navController: NavController) {
 
             }//Column
 
-        }//Row
+        }//LibraryDetailDTO
 
         SpacerHeight(dp = 20.dp)
 
@@ -284,7 +284,7 @@ fun MyProfileScreen(navController: NavController) {
 
             Divider(modifier = Modifier.weight(1.5f), color = Color.Black)
 
-        }//Row
+        }//LibraryDetailDTO
 
         SpacerHeight(dp = 20.dp)
 
@@ -336,7 +336,7 @@ fun MyProfileScreen(navController: NavController) {
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis
             )
-        }//Row
+        }//LibraryDetailDTO
 
         SpacerHeight(dp = 12.dp)
 
@@ -386,7 +386,7 @@ fun MyProfileScreen(navController: NavController) {
                 )
 
 
-            }//Row
+            }//LibraryDetailDTO
 
             SpacerHeight(dp = 40.dp)
 
@@ -433,7 +433,7 @@ fun MyProfileScreen(navController: NavController) {
                 )
 
 
-            }//Row
+            }//LibraryDetailDTO
 
             SpacerHeight(dp = 40.dp)
 
@@ -481,7 +481,7 @@ fun MyProfileScreen(navController: NavController) {
                 )
 
 
-            }//Row
+            }//LibraryDetailDTO
 
             SpacerHeight(dp = 40.dp)
 

@@ -167,7 +167,7 @@ fun IsSearchScreen() {
                 )
 
             )
-        }//Row
+        }//LibraryDetailDTO
 
         Spacer(modifier = Modifier.height(20.dp))
 
@@ -257,7 +257,7 @@ fun NotingSerachScreen() {
                 )
 
             )
-        }//Row
+        }//LibraryDetailDTO
 
         Text(
             text = "최근 검색어가 없어요..!",

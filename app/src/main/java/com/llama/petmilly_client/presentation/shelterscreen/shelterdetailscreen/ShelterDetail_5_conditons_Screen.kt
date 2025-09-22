@@ -174,7 +174,7 @@ fun ShelterDetail_5_conditons_Screen(
                     },
                 contentScale = ContentScale.Crop,
             )
-        }//Row
+        }//LibraryDetailDTO
 
         SpacerHeight(dp = 9.dp)
 

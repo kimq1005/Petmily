@@ -177,5 +177,5 @@ fun CheckFamilyItem(
             //클릭을 하면 클릭한 아이템의 familyInfo의 , isFlexble이 true false로 바껴야 돼
         }
 
-    }//Row
+    }//LibraryDetailDTO
 }

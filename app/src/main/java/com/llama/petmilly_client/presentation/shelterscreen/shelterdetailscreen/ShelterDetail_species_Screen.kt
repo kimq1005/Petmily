@@ -111,5 +111,5 @@ fun ShelterBtn(species: String, viewModel: ShelterDetailViewModel) {
             viewModel.species.value = species
         }
 
-    }//Row
+    }//LibraryDetailDTO
 }

@@ -99,7 +99,7 @@ fun SignUpScreen_4_2_CallYourAnimal(navController: NavController, viewModel: Sig
                 viewModel.numberofanimal.value = "1마리와 함께 살고 있어요."
             }
 
-        }//Row
+        }//LibraryDetailDTO
 
         Row(
             modifier = Modifier
@@ -129,7 +129,7 @@ fun SignUpScreen_4_2_CallYourAnimal(navController: NavController, viewModel: Sig
                 viewModel.numberofanimal.value = "2마리와 함께 살고 있어요."
             }
 
-        }//Row
+        }//LibraryDetailDTO
 
 
         Row(
@@ -159,7 +159,7 @@ fun SignUpScreen_4_2_CallYourAnimal(navController: NavController, viewModel: Sig
             ) {
                 viewModel.numberofanimal.value = "3마리와 함께 살고 있어요."
             }
-        }//Row
+        }//LibraryDetailDTO
 
 
         Spacer(modifier = Modifier.weight(1f))

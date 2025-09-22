@@ -301,7 +301,7 @@ fun AdoptionDetailScreen(navController: NavController, viewModel: AdoptionViewMo
                         modifier = Modifier.padding(bottom = 5.dp)
                     )
                 }
-            }//Row
+            }//LibraryDetailDTO
 
 
             Text(

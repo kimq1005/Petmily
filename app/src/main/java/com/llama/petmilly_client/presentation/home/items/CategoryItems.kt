@@ -167,8 +167,8 @@ fun SHEET() {
         mutableStateOf(false)
     }
     val categoryItems = listOf(
-        CategoryTest("제발시발"),
-        CategoryTest("되주세요 시발")
+        CategoryTest("제발"),
+        CategoryTest("되주세요")
     )
 
     LazyRow() {

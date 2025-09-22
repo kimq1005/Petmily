@@ -110,5 +110,5 @@ fun FADetailBtn(species: String, viewModel: FADetailViewModel) {
             viewModel.animalTypes.value = species
         }
 
-    }//Row
+    }//LibraryDetailDTO
 }

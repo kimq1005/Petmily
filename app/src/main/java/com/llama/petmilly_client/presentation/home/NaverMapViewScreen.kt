@@ -1,7 +1,7 @@
 package com.llama.petmilly_client.presentation.home
 
-import android.app.ProgressDialog
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -9,12 +9,20 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.llama.petmilly_client.presentation.home.component.HomeMapTopTextField
+import com.llama.petmilly_client.presentation.home.model.ClusterItem
+import com.naver.maps.geometry.LatLng
+import com.naver.maps.map.CameraPosition
+import com.naver.maps.map.compose.ExperimentalNaverMapApi
+import com.naver.maps.map.compose.MapEffect
+import com.naver.maps.map.compose.NaverMap
+import com.naver.maps.map.compose.rememberCameraPositionState
+import ted.gun0912.clustering.naver.TedNaverClustering
 
 
-//private var navermapyeah: NaverMap? = null
 //private var myMarker: Marker? = null
-//private var tedNaverClustering: TedNaverClustering<ClusterItem>? = null
+private var tedNaverClustering: TedNaverClustering<ClusterItem>? = null
 
+@OptIn(ExperimentalNaverMapApi::class)
 @Composable
 fun HomeMapScreen(
     viewModel: HomeViewModel = hiltViewModel()
@@ -31,28 +39,29 @@ fun HomeMapScreen(
 //    }
 
     Box() {
-//        AndroidView(
-//            factory = { map },
-//            update = { mapview ->
-//                mapview.getMapAsync { navermap ->
-//                    navermapyeah = navermap
-//                    val seoul = LatLng(37.47153836, 127.096582)
-//                    val camPos = CameraPosition(
-//                        seoul,
-//                        20.0
+        val seoul = LatLng(37.532600, 127.024612)
+        val cameraPositionState = rememberCameraPositionState {
+            position = CameraPosition(seoul, 11.0)
+        }
+
+        NaverMap(
+            modifier = Modifier
+                .fillMaxSize(),
+            cameraPositionState = cameraPositionState,
+            content = {
+                MapEffect { map ->
+//                    setClustering(
+//                        context = context,
+//                        list = viewModel.libraryList.value,
+//                        naverMap = map,
 //                    )
-//
-//                    navermapyeah?.cameraPosition = camPos
-//                    navermapyeah?.uiSettings?.isZoomControlEnabled = false
-//                    navermapyeah?.uiSettings?.isZoomGesturesEnabled = false
-//
-//                    setcluestring(context, viewModel.wowman, viewModel)
-//                }
-//            }
-//        )
+                }
+            }
+        )
 
         HomeMapTopTextField(
             modifier = Modifier
+                .padding(horizontal = 16.dp)
                 .padding(top = 30.dp),
             value = "",
             onValueChange = {},
@@ -191,31 +200,26 @@ fun HomeMapScreen(
 //
 //
 //}
-//
-//fun setcluestring(
+
+//fun setClustering(
 //    context: Context,
-//    list: List<Row>,
-//    viewModel: HomeViewModel,
+//    list: List<LibraryDetailDTO>,
+//    naverMap: NaverMap,
 //): TedNaverClustering<ClusterItem>? {
-//
 //    tedNaverClustering?.clearItems()
-//
-//
 //    val items = mutableListOf<ClusterItem>()
 //    for (i in list) {
-//        val postion = LatLng(i.XCNTS.toDouble(), i.YDNTS.toDouble())
-//        items.add(ClusterItem(postion, "asd", "asdasd"))
+//        val position = LatLng(i.XCNTS.toDouble(), i.YDNTS.toDouble())
+//        items.add(ClusterItem(position, "asd", "asdasd"))
 //    }
 //
-//    tedNaverClustering = TedNaverClustering.with<ClusterItem>(context = context, navermapyeah!!)
+//    tedNaverClustering = TedNaverClustering.with<ClusterItem>(context = context, naverMap)
 //        .items(items)
 //        .markerClickListener {
 //
 //        }
 //        .clusterClickListener {
-//            val categorytitle = viewModel.selelctedcategory.value
 //            when(categorytitle) {
-//
 //                "임보처구해요" -> {
 //                    val intent = Intent(context, ShelterActivity::class.java)
 //                    context.startActivity(intent)
@@ -237,28 +241,24 @@ fun HomeMapScreen(
 //                }
 //
 //                else ->{
-//                    Toast.makeText(context, "카테고리를 선택해주세요",Toast.LENGTH_SHORT).show()
+////                    Toast.makeText(context, "카테고리를 선택해주세요",Toast.LENGTH_SHORT).show()
 //                }
-//
-//
 //            }
-//
 //        }
-//        .customCluster {
-//            val clusterDesginText = ClusterDesginText()
-//            if (it.size >= 25) {
-//                clusterDesginText.cluster25(context, it.size, "매탄동")
-//            } else if (it.size >= 20) {
-//                clusterDesginText.cluster20(context, it.size, "원천동")
-//            } else if (it.size >= 15) {
-//                clusterDesginText.cluster15(context, it.size, "망포동")
-//            } else if (it.size >= 5) {
-//                clusterDesginText.cluster10(context, it.size, "인계동")
-//            } else {
-//                clusterDesginText.cluster5(context, it.size, "월계2동")
-//            }
-////                                clusterDesginTextView(context, it.size)
-//        }
+////        .customCluster {
+////            val clusterDesginText = ClusterDesginText()
+////            if (it.size >= 25) {
+////                clusterDesginText.cluster25(context, it.size, "매탄동")
+////            } else if (it.size >= 20) {
+////                clusterDesginText.cluster20(context, it.size, "원천동")
+////            } else if (it.size >= 15) {
+////                clusterDesginText.cluster15(context, it.size, "망포동")
+////            } else if (it.size >= 5) {
+////                clusterDesginText.cluster10(context, it.size, "인계동")
+////            } else {
+////                clusterDesginText.cluster5(context, it.size, "월계2동")
+////            }
+////        }
 //        .minClusterSize(0)
 ////                            .clusterBuckets(IntArray(20))
 //        .clusterAnimation(animate = true)
@@ -267,20 +267,21 @@ fun HomeMapScreen(
 //
 //    return tedNaverClustering
 //}
-//
+
 //@Composable
-//private fun NaverItemsSet(list: List<Row>) {
-//    Log.d(TAG, "NaverItemsSet: $list")
+//private fun NaverItemsSet(list: List<LibraryDetailDTO>) {
 //    val items = remember { mutableStateListOf<ClusterItem>() }
+//
 //    LaunchedEffect(Unit) {
 //        for (i in list) {
 //            val postion = LatLng(i.XCNTS.toDouble(), i.YDNTS.toDouble())
 //            items.add(ClusterItem(postion, "asdasd", "Asdasdsad"))
 //        }
 //    }
+//
 //    MapClustering(items = items)
 //}
-//
+
 //class ClusterDesginText() {
 //    fun cluster25(context: Context, size: Int, location: String): TextView {
 //        return TextView(context).apply {
@@ -393,7 +394,7 @@ fun HomeMapScreen(
 //        }
 //    }
 //}
-//
+
 //fun cluster5(context: Context, text1: Int, text2: String): TextView {
 //    return TextView(context).apply {
 //        this.background =
@@ -412,11 +413,9 @@ fun HomeMapScreen(
 //            this.textSize = 50F
 //            text = "${text2}"
 //        }
-//
-//
 //    }
 //}
-//
+
 //@Composable
 //private fun MapClustering(items: List<ClusterItem>) {
 //    val seoul = LatLng(37.532600, 127.024612)
@@ -463,17 +462,4 @@ fun HomeMapScreen(
 //    }
 //
 //
-//}
-//
-//data class ClusterItem(
-//    val itemPostion: LatLng,
-//    val itemTitle: String,
-//    val itemSnippet: String,
-//) : TedClusterItem {
-//    override fun getTedLatLng(): TedLatLng {
-//        return TedLatLng(
-//            latitude = itemPostion.latitude,
-//            longitude = itemPostion.longitude
-//        )
-//    }
 //}

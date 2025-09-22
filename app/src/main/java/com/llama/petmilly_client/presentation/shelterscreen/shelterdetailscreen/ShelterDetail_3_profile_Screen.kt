@@ -135,7 +135,7 @@ fun ShelterDetail_3_profile_Screen(
                 ),
                 color = Color(0xFF050505)
             )
-        }//Row
+        }//LibraryDetailDTO
 
         Spacer(modifier = Modifier.height(65.dp))
 
@@ -227,7 +227,7 @@ fun ShelterDetail_3_profile_Screen(
                 ),
                 color = Color(0xFF050505)
             )
-        }//Row
+        }//LibraryDetailDTO
 
 
         /////////////////////

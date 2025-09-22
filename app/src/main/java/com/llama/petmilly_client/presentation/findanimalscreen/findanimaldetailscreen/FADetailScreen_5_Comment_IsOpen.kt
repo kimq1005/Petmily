@@ -95,7 +95,7 @@ fun FADetailScreen_5_Comment_IsOpen(navController: NavController, viewModel: FAD
                 viewModel.isPublic.value = true
             }
 
-        }//Row
+        }//LibraryDetailDTO
 
 
         Spacer(modifier = Modifier.height(16.dp))
@@ -128,7 +128,7 @@ fun FADetailScreen_5_Comment_IsOpen(navController: NavController, viewModel: FAD
                 viewModel.isPublic.value = false
             }
 
-        }//Row
+        }//LibraryDetailDTO
 
         Spacer(modifier = Modifier.height(38.dp))
         IsOpenCommentText(viewModel)
@@ -224,6 +224,6 @@ fun IsOpenCommentText(viewModel: FADetailViewModel) {
         )
 
 
-    }//Row
+    }//LibraryDetailDTO
 }
 

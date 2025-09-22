@@ -214,7 +214,7 @@ fun MoveServiceDetailScreen_3_Input(
                     .width(45.dp),
                 contentScale = ContentScale.Crop
             )
-        }//Row
+        }//LibraryDetailDTO
 
         Spacer(modifier = Modifier.height(10.dp))
 
@@ -269,7 +269,7 @@ fun MoveServiceDetailScreen_3_Input(
                     .width(45.dp),
                 contentScale = ContentScale.Crop
             )
-        }//Row
+        }//LibraryDetailDTO
 
         Spacer(modifier = Modifier.weight(1f))
 

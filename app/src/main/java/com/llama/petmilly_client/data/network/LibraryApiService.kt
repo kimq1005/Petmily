@@ -6,12 +6,10 @@ import retrofit2.http.GET
 import retrofit2.http.Path
 
 interface LibraryApiService {
-
-    // http://openapi.seoul.go.kr:8088/(인증키)/xml/SeoulPublicLibraryInfo/1/5/
     @GET("{KEY}/json/SeoulPublicLibraryInfo/{START_INDEX}/{END_INDEX}/")
     suspend fun getLibrary(
-        @Path("KEY") KEY:String,
-        @Path("START_INDEX") START_INDEX:Int,
-        @Path("END_INDEX") END_INDEX:Int,
-    ):Response<LibraryDTO>
+        @Path("KEY") key: String,
+        @Path("START_INDEX") startIndex: Int,
+        @Path("END_INDEX") endIndex: Int,
+    ): Response<LibraryDTO>
 }

@@ -17,8 +17,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.rememberVectorPainter
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.llama.petmilly_client.R
 import com.llama.petmilly_client.ui.theme.TextField_BackgroudColor
 
 @Composable
@@ -47,7 +49,7 @@ fun HomeMapTopTextField(
                 cursorColor = Color.Black,
             ),
             placeholder = {
-                Text(text = "정보를 검색해보세요.")
+                Text(text = stringResource(R.string.home_top_edit_hint))
             },
         )
 
@@ -68,8 +70,6 @@ fun HomeMapTopTextField(
                 painter = rememberVectorPainter(Icons.Default.Search),
                 contentDescription = null,
                 modifier = Modifier
-                    .width(16.dp)
-                    .height(16.dp)
             )
         }
     }

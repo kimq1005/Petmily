@@ -226,7 +226,7 @@ fun AnimalInfoDetailScreen(
                     }
 
                 }
-            }//Row
+            }//LibraryDetailDTO
 
 
             Text(
@@ -485,7 +485,7 @@ fun AnimalInfoDetailScreen(
                         )
 
                     }//Column
-                }//Row
+                }//LibraryDetailDTO
             }
 
 

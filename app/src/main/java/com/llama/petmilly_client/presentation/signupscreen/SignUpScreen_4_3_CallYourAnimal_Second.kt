@@ -184,7 +184,7 @@ fun SignUpScreen_4_3_CallYourAnimal_Second(
                 viewModel.gender_animal.value = "암컷"
 
             }
-        }//Row
+        }//LibraryDetailDTO
 
 
         Text(
@@ -233,7 +233,7 @@ fun SignUpScreen_4_3_CallYourAnimal_Second(
                 viewModel.neutered_animal.value = "중성화X"
 
             }
-        }//Row
+        }//LibraryDetailDTO
 
         Spacer(modifier = Modifier.weight(1f))
 

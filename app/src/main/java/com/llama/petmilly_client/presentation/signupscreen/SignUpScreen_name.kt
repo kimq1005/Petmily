@@ -104,7 +104,7 @@ fun SignUpScreen_name(navController: NavController, viewModel: SignUpViewModel =
                     .align(Alignment.Bottom)
                     .padding(bottom = 6.dp)
             )
-        }//Row
+        }//LibraryDetailDTO
 
 
         Spacer(modifier = Modifier.height(65.dp))
@@ -202,7 +202,7 @@ fun SignUpScreen_name(navController: NavController, viewModel: SignUpViewModel =
                 checknickname = true
                 focusManager.moveFocus(FocusDirection.Down)
             }
-        }//Row
+        }//LibraryDetailDTO
 
         if(checknickname){
             SpacerHeight(dp = 6.dp)

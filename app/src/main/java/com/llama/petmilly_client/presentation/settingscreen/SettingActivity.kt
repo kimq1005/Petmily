@@ -151,7 +151,7 @@ fun SettingScreen() {
                 color = Black_60_Transfer
             )
 
-        }//Row
+        }//LibraryDetailDTO
         
         Spacer(modifier = Modifier.weight(1f))
         
@@ -217,7 +217,7 @@ fun SettingText(title:String, onclick:()->Unit){
                 }
         )
 
-    }//Row
+    }//LibraryDetailDTO
 }
 
 @Preview

@@ -267,7 +267,7 @@ fun AplicationTextRow(text_first: String, text_second: String, modifier: Modifie
             )
 
         )
-    }//Row
+    }//LibraryDetailDTO
 }
 
 

@@ -94,7 +94,7 @@ fun SignUpScreen_4_1_iswithanimal(navController: NavController, viewModel: SignU
                 viewModel.livewithanimal.value = "네, 같이 살고 있어요."
             }
 
-        }//Row
+        }//LibraryDetailDTO
 
 
         Row(
@@ -125,7 +125,7 @@ fun SignUpScreen_4_1_iswithanimal(navController: NavController, viewModel: SignU
                 viewModel.livewithanimal.value = "아니요, 같이 살고 있지 않아요."
             }
 
-        }//Row
+        }//LibraryDetailDTO
 
 
         Row(
@@ -156,7 +156,7 @@ fun SignUpScreen_4_1_iswithanimal(navController: NavController, viewModel: SignU
                 viewModel.livewithanimal.value = "지금은 아니지만, 키운적은 있어요."
             }
 
-        }//Row
+        }//LibraryDetailDTO
 
 
         Spacer(modifier = Modifier.weight(1f))

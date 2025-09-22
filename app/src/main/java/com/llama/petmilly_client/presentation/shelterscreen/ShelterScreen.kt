@@ -37,7 +37,7 @@ fun SafeShelterListScreen(
 //
 //                    items(viewModel.shelterListCategory) { categorylist ->
 //
-//                        Row {
+//                        LibraryDetailDTO {
 //                            if (viewModel.shelterListCategory.indexOf(categorylist) == 0) {
 //                                Spacer(modifier = Modifier.padding(start = 15.dp))
 //

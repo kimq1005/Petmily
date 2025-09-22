@@ -117,7 +117,7 @@ fun ShelterDetail_6_conditons_Screen(
                     },
                 contentScale = ContentScale.Crop
             )
-        }//Row
+        }//LibraryDetailDTO
 
         SpacerHeight(dp = 9.dp)
 
@@ -194,7 +194,7 @@ fun ShelterDetail_6_conditons_Screen(
                     },
                 contentScale = ContentScale.Crop
             )
-        }//Row
+        }//LibraryDetailDTO
 
         SpacerHeight(dp = 9.dp)
 

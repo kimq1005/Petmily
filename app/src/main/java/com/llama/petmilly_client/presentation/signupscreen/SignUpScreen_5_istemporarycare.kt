@@ -86,7 +86,7 @@ fun SignUpScreen_5_istemporarycare(navController: NavController, viewModel: Sign
                 viewModel.istemporarycare.value = "네, 경험 있어요."
             }
 
-        }//Row
+        }//LibraryDetailDTO
 
 
         Row(
@@ -117,10 +117,10 @@ fun SignUpScreen_5_istemporarycare(navController: NavController, viewModel: Sign
                 viewModel.istemporarycare.value ="아니요, 안해봤어요."
             }
 
-        }//Row
+        }//LibraryDetailDTO
 
 //
-//        Row(
+//        LibraryDetailDTO(
 //            modifier = Modifier
 //                .fillMaxWidth()
 //                .padding(start = 20.dp, end = 20.dp)
@@ -158,7 +158,7 @@ fun SignUpScreen_5_istemporarycare(navController: NavController, viewModel: Sign
 //                viewModel.istemporarycare.value = true
 //
 //            }
-//        }//Row
+//        }//LibraryDetailDTO
 
         Spacer(modifier = Modifier.weight(1f))
 
