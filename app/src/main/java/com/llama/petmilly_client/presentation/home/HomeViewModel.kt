@@ -3,25 +3,28 @@ package com.llama.petmilly_client.presentation.home
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.llama.petmilly_client.domain.repository.GetLibraryRepo
+import com.llama.petmilly_client.BuildConfig
+import com.llama.petmilly_client.domain.usecase.home.GetLibraryUseCase
 import com.llama.petmilly_client.presentation.home.model.HomeSideEffect
 import com.llama.petmilly_client.presentation.home.model.HomeState
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import llama.test.jetpack_dagger_plz.utils.Common.TAG
-import com.llama.petmilly_client.utils.RemoteResult
-import kotlinx.coroutines.CoroutineExceptionHandler
 import org.orbitmvi.orbit.Container
 import org.orbitmvi.orbit.ContainerHost
 import org.orbitmvi.orbit.syntax.simple.intent
 import org.orbitmvi.orbit.syntax.simple.postSideEffect
+import org.orbitmvi.orbit.syntax.simple.reduce
 import org.orbitmvi.orbit.viewmodel.container
 import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
-    private val getLibraryRepo: GetLibraryRepo,
+    private val getLibraryUseCase: GetLibraryUseCase
 ) : ViewModel(), ContainerHost<HomeState, HomeSideEffect> {
 
     override val container: Container<HomeState, HomeSideEffect> = container(
@@ -38,8 +41,6 @@ class HomeViewModel @Inject constructor(
     )
 
     val categorytest: MutableList<CategoryTest> = arrayListOf()
-
-    val APIKEY = "6b684a65456b696d3333794b66704f"
 
     init {
         getLibrary()
@@ -64,26 +65,20 @@ class HomeViewModel @Inject constructor(
         categorytest.add(movevolunteer)
         categorytest.add(adoptionnotice)
         categorytest.add(adoptionnotice)
-
     }
 
-    private fun getLibrary() {
-        viewModelScope.launch(Dispatchers.IO) {
-            getLibraryRepo.getLibrary(APIKEY, 1, 20).let {
-                when (it.status) {
-                    RemoteResult.Status.SUCCESS -> {
-                        it.data?.let { data ->
-//                            _yeahman.postValue(data.SeoulPublicLibraryInfoDTO.clusterRow)
-                            Log.d(TAG, "getLibrary success ${data}")
-                        }
-                    }
+    private fun getLibrary() = intent {
+        val data = getLibraryUseCase(
+            key = BuildConfig.LIBRARY_API_KEY,
+            startIndex = 1,
+            endIndex = 20
+        ).getOrThrow()
 
-                    else -> {
-                        Log.d(TAG, "getLibrary error: $it")
-                    }
-                }
-            }
+        reduce {
+            state.copy(petData = data.libraryDTO.clusterRow)
         }
+
+        Log.d(TAG, "getLibrary Success: $data")
     }
 }
 

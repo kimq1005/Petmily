@@ -17,16 +17,13 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 @Module
 object DataModule {
-    //    val BASE_URL = "http://localhost:3000/"
     val BASE_URL = "http://192.168.0.44:3000/"
-//    val BASE_URL = "http://172.30.1.98:3000/"
 
     val okHttpClient = OkHttpClient.Builder()
         .connectTimeout(100, TimeUnit.SECONDS)
         .readTimeout(100, TimeUnit.SECONDS)
         .writeTimeout(100, TimeUnit.SECONDS)
         .build()
-
 
     @Provides
     fun provideApiService(): ApiService {

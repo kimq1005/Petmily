@@ -4,10 +4,16 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.llama.petmilly_client.presentation.home.ClusterManager.setClustering
 import com.llama.petmilly_client.presentation.home.component.HomeMapTopTextField
 import com.llama.petmilly_client.presentation.home.model.ClusterItem
 import com.naver.maps.geometry.LatLng
@@ -18,27 +24,16 @@ import com.naver.maps.map.compose.NaverMap
 import com.naver.maps.map.compose.rememberCameraPositionState
 import ted.gun0912.clustering.naver.TedNaverClustering
 
-
-//private var myMarker: Marker? = null
-private var tedNaverClustering: TedNaverClustering<ClusterItem>? = null
-
 @OptIn(ExperimentalNaverMapApi::class)
 @Composable
 fun HomeMapScreen(
-    viewModel: HomeViewModel = hiltViewModel()
+    viewModel: HomeViewModel = hiltViewModel(),
 ) {
-//    val map = navermap()
+    var tedCluster: TedNaverClustering<ClusterItem>? by remember { mutableStateOf(null) }
     val context = LocalContext.current
-//    val lifecycleOwner = LocalLifecycleOwner.current
-//    val (search, setsearch) = rememberSaveable {
-//        mutableStateOf("")
-//    }
-//
-//    var checkBoolean by remember {
-//        mutableStateOf(false)
-//    }
+    val state = viewModel.container.stateFlow.collectAsState()
 
-    Box() {
+    Box {
         val seoul = LatLng(37.532600, 127.024612)
         val cameraPositionState = rememberCameraPositionState {
             position = CameraPosition(seoul, 11.0)
@@ -50,11 +45,16 @@ fun HomeMapScreen(
             cameraPositionState = cameraPositionState,
             content = {
                 MapEffect { map ->
-//                    setClustering(
-//                        context = context,
-//                        list = viewModel.libraryList.value,
-//                        naverMap = map,
-//                    )
+                    state.value.petData.let { data ->
+                       val cluster =  setClustering(
+                            context = context,
+                            list = data,
+                            naverMap = map,
+                            onCategoryClick = {}
+                        )
+
+                        tedCluster = cluster
+                    }
                 }
             }
         )
@@ -128,338 +128,5 @@ fun HomeMapScreen(
 //            }
 //        }
 //    }
-
-//    LaunchedEffect(context) {
-//        setObserve(viewModel, context, lifecycleOwner)
-//    }
-
     }
 }
-
-
-//@Composable
-//fun naverMapComposable(): MapView {
-//    val context = LocalContext.current
-//    val lifecycleOwner = LocalLifecycleOwner.current
-//    val coroutineScope = rememberCoroutineScope()
-//
-//    val mapView = remember {
-//        MapView(context)
-//    }
-//
-//    val lifecycleObserver = remember {
-//        LifecycleEventObserver { source, event ->
-//            // CoroutineScope 안에서 호출해야 정상적으로 동작합니다.
-//            coroutineScope.launch {
-//                when (event) {
-//                    Lifecycle.Event.ON_CREATE -> mapView.onCreate(Bundle())
-//                    Lifecycle.Event.ON_START -> mapView.onStart()
-//                    Lifecycle.Event.ON_RESUME -> mapView.onResume()
-//                    Lifecycle.Event.ON_PAUSE -> mapView.onPause()
-//                    Lifecycle.Event.ON_STOP -> mapView.onStop()
-//                    Lifecycle.Event.ON_DESTROY -> mapView.onDestroy()
-//                    else -> {
-//
-//                    }
-//                }
-//            }
-//        }
-//    }
-//
-//    DisposableEffect(true) {
-//        lifecycleOwner.lifecycle.addObserver(lifecycleObserver)
-//        onDispose {
-//            lifecycleOwner.lifecycle.removeObserver(lifecycleObserver)
-//        }
-//    }
-//    return mapView
-//}
-//
-//private fun setObserve(viewModel: HomeViewModel, context: Context, lifecycleOwner: LifecycleOwner) {
-//
-//    viewModel.showProgress.observe(lifecycleOwner, Observer {
-//        progressDialog.show()
-//    })
-//
-//    viewModel.closeProgress.observe(lifecycleOwner, Observer {
-//        progressDialog.dismiss()
-//    })
-//
-//    viewModel.setEvent.observe(lifecycleOwner, Observer {
-//        setcluestring(context, viewModel.wowman, viewModel)
-//
-//        //맵을 움직여야 클러스터링 결과가 호출이 돼서 해놓은 포지션
-//        val seoul = LatLng(37.47153836, 127.096582)
-//        val camPos = CameraPosition(
-//            seoul,
-//            9.0
-//        )
-//        navermapyeah?.moveCamera(CameraUpdate.toCameraPosition(camPos))
-//
-//    })
-//
-//
-//}
-
-//fun setClustering(
-//    context: Context,
-//    list: List<LibraryDetailDTO>,
-//    naverMap: NaverMap,
-//): TedNaverClustering<ClusterItem>? {
-//    tedNaverClustering?.clearItems()
-//    val items = mutableListOf<ClusterItem>()
-//    for (i in list) {
-//        val position = LatLng(i.XCNTS.toDouble(), i.YDNTS.toDouble())
-//        items.add(ClusterItem(position, "asd", "asdasd"))
-//    }
-//
-//    tedNaverClustering = TedNaverClustering.with<ClusterItem>(context = context, naverMap)
-//        .items(items)
-//        .markerClickListener {
-//
-//        }
-//        .clusterClickListener {
-//            when(categorytitle) {
-//                "임보처구해요" -> {
-//                    val intent = Intent(context, ShelterActivity::class.java)
-//                    context.startActivity(intent)
-//                }
-//
-//                "우리아이 찾아요" -> {
-//                    val intent = Intent(context, FindAnimalActivity::class.java)
-//                    context.startActivity(intent)
-//                }
-//
-//                "이동봉사 찾아요" -> {
-//                    val intent = Intent(context, MoveServiceActivity::class.java)
-//                    context.startActivity(intent)
-//                }
-//
-//                "입양 공고" -> {
-//                    val intent = Intent(context, AdoptionActivity::class.java)
-//                    context.startActivity(intent)
-//                }
-//
-//                else ->{
-////                    Toast.makeText(context, "카테고리를 선택해주세요",Toast.LENGTH_SHORT).show()
-//                }
-//            }
-//        }
-////        .customCluster {
-////            val clusterDesginText = ClusterDesginText()
-////            if (it.size >= 25) {
-////                clusterDesginText.cluster25(context, it.size, "매탄동")
-////            } else if (it.size >= 20) {
-////                clusterDesginText.cluster20(context, it.size, "원천동")
-////            } else if (it.size >= 15) {
-////                clusterDesginText.cluster15(context, it.size, "망포동")
-////            } else if (it.size >= 5) {
-////                clusterDesginText.cluster10(context, it.size, "인계동")
-////            } else {
-////                clusterDesginText.cluster5(context, it.size, "월계2동")
-////            }
-////        }
-//        .minClusterSize(0)
-////                            .clusterBuckets(IntArray(20))
-//        .clusterAnimation(animate = true)
-//        .make()
-//
-//
-//    return tedNaverClustering
-//}
-
-//@Composable
-//private fun NaverItemsSet(list: List<LibraryDetailDTO>) {
-//    val items = remember { mutableStateListOf<ClusterItem>() }
-//
-//    LaunchedEffect(Unit) {
-//        for (i in list) {
-//            val postion = LatLng(i.XCNTS.toDouble(), i.YDNTS.toDouble())
-//            items.add(ClusterItem(postion, "asdasd", "Asdasdsad"))
-//        }
-//    }
-//
-//    MapClustering(items = items)
-//}
-
-//class ClusterDesginText() {
-//    fun cluster25(context: Context, size: Int, location: String): TextView {
-//        return TextView(context).apply {
-//            this.background =
-//                ContextCompat.getDrawable(context, R.drawable.background_clustering_25_oval)
-//
-//            this.textSize = 30F
-//            this.width = 1200
-//            this.height = 1200
-//            this.gravity = Gravity.CENTER
-//            setTextColor(ContextCompat.getColor(context, R.color.black))
-//            val spannable = SpannableString("$location\n$size")
-//            val boldSpan = StyleSpan(Typeface.BOLD)
-//            spannable.setSpan(
-//                boldSpan,
-//                location.length + 1,
-//                location.length + 1 + size.toString().length,
-//                Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
-//            )
-//            text = spannable
-//        }
-//    }
-//
-//    fun cluster20(context: Context, size: Int, location: String): TextView {
-//        return TextView(context).apply {
-//            this.background =
-//                ContextCompat.getDrawable(context, R.drawable.background_clustering_20_oval)
-//            this.textSize = 30F
-//            this.width = 1000
-//            this.height = 1000
-//            this.gravity = Gravity.CENTER
-//            setTextColor(ContextCompat.getColor(context, R.color.black))
-//            val spannable = SpannableString("$location\n$size")
-//            val boldSpan = StyleSpan(Typeface.BOLD)
-//            spannable.setSpan(
-//                boldSpan,
-//                location.length + 1,
-//                location.length + 1 + size.toString().length,
-//                Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
-//            )
-//            text = spannable
-//        }
-//    }
-//
-//
-//    fun cluster15(context: Context, size: Int, location: String): TextView {
-//        return TextView(context).apply {
-//            this.background =
-//                ContextCompat.getDrawable(context, R.drawable.background_clustering_15_oval)
-//            this.textSize = 30F
-//            this.width = 800
-//            this.height = 800
-//            this.gravity = Gravity.CENTER
-//            setTextColor(ContextCompat.getColor(context, R.color.black))
-//            val spannable = SpannableString("$location\n$size")
-//            val boldSpan = StyleSpan(Typeface.BOLD)
-//            spannable.setSpan(
-//                boldSpan,
-//                location.length + 1,
-//                location.length + 1 + size.toString().length,
-//                Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
-//            )
-//            text = spannable
-//        }
-//    }
-//
-//
-//    fun cluster10(context: Context, size: Int, location: String): TextView {
-//        return TextView(context).apply {
-//            this.background =
-//                ContextCompat.getDrawable(context, R.drawable.background_clustering_10_oval)
-//            this.textSize = 30F
-//            this.width = 700
-//            this.height = 700
-//            this.gravity = Gravity.CENTER
-//            setTextColor(ContextCompat.getColor(context, R.color.black))
-//            val spannable = SpannableString("$location\n$size")
-//            val boldSpan = StyleSpan(Typeface.BOLD)
-//            spannable.setSpan(
-//                boldSpan,
-//                location.length + 1,
-//                location.length + 1 + size.toString().length,
-//                Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
-//            )
-//            text = spannable
-//        }
-//    }
-//
-//
-//    fun cluster5(context: Context, size: Int, location: String): TextView {
-//        return TextView(context).apply {
-//            this.background =
-//                ContextCompat.getDrawable(context, R.drawable.background_clustering_5_oval)
-//            this.textSize = 30F
-//            this.width = 500
-//            this.height = 500
-//            this.gravity = Gravity.CENTER
-//            setTextColor(ContextCompat.getColor(context, R.color.black))
-////            text = "${location}\n${size}"
-//
-//            val spannable = SpannableString("$location\n$size")
-//            val boldSpan = StyleSpan(Typeface.BOLD)
-//            spannable.setSpan(
-//                boldSpan,
-//                location.length + 1,
-//                location.length + 1 + size.toString().length,
-//                Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
-//            )
-//            text = spannable
-//        }
-//    }
-//}
-
-//fun cluster5(context: Context, text1: Int, text2: String): TextView {
-//    return TextView(context).apply {
-//        this.background =
-//            ContextCompat.getDrawable(context, R.drawable.background_clustering_5_oval)
-//        this.width = 500
-//        this.height = 500
-//        this.gravity = Gravity.CENTER
-//        this.setTypeface(null, Typeface.BOLD)
-//        setTextColor(ContextCompat.getColor(context, R.color.black))
-//
-//        val textView1 = TextView(context).apply {
-//            this.textSize = 20F
-//            text = "${text1}"
-//        }
-//        val textView2 = TextView(context).apply {
-//            this.textSize = 50F
-//            text = "${text2}"
-//        }
-//    }
-//}
-
-//@Composable
-//private fun MapClustering(items: List<ClusterItem>) {
-//    val seoul = LatLng(37.532600, 127.024612)
-//
-//    val cameraPositionState = rememberCameraPositionState {
-//        position = CameraPosition(seoul, 10.0)
-//    }
-//
-//    NaverMap(
-//        cameraPositionState = cameraPositionState,
-//    ) {
-//        val context = LocalContext.current
-//        var clusterManager by remember { mutableStateOf<TedNaverClustering<ClusterItem>?>(null) }
-//        DisposableMapEffect(items) { map ->
-//            if (clusterManager == null) {
-//
-//                clusterManager = TedNaverClustering.with<ClusterItem>(context, map)
-//                    .markerClickListener { marker ->
-//                        val intent = Intent(context, ShelterActivity::class.java)
-//                        context.startActivity(intent)
-//                        marker.itemTitle
-//                    }
-//                    .clusterClickListener { cluster ->
-//
-//                        val totalclusteritems = cluster.items //클러스터링 전체의 아이템
-//                        val clusterposition = cluster.position //클러스터링의 포지션
-//
-//                        Log.d(TAG, "MapClustering: $totalclusteritems")
-////                        val intent = Intent(context, ShelterActivity::class.java).apply {
-////                            putExtra(SAFESHELTER_COMPOSABLE, SAFESHELTER_COMPOSABLE)
-////                        }
-////                        context.startActivity(intent)
-//
-//
-//                    }
-//                    .make()
-//            }
-//            clusterManager?.addItems(items)
-//            onDispose {
-//                clusterManager?.clearItems()
-//            }
-//
-//        }
-//    }
-//
-//
-//}

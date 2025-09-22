@@ -27,14 +27,18 @@ android {
         }
         def kakaoSdkKey = localProperties.getProperty("KAKAO_V2_KEY_ID", "")
         def naverMapKey = localProperties.getProperty("NAVER_SDK_KEY", "")
+        def libraryApiKey = localProperties.getProperty("LIBRARY_API_KEY", "")
 
         manifestPlaceholders = [
                 KAKAO_V2_KEY_ID: kakaoSdkKey,
-                NAVER_SDK_KEY  : naverMapKey
+                NAVER_SDK_KEY  : naverMapKey,
+                LIBRARY_API_KEY : libraryApiKey
         ]
 
         buildConfigField "String", "KAKAO_V2_KEY_ID", "\"${kakaoSdkKey}\""
         buildConfigField "String", "NAVER_SDK_KEY", "\"${naverMapKey}\""
+        buildConfigField "String", "LIBRARY_API_KEY", "\"${libraryApiKey}\""
+
     }
 
     flavorDimensions += "version"
