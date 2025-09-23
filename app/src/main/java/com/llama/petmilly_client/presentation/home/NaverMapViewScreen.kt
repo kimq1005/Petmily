@@ -1,9 +1,13 @@
 package com.llama.petmilly_client.presentation.home
 
+import android.content.Intent
+import android.util.Log
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -13,28 +17,117 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.llama.petmilly_client.domain.model.home.LibraryDetail
+import com.llama.petmilly_client.presentation.adoptionscreen.AdoptionActivity
+import com.llama.petmilly_client.presentation.findanimalscreen.FindAnimalActivity
 import com.llama.petmilly_client.presentation.home.ClusterManager.setClustering
 import com.llama.petmilly_client.presentation.home.component.HomeMapTopTextField
+import com.llama.petmilly_client.presentation.home.items.PetCategoryItem
+import com.llama.petmilly_client.presentation.home.items.ShelterCategoryItem
 import com.llama.petmilly_client.presentation.home.model.ClusterItem
+import com.llama.petmilly_client.presentation.home.model.HomeSideEffect
+import com.llama.petmilly_client.presentation.home.model.PetCategory
+import com.llama.petmilly_client.presentation.home.model.ShelterCategory
+import com.llama.petmilly_client.presentation.moveservicscreen.MoveServiceActivity
+import com.llama.petmilly_client.presentation.shelterscreen.ShelterActivity
 import com.naver.maps.geometry.LatLng
 import com.naver.maps.map.CameraPosition
+import com.naver.maps.map.CameraUpdate
+import com.naver.maps.map.NaverMap
 import com.naver.maps.map.compose.ExperimentalNaverMapApi
 import com.naver.maps.map.compose.MapEffect
 import com.naver.maps.map.compose.NaverMap
 import com.naver.maps.map.compose.rememberCameraPositionState
+import org.orbitmvi.orbit.compose.collectSideEffect
 import ted.gun0912.clustering.naver.TedNaverClustering
+
+private var naverMap: NaverMap? = null
+
+@Composable
+fun HomeMapSuccessScreen(
+    viewModel: HomeViewModel = hiltViewModel(),
+) {
+    val state = viewModel.container.stateFlow.collectAsState().value
+    val context = LocalContext.current
+
+    viewModel.collectSideEffect { sideEffect ->
+        when (sideEffect) {
+            is HomeSideEffect.Error -> {
+                val errorMessage = sideEffect.message
+                Log.e("TAG", "LoginSuccessScreen Error: $errorMessage")
+            }
+
+            is HomeSideEffect.NavigateToActivity -> {
+                //Todo 아래 Activity삭제 후 NavHost로 변경예정
+                when (sideEffect.shelterCategory) {
+                    ShelterCategory.SAVE_SHELTER -> {
+                        val intent = Intent(context, ShelterActivity::class.java)
+                        context.startActivity(intent)
+                    }
+
+                    ShelterCategory.FIND_MY_BABY -> {
+                        val intent = Intent(context, FindAnimalActivity::class.java)
+                        context.startActivity(intent)
+                    }
+
+                    ShelterCategory.MOVE_VOLUNTEER -> {
+                        val intent = Intent(context, MoveServiceActivity::class.java)
+                        context.startActivity(intent)
+                    }
+
+                    ShelterCategory.ADOPTION_NOTICE -> {
+                        val intent = Intent(context, AdoptionActivity::class.java)
+                        context.startActivity(intent)
+                    }
+                }
+            }
+        }
+    }
+
+    HomeMapScreen(
+        petData = state.petData,
+        selectedPetCategory = state.selectedPetCategory,
+        selectedShelterCategory = state.selectedShelterCategory,
+        onClickPetCategory = viewModel::onClickPetCategory,
+        onClickShelterCategory = viewModel::onClickShelterCategory,
+        onClusterClick = viewModel::onClusterClick
+    )
+}
 
 @OptIn(ExperimentalNaverMapApi::class)
 @Composable
 fun HomeMapScreen(
-    viewModel: HomeViewModel = hiltViewModel(),
+    petData: List<LibraryDetail>,
+    selectedPetCategory: List<PetCategory>,
+    selectedShelterCategory: List<ShelterCategory>,
+    onClickPetCategory: (PetCategory) -> Unit,
+    onClickShelterCategory: (ShelterCategory) -> Unit,
+    onClusterClick: () -> Unit,
 ) {
     var tedCluster: TedNaverClustering<ClusterItem>? by remember { mutableStateOf(null) }
     val context = LocalContext.current
-    val state = viewModel.container.stateFlow.collectAsState()
+
+    LaunchedEffect(petData) {
+        naverMap?.let { map ->
+            tedCluster?.clearItems()
+
+            val cluster = setClustering(
+                context = context,
+                list = petData,
+                naverMap = map,
+                onClusterClick = onClusterClick
+            )
+
+            tedCluster = cluster
+
+            //Todo: 카메라 이동 위치 변경
+            map.moveCamera(CameraUpdate.scrollTo(LatLng(37.532600, 127.024612)))
+        }
+    }
 
     Box {
         val seoul = LatLng(37.532600, 127.024612)
+
         val cameraPositionState = rememberCameraPositionState {
             position = CameraPosition(seoul, 11.0)
         }
@@ -45,88 +138,36 @@ fun HomeMapScreen(
             cameraPositionState = cameraPositionState,
             content = {
                 MapEffect { map ->
-                    state.value.petData.let { data ->
-                       val cluster =  setClustering(
-                            context = context,
-                            list = data,
-                            naverMap = map,
-                            onCategoryClick = {}
-                        )
-
-                        tedCluster = cluster
-                    }
+                    naverMap = map
                 }
             }
         )
 
-        HomeMapTopTextField(
-            modifier = Modifier
-                .padding(horizontal = 16.dp)
-                .padding(top = 30.dp),
-            value = "",
-            onValueChange = {},
-            onBtnClick = {}
-        )
+        Column {
+            HomeMapTopTextField(
+                modifier = Modifier
+                    .padding(horizontal = 16.dp)
+                    .padding(top = 30.dp),
+                value = "",
+                onValueChange = {},
+                onBtnClick = {}
+            )
 
-//            viewModel.setcategory()
+            PetCategoryItem(
+                modifier = Modifier
+                    .padding(horizontal = 16.dp)
+                    .padding(top = 10.dp),
+                selectedPetCategory = selectedPetCategory,
+                onClick = onClickPetCategory
+            )
 
-//            if (viewModel.categorytest.size > 5) {
-//                LazyRow(
-//                    modifier = Modifier
-//                        .fillMaxWidth()
-//                        .padding(start = 16.dp, top = 10.dp)
-//                ) {
-//                    items(viewModel.categorytest.subList(0, 3)) { item ->
-//                        CategoryItems(categoryTest = item, selected = checkBoolean) {
-////                           viewModel.checklibrary()
-//                            tedNaverClustering?.clearItems()
-//                        }
-//
-//                        Spacer(modifier = Modifier.width(8.dp))
-//
-//                    }
-//                }
-//
-//                LazyRow(
-//                    modifier = Modifier
-//                        .fillMaxWidth()
-//                        .padding(start = 16.dp, top = 10.dp)
-//                ) {
-//                    items(
-//                        viewModel.categorytest.subList(
-//                            3,
-//                            viewModel.categorytest.lastIndex
-//                        )
-//                    ) { item ->
-//                        CategoryItems(categoryTest = item, selected = viewModel.selelctedcategory.value==item.title) {
-//                            viewModel.selelctedcategory.value = ""
-//                            viewModel.getlibrary()
-//                            viewModel.selelctedcategory.value = item.title
-//                        }
-//                        Spacer(modifier = Modifier.width(8.dp))
-//                                //커밋테스트
-//                    }
-//                    //
-//                    //
-//                }
-//            } else {
-//                LazyRow(
-//                    modifier = Modifier
-//                        .fillMaxWidth()
-//                        .padding(12.dp),
-//                    ) {
-//                    viewModel.setcategory()
-//
-//                    items(viewModel.categorytest) { categorylist ->
-//
-//                        CategoryItems(categoryTest = categorylist, selected = checkBoolean,onClick = {
-//                            //여기서 api요청을 하고 마커를 다시 그려줘야함 근데 NaverItesmSet은 Composable 객체여서 불가능함
-//                        })
-//
-//                    }
-//                }
-//            }
-//        }
-//    }
+            ShelterCategoryItem(
+                modifier = Modifier
+                    .padding(horizontal = 16.dp)
+                    .padding(top = 5.dp),
+                selectedShelterCategory = selectedShelterCategory,
+                onClick = onClickShelterCategory
+            )
+        }
     }
 }

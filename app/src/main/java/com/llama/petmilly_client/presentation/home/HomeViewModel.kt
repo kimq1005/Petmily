@@ -2,17 +2,14 @@ package com.llama.petmilly_client.presentation.home
 
 import android.util.Log
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
 import com.llama.petmilly_client.BuildConfig
 import com.llama.petmilly_client.domain.usecase.home.GetLibraryUseCase
 import com.llama.petmilly_client.presentation.home.model.HomeSideEffect
 import com.llama.petmilly_client.presentation.home.model.HomeState
+import com.llama.petmilly_client.presentation.home.model.PetCategory
+import com.llama.petmilly_client.presentation.home.model.ShelterCategory
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineExceptionHandler
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.catch
-import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.launch
 import llama.test.jetpack_dagger_plz.utils.Common.TAG
 import org.orbitmvi.orbit.Container
 import org.orbitmvi.orbit.ContainerHost
@@ -24,7 +21,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
-    private val getLibraryUseCase: GetLibraryUseCase
+    private val getLibraryUseCase: GetLibraryUseCase,
 ) : ViewModel(), ContainerHost<HomeState, HomeSideEffect> {
 
     override val container: Container<HomeState, HomeSideEffect> = container(
@@ -40,37 +37,16 @@ class HomeViewModel @Inject constructor(
         }
     )
 
-    val categorytest: MutableList<CategoryTest> = arrayListOf()
-
     init {
         getLibrary()
     }
 
-    fun setCategory() {
-        categorytest.clear()
-
-        val puppy = CategoryTest("강아지")
-        val cat = CategoryTest("고양이")
-        val entity = CategoryTest("petmily ❤️")
-        val saveshelter = CategoryTest("임보처구해요")
-        val findmybaby = CategoryTest("우리아이 찾아요")
-        val movevolunteer = CategoryTest("이동봉사 찾아요")
-        val adoptionnotice = CategoryTest("입양 공고")
-
-        categorytest.add(puppy)
-        categorytest.add(cat)
-        categorytest.add(entity)
-        categorytest.add(saveshelter)
-        categorytest.add(findmybaby)
-        categorytest.add(movevolunteer)
-        categorytest.add(adoptionnotice)
-        categorytest.add(adoptionnotice)
-    }
-
-    private fun getLibrary() = intent {
+    private fun getLibrary(
+        startIndex: Int = 1,
+    ) = intent {
         val data = getLibraryUseCase(
             key = BuildConfig.LIBRARY_API_KEY,
-            startIndex = 1,
+            startIndex = startIndex,
             endIndex = 20
         ).getOrThrow()
 
@@ -80,9 +56,54 @@ class HomeViewModel @Inject constructor(
 
         Log.d(TAG, "getLibrary Success: $data")
     }
+
+    fun onClickPetCategory(
+        petCategory: PetCategory,
+    ) = intent {
+        reduce {
+            state.copy(
+                selectedPetCategory = state.selectedPetCategory.toMutableList().apply {
+                    val contains = state.selectedPetCategory.contains(petCategory)
+
+                    if (!contains) {
+                        clear()
+                        add(petCategory)
+                    } else {
+                        remove(petCategory)
+                    }
+                }
+            )
+        }
+
+        getLibrary(2)
+    }
+
+    fun onClickShelterCategory(
+        shelterCategory: ShelterCategory,
+    ) = intent {
+
+        reduce {
+            state.copy(
+                selectedShelterCategory = state.selectedShelterCategory.toMutableList().apply {
+                    val contains = state.selectedShelterCategory.contains(shelterCategory)
+                    if (!contains) {
+                        clear()
+                        add(shelterCategory)
+                    } else {
+                        remove(shelterCategory)
+                    }
+                })
+        }
+
+        getLibrary(3)
+    }
+
+    fun onClusterClick() = intent {
+        if (state.selectedShelterCategory.isNotEmpty()) postSideEffect(HomeSideEffect.NavigateToActivity(state.selectedShelterCategory[0]))
+    }
 }
 
-
+//TOdo: 추후 삭제 예정
 data class CategoryTest(
     var title: String,
 )

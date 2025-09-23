@@ -29,7 +29,6 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.llama.petmilly_client.R
-import com.llama.petmilly_client.presentation.home.items.BorderCategoryItems
 import com.llama.petmilly_client.presentation.shelterscreen.TitleBar
 import com.llama.petmilly_client.ui.theme.*
 import com.llama.petmilly_client.utils.notosans_bold
@@ -91,15 +90,15 @@ fun AdoptionListScreen(
                     Row {
                         if (viewModel.categorytest.indexOf(categorylist) == 0) {
                             Spacer(modifier = Modifier.padding(start = 15.dp))
-                            BorderCategoryItems(title = categorylist.title) { title, check ->
-
-                            }
+//                            BorderCategoryItems(title = categorylist.title) { title, check ->
+//
+//                            }
 
 
                         } else {
-                            BorderCategoryItems(title = categorylist.title) { title, check ->
-
-                            }
+//                            BorderCategoryItems(title = categorylist.title) { title, check ->
+//
+//                            }
                         }
 
                         Spacer(modifier = Modifier.width(6.dp))

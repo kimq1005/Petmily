@@ -25,7 +25,6 @@ import com.google.accompanist.pager.*
 import com.llama.petmilly_client.R
 import com.llama.petmilly_client.presentation.chatscreen.items.ChatItem
 import com.llama.petmilly_client.presentation.chatscreen.items.ChatModel
-import com.llama.petmilly_client.presentation.home.items.BorderCategoryItems
 import com.llama.petmilly_client.ui.theme.Background_Noting
 import com.llama.petmilly_client.ui.theme.Black_30_Transfer
 import com.llama.petmilly_client.utils.CommonNotingScreen
@@ -146,9 +145,9 @@ fun ChatTabScreen(
                     )
                     items(mylist) { item ->
 
-                        BorderCategoryItems(title = item) { title, check ->
-
-                        }
+//                        BorderCategoryItems(title = item) { title, check ->
+//
+//                        }
                         Spacer(modifier = Modifier.width(9.dp))
 
                     }

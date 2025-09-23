@@ -21,7 +21,7 @@ object ClusterManager {
         context: Context,
         list: List<LibraryDetail>,
         naverMap: NaverMap,
-        onCategoryClick: () -> Unit,
+        onClusterClick: () -> Unit,
     ): TedNaverClustering<ClusterItem> {
         val items = mutableListOf<ClusterItem>()
 
@@ -37,7 +37,7 @@ object ClusterManager {
 
             }
             .clusterClickListener {
-                onCategoryClick()
+                onClusterClick()
             }
         .customCluster {
             val clusterDesignText = ClusterDesignText()

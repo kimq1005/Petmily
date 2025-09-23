@@ -52,7 +52,6 @@ import com.llama.petmilly_client.R
 import com.llama.petmilly_client.presentation.dialog.MoveServiceDetailDialog
 import com.llama.petmilly_client.presentation.findanimalscreen.FindAnimalDetailImage
 import com.llama.petmilly_client.presentation.findanimalscreen.ImageTestData
-import com.llama.petmilly_client.presentation.home.items.BorderCategoryItems
 import com.llama.petmilly_client.presentation.moveservicscreen.moveservicedetail.MoveServiceDetailActivity
 import com.llama.petmilly_client.presentation.shelterscreen.TitleBar
 import com.llama.petmilly_client.ui.theme.Black_30_Transfer
@@ -114,18 +113,13 @@ fun MoveServiceListScreen(
 ) {
     val context = LocalContext.current
     Box {
-
-//        LaunchedEffect(context) {
-//        }
         viewModel.getmoveservicepost()
-
 
         Log.d(TAG, "MoveServiceListScreen: 하윙")
         Column(
             modifier = Modifier
                 .fillMaxSize()
                 .background(Color.White)
-
         ) {
 
             TitleBar(title = "이동봉사 찾아요", ismenu = false, clickBack = { activity.finish() }) {
@@ -139,28 +133,26 @@ fun MoveServiceListScreen(
 //
                 items(MainApplication.categorylist) { categorylist ->
                     Row {
-                        if (MainApplication.categorylist.indexOf(categorylist) == 0) {
-                            Spacer(modifier = Modifier.padding(start = 15.dp))
-                            BorderCategoryItems(title = categorylist) { title, check ->
-                                setmovservicepost(
-                                    viewModel = viewModel,
-                                    categorytitle = title,
-                                    check = check
-
-                                )
-                            }
-
-
-                        } else {
-                            BorderCategoryItems(title = categorylist) { title, check ->
-                                setmovservicepost(
-                                    viewModel = viewModel,
-                                    categorytitle = title,
-                                    check = check
-                                )
-
-                            }
-                        }
+//                        if (MainApplication.categorylist.indexOf(categorylist) == 0) {
+//                            Spacer(modifier = Modifier.padding(start = 15.dp))
+//                            BorderCategoryItems(title = categorylist) { title, check ->
+//                                setmovservicepost(
+//                                    viewModel = viewModel,
+//                                    categorytitle = title,
+//                                    check = check
+//
+//                                )
+//                            }
+//                        } else {
+//                            BorderCategoryItems(title = categorylist) { title, check ->
+//                                setmovservicepost(
+//                                    viewModel = viewModel,
+//                                    categorytitle = title,
+//                                    check = check
+//                                )
+//
+//                            }
+//                        }
 
                         Spacer(modifier = Modifier.width(6.dp))
                     }

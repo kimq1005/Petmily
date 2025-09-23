@@ -52,7 +52,6 @@ class ShelterActivity : ComponentActivity() {
                 val navController = rememberNavController()
                 val viewModel: ShelterViewModel = hiltViewModel()
                 Column {
-
                     TitleBar(
                         title = "임보처 구해요",
                         ismenu = false,
