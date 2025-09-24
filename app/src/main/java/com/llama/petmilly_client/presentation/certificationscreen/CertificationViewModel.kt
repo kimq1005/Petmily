@@ -19,20 +19,19 @@ import javax.inject.Inject
 
 
 @HiltViewModel
-class CertificationViewModel @Inject constructor(private val petMillyRepo: PetMillyRepo) :
+class CertificationViewModel @Inject constructor(
+    private val petMillyRepo: PetMillyRepo
+) :
     ViewModel() {
-
-
     private val _setshelterIntent = MutableLiveData<Event<Unit>>()
     val setshelterIntent: LiveData<Event<Unit>> = _setshelterIntent
 
     val townadress = mutableStateOf("")
 
-
     fun posttownauth(){
         if(townadress.value != ""){
             viewModelScope.launch(Dispatchers.IO) {
-                petMillyRepo.posttownauth(MainApplication.accessToken, LocationauthenticationResponse(townadress.value)).let {
+                petMillyRepo.posttownauth(LocationauthenticationResponse(townadress.value)).let {
                     when(it.status){
                         RemoteResult.Status.SUCCESS->{
                             Log.d(TAG, "posttownauth SUCCESS: $it ")

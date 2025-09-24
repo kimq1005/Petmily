@@ -10,7 +10,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.llama.petmilly_client.MainApplication
 import com.llama.petmilly_client.data.model.post.postdto.PostDTO
-import com.llama.petmilly_client.data.model.post.postdto.PostData
+import com.llama.petmilly_client.data.model.post.postdto.PostDataDetail
 import com.llama.petmilly_client.data.model.temporary.detail.Data
 import com.llama.petmilly_client.data.model.temporary.detail.PhotoUrl
 import com.llama.petmilly_client.data.model.temporary.detail.ProtectionCondition
@@ -30,10 +30,6 @@ import javax.inject.Inject
 class ShelterViewModel @Inject constructor(
     private val petMillyRepo: PetMillyRepo,
 ) : ViewModel() {
-
-    var isDialogShown by mutableStateOf(false)
-        private set
-
     var isAdoptionApplicationDialogShown by mutableStateOf(false)
         private set
 
@@ -46,7 +42,7 @@ class ShelterViewModel @Inject constructor(
     val categorylist:MutableList<String> = arrayListOf()
 
     val postDto: MutableLiveData<PostDTO> = MutableLiveData<PostDTO>()
-    val postDataList = mutableStateListOf<PostData>()
+    val postDataList = mutableStateListOf<PostDataDetail>()
 
     //임보처 구해요 상세조회
     val id = mutableStateOf(0)
@@ -76,17 +72,6 @@ class ShelterViewModel @Inject constructor(
     val ProtectionHope = mutableStateListOf<ProtectionHope>()
     val ProtectionNo = mutableStateListOf<ProtectionNo>()
 
-
-
-
-    fun onConfirmClick() {
-        isDialogShown = true
-    }
-
-    fun onDismissDialog() {
-        isDialogShown = false
-    }
-
     fun onAdoptionDialogConfirmClick() {
         isAdoptionApplicationDialogShown = true
     }
@@ -109,7 +94,6 @@ class ShelterViewModel @Inject constructor(
     fun getpost() {
         viewModelScope.launch(Dispatchers.IO) {
             petMillyRepo.getpost(
-                MainApplication.accessToken,
                 1,
                 5,
                 cat.value,
@@ -132,19 +116,16 @@ class ShelterViewModel @Inject constructor(
                     }
 
                 }
-
             }
         }
-
     }
-
 
     private fun setPostData() {
         viewModelScope.launch(Dispatchers.Main) {
             postDataList.clear()
             postDto.value?.let {
-                if(it.data!=null){
-                    postDataList.addAll(it.data.list)
+                if(it.postData!=null){
+                    postDataList.addAll(it.postData.list)
                 }
                 Log.d(TAG, "setPostData: ${postDataList.size}")
             }
@@ -153,7 +134,9 @@ class ShelterViewModel @Inject constructor(
 
     fun gettemporarydetail() {
         viewModelScope.launch(Dispatchers.IO) {
-            petMillyRepo.gettemporarydetail(MainApplication.accessToken,id.value).let {
+            petMillyRepo.gettemporarydetail(
+                id.value
+            ).let {
                 when (it.status) {
                     RemoteResult.Status.SUCCESS -> {
                         it.data?.let { item->

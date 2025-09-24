@@ -179,5 +179,5 @@ dependencies {
     implementation(libs.orbit.viewmodel)
 
     //DataStore
-//    implementation(libs.datastore)
+    implementation(libs.datastore)
 }

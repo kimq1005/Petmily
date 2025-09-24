@@ -21,15 +21,8 @@ import retrofit2.Response
 import retrofit2.http.*
 
 interface PetMillYApiService {
-
-    @POST("user/kakao-sign-in")
-    suspend fun postkakaotoken(
-        @Body kaKaoResponse: KaKaoResponse,
-    ): Response<KaKaoLoginDTO>
-
     @POST("user/additional-info")
     suspend fun postadditonalinfo(
-        @Header("x-access-token") token: String,
         @Body additionalResponse: AdditionalResponse,
     ): Response<AdditionalSuccessDTO>
 
@@ -43,17 +36,10 @@ interface PetMillYApiService {
         @Body tokenResponse: TokenResponse,
     ): Response<RefreshTokenDTO>
 
-//    @POST("post/temporary-protection")
-//    suspend fun posttemporaryprotection(
-//        @Header("x-access-token") token: String,
-//        @Body temporaryprotectionResponse: TemporaryprotectionResponse
-//    ):Response<TemporaryprotectionDTO>
-
     @POST("post/temporary-protection")
     @Multipart
     @JvmSuppressWildcards
     suspend fun posttemporaryprotection(
-        @Header("x-access-token") token: String,
         @Part files: List<MultipartBody.Part>?,
         @Part("charmAppeal") charmAppeal: RequestBody,
         @Part("animalTypes") animalTypes: RequestBody,
@@ -77,15 +63,11 @@ interface PetMillYApiService {
 
     @POST("/user/town-auth")
     suspend fun posttownauth(
-        @Header("x-access-token") token: String,
         @Body locationauthenticationResponse: LocationauthenticationResponse,
     ): Response<TemporaryprotectionDTO>
-    //TemporaryprotectionDTO 응답값이 똑같아서 사용
-
 
     @GET("/post")
     suspend fun getpost(
-        @Header("x-access-token") token: String,
         @Query("page") page: Int?,
         @Query("limit") limit: Int?,
         @Query("cat") cat: Boolean?,
@@ -97,32 +79,27 @@ interface PetMillYApiService {
 
     @GET("/post/temporary-protection/{id}")
     suspend fun gettemporarydetail(
-        @Header("x-access-token") token: String,
         @Path("id") id: Int,
     ): Response<TemporarydetailDTO>
 
     @POST("post/temporary-protection/{id}/photos")
     suspend fun posttemporaryphoto(
-        @Header("x-access-token") token: String,
         @Path("id") id: Int,
         @Part files: List<MultipartBody.Part>?,
     ): Response<TemporaryprotectionDTO>
 
     @PATCH("post/temporary-protection/{id}")
     suspend fun patchtemporary(
-        @Header("x-access-token") token: String,
         @Path("id") id: Int,
     ): Response<TemporaryprotectionDTO>
 
     @DELETE("post/temporary-protection/{id}")
     suspend fun deletetemporary(
-        @Header("x-access-token") token: String,
         @Path("id") id: Int,
     ): Response<TemporaryprotectionDTO>
 
     @DELETE("/post/temporary-protection/{id}/photos/{photoId}")
     suspend fun deletetemporaryphoto(
-        @Header("x-access-token") token: String,
         @Path("id") id: Int,
         @Path("photoId") photoId: Int,
     ): Response<TemporaryprotectionDTO>
@@ -131,7 +108,6 @@ interface PetMillYApiService {
     @Multipart
     @JvmSuppressWildcards
     suspend fun postmoveservicepost(
-        @Header("x-access-token") token: String,
         @Part("startAddress") startAddress: RequestBody,
         @Part("endAddress") endAddress: RequestBody,
         @Part("animalTypes") animalTypes: RequestBody,
@@ -148,7 +124,6 @@ interface PetMillYApiService {
 
     @GET("/post")
     suspend fun getmoveservicepost(
-        @Header("x-access-token") token: String,
         @Query("page") page: Int?,
         @Query("limit") limit: Int?,
         @Query("cat") cat: Boolean?,
@@ -160,33 +135,28 @@ interface PetMillYApiService {
 
     @GET("/post/move-volunteer/{id}")
     suspend fun getmoveservicepostdetail(
-        @Header("x-access-token") token: String,
         @Path("id") id: Int,
     ): Response<MoveServiceDetailDTO>
 
     @POST("/post/move-volunteer/{id}/photos")
     suspend fun postmoveservicephoto(
-        @Header("x-access-token") token: String,
         @Path("id") id: Int,
         @Part files: List<MultipartBody.Part>?,
     ): Response<TemporaryprotectionDTO>
 
     @PATCH("/post/move-volunteer/{id}")
     suspend fun patchmoveservicepost(
-        @Header("x-access-token") token: String,
         @Path("id") id: Int,
         @Body patchmoveservicepostResponse: patchmoveservicepostResponse,
     ): Response<TemporaryprotectionDTO>
 
     @DELETE("post/move-volunteer/{id}")
     suspend fun deletemoveservicepost(
-        @Header("x-access-token") token: String,
         @Path("id") id: Int,
     ): Response<TemporaryprotectionDTO>
 
     @DELETE("post/move-volunteer/{id}/photos/{photoId}")
     suspend fun deletemoveservicephoto(
-        @Header("x-access-token") token: String,
         @Path("id") id: Int,
         @Path("photoId") photoId: Int,
     ): Response<TemporaryprotectionDTO>
@@ -195,7 +165,6 @@ interface PetMillYApiService {
     @Multipart
     @JvmSuppressWildcards
     suspend fun postfindmypet(
-        @Header("x-access-token") token: String,
         @Part files: List<MultipartBody.Part>?,
         @Part("animalTypes") animalTypes: RequestBody,
         @Part("name") name: RequestBody,
@@ -217,7 +186,6 @@ interface PetMillYApiService {
     @Multipart
     @JvmSuppressWildcards
     suspend fun postfindmypetcomment(
-        @Header("x-access-token") token: String,
         @Path("id") id: Int,
         @Part files: List<MultipartBody.Part>?,
         @Part("sightingAddress") sightingAddress: RequestBody,
@@ -228,7 +196,6 @@ interface PetMillYApiService {
     //우리 아이 찾아요 게시글 상세 조회
     @GET("post/find-my-pet/{id}")
     suspend fun getfindmypetdetail(
-        @Header("x-access-token") token: String,
         @Path("id") id: Int,
     ):Response<FindMyPetDetailDTO>
 
@@ -236,7 +203,6 @@ interface PetMillYApiService {
     //우리 아이 찾아요 댓글 삭제
     @DELETE("post/find-my-pet/{id}/comment/{commentId}")
     suspend fun deletefindmypetcomment(
-        @Header("x-access-token") token: String,
         @Path("id") id: Int,
         @Path("commentId") commentId: Int,
     ) : Response<TemporaryprotectionDTO>
@@ -244,13 +210,11 @@ interface PetMillYApiService {
     //우리 아이 찾아요 게시글 삭제
     @DELETE("post/find-my-pet/{id}")
     suspend fun deletefindpetpost(
-        @Header("x-access-token") token: String,
         @Path("id") id: Int,
     ) : Response<TemporaryprotectionDTO>
 
     @DELETE("post/find-my-pet/{id}")
     suspend fun deletefindpetpost2(
-        @Header("x-access-token") token: String,
         @Path("id") id: Int,
     ) : Response<TemporaryprotectionDTO>
 

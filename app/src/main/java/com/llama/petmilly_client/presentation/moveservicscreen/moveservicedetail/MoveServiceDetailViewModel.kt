@@ -98,7 +98,6 @@ class MoveServiceDetailViewModel @Inject constructor(
         viewModelScope.launch(Dispatchers.IO) {
             delay(2000)
             petMillyRepo.getmoveservicepost(
-                MainApplication.accessToken,
                 1,
                 10,
                 null,
@@ -149,7 +148,6 @@ class MoveServiceDetailViewModel @Inject constructor(
 
         viewModelScope.launch(Dispatchers.IO) {
             petMillyRepo.postmoveservicepost(
-                MainApplication.accessToken,
                 startAddress,
                 endAddress,
                 animalTypes,

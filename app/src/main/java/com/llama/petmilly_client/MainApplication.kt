@@ -12,13 +12,6 @@ class MainApplication : Application() {
     companion object {
         private lateinit var sharedPreferences: SharedPreferences
         lateinit var instance: MainApplication
-
-        var kakaoaccesesstoken = ""
-
-        var accessToken = ""
-
-        var refreshToken = ""
-
         var signupname = ""
 
         var categorylist = listOf<String>(

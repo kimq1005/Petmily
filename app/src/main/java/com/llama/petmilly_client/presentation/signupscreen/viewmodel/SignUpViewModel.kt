@@ -128,11 +128,9 @@ class SignUpViewModel @Inject constructor(private val petMillyRepo: PetMillyRepo
                 typeOfResidence = housekind.value
             )
 
-            Log.d(TAG, "postadditionalinfo: ${MainApplication.accessToken}")
-            Log.d(TAG, "postadditionalinfo: $additionalResponse")
-            
-
-            petMillyRepo.postadditonalinfo(MainApplication.accessToken, additionalResponse).let {
+            petMillyRepo.postadditonalinfo(
+                additionalResponse
+            ).let {
                 when (it.status) {
                     RemoteResult.Status.SUCCESS -> {
                         Log.d(TAG, "postadditionalinfo SUCCRESS: ${it}")

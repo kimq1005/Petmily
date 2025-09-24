@@ -118,12 +118,10 @@ class FindAnimalViewModel @Inject constructor(
 
     fun getfindmypetdetail(id: Int) {
         viewModelScope.launch(Dispatchers.IO) {
-
-            petMillyRepo.getfindmypetdetail(MainApplication.accessToken, id).let {
+            petMillyRepo.getfindmypetdetail(id).let {
                 when (it.status) {
                     RemoteResult.Status.SUCCESS -> {
                         it.data?.let { it ->
-
                             commentlist.clear()
                             photoUrl.clear()
                             val item = it.data
@@ -170,9 +168,8 @@ class FindAnimalViewModel @Inject constructor(
         viewModelScope.launch(Dispatchers.IO) {
             _showProgress.postValue(Event(Unit))
             petMillyRepo.postfindmypetcomment(
-                token = MainApplication.accessToken,
                 id = id.value,
-                files,
+                files = files,
                 sightingAddress = sightingAddress,
                 comment = comment,
                 sightingDate = hopeapplicationperiod
@@ -197,7 +194,6 @@ class FindAnimalViewModel @Inject constructor(
         viewModelScope.launch(){
             _showProgress.postValue(Event(Unit))
             petMillyRepo.deletefindmypetcomment(
-                MainApplication.accessToken,
                 id.value,
                 commentid.value
             ).let {

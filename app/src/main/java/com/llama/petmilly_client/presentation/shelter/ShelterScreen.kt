@@ -46,7 +46,6 @@ fun SafeShelterScreen(
 
     LaunchedEffect(context) {
         viewModel.getpost()
-        viewModel.setsheltercategory()
     }
 
     Box(

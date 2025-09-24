@@ -114,7 +114,6 @@ class FADetailViewModel @Inject constructor(
         viewModelScope.launch(Dispatchers.IO) {
 
             petMillyRepo.postfindmypet(
-                MainApplication.accessToken,
                 files,
                 animalTypes,
                 name,

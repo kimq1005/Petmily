@@ -78,7 +78,6 @@ class MoveServiceViewModel @Inject constructor(
 
         viewModelScope.launch(Dispatchers.IO) {
             petMillyRepo.getmoveservicepost(
-                MainApplication.accessToken,
                 1,
                 10,
                 cat.value,
@@ -109,7 +108,7 @@ class MoveServiceViewModel @Inject constructor(
 
     fun getmoveservicepostdetail(id: Int) {
         viewModelScope.launch(Dispatchers.IO) {
-            petMillyRepo.getmoveservicepostdetail(MainApplication.accessToken, id).let {
+            petMillyRepo.getmoveservicepostdetail(id).let {
                 when (it.status) {
                     RemoteResult.Status.SUCCESS -> {
                         it.data?.let { item ->

@@ -4,6 +4,7 @@ import com.llama.petmilly_client.data.network.ApiService
 import com.llama.petmilly_client.data.network.LibraryApiService
 import com.llama.petmilly_client.data.network.LoginService
 import com.llama.petmilly_client.data.network.PetMillYApiService
+import com.llama.petmilly_client.data.network.PetMilyInterceptor
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -19,11 +20,18 @@ import javax.inject.Singleton
 object DataModule {
     val BASE_URL = "http://192.168.0.44:3000/"
 
-    val okHttpClient = OkHttpClient.Builder()
-        .connectTimeout(100, TimeUnit.SECONDS)
-        .readTimeout(100, TimeUnit.SECONDS)
-        .writeTimeout(100, TimeUnit.SECONDS)
-        .build()
+    @Provides
+    fun provideOkHttpClient(
+        interceptor: PetMilyInterceptor
+    ): OkHttpClient {
+        return OkHttpClient
+            .Builder()
+            .addInterceptor(interceptor)
+            .connectTimeout(100, TimeUnit.SECONDS)
+            .readTimeout(100, TimeUnit.SECONDS)
+            .writeTimeout(100, TimeUnit.SECONDS)
+            .build()
+    }
 
     @Provides
     fun provideApiService(): ApiService {
@@ -44,22 +52,26 @@ object DataModule {
     }
 
     @Provides
-    fun PetMillYApiService(): PetMillYApiService {
+    fun PetMillYApiService(
+        client: OkHttpClient
+    ): PetMillYApiService {
         return Retrofit.Builder()
             .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
-            .client(okHttpClient)
+            .client(client)
             .build()
             .create(PetMillYApiService::class.java)
     }
 
 
     @Provides
-    fun provideRetrofit(): Retrofit {
+    fun provideRetrofit(
+        client: OkHttpClient
+    ): Retrofit {
         return Retrofit.Builder()
             .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
-            .client(okHttpClient)
+            .client(client)
             .build()
     }
 

@@ -91,7 +91,7 @@ compose-runtime-livedata = { group = "androidx.compose.runtime", name = "runtime
 compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "compose-bom" }
 
 # DataStore
-datastore = { module = "androidx.datastore:datastore-preferences", version = "dataStore" }
+datastore = { module = "androidx.datastore:datastore-preferences", version.ref = "dataStore" }
 
 # AppCompat
 appcompat = { group = "androidx.appcompat", name = "appcompat", version = "1.6.1" }

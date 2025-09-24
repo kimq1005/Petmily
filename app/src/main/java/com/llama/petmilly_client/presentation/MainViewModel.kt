@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.lifecycle.ViewModel
 import com.llama.petmilly_client.domain.usecase.kakao.KakaoLoginUseCase
 import com.llama.petmilly_client.domain.usecase.login.PostLoginUseCase
+import com.llama.petmilly_client.domain.usecase.login.SetTokenUseCase
 import com.llama.petmilly_client.presentation.login.model.LoginSideEffect
 import com.llama.petmilly_client.presentation.login.model.LoginState
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -19,6 +20,7 @@ import javax.inject.Inject
 class MainViewModel @Inject constructor(
     private val kakaoLoginUseCase: KakaoLoginUseCase,
     private val postLoginUseCase: PostLoginUseCase,
+    private val setTokenUseCase: SetTokenUseCase,
 ) : ViewModel(), ContainerHost<LoginState, LoginSideEffect> {
     override val container: Container<LoginState, LoginSideEffect> = container(
         initialState = LoginState(),
@@ -45,6 +47,7 @@ class MainViewModel @Inject constructor(
     ) = intent {
         runCatching { kakaoLoginUseCase(context).getOrThrow() }
             .onSuccess { token ->
+                setTokenUseCase(token.accessToken)
                 postLogin(token.accessToken)
             }.onFailure {
                 postSideEffect(LoginSideEffect.Error(message = it.message.orEmpty()))

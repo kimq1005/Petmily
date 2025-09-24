@@ -184,7 +184,6 @@ class ShelterDetailViewModel @Inject constructor(
 
         viewModelScope.launch(Dispatchers.IO) {
             petMillyRepo.posttemporaryprotection(
-                MainApplication.accessToken,
                 files ?: null,
                 charmAppeal,
                 species,

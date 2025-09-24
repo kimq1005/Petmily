@@ -813,25 +813,8 @@ fun AnimalInfoDetailScreen(
                     .width(55.dp)
                     .height(55.dp)
                     .clickable {
-                        viewModel.onConfirmClick()
+//                        viewModel.onConfirmClick()
                     }
-            )
-        }
-
-
-        if (viewModel.isDialogShown) {
-            AdoptionApplicationDialog(
-                onDismiss = { viewModel.onDismissDialog() },
-                onConfirm = {
-                    //동의 신청서 다이얼로그
-                    viewModel.onDismissDialog()
-                    viewModel.onAdoptionDialogConfirmClick()
-                },
-                onModify = {
-                    val intent = Intent(context, CertificationActivity::class.java)
-                    context.startActivity(intent)
-                },
-                ischatroom = false
             )
         }
 
@@ -840,9 +823,7 @@ fun AnimalInfoDetailScreen(
                 onDismiss = { viewModel.onAdoptionDialogDismissDialog() },
                 onConfirm = { Log.d(TAG, "AnimalInfoDetailScreen: wow") })
         }
-
-    }//Box
-
+    }
 }
 
 @Composable

@@ -25,31 +25,27 @@ import javax.inject.Inject
 
 class PetMillyRepoImpl @Inject constructor(private val petMillYApiService: PetMillYApiService) :
     PetMillyRepo, BaseDataSource() {
-
-    override suspend fun postkakaotoken(kaKaoResponse: KaKaoResponse): RemoteResult<KaKaoLoginDTO> =
-        getResult {
-            petMillYApiService.postkakaotoken(kaKaoResponse)
-        }
-
     override suspend fun postadditonalinfo(
-        token: String,
         additionalResponse: AdditionalResponse,
     ): RemoteResult<AdditionalSuccessDTO> = getResult {
-        petMillYApiService.postadditonalinfo(token, additionalResponse)
+        petMillYApiService.postadditonalinfo(additionalResponse)
     }
 
-    override suspend fun postuseraccesstoken(tokenResponse: TokenResponse): RemoteResult<AccessTokenDTO> =
+    override suspend fun postuseraccesstoken(
+        tokenResponse: TokenResponse,
+    ): RemoteResult<AccessTokenDTO> =
         getResult {
             petMillYApiService.postuseraccesstoken(tokenResponse)
         }
 
-    override suspend fun postuserrefreshtoken(tokenResponse: TokenResponse): RemoteResult<RefreshTokenDTO> =
+    override suspend fun postuserrefreshtoken(
+        tokenResponse: TokenResponse,
+    ): RemoteResult<RefreshTokenDTO> =
         getResult {
             petMillYApiService.postuserrefreshtoken(tokenResponse)
         }
 
     override suspend fun posttemporaryprotection(
-        token: String,
         files: List<MultipartBody.Part>?,
         charmAppeal: RequestBody,
         animalTypes: RequestBody,
@@ -68,11 +64,8 @@ class PetMillyRepoImpl @Inject constructor(private val petMillYApiService: PetMi
         endReceptionPeriod: RequestBody?,
         temporaryProtectionCondition: List<RequestBody>?,
         temporaryProtectionHope: List<RequestBody>?,
-        temporaryProtectionNo: List<RequestBody>?,
-
-        ): RemoteResult<TemporaryprotectionDTO> = getResult {
+        temporaryProtectionNo: List<RequestBody>?, ): RemoteResult<TemporaryprotectionDTO> = getResult {
         petMillYApiService.posttemporaryprotection(
-            token,
             files,
             charmAppeal,
             animalTypes,
@@ -96,14 +89,12 @@ class PetMillyRepoImpl @Inject constructor(private val petMillYApiService: PetMi
     }
 
     override suspend fun posttownauth(
-        token: String,
         locationauthenticationResponse: LocationauthenticationResponse,
     ): RemoteResult<TemporaryprotectionDTO> = getResult {
-        petMillYApiService.posttownauth(token, locationauthenticationResponse)
+        petMillYApiService.posttownauth(locationauthenticationResponse)
     }
 
     override suspend fun getpost(
-        token: String,
         page: Int?,
         limit: Int?,
         cat: Boolean?,
@@ -112,41 +103,36 @@ class PetMillyRepoImpl @Inject constructor(private val petMillYApiService: PetMi
         weight: List<String>?,
         type: String,
     ): RemoteResult<PostDTO> = getResult {
-        petMillYApiService.getpost(token, page, limit, cat, dog, isComplete, weight, type)
+        petMillYApiService.getpost(page, limit, cat, dog, isComplete, weight, type)
     }
 
 
     override suspend fun gettemporarydetail(
-        token: String,
         id: Int,
     ): RemoteResult<TemporarydetailDTO> = getResult {
-        petMillYApiService.gettemporarydetail(token, id)
+        petMillYApiService.gettemporarydetail(id)
     }
 
     override suspend fun posttemporaryphoto(
-        token: String,
         id: Int,
         files: List<MultipartBody.Part>?,
-    ): RemoteResult<TemporaryprotectionDTO> =getResult{
-        petMillYApiService.posttemporaryphoto(token, id, files)
+    ): RemoteResult<TemporaryprotectionDTO> = getResult {
+        petMillYApiService.posttemporaryphoto(id, files)
     }
 
     override suspend fun patchtemporary(
-        token: String,
         id: Int,
     ): RemoteResult<TemporaryprotectionDTO> = getResult {
-        petMillYApiService.patchtemporary(token, id)
+        petMillYApiService.patchtemporary(id)
     }
 
     override suspend fun deletetemporary(
-        token: String,
         id: Int,
-    ): RemoteResult<TemporaryprotectionDTO> =getResult{
-        petMillYApiService.deletetemporary(token, id)
+    ): RemoteResult<TemporaryprotectionDTO> = getResult {
+        petMillYApiService.deletetemporary(id)
     }
 
     override suspend fun postmoveservicepost(
-        token: String,
         startAddress: RequestBody,
         endAddress: RequestBody,
         animalTypes: RequestBody,
@@ -159,11 +145,22 @@ class PetMillyRepoImpl @Inject constructor(private val petMillYApiService: PetMi
         hopeDate: RequestBody,
         files: List<MultipartBody.Part>?,
     ): RemoteResult<TemporaryprotectionDTO> = getResult {
-        petMillYApiService.postmoveservicepost(token, startAddress, endAddress, animalTypes, name, gender, weight, breed, age, etc, hopeDate, files)
+        petMillYApiService.postmoveservicepost(
+            startAddress,
+            endAddress,
+            animalTypes,
+            name,
+            gender,
+            weight,
+            breed,
+            age,
+            etc,
+            hopeDate,
+            files
+        )
     }
 
     override suspend fun getmoveservicepost(
-        token: String,
         page: Int?,
         limit: Int?,
         cat: Boolean?,
@@ -173,7 +170,6 @@ class PetMillyRepoImpl @Inject constructor(private val petMillYApiService: PetMi
         type: String,
     ): RemoteResult<MoveServicePostDTO> = getResult {
         petMillYApiService.getmoveservicepost(
-            token,
             page,
             limit,
             cat,
@@ -185,45 +181,39 @@ class PetMillyRepoImpl @Inject constructor(private val petMillYApiService: PetMi
     }
 
     override suspend fun getmoveservicepostdetail(
-        token: String,
         id: Int,
     ): RemoteResult<MoveServiceDetailDTO> = getResult {
-        petMillYApiService.getmoveservicepostdetail(token, id)
+        petMillYApiService.getmoveservicepostdetail(id)
     }
 
     override suspend fun postmoveservicephoto(
-        token: String,
         id: Int,
         files: List<MultipartBody.Part>?,
     ): RemoteResult<TemporaryprotectionDTO> = getResult {
-        petMillYApiService.postmoveservicephoto(token, id,files)
+        petMillYApiService.postmoveservicephoto(id, files)
     }
 
     override suspend fun patchmoveservicepost(
-        token: String,
         id: Int,
         patchmoveservicepostResponse: patchmoveservicepostResponse,
-    ): RemoteResult<TemporaryprotectionDTO> = getResult{
-        petMillYApiService.patchmoveservicepost(token, id, patchmoveservicepostResponse)
+    ): RemoteResult<TemporaryprotectionDTO> = getResult {
+        petMillYApiService.patchmoveservicepost(id, patchmoveservicepostResponse)
     }
 
     override suspend fun deletemoveservicepost(
-        token: String,
         id: Int,
-    ): RemoteResult<TemporaryprotectionDTO> = getResult{
-        petMillYApiService.deletemoveservicepost(token, id)
+    ): RemoteResult<TemporaryprotectionDTO> = getResult {
+        petMillYApiService.deletemoveservicepost(id)
     }
 
     override suspend fun deletemoveservicephoto(
-        token: String,
         id: Int,
         photoId: Int,
-    ): RemoteResult<TemporaryprotectionDTO> = getResult{
-        petMillYApiService.deletetemporaryphoto(token, id, photoId)
+    ): RemoteResult<TemporaryprotectionDTO> = getResult {
+        petMillYApiService.deletetemporaryphoto(id, photoId)
     }
 
     override suspend fun postfindmypet(
-        token: String,
         files: List<MultipartBody.Part>?,
         animalTypes: RequestBody,
         name: RequestBody,
@@ -238,41 +228,55 @@ class PetMillyRepoImpl @Inject constructor(private val petMillYApiService: PetMi
         etc: RequestBody?,
         isPublic: RequestBody,
     ): RemoteResult<TemporaryprotectionDTO> = getResult {
-        petMillYApiService.postfindmypet(token, files, animalTypes, name, gender, weight, breed, age, missingDate, missingAddress, clothes, lead, etc, isPublic)
+        petMillYApiService.postfindmypet(
+            files,
+            animalTypes,
+            name,
+            gender,
+            weight,
+            breed,
+            age,
+            missingDate,
+            missingAddress,
+            clothes,
+            lead,
+            etc,
+            isPublic
+        )
     }
 
     override suspend fun postfindmypetcomment(
-        token: String,
         id: Int,
         files: List<MultipartBody.Part>?,
         sightingAddress: RequestBody,
         comment: RequestBody,
         sightingDate: RequestBody,
-    ): RemoteResult<TemporaryprotectionDTO> = getResult{
-        petMillYApiService.postfindmypetcomment(token, id, files, sightingAddress, comment, sightingDate)
+    ): RemoteResult<TemporaryprotectionDTO> = getResult {
+        petMillYApiService.postfindmypetcomment(
+            id,
+            files,
+            sightingAddress,
+            comment,
+            sightingDate
+        )
     }
 
     override suspend fun getfindmypetdetail(
-        token: String,
         id: Int,
     ): RemoteResult<FindMyPetDetailDTO> = getResult {
-        petMillYApiService.getfindmypetdetail(token, id)
+        petMillYApiService.getfindmypetdetail(id)
     }
 
     override suspend fun deletefindmypetcomment(
-        token: String,
         id: Int,
         commentId: Int,
     ): RemoteResult<TemporaryprotectionDTO> = getResult {
-       petMillYApiService.deletefindmypetcomment(token, id, commentId)
+        petMillYApiService.deletefindmypetcomment(id, commentId)
     }
 
     override suspend fun deletefindpetpost(
-        token: String,
         id: Int,
-    ): RemoteResult<TemporaryprotectionDTO> = getResult{
-        petMillYApiService.deletefindpetpost(token, id)
+    ): RemoteResult<TemporaryprotectionDTO> = getResult {
+        petMillYApiService.deletefindpetpost(id)
     }
-
-
 }
