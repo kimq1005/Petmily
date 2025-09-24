@@ -8,7 +8,6 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.llama.petmilly_client.MainApplication
 import com.llama.petmilly_client.data.model.moveservice.moveservicedetail.Data
 import com.llama.petmilly_client.data.model.moveservice.postmoveservice.MoveServicePostDTO
 import com.llama.petmilly_client.data.model.moveservice.postmoveservice.MoveServicePostList
@@ -77,7 +76,7 @@ class MoveServiceViewModel @Inject constructor(
     fun getmoveservicepost() {
 
         viewModelScope.launch(Dispatchers.IO) {
-            petMillyRepo.getmoveservicepost(
+            petMillyRepo.getMoveServicePost(
                 1,
                 10,
                 cat.value,
@@ -108,7 +107,7 @@ class MoveServiceViewModel @Inject constructor(
 
     fun getmoveservicepostdetail(id: Int) {
         viewModelScope.launch(Dispatchers.IO) {
-            petMillyRepo.getmoveservicepostdetail(id).let {
+            petMillyRepo.getMoveServicePostDetail(id).let {
                 when (it.status) {
                     RemoteResult.Status.SUCCESS -> {
                         it.data?.let { item ->

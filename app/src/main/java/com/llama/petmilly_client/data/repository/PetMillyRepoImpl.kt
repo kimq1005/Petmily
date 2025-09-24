@@ -5,8 +5,6 @@ import com.llama.petmilly_client.data.model.accesstoken.AccessTokenDTO
 import com.llama.petmilly_client.data.model.additonal.AdditionalSuccessDTO
 import com.llama.petmilly_client.data.model.additonal.reponse.AdditionalResponse
 import com.llama.petmilly_client.data.model.findmypet.findmypetdetail.FindMyPetDetailDTO
-import com.llama.petmilly_client.data.model.kakaologin.KaKaoLoginDTO
-import com.llama.petmilly_client.data.model.kakaologin.respones.KaKaoResponse
 import com.llama.petmilly_client.data.model.locationauthenticationResponse.LocationauthenticationResponse
 import com.llama.petmilly_client.data.model.moveservice.moveservicedetail.MoveServiceDetailDTO
 import com.llama.petmilly_client.data.model.moveservice.patchmoveservicepost.patchmoveservicepostResponse
@@ -25,27 +23,27 @@ import javax.inject.Inject
 
 class PetMillyRepoImpl @Inject constructor(private val petMillYApiService: PetMillYApiService) :
     PetMillyRepo, BaseDataSource() {
-    override suspend fun postadditonalinfo(
+    override suspend fun postAdditonalInfo(
         additionalResponse: AdditionalResponse,
     ): RemoteResult<AdditionalSuccessDTO> = getResult {
-        petMillYApiService.postadditonalinfo(additionalResponse)
+        petMillYApiService.postAdditonalInfo(additionalResponse)
     }
 
-    override suspend fun postuseraccesstoken(
+    override suspend fun postUserAccessToken(
         tokenResponse: TokenResponse,
     ): RemoteResult<AccessTokenDTO> =
         getResult {
-            petMillYApiService.postuseraccesstoken(tokenResponse)
+            petMillYApiService.postUserAccessToken(tokenResponse)
         }
 
-    override suspend fun postuserrefreshtoken(
+    override suspend fun postUserRefreshToken(
         tokenResponse: TokenResponse,
     ): RemoteResult<RefreshTokenDTO> =
         getResult {
-            petMillYApiService.postuserrefreshtoken(tokenResponse)
+            petMillYApiService.postUserRefreshToken(tokenResponse)
         }
 
-    override suspend fun posttemporaryprotection(
+    override suspend fun postTemporaryProtection(
         files: List<MultipartBody.Part>?,
         charmAppeal: RequestBody,
         animalTypes: RequestBody,
@@ -65,7 +63,7 @@ class PetMillyRepoImpl @Inject constructor(private val petMillYApiService: PetMi
         temporaryProtectionCondition: List<RequestBody>?,
         temporaryProtectionHope: List<RequestBody>?,
         temporaryProtectionNo: List<RequestBody>?, ): RemoteResult<TemporaryprotectionDTO> = getResult {
-        petMillYApiService.posttemporaryprotection(
+        petMillYApiService.postTemporaryProtection(
             files,
             charmAppeal,
             animalTypes,
@@ -88,13 +86,13 @@ class PetMillyRepoImpl @Inject constructor(private val petMillYApiService: PetMi
         )
     }
 
-    override suspend fun posttownauth(
-        locationauthenticationResponse: LocationauthenticationResponse,
+    override suspend fun postTownAuth(
+        locationAuthenticationResponse: LocationauthenticationResponse,
     ): RemoteResult<TemporaryprotectionDTO> = getResult {
-        petMillYApiService.posttownauth(locationauthenticationResponse)
+        petMillYApiService.postTownAuth(locationAuthenticationResponse)
     }
 
-    override suspend fun getpost(
+    override suspend fun getPost(
         page: Int?,
         limit: Int?,
         cat: Boolean?,
@@ -103,36 +101,36 @@ class PetMillyRepoImpl @Inject constructor(private val petMillYApiService: PetMi
         weight: List<String>?,
         type: String,
     ): RemoteResult<PostDTO> = getResult {
-        petMillYApiService.getpost(page, limit, cat, dog, isComplete, weight, type)
+        petMillYApiService.getPost(page, limit, cat, dog, isComplete, weight, type)
     }
 
 
-    override suspend fun gettemporarydetail(
+    override suspend fun getTemporaryDetail(
         id: Int,
     ): RemoteResult<TemporarydetailDTO> = getResult {
-        petMillYApiService.gettemporarydetail(id)
+        petMillYApiService.getTemporaryDetail(id)
     }
 
-    override suspend fun posttemporaryphoto(
+    override suspend fun postTemporaryPhoto(
         id: Int,
         files: List<MultipartBody.Part>?,
     ): RemoteResult<TemporaryprotectionDTO> = getResult {
-        petMillYApiService.posttemporaryphoto(id, files)
+        petMillYApiService.postTemporaryPhoto(id, files)
     }
 
-    override suspend fun patchtemporary(
+    override suspend fun patchTemporary(
         id: Int,
     ): RemoteResult<TemporaryprotectionDTO> = getResult {
-        petMillYApiService.patchtemporary(id)
+        petMillYApiService.patchTemporary(id)
     }
 
-    override suspend fun deletetemporary(
+    override suspend fun deleteTemporary(
         id: Int,
     ): RemoteResult<TemporaryprotectionDTO> = getResult {
-        petMillYApiService.deletetemporary(id)
+        petMillYApiService.deleteTemporary(id)
     }
 
-    override suspend fun postmoveservicepost(
+    override suspend fun postMoveServicePost(
         startAddress: RequestBody,
         endAddress: RequestBody,
         animalTypes: RequestBody,
@@ -145,7 +143,7 @@ class PetMillyRepoImpl @Inject constructor(private val petMillYApiService: PetMi
         hopeDate: RequestBody,
         files: List<MultipartBody.Part>?,
     ): RemoteResult<TemporaryprotectionDTO> = getResult {
-        petMillYApiService.postmoveservicepost(
+        petMillYApiService.postMoveService(
             startAddress,
             endAddress,
             animalTypes,
@@ -160,7 +158,7 @@ class PetMillyRepoImpl @Inject constructor(private val petMillYApiService: PetMi
         )
     }
 
-    override suspend fun getmoveservicepost(
+    override suspend fun getMoveServicePost(
         page: Int?,
         limit: Int?,
         cat: Boolean?,
@@ -169,7 +167,7 @@ class PetMillyRepoImpl @Inject constructor(private val petMillYApiService: PetMi
         weight: String?,
         type: String,
     ): RemoteResult<MoveServicePostDTO> = getResult {
-        petMillYApiService.getmoveservicepost(
+        petMillYApiService.getMoveService(
             page,
             limit,
             cat,
@@ -180,40 +178,40 @@ class PetMillyRepoImpl @Inject constructor(private val petMillYApiService: PetMi
         )
     }
 
-    override suspend fun getmoveservicepostdetail(
+    override suspend fun getMoveServicePostDetail(
         id: Int,
     ): RemoteResult<MoveServiceDetailDTO> = getResult {
-        petMillYApiService.getmoveservicepostdetail(id)
+        petMillYApiService.getMoveServicePostDetail(id)
     }
 
-    override suspend fun postmoveservicephoto(
+    override suspend fun postMoveServicePhoto(
         id: Int,
         files: List<MultipartBody.Part>?,
     ): RemoteResult<TemporaryprotectionDTO> = getResult {
-        petMillYApiService.postmoveservicephoto(id, files)
+        petMillYApiService.postMoveServicePhoto(id, files)
     }
 
-    override suspend fun patchmoveservicepost(
+    override suspend fun patchMoveServicePost(
         id: Int,
-        patchmoveservicepostResponse: patchmoveservicepostResponse,
+        patchMoveServicePostResponse: patchmoveservicepostResponse,
     ): RemoteResult<TemporaryprotectionDTO> = getResult {
-        petMillYApiService.patchmoveservicepost(id, patchmoveservicepostResponse)
+        petMillYApiService.patchMoveServicePost(id, patchMoveServicePostResponse)
     }
 
-    override suspend fun deletemoveservicepost(
+    override suspend fun deleteMoveServicePost(
         id: Int,
     ): RemoteResult<TemporaryprotectionDTO> = getResult {
-        petMillYApiService.deletemoveservicepost(id)
+        petMillYApiService.deleteMoveServicePost(id)
     }
 
-    override suspend fun deletemoveservicephoto(
+    override suspend fun deleteMoveServicePhoto(
         id: Int,
         photoId: Int,
     ): RemoteResult<TemporaryprotectionDTO> = getResult {
-        petMillYApiService.deletetemporaryphoto(id, photoId)
+        petMillYApiService.deleteTemporaryPhoto(id, photoId)
     }
 
-    override suspend fun postfindmypet(
+    override suspend fun postFindMyPet(
         files: List<MultipartBody.Part>?,
         animalTypes: RequestBody,
         name: RequestBody,
@@ -228,7 +226,7 @@ class PetMillyRepoImpl @Inject constructor(private val petMillYApiService: PetMi
         etc: RequestBody?,
         isPublic: RequestBody,
     ): RemoteResult<TemporaryprotectionDTO> = getResult {
-        petMillYApiService.postfindmypet(
+        petMillYApiService.postFindMyPet(
             files,
             animalTypes,
             name,
@@ -245,14 +243,14 @@ class PetMillyRepoImpl @Inject constructor(private val petMillYApiService: PetMi
         )
     }
 
-    override suspend fun postfindmypetcomment(
+    override suspend fun postFindMyPetComment(
         id: Int,
         files: List<MultipartBody.Part>?,
         sightingAddress: RequestBody,
         comment: RequestBody,
         sightingDate: RequestBody,
     ): RemoteResult<TemporaryprotectionDTO> = getResult {
-        petMillYApiService.postfindmypetcomment(
+        petMillYApiService.postFindMyPetComment(
             id,
             files,
             sightingAddress,
@@ -261,22 +259,22 @@ class PetMillyRepoImpl @Inject constructor(private val petMillYApiService: PetMi
         )
     }
 
-    override suspend fun getfindmypetdetail(
+    override suspend fun getFindMyPetDetail(
         id: Int,
     ): RemoteResult<FindMyPetDetailDTO> = getResult {
-        petMillYApiService.getfindmypetdetail(id)
+        petMillYApiService.getFindMyPetDetail(id)
     }
 
-    override suspend fun deletefindmypetcomment(
+    override suspend fun deleteFindMyPetComment(
         id: Int,
         commentId: Int,
     ): RemoteResult<TemporaryprotectionDTO> = getResult {
-        petMillYApiService.deletefindmypetcomment(id, commentId)
+        petMillYApiService.deleteFindMyPetComment(id, commentId)
     }
 
-    override suspend fun deletefindpetpost(
+    override suspend fun deleteFindPetPost(
         id: Int,
     ): RemoteResult<TemporaryprotectionDTO> = getResult {
-        petMillYApiService.deletefindpetpost(id)
+        petMillYApiService.deleteFindPetPost(id)
     }
 }

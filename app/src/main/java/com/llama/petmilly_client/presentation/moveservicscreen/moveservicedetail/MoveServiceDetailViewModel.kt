@@ -12,7 +12,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.llama.petmilly_client.MainApplication
 import com.llama.petmilly_client.domain.repository.PetMillyRepo
 import com.llama.petmilly_client.presentation.shelter.shelterdetailscreen.ImageTestUriData
 import com.llama.petmilly_client.utils.Event
@@ -97,7 +96,7 @@ class MoveServiceDetailViewModel @Inject constructor(
         _showProgress.postValue(Event(Unit))
         viewModelScope.launch(Dispatchers.IO) {
             delay(2000)
-            petMillyRepo.getmoveservicepost(
+            petMillyRepo.getMoveServicePost(
                 1,
                 10,
                 null,
@@ -147,7 +146,7 @@ class MoveServiceDetailViewModel @Inject constructor(
         Log.d(TAG, "postmoveservicepost: $dateString")
 
         viewModelScope.launch(Dispatchers.IO) {
-            petMillyRepo.postmoveservicepost(
+            petMillyRepo.postMoveServicePost(
                 startAddress,
                 endAddress,
                 animalTypes,

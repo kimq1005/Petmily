@@ -12,7 +12,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.llama.petmilly_client.MainApplication
 import com.llama.petmilly_client.domain.repository.PetMillyRepo
 import com.llama.petmilly_client.utils.Event
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -183,7 +182,7 @@ class ShelterDetailViewModel @Inject constructor(
         val now = LocalTime.now()
 
         viewModelScope.launch(Dispatchers.IO) {
-            petMillyRepo.posttemporaryprotection(
+            petMillyRepo.postTemporaryProtection(
                 files ?: null,
                 charmAppeal,
                 species,

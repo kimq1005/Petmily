@@ -8,7 +8,6 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.llama.petmilly_client.MainApplication
 import com.llama.petmilly_client.data.model.post.postdto.PostDTO
 import com.llama.petmilly_client.data.model.post.postdto.PostDataDetail
 import com.llama.petmilly_client.data.model.temporary.detail.Data
@@ -93,7 +92,7 @@ class ShelterViewModel @Inject constructor(
 
     fun getpost() {
         viewModelScope.launch(Dispatchers.IO) {
-            petMillyRepo.getpost(
+            petMillyRepo.getPost(
                 1,
                 5,
                 cat.value,
@@ -134,7 +133,7 @@ class ShelterViewModel @Inject constructor(
 
     fun gettemporarydetail() {
         viewModelScope.launch(Dispatchers.IO) {
-            petMillyRepo.gettemporarydetail(
+            petMillyRepo.getTemporaryDetail(
                 id.value
             ).let {
                 when (it.status) {

@@ -7,7 +7,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.llama.petmilly_client.MainApplication
 import com.llama.petmilly_client.data.model.additonal.reponse.AdditionalResponse
 import com.llama.petmilly_client.data.model.additonal.reponse.CompanionAnimalInfo
 import com.llama.petmilly_client.data.model.additonal.reponse.FamilyInfo
@@ -128,7 +127,7 @@ class SignUpViewModel @Inject constructor(private val petMillyRepo: PetMillyRepo
                 typeOfResidence = housekind.value
             )
 
-            petMillyRepo.postadditonalinfo(
+            petMillyRepo.postAdditonalInfo(
                 additionalResponse
             ).let {
                 when (it.status) {

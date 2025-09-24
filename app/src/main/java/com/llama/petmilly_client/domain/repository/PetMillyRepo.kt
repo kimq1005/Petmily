@@ -5,8 +5,6 @@ import com.llama.petmilly_client.data.model.accesstoken.AccessTokenDTO
 import com.llama.petmilly_client.data.model.additonal.AdditionalSuccessDTO
 import com.llama.petmilly_client.data.model.additonal.reponse.AdditionalResponse
 import com.llama.petmilly_client.data.model.findmypet.findmypetdetail.FindMyPetDetailDTO
-import com.llama.petmilly_client.data.model.kakaologin.KaKaoLoginDTO
-import com.llama.petmilly_client.data.model.kakaologin.respones.KaKaoResponse
 import com.llama.petmilly_client.data.model.locationauthenticationResponse.LocationauthenticationResponse
 import com.llama.petmilly_client.data.model.moveservice.moveservicedetail.MoveServiceDetailDTO
 import com.llama.petmilly_client.data.model.moveservice.patchmoveservicepost.patchmoveservicepostResponse
@@ -20,19 +18,19 @@ import okhttp3.MultipartBody
 import okhttp3.RequestBody
 
 interface PetMillyRepo {
-    suspend fun postadditonalinfo(
+    suspend fun postAdditonalInfo(
         additionalResponse: AdditionalResponse,
     ): RemoteResult<AdditionalSuccessDTO>
 
-    suspend fun postuseraccesstoken(
+    suspend fun postUserAccessToken(
         tokenResponse: TokenResponse,
     ): RemoteResult<AccessTokenDTO>
 
-    suspend fun postuserrefreshtoken(
+    suspend fun postUserRefreshToken(
         tokenResponse: TokenResponse,
     ): RemoteResult<RefreshTokenDTO>
 
-    suspend fun posttemporaryprotection(
+    suspend fun postTemporaryProtection(
         files: List<MultipartBody.Part>?,
         charmAppeal: RequestBody,
         animalTypes: RequestBody,
@@ -54,11 +52,11 @@ interface PetMillyRepo {
         temporaryProtectionNo: List<RequestBody>?,
     ): RemoteResult<TemporaryprotectionDTO>
 
-    suspend fun posttownauth(
-        locationauthenticationResponse: LocationauthenticationResponse,
+    suspend fun postTownAuth(
+        locationAuthenticationResponse: LocationauthenticationResponse,
     ): RemoteResult<TemporaryprotectionDTO>
 
-    suspend fun getpost(
+    suspend fun getPost(
         page: Int?,
         limit: Int?,
         cat: Boolean?,
@@ -69,24 +67,24 @@ interface PetMillyRepo {
     ): RemoteResult<PostDTO>
 
 
-    suspend fun gettemporarydetail(
+    suspend fun getTemporaryDetail(
         id: Int,
     ): RemoteResult<TemporarydetailDTO>
 
-    suspend fun posttemporaryphoto(
+    suspend fun postTemporaryPhoto(
         id: Int,
         files: List<MultipartBody.Part>?,
     ): RemoteResult<TemporaryprotectionDTO>
 
-    suspend fun patchtemporary(
+    suspend fun patchTemporary(
         id: Int,
     ): RemoteResult<TemporaryprotectionDTO>
 
-    suspend fun deletetemporary(
+    suspend fun deleteTemporary(
         id: Int,
     ): RemoteResult<TemporaryprotectionDTO>
 
-    suspend fun postmoveservicepost(
+    suspend fun postMoveServicePost(
         startAddress: RequestBody,
         endAddress: RequestBody,
         animalTypes: RequestBody,
@@ -100,7 +98,7 @@ interface PetMillyRepo {
         files: List<MultipartBody.Part>?,
     ): RemoteResult<TemporaryprotectionDTO>
 
-    suspend fun getmoveservicepost(
+    suspend fun getMoveServicePost(
         page: Int?,
         limit: Int?,
         cat: Boolean?,
@@ -111,31 +109,30 @@ interface PetMillyRepo {
     ): RemoteResult<MoveServicePostDTO>
 
 
-    suspend fun getmoveservicepostdetail(
+    suspend fun getMoveServicePostDetail(
         id: Int,
     ): RemoteResult<MoveServiceDetailDTO>
 
-    suspend fun postmoveservicephoto(
+    suspend fun postMoveServicePhoto(
         id: Int,
         files: List<MultipartBody.Part>?,
     ): RemoteResult<TemporaryprotectionDTO>
 
-    suspend fun patchmoveservicepost(
+    suspend fun patchMoveServicePost(
         id: Int,
-        patchmoveservicepostResponse: patchmoveservicepostResponse,
+        patchMoveServicePostResponse: patchmoveservicepostResponse,
     ): RemoteResult<TemporaryprotectionDTO>
 
-    suspend fun deletemoveservicepost(
+    suspend fun deleteMoveServicePost(
         id: Int,
     ): RemoteResult<TemporaryprotectionDTO>
 
-    suspend fun deletemoveservicephoto(
+    suspend fun deleteMoveServicePhoto(
         id: Int,
         photoId: Int,
     ): RemoteResult<TemporaryprotectionDTO>
 
-
-    suspend fun postfindmypet(
+    suspend fun postFindMyPet(
         files: List<MultipartBody.Part>?,
         animalTypes: RequestBody,
         name: RequestBody,
@@ -152,7 +149,7 @@ interface PetMillyRepo {
     ): RemoteResult<TemporaryprotectionDTO>
 
     //우리 아이 찾아요 게시글 댓글 작성
-    suspend fun postfindmypetcomment(
+    suspend fun postFindMyPetComment(
         id: Int,
         files: List<MultipartBody.Part>?,
         sightingAddress: RequestBody,
@@ -161,18 +158,18 @@ interface PetMillyRepo {
     ): RemoteResult<TemporaryprotectionDTO>
 
     //우리 아이 찾아요 게시글 상세 조회
-    suspend fun getfindmypetdetail(
+    suspend fun getFindMyPetDetail(
         id: Int,
     ): RemoteResult<FindMyPetDetailDTO>
 
     //우리 아이 찾아요 댓글 삭제
-    suspend fun deletefindmypetcomment(
+    suspend fun deleteFindMyPetComment(
         id: Int,
         commentId: Int,
     ): RemoteResult<TemporaryprotectionDTO>
 
     //우리 아이 찾아요 게시글 삭제
-    suspend fun deletefindpetpost(
+    suspend fun deleteFindPetPost(
         id: Int,
     ): RemoteResult<TemporaryprotectionDTO>
 }

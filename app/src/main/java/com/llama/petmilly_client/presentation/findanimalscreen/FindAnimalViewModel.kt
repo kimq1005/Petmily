@@ -10,7 +10,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.llama.petmilly_client.MainApplication
 import com.llama.petmilly_client.data.model.findmypet.findmypetdetail.Comment
 import com.llama.petmilly_client.domain.repository.PetMillyRepo
 import com.llama.petmilly_client.presentation.home.CategoryTest
@@ -118,7 +117,7 @@ class FindAnimalViewModel @Inject constructor(
 
     fun getfindmypetdetail(id: Int) {
         viewModelScope.launch(Dispatchers.IO) {
-            petMillyRepo.getfindmypetdetail(id).let {
+            petMillyRepo.getFindMyPetDetail(id).let {
                 when (it.status) {
                     RemoteResult.Status.SUCCESS -> {
                         it.data?.let { it ->
@@ -167,7 +166,7 @@ class FindAnimalViewModel @Inject constructor(
             RequestBody.create("text/plain".toMediaTypeOrNull(), date.toString())
         viewModelScope.launch(Dispatchers.IO) {
             _showProgress.postValue(Event(Unit))
-            petMillyRepo.postfindmypetcomment(
+            petMillyRepo.postFindMyPetComment(
                 id = id.value,
                 files = files,
                 sightingAddress = sightingAddress,
@@ -193,7 +192,7 @@ class FindAnimalViewModel @Inject constructor(
     fun deletefindmypetcomment(){
         viewModelScope.launch(){
             _showProgress.postValue(Event(Unit))
-            petMillyRepo.deletefindmypetcomment(
+            petMillyRepo.deleteFindMyPetComment(
                 id.value,
                 commentid.value
             ).let {

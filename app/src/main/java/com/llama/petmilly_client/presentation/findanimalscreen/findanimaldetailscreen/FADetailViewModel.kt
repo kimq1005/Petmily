@@ -12,7 +12,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.llama.petmilly_client.MainApplication
 import com.llama.petmilly_client.domain.repository.PetMillyRepo
 import com.llama.petmilly_client.presentation.shelter.shelterdetailscreen.ImageTestUriData
 import com.llama.petmilly_client.utils.Event
@@ -113,7 +112,7 @@ class FADetailViewModel @Inject constructor(
 
         viewModelScope.launch(Dispatchers.IO) {
 
-            petMillyRepo.postfindmypet(
+            petMillyRepo.postFindMyPet(
                 files,
                 animalTypes,
                 name,
