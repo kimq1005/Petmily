@@ -49,11 +49,11 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.llama.petmilly_client.MainApplication
 import com.llama.petmilly_client.R
+import com.llama.petmilly_client.presentation.common.compnent.TitleBarComponent
 import com.llama.petmilly_client.presentation.dialog.MoveServiceDetailDialog
 import com.llama.petmilly_client.presentation.findanimalscreen.FindAnimalDetailImage
 import com.llama.petmilly_client.presentation.findanimalscreen.ImageTestData
 import com.llama.petmilly_client.presentation.moveservicscreen.moveservicedetail.MoveServiceDetailActivity
-import com.llama.petmilly_client.presentation.shelterscreen.TitleBar
 import com.llama.petmilly_client.ui.theme.Black_30_Transfer
 import com.llama.petmilly_client.ui.theme.Black_60_Transfer
 import com.llama.petmilly_client.ui.theme.Pink_5_Transfer
@@ -122,7 +122,7 @@ fun MoveServiceListScreen(
                 .background(Color.White)
         ) {
 
-            TitleBar(title = "이동봉사 찾아요", ismenu = false, clickBack = { activity.finish() }) {
+            TitleBarComponent(title = "이동봉사 찾아요", isMenu = false, onClickBack = { activity.finish() }) {
 
             }
 
@@ -238,11 +238,11 @@ fun MoveServiceDetailScreen(
 
         Column {
 
-            TitleBar(
+            TitleBarComponent(
                 title = "이동봉사 찾아요",
-                ismenu = true,
-                clickBack = { navController.popBackStack() },
-                clickMenu = {
+                isMenu = true,
+                onClickBack = { navController.popBackStack() },
+                onClickMenu = {
                     viewModel.onMenuDialog()
                 }
             )

@@ -1,4 +1,4 @@
-package com.llama.petmilly_client.presentation.shelterscreen.shelterdetailscreen
+package com.llama.petmilly_client.presentation.shelter.shelterdetailscreen
 
 import android.os.Build
 import android.os.Bundle

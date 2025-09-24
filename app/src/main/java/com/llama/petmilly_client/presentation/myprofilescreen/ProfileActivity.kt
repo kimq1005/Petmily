@@ -28,7 +28,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.PlatformTextStyle
 import androidx.compose.ui.text.TextStyle
@@ -40,7 +39,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.llama.petmilly_client.R
-import com.llama.petmilly_client.presentation.shelterscreen.TitleBar
+import com.llama.petmilly_client.presentation.common.compnent.TitleBarComponent
 import com.llama.petmilly_client.ui.theme.Black_30_Transfer
 import com.llama.petmilly_client.ui.theme.Category_Cliked
 import com.llama.petmilly_client.utils.SpacerHeight
@@ -61,15 +60,12 @@ class ProfileActivity : ComponentActivity() {
 
 @Composable
 fun ProfileScreen(navController: NavController, viewModel: ProfileViewModel) {
-    val navController = rememberNavController()
-    val context = LocalContext.current
-
     Column(
         Modifier
             .fillMaxSize()
             .background(color = Color.White)
     ) {
-        TitleBar(title = "", ismenu = false, clickBack = { }) {
+        TitleBarComponent(title = "", isMenu = false, onClickBack = { }) {
 
         }
 

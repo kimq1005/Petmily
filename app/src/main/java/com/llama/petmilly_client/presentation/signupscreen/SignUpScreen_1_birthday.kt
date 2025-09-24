@@ -10,13 +10,11 @@ import androidx.compose.material.TextField
 import androidx.compose.material.TextFieldDefaults
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
-import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -28,7 +26,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.llama.petmilly_client.MainApplication
 import com.llama.petmilly_client.R
-import com.llama.petmilly_client.presentation.shelterscreen.TitleBar
+import com.llama.petmilly_client.presentation.common.compnent.TitleBarComponent
 import com.llama.petmilly_client.presentation.signupscreen.viewmodel.SignUpViewModel
 import com.llama.petmilly_client.ui.theme.Button_Clicked
 import com.llama.petmilly_client.ui.theme.Button_NoneClicked
@@ -38,20 +36,17 @@ import com.llama.petmilly_client.utils.notosans_bold
 import llama.test.jetpack_dagger_plz.utils.Common.SIGNUPSCREEN_2_GENDER
 
 
-@OptIn(ExperimentalComposeUiApi::class)
 @Composable
 fun SignUpScreen_1_birthday(navController: NavController, viewModel: SignUpViewModel) {
 
     val context = LocalContext.current
     val keyboardController = LocalSoftwareKeyboardController.current
-    val focusManager = LocalFocusManager.current
 
-    val yearFocusRequester = remember { FocusRequester() }
     val monthFocusRequest = remember { FocusRequester() }
     val dayFocusRequest = remember { FocusRequester() }
 
     Column(modifier = Modifier.fillMaxSize().background(color = Color.White)) {
-        TitleBar(title = "", ismenu = false, clickBack = {
+        TitleBarComponent(title = "", isMenu = false, onClickBack = {
             navController.popBackStack()
         }) {
 

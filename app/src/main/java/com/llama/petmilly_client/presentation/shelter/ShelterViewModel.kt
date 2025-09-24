@@ -1,4 +1,4 @@
-package com.llama.petmilly_client.presentation.shelterscreen
+package com.llama.petmilly_client.presentation.shelter
 
 import android.util.Log
 import androidx.compose.runtime.getValue
@@ -18,7 +18,6 @@ import com.llama.petmilly_client.data.model.temporary.detail.ProtectionHope
 import com.llama.petmilly_client.data.model.temporary.detail.ProtectionNo
 import com.llama.petmilly_client.data.model.temporary.detail.TemporarydetailDTO
 import com.llama.petmilly_client.domain.repository.PetMillyRepo
-import com.llama.petmilly_client.presentation.home.CategoryTest
 //import com.llama.petmilly_client.presentation.home.component.ShelterListCategory
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -38,9 +37,6 @@ class ShelterViewModel @Inject constructor(
     var isAdoptionApplicationDialogShown by mutableStateOf(false)
         private set
 
-
-    val categorytest: MutableList<CategoryTest> = arrayListOf()
-//    val shelterListCategory: MutableList<ShelterListCategory> = arrayListOf()
     var isjudge = mutableStateOf(1)
 
     val cat = mutableStateOf(true)
@@ -109,25 +105,6 @@ class ShelterViewModel @Inject constructor(
         categorylist.remove(title)
         Log.d(TAG, "deletecategorylist: $categorylist")
     }
-
-    fun setsheltercategory() {
-
-//        val puppy = ShelterListCategory("강아지")
-//        val cat = ShelterListCategory("고양이")
-//        val petmily = ShelterListCategory("petmily ❤️")
-//        val small = ShelterListCategory("~7kg")
-//        val middle = ShelterListCategory("7~15kg")
-//        val big = ShelterListCategory("15kg~")
-//
-//        shelterListCategory.add(puppy)
-//        shelterListCategory.add(cat)
-//        shelterListCategory.add(petmily)
-//        shelterListCategory.add(small)
-//        shelterListCategory.add(middle)
-//        shelterListCategory.add(big)
-    }
-
-
 
     fun getpost() {
         viewModelScope.launch(Dispatchers.IO) {
@@ -222,6 +199,4 @@ class ShelterViewModel @Inject constructor(
             }
         }
     }
-
-
 }

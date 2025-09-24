@@ -26,7 +26,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.llama.petmilly_client.R
-import com.llama.petmilly_client.presentation.shelterscreen.TitleBar
+import com.llama.petmilly_client.presentation.common.compnent.TitleBarComponent
 import com.llama.petmilly_client.ui.theme.Black_30_Transfer
 import com.llama.petmilly_client.ui.theme.Button_NoneClicked
 import com.llama.petmilly_client.utils.*
@@ -49,9 +49,12 @@ fun MyProfileScreen(navController: NavController) {
                 .background(color = Color.White)
         )
 
-        TitleBar(title = "", ismenu = true, clickBack = { }) {
-
-        }
+        TitleBarComponent(
+            title = "",
+            isMenu = true,
+            onClickBack = { },
+            onClickMenu = { }
+        )
 
         Row(
             modifier = Modifier
@@ -516,7 +519,7 @@ fun NickNameChangeScreen(navController: NavController, viewModel: ProfileViewMod
             .fillMaxSize()
             .background(color = Color.White)
     ) {
-        TitleBar(title = "닉네임 수정", ismenu = false, clickBack = { navController.popBackStack() }) {
+        TitleBarComponent(title = "닉네임 수정", isMenu = false, onClickBack = { navController.popBackStack() }) {
 
         }
 

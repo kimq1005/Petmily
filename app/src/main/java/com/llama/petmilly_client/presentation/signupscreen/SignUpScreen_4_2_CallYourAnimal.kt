@@ -12,7 +12,6 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
-import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
@@ -26,7 +25,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.llama.petmilly_client.R
-import com.llama.petmilly_client.presentation.shelterscreen.TitleBar
+import com.llama.petmilly_client.presentation.common.compnent.TitleBarComponent
 import com.llama.petmilly_client.presentation.signupscreen.viewmodel.SignUpViewModel
 import com.llama.petmilly_client.ui.theme.Button_Clicked
 import com.llama.petmilly_client.ui.theme.Button_NoneClicked
@@ -39,7 +38,6 @@ import com.llama.petmilly_client.utils.notosans_bold
 import com.llama.petmilly_client.utils.notosans_regular
 import llama.test.jetpack_dagger_plz.utils.Common.SIGNUPSCREEN_4_3_CALLYOUTANIMAL_First
 
-@OptIn(ExperimentalComposeUiApi::class)
 @Composable
 fun SignUpScreen_4_2_CallYourAnimal(navController: NavController, viewModel: SignUpViewModel) {
 
@@ -50,7 +48,7 @@ fun SignUpScreen_4_2_CallYourAnimal(navController: NavController, viewModel: Sig
     Column(modifier = Modifier
         .fillMaxSize()
         .background(color = Color.White)) {
-        TitleBar(title = "", ismenu = false, clickBack = {
+        TitleBarComponent(title = "", isMenu = false, onClickBack = {
             navController.popBackStack()
         }) {
         }

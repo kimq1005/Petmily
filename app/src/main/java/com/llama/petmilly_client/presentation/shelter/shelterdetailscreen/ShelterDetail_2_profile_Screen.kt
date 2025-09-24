@@ -1,7 +1,6 @@
-package com.llama.petmilly_client.presentation.shelterscreen.shelterdetailscreen
+package com.llama.petmilly_client.presentation.shelter.shelterdetailscreen
 
 import android.app.Activity
-import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -20,15 +19,11 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.llama.petmilly_client.presentation.dialog.SetAlomostCompletedDialog
-import com.llama.petmilly_client.presentation.shelterscreen.ShelterDetailTitleBar
-import com.llama.petmilly_client.presentation.shelterscreen.TitleBar
-import com.llama.petmilly_client.ui.theme.Black_30_Transfer
-import com.llama.petmilly_client.ui.theme.Category_Cliked
+import com.llama.petmilly_client.presentation.shelter.ShelterDetailTitleBar
 import com.llama.petmilly_client.ui.theme.Grey_50_CBC4C4
 import com.llama.petmilly_client.ui.theme.TextField_BackgroudColor
 import com.llama.petmilly_client.utils.*
 import llama.test.jetpack_dagger_plz.utils.Common
-import llama.test.jetpack_dagger_plz.utils.Common.TAG
 
 @Composable
 fun ShelterDetail_2_profile_Screen(

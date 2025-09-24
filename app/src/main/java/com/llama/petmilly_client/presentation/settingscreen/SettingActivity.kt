@@ -28,7 +28,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.llama.petmilly_client.R
-import com.llama.petmilly_client.presentation.shelterscreen.TitleBar
+import com.llama.petmilly_client.presentation.common.compnent.TitleBarComponent
 import com.llama.petmilly_client.ui.theme.Black_30_Transfer
 import com.llama.petmilly_client.ui.theme.Black_60_Transfer
 import com.llama.petmilly_client.utils.SpacerHeight
@@ -54,7 +54,7 @@ fun SettingScreen() {
             .background(color = Color.White)
             .padding(horizontal = 25.dp)
     ) {
-        TitleBar(title = "설정", ismenu = false, clickBack = { }) {
+        TitleBarComponent(title = "설정", isMenu = false, onClickBack = { }) {
 
         }
 

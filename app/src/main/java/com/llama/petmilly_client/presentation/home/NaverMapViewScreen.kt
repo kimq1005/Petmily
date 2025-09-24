@@ -29,7 +29,7 @@ import com.llama.petmilly_client.presentation.home.model.HomeSideEffect
 import com.llama.petmilly_client.presentation.home.model.PetCategory
 import com.llama.petmilly_client.presentation.home.model.ShelterCategory
 import com.llama.petmilly_client.presentation.moveservicscreen.MoveServiceActivity
-import com.llama.petmilly_client.presentation.shelterscreen.ShelterActivity
+import com.llama.petmilly_client.presentation.shelter.ShelterActivity
 import com.naver.maps.geometry.LatLng
 import com.naver.maps.map.CameraPosition
 import com.naver.maps.map.CameraUpdate

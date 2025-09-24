@@ -36,7 +36,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.llama.petmilly_client.data.model.additonal.reponse.CompanionAnimalInfo
-import com.llama.petmilly_client.presentation.shelterscreen.TitleBar
+import com.llama.petmilly_client.presentation.common.compnent.TitleBarComponent
 import com.llama.petmilly_client.presentation.signupscreen.viewmodel.SignUpViewModel
 import com.llama.petmilly_client.ui.theme.Button_Clicked
 import com.llama.petmilly_client.ui.theme.Button_NoneClicked
@@ -64,10 +64,9 @@ fun SignUpScreen_4_3_CallYourAnimal_Second(
         val keyboardController = LocalSoftwareKeyboardController.current
         val focusManager = LocalFocusManager.current
 
-        TitleBar(title = "", ismenu = false, clickBack = {
+        TitleBarComponent(title = "", isMenu = false, onClickBack = {
             navController.popBackStack()
-        }) {
-        }
+        }) {}
 
         CommonSignDescription()
 

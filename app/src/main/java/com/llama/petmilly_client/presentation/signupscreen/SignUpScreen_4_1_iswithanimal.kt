@@ -24,7 +24,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.llama.petmilly_client.MainApplication
-import com.llama.petmilly_client.presentation.shelterscreen.TitleBar
+import com.llama.petmilly_client.presentation.common.compnent.TitleBarComponent
 import com.llama.petmilly_client.presentation.signupscreen.CommonSignDescription
 import com.llama.petmilly_client.ui.theme.Button_Clicked
 import com.llama.petmilly_client.ui.theme.Button_NoneClicked
@@ -44,7 +44,7 @@ fun SignUpScreen_4_1_iswithanimal(navController: NavController, viewModel: SignU
     val context = LocalContext.current
 
     Column(modifier = Modifier.fillMaxSize().background(color = Color.White)) {
-        TitleBar(title = "", ismenu = false, clickBack = {
+        TitleBarComponent(title = "", isMenu = false, onClickBack = {
             navController.popBackStack()
         }) {
         }

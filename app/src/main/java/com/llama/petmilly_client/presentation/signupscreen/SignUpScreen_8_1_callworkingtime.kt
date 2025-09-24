@@ -34,7 +34,7 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.llama.petmilly_client.MainApplication
 import com.llama.petmilly_client.data.model.additonal.reponse.FamilyInfo
-import com.llama.petmilly_client.presentation.shelterscreen.TitleBar
+import com.llama.petmilly_client.presentation.common.compnent.TitleBarComponent
 import com.llama.petmilly_client.presentation.signupscreen.viewmodel.SignUpViewModel
 import com.llama.petmilly_client.ui.theme.Button_Clicked
 import com.llama.petmilly_client.ui.theme.Button_NoneClicked
@@ -83,7 +83,7 @@ fun SignUpScreen_8_1_callworkingtime(navController: NavController, viewModel: Si
             .verticalScroll(scrollState)
             .background(color = Color.White)
     ) {
-        TitleBar(title = "", ismenu = false, clickBack = {
+        TitleBarComponent(title = "", isMenu = false, onClickBack = {
             navController.popBackStack()
         }) {
         }

@@ -1,4 +1,4 @@
-package com.llama.petmilly_client.presentation.shelterscreen
+package com.llama.petmilly_client.presentation.shelter
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row

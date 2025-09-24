@@ -41,7 +41,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.llama.petmilly_client.BuildConfig
-import com.llama.petmilly_client.presentation.shelterscreen.TitleBar
+import com.llama.petmilly_client.presentation.common.compnent.TitleBarComponent
 import com.llama.petmilly_client.ui.theme.Black_10_Transfer
 import com.llama.petmilly_client.ui.theme.Black_60_Transfer
 import com.llama.petmilly_client.ui.theme.Black_80_Transfer
@@ -68,7 +68,7 @@ fun AppPushScreen(viewModel: AppPushViewModel) {
         Modifier
             .fillMaxSize()
             .background(color = Color.White)) {
-        TitleBar(title = "앱 푸시 알림설정", ismenu = false, clickBack = { }) {
+        TitleBarComponent(title = "앱 푸시 알림설정", isMenu = false, onClickBack = { }) {
 
         }
 

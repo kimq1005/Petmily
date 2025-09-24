@@ -35,9 +35,9 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.llama.petmilly_client.R
 import com.llama.petmilly_client.presentation.dialog.SetAlomostCompletedDialog
-import com.llama.petmilly_client.presentation.shelterscreen.ShelterDetailTitleBar
-import com.llama.petmilly_client.presentation.shelterscreen.shelterdetailscreen.ImageTestUriData
-import com.llama.petmilly_client.presentation.shelterscreen.shelterdetailscreen.ShelterDetailSuvTitle
+import com.llama.petmilly_client.presentation.shelter.ShelterDetailTitleBar
+import com.llama.petmilly_client.presentation.shelter.shelterdetailscreen.ImageTestUriData
+import com.llama.petmilly_client.presentation.shelter.shelterdetailscreen.ShelterDetailSuvTitle
 import com.llama.petmilly_client.ui.theme.Button_NoneClicked
 import com.llama.petmilly_client.ui.theme.Category_Cliked
 import com.llama.petmilly_client.ui.theme.Grey_50_CBC4C4

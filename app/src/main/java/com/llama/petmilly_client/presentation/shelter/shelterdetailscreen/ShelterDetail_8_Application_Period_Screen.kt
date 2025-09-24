@@ -1,4 +1,4 @@
-package com.llama.petmilly_client.presentation.shelterscreen.shelterdetailscreen
+package com.llama.petmilly_client.presentation.shelter.shelterdetailscreen
 
 import android.app.Activity
 import android.content.Context
@@ -29,9 +29,8 @@ import androidx.lifecycle.Observer
 import androidx.navigation.NavController
 import com.llama.petmilly_client.R
 import com.llama.petmilly_client.presentation.dialog.SetAlomostCompletedDialog
-import com.llama.petmilly_client.presentation.shelterscreen.ShelterDetailTitleBar
+import com.llama.petmilly_client.presentation.shelter.ShelterDetailTitleBar
 import com.llama.petmilly_client.ui.theme.Grey_100_CBC4C4
-import com.llama.petmilly_client.ui.theme.Grey_50_CBC4C4
 import com.llama.petmilly_client.utils.ButtonScreen
 import com.llama.petmilly_client.utils.notosans_bold
 import com.llama.petmilly_client.utils.notosans_regular

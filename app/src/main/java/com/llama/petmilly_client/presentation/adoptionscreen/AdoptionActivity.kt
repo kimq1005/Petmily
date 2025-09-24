@@ -4,12 +4,24 @@ import android.app.Activity
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.*
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Divider
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -29,8 +41,12 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.llama.petmilly_client.R
-import com.llama.petmilly_client.presentation.shelterscreen.TitleBar
-import com.llama.petmilly_client.ui.theme.*
+import com.llama.petmilly_client.presentation.common.compnent.TitleBarComponent
+import com.llama.petmilly_client.ui.theme.Background_FDFCE1
+import com.llama.petmilly_client.ui.theme.Black_30_Transfer
+import com.llama.petmilly_client.ui.theme.Black_60_Transfer
+import com.llama.petmilly_client.ui.theme.Name_Speech_Bubble
+import com.llama.petmilly_client.ui.theme.Pink_5_Transfer
 import com.llama.petmilly_client.utils.notosans_bold
 import com.llama.petmilly_client.utils.notosans_regular
 import llama.test.jetpack_dagger_plz.utils.Common
@@ -76,7 +92,7 @@ fun AdoptionListScreen(
                 .background(Color.White)
 
         ) {
-            TitleBar(title = "입양공고", ismenu = false, clickBack = { activity.finish() }) {
+            TitleBarComponent(title = "입양공고", isMenu = false, onClickBack = { activity.finish() }) {
 
             }
 
@@ -175,10 +191,10 @@ fun AdoptionDetailScreen(navController: NavController, viewModel: AdoptionViewMo
                 .background(Color.White)
         ) {
 
-            TitleBar(
+            TitleBarComponent(
                 title = "입양공고",
-                ismenu = false,
-                clickBack = { navController.popBackStack() }) {
+                isMenu = false,
+                onClickBack = { navController.popBackStack() }) {
 
             }
 

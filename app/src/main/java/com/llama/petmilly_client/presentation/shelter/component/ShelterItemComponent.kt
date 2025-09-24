@@ -1,4 +1,4 @@
-package com.llama.petmilly_client.presentation.shelterscreen.items
+package com.llama.petmilly_client.presentation.shelter.component
 
 import android.os.Build
 import androidx.annotation.RequiresApi
@@ -26,116 +26,78 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.PlatformTextStyle
 import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import coil.compose.rememberImagePainter
+import coil.compose.rememberAsyncImagePainter
 import com.llama.petmilly_client.R
 import com.llama.petmilly_client.ui.theme.Background_FDFCE1
 import com.llama.petmilly_client.ui.theme.Black_20_Transfer
 import com.llama.petmilly_client.ui.theme.Black_30_Transfer
 import com.llama.petmilly_client.ui.theme.Black_60_Transfer
-import com.llama.petmilly_client.ui.theme.Category_Cliked
 import com.llama.petmilly_client.utils.CommonObject.convertTimetoHour
-import com.llama.petmilly_client.utils.SpacerWidth
 import com.llama.petmilly_client.utils.notosans_bold
 import com.llama.petmilly_client.utils.notosans_regular
 
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
-fun ShelterCategoryItems(
-    image: String?,
+fun ShelterItemComponent(
+    modifier: Modifier = Modifier,
+    image: String = "",
     title: String,
     description: String,
     vaccination: String,
     isComplete: Boolean,
     isReceipt: Boolean,
-    time:String,
-    onclcik: () -> Unit,
+    time: String,
+    onClick: () -> Unit,
 ) {
     Row(
-        modifier = Modifier
+        modifier = modifier
             .height(90.dp)
             .border(width = 1.dp, color = Color(0xFFEfEfEf), shape = RoundedCornerShape(7.dp))
             .clickable {
-                onclcik()
+                onClick()
             }
     ) {
-
-//        val ispetmily = true
-
-        Box(contentAlignment = Alignment.Center) {
-
+        Box(
+            contentAlignment = Alignment.Center
+        ) {
             Image(
                 modifier = Modifier
                     .width(80.dp)
                     .height(80.dp)
                     .align(Alignment.CenterStart)
                     .padding(start = 15.dp, top = 10.dp),
-                painter = if (image != null) {
-                    rememberImagePainter(data = image)
-                } else painterResource(id = R.drawable.img_testcat_2),
-//                painter =painterResource(id = R.drawable.img_testcat_2),
+                painter = if (image.isNotEmpty())
+                    rememberAsyncImagePainter(model = image)
+                else
+                    painterResource(id = R.drawable.img_testcat_2),
                 contentDescription = null,
                 contentScale = ContentScale.Crop,
+            )
 
-                )
-
-
-            if (!isReceipt) {
-                Text(
-                    text = "심사중",
-                    fontSize = 8.sp,
-                    fontFamily = if (isComplete) notosans_regular else notosans_bold,
-                    style = TextStyle(
-                        platformStyle = PlatformTextStyle(
-                            includeFontPadding = false
-                        )
-                    ),
-                    color = Color.White,
-                    textAlign = TextAlign.Center,
-                    modifier = Modifier
-                        .offset(y = 15.dp, x = 5.dp)
-                        .background(
-                            if (isComplete) Color.Black else Category_Cliked,
-                            shape = RoundedCornerShape(5.dp)
-                        )
-                        .padding(horizontal = 5.dp, vertical = 4.dp)
-                        .align(Alignment.TopStart)
-                )
-            } else if (isComplete) {
-                Text(
-                    text = "petmily ❤️",
-                    fontSize = 8.sp,
-                    fontFamily = notosans_regular,
-                    style = TextStyle(
-                        platformStyle = PlatformTextStyle(
-                            includeFontPadding = false
-                        )
-                    ),
-                    color = Color.White,
-                    textAlign = TextAlign.Center,
-                    modifier = Modifier
-                        .offset(y = 15.dp, x = 5.dp)
-                        .background(
-                            if (isComplete) Color.Black else Category_Cliked,
-                            shape = RoundedCornerShape(5.dp)
-                        )
-                        .padding(horizontal = 5.dp, vertical = 4.dp)
-                        .align(Alignment.TopStart)
-                )
+            val text = when {
+                !isReceipt -> "심사중"
+                isComplete -> "petmily ❤️"
+                else -> null
             }
 
+            text?.let {
+                ShelterLabelComponent(
+                    text = it,
+                    isComplete = isComplete,
+                    modifier = modifier.offset(y = 15.dp, x = 5.dp)
+                )
+            }
         }
 
-
-        SpacerWidth(dp = 20.dp)
-
         Column(
-            modifier = Modifier.fillMaxHeight(),
+            modifier = Modifier
+                .padding(start = 20.dp)
+                .fillMaxHeight(),
             verticalArrangement = Arrangement.Center
         ) {
-
             Text(
                 text = if (!isComplete) title else "(완료) $title",
                 color = if (!isComplete) Color.Black else Black_30_Transfer,
@@ -147,7 +109,6 @@ fun ShelterCategoryItems(
                     )
                 )
             )
-
 
             Spacer(modifier = Modifier.height(3.dp))
 
@@ -176,11 +137,12 @@ fun ShelterCategoryItems(
                     )
                 )
             )
-
-
         }
 
-        Column(modifier = Modifier.weight(1f)) {
+        Column(
+            modifier = Modifier
+                .weight(1f)
+        ) {
             Text(
                 text = convertTimetoHour(time),
                 modifier = Modifier
@@ -196,12 +158,24 @@ fun ShelterCategoryItems(
                 )
 
             )
-
             Spacer(modifier = Modifier.weight(1f))
         }
-
-
     }
 }
 
+@RequiresApi(Build.VERSION_CODES.O)
+@Preview
+@Composable
+private fun PreviewShelterItemComponent() {
+    ShelterItemComponent(
+        image = "periculis",
+        title = "nisl",
+        description = "deterruisset",
+        vaccination = "suas",
+        isComplete = false,
+        isReceipt = false,
+        time = "curae",
+        onClick = {}
+    )
+}
 

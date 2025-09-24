@@ -1,4 +1,4 @@
-package com.llama.petmilly_client.presentation.shelterscreen
+package com.llama.petmilly_client.presentation.shelter
 
 import android.content.Intent
 import android.util.Log

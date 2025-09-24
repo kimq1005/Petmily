@@ -1,11 +1,10 @@
-package com.llama.petmilly_client.presentation.shelterscreen
+package com.llama.petmilly_client.presentation.shelter
 
 import android.os.Build
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.annotation.RequiresApi
-import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -16,11 +15,8 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
-import androidx.compose.material.Icon
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Menu
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -36,10 +32,10 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.llama.petmilly_client.R
+import com.llama.petmilly_client.presentation.common.compnent.TitleBarComponent
+import com.llama.petmilly_client.presentation.shelter.model.ShelterSafeType
 import com.llama.petmilly_client.utils.notosans_bold
 import dagger.hilt.android.AndroidEntryPoint
-import llama.test.jetpack_dagger_plz.utils.Common.ANIMALINFO_DETAIL
-import llama.test.jetpack_dagger_plz.utils.Common.SAFESHELTER_COMPOSABLE
 
 @AndroidEntryPoint
 @OptIn(ExperimentalFoundationApi::class)
@@ -52,100 +48,41 @@ class ShelterActivity : ComponentActivity() {
                 val navController = rememberNavController()
                 val viewModel: ShelterViewModel = hiltViewModel()
                 Column {
-                    TitleBar(
+                    TitleBarComponent(
                         title = "임보처 구해요",
-                        ismenu = false,
-                        clickBack = {
-                            val SafeShelterListScreen =
-                                navController.currentBackStackEntry?.destination?.route
-                            if (SafeShelterListScreen == SAFESHELTER_COMPOSABLE) {
+                        isMenu = false,
+                        onClickBack = {
+                            val route = navController.currentBackStackEntry?.destination?.route
+                            if (route == ShelterSafeType.SAFE_SHELTER_COMPOSABLE.name) {
                                 finish()
                             } else {
                                 navController.popBackStack(
-                                    route = SAFESHELTER_COMPOSABLE,
+                                    route = ShelterSafeType.SAFE_SHELTER_COMPOSABLE.name,
                                     inclusive = false
                                 )
                             }
-                        }) {
+                        },
+                        onClickMenu = {
 
-                    }
+                        }
+                    )
 
                     NavHost(
                         navController = navController,
-                        startDestination = SAFESHELTER_COMPOSABLE
+                        startDestination = ShelterSafeType.SAFE_SHELTER_COMPOSABLE.name
                     ) {
-                        composable(SAFESHELTER_COMPOSABLE) {
-                            SafeShelterListScreen(navController = navController, viewModel)
+                        composable(ShelterSafeType.SAFE_SHELTER_COMPOSABLE.name) {
+                            SafeShelterScreen(navController = navController, viewModel)
                         }
 
-                        composable("$ANIMALINFO_DETAIL/{id}") {
+                        composable("${ShelterSafeType.ANIMAL_INFO_DETAIL.name}/{id}") {
                             val id = it.arguments?.getString("id").toString()
-                            AnimalInfoDetailScreen(navController = navController,viewModel,id)
+                            AnimalInfoDetailScreen(navController = navController, viewModel, id)
                         }
                     }
                 }
-
-
             }
         }
-    }
-}
-
-
-@Composable
-fun TitleBar(
-    title: String,
-    ismenu: Boolean,
-    clickBack: () -> Unit,
-    clickMenu: () -> Unit,
-) {
-    Box(
-        modifier = Modifier
-            .fillMaxWidth()
-            .background(color = Color.White)
-            .padding(16.dp),
-    ) {
-        Image(
-            painter = painterResource(id = R.drawable.img_test_dog4),
-            contentDescription = null,
-            modifier = Modifier
-                .width(20.dp)
-                .height(20.dp)
-                .align(Alignment.CenterStart)
-                .clickable {
-                    clickBack()
-                }
-        )
-
-        Text(
-            text = title,
-            fontSize = 17.sp,
-            fontFamily = notosans_bold,
-            style = TextStyle(
-                platformStyle = PlatformTextStyle(
-                    includeFontPadding = false
-                )
-            ),
-            color = Color.Black,
-            modifier = Modifier.align(Alignment.Center),
-        )
-
-        AnimatedVisibility(visible = ismenu, modifier = Modifier.align(Alignment.CenterEnd)) {
-            Icon(
-                imageVector = Icons.Default.Menu,
-                contentDescription = null,
-                modifier = Modifier
-                    .width(30.dp)
-                    .height(30.dp)
-
-                    .clickable {
-                        clickMenu()
-                    },
-
-                )
-        }
-
-
     }
 }
 

@@ -35,7 +35,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.llama.petmilly_client.MainApplication
 import com.llama.petmilly_client.R
-import com.llama.petmilly_client.presentation.shelterscreen.TitleBar
+import com.llama.petmilly_client.presentation.common.compnent.TitleBarComponent
 import com.llama.petmilly_client.presentation.signupscreen.viewmodel.SignUpViewModel
 import com.llama.petmilly_client.ui.theme.Black_Half_Transfer
 import com.llama.petmilly_client.ui.theme.Button_Clicked
@@ -58,7 +58,7 @@ fun SignUpScreen_name(navController: NavController, viewModel: SignUpViewModel =
     }
 
     val focusManager = LocalFocusManager.current
-    TitleBar(title = "", ismenu = false, clickBack = { }) {
+    TitleBarComponent(title = "", isMenu = false, onClickBack = { }) {
 
     }
 

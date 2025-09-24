@@ -1,4 +1,4 @@
-package com.llama.petmilly_client.presentation.shelterscreen.shelterdetailscreen
+package com.llama.petmilly_client.presentation.shelter.shelterdetailscreen
 
 import android.app.Activity
 import androidx.compose.foundation.Image
@@ -25,7 +25,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.llama.petmilly_client.R
 import com.llama.petmilly_client.presentation.dialog.SetAlomostCompletedDialog
-import com.llama.petmilly_client.presentation.shelterscreen.ShelterDetailTitleBar
+import com.llama.petmilly_client.presentation.shelter.ShelterDetailTitleBar
 import com.llama.petmilly_client.ui.theme.*
 import com.llama.petmilly_client.utils.*
 import llama.test.jetpack_dagger_plz.utils.Common

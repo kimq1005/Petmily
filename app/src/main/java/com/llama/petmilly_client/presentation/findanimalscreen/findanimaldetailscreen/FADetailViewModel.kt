@@ -14,7 +14,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.llama.petmilly_client.MainApplication
 import com.llama.petmilly_client.domain.repository.PetMillyRepo
-import com.llama.petmilly_client.presentation.shelterscreen.shelterdetailscreen.ImageTestUriData
+import com.llama.petmilly_client.presentation.shelter.shelterdetailscreen.ImageTestUriData
 import com.llama.petmilly_client.utils.Event
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
