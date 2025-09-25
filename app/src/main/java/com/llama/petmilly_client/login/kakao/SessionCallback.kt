@@ -15,7 +15,7 @@ package com.llama.petmilly_client.login.kakao
 
 //class SessionCallback(val context :Context): ISessionCallback {
 //    override fun onSessionOpened() {
-//        Toast.makeText(MainApplication.instance, "Successfully logged in to Kakao. Now creating or updating a Firebase User",
+//        Toast.makeText(MainApplication.instance, "Successfully logged in to Kakao. Now creating or updating a Firebase TemporaryUserDTO",
 //            Toast.LENGTH_LONG).show()
 //
 //        UserManagement.getInstance().me(object :MeV2ResponseCallback(){

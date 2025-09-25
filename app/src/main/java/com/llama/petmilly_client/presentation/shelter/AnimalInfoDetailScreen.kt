@@ -70,7 +70,7 @@ fun AnimalInfoDetailScreen(
 
         LaunchedEffect(context) {
             viewModel.id.value = id.toInt()
-            viewModel.gettemporarydetail()
+            viewModel.getTemporaryDetail(id.toInt())
         }
 
         Column(
@@ -593,7 +593,7 @@ fun AnimalInfoDetailScreen(
 //                                    .heightIn(0.dp, 100.dp)
 //                            ) {
 ////                                ProtectionConditionItems()
-//                                items(viewModel.ProtectionCondition) { items ->
+//                                items(viewModel.ProtectionConditionDTO) { items ->
 //                                    ProtectionConditionItems(items.content, true)
 //                                }
 //
@@ -647,7 +647,7 @@ fun AnimalInfoDetailScreen(
 //                                    .heightIn(0.dp, 100.dp)
 //                            ) {
 ////
-//                                items(viewModel.ProtectionHope) { items ->
+//                                items(viewModel.ProtectionHopeDTO) { items ->
 //                                    ProtectionConditionItems(items.content, true)
 //                                }
 //
@@ -698,7 +698,7 @@ fun AnimalInfoDetailScreen(
 //                                    .heightIn(0.dp, 100.dp)
 //                            ) {
 ////
-//                                items(viewModel.ProtectionNo) { items ->
+//                                items(viewModel.ProtectionNoDTO) { items ->
 //                                    ProtectionConditionItems(items.content, false)
 //                                }
 //
@@ -819,7 +819,7 @@ fun AnimalInfoDetailScreen(
 
         if (viewModel.isAdoptionApplicationDialogShown) {
             AdoptionCompletedDialog(
-                onDismiss = { viewModel.onAdoptionDialogDismissDialog() },
+                onDismiss = {  },
                 onConfirm = { Log.d(TAG, "AnimalInfoDetailScreen: wow") })
         }
     }

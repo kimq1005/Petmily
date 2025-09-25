@@ -9,16 +9,17 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.llama.petmilly_client.data.model.post.postdto.PostDTO
-import com.llama.petmilly_client.data.model.post.postdto.PostDataDetailDTO
-import com.llama.petmilly_client.data.model.temporary.detail.Data
-import com.llama.petmilly_client.data.model.temporary.detail.PhotoUrl
-import com.llama.petmilly_client.data.model.temporary.detail.ProtectionCondition
-import com.llama.petmilly_client.data.model.temporary.detail.ProtectionHope
-import com.llama.petmilly_client.data.model.temporary.detail.ProtectionNo
-import com.llama.petmilly_client.data.model.temporary.detail.TemporaryDetailDTO
+import com.llama.petmilly_client.data.model.shelter.PostDTO
+import com.llama.petmilly_client.data.model.shelter.PostDataDetailDTO
+import com.llama.petmilly_client.data.model.shelter.TemporaryDetailDTO
+import com.llama.petmilly_client.data.model.shelter.TemporaryPhotoUrlDTO
+import com.llama.petmilly_client.data.model.shelter.ProtectionConditionDTO
+import com.llama.petmilly_client.data.model.shelter.ProtectionHopeDTO
+import com.llama.petmilly_client.data.model.shelter.ProtectionNoDTO
+import com.llama.petmilly_client.data.model.shelter.TemporaryDTO
 import com.llama.petmilly_client.domain.repository.PetMillyRepo
 import com.llama.petmilly_client.domain.usecase.shelter.GetShelterPostUseCase
+import com.llama.petmilly_client.domain.usecase.shelter.GetTemporaryDetailUseCase
 import com.llama.petmilly_client.presentation.shelter.model.ShelterSafeCategoryType
 import com.llama.petmilly_client.presentation.shelter.model.ShelterSideEffect
 import com.llama.petmilly_client.presentation.shelter.model.ShelterState
@@ -40,6 +41,7 @@ import javax.inject.Inject
 class ShelterViewModel @Inject constructor(
     private val petMillyRepo: PetMillyRepo,
     private val shelterPostUseCase: GetShelterPostUseCase,
+    private val getTemporaryDetailUseCase: GetTemporaryDetailUseCase,
 ) : ViewModel(), ContainerHost<ShelterState, ShelterSideEffect> {
 
     override val container: Container<ShelterState, ShelterSideEffect> = container(
@@ -71,9 +73,9 @@ class ShelterViewModel @Inject constructor(
 
     //임보처 구해요 상세조회
     val id = mutableStateOf(0)
-    val temporarydetailDTO: MutableLiveData<TemporaryDetailDTO> =
-        MutableLiveData<TemporaryDetailDTO>()
-    val temporarydetailList = mutableStateListOf<Data>()
+    val temporarydetailDTO: MutableLiveData<TemporaryDTO> =
+        MutableLiveData<TemporaryDTO>()
+    val temporarydetailList = mutableStateListOf<TemporaryDetailDTO>()
 
     val charmAppeal_detail = mutableStateOf("")
     val name_detail = mutableStateOf("")
@@ -92,11 +94,11 @@ class ShelterViewModel @Inject constructor(
     val isCompleted_detail = mutableStateOf(false)
     val shortName_detail = mutableStateOf("")
     val thumbnail_detail = mutableStateOf("")
-    val photoUrl_detail = mutableStateListOf<PhotoUrl>()
+    val photoUrl_detail = mutableStateListOf<TemporaryPhotoUrlDTO>()
 
-    val ProtectionCondition = mutableStateListOf<ProtectionCondition>()
-    val ProtectionHope = mutableStateListOf<ProtectionHope>()
-    val ProtectionNo = mutableStateListOf<ProtectionNo>()
+    val ProtectionCondition = mutableStateListOf<ProtectionConditionDTO>()
+    val ProtectionHope = mutableStateListOf<ProtectionHopeDTO>()
+    val ProtectionNo = mutableStateListOf<ProtectionNoDTO>()
 
     init {
         initData()
@@ -165,45 +167,14 @@ class ShelterViewModel @Inject constructor(
         postSideEffect(ShelterSideEffect.NavigateToActivity)
     }
 
-
-    fun getPost() {
-        viewModelScope.launch(Dispatchers.IO) {
-            petMillyRepo.getPost(
-                1,
-                5,
-                cat.value,
-                dog.value,
-                isComplete.value,
-                weight,
-                "temporaryProtection"
-            ).let {
-                when (it.status) {
-                    RemoteResult.Status.SUCCESS -> {
-                        it.data?.let { data ->
-                            postDto.postValue(data)
-                            Log.d(TAG, "getpost:$it ")
-                            setPostData()
-                        }
-                    }
-
-                    else -> {
-                        Log.d(TAG, "getpost ERROR: $it")
-                    }
-
-                }
-            }
-        }
-    }
-
-    private fun setPostData() {
-        viewModelScope.launch(Dispatchers.Main) {
-            postDataList.clear()
-            postDto.value?.let {
-                if (it.postData != null) {
-                    postDataList.addAll(it.postData.list)
-                }
-                Log.d(TAG, "setPostData: ${postDataList.size}")
-            }
+    fun getTemporaryDetail(
+        id: Int
+    ) = intent {
+        val data = getTemporaryDetailUseCase(id).getOrThrow()
+        reduce {
+            state.copy(
+                temporaryDetail = data.data
+            )
         }
     }
 

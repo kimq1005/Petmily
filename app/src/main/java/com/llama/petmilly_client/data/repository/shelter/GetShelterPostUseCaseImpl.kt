@@ -1,6 +1,6 @@
 package com.llama.petmilly_client.data.repository.shelter
 
-import com.llama.petmilly_client.data.model.post.postdto.toDomain
+import com.llama.petmilly_client.data.model.shelter.toDomain
 import com.llama.petmilly_client.data.network.ShelterService
 import com.llama.petmilly_client.domain.model.shelter.Post
 import com.llama.petmilly_client.domain.usecase.shelter.GetShelterPostUseCase

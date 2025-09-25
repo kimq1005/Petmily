@@ -1,7 +1,5 @@
 package com.llama.petmilly_client.data.model.moveservice.moveservicedetail
 
-import com.llama.petmilly_client.data.model.temporary.detail.PhotoUrl
-
 data class Data(
     val age: Int,
     val completeUser: Any,

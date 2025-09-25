@@ -1,4 +1,4 @@
-package com.llama.petmilly_client.data.model.post.postdto
+package com.llama.petmilly_client.data.model.shelter
 
 import com.google.gson.annotations.SerializedName
 import com.llama.petmilly_client.domain.model.shelter.Post

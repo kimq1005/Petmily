@@ -9,10 +9,10 @@ import com.llama.petmilly_client.data.model.locationauthenticationResponse.Locat
 import com.llama.petmilly_client.data.model.moveservice.moveservicedetail.MoveServiceDetailDTO
 import com.llama.petmilly_client.data.model.moveservice.patchmoveservicepost.patchmoveservicepostResponse
 import com.llama.petmilly_client.data.model.moveservice.postmoveservice.MoveServicePostDTO
-import com.llama.petmilly_client.data.model.post.postdto.PostDTO
+import com.llama.petmilly_client.data.model.shelter.PostDTO
 import com.llama.petmilly_client.data.model.refreshtoken.RefreshTokenDTO
 import com.llama.petmilly_client.data.model.temporary.TemporaryProtectionDTO
-import com.llama.petmilly_client.data.model.temporary.detail.TemporaryDetailDTO
+import com.llama.petmilly_client.data.model.shelter.TemporaryDTO
 import com.llama.petmilly_client.utils.RemoteResult
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -69,7 +69,7 @@ interface PetMillyRepo {
 
     suspend fun getTemporaryDetail(
         id: Int,
-    ): RemoteResult<TemporaryDetailDTO>
+    ): RemoteResult<TemporaryDTO>
 
     suspend fun postTemporaryPhoto(
         id: Int,

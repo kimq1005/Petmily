@@ -1,21 +1,21 @@
-package com.llama.petmilly_client.data.model.temporary.detail
+package com.llama.petmilly_client.domain.model.shelter
 
-data class TemporaryDetailDTO(
-    val `data`: Data,
+data class Temporary(
+    val data: TemporaryDetail,
     val success: Boolean
 )
 
-data class Data(
+data class TemporaryDetail(
     val protectionCondition: List<ProtectionCondition>,
     val protectionHope: List<ProtectionHope>,
     val protectionNo: List<ProtectionNo>,
-    val addressInfo: AddressInfo,
+    val addressInfo: TemporaryAddressInfo,
     val age: Double,
     val animalTypes: String,
     val breed: String,
     val character: String,
     val charmAppeal: String,
-    val completeUser: CompleteUser,
+    val completeUser: TemporaryCompleteUser,
     val createdAt: String,
     val gender: String,
     val health: String,
@@ -25,12 +25,12 @@ data class Data(
     val isReceipt: Boolean,
     val name: String,
     val neutered: String,
-    val photoUrls: List<PhotoUrl>,
+    val photoUrls: List<TemporaryPhotoUrl>,
     val pickUp: String,
     val receptionPeriod: String,
     val skill: String,
-    val thumbnail: Thumbnail?,
-    val user: User,
+    val thumbnail: TemporaryThumbnail?,
+    val user: TemporaryUser,
     val weight: Int
 )
 
@@ -55,30 +55,30 @@ data class ProtectionNo(
     val isDeleted: Boolean
 )
 
-data class AddressInfo(
+data class TemporaryAddressInfo(
     val id: Int,
     val longName: String,
     val shortName: String
 )
 
-data class CompleteUser(
+data class TemporaryCompleteUser(
     val id: Int
 )
 
-data class PhotoUrl(
+data class TemporaryPhotoUrl(
     val createdAt: String,
     val id: Int,
     val isDeleted: Boolean,
     val photoUrl: String
 )
 
-data class Thumbnail(
+data class TemporaryThumbnail(
     val createdAt: String,
     val id: Int,
     val isDeleted: Boolean,
     val photoUrl: String
 )
 
-data class User(
+data class TemporaryUser(
     val id: Int
 )

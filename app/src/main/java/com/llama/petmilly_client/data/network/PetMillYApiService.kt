@@ -9,10 +9,10 @@ import com.llama.petmilly_client.data.model.locationauthenticationResponse.Locat
 import com.llama.petmilly_client.data.model.moveservice.moveservicedetail.MoveServiceDetailDTO
 import com.llama.petmilly_client.data.model.moveservice.patchmoveservicepost.patchmoveservicepostResponse
 import com.llama.petmilly_client.data.model.moveservice.postmoveservice.MoveServicePostDTO
-import com.llama.petmilly_client.data.model.post.postdto.PostDTO
+import com.llama.petmilly_client.data.model.shelter.PostDTO
 import com.llama.petmilly_client.data.model.refreshtoken.RefreshTokenDTO
 import com.llama.petmilly_client.data.model.temporary.TemporaryProtectionDTO
-import com.llama.petmilly_client.data.model.temporary.detail.TemporaryDetailDTO
+import com.llama.petmilly_client.data.model.shelter.TemporaryDTO
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Response
@@ -86,7 +86,7 @@ interface PetMillYApiService {
     @GET("/post/temporary-protection/{id}")
     suspend fun getTemporaryDetail(
         @Path("id") id: Int,
-    ): Response<TemporaryDetailDTO>
+    ): Response<TemporaryDTO>
 
     @POST("post/temporary-protection/{id}/photos")
     suspend fun postTemporaryPhoto(
