@@ -40,7 +40,4 @@ object CommonObject {
         val hour = date.hour
         return "$month/$day ($dayOfWeek) - ${hour}시"
     }
-
-
-
 }

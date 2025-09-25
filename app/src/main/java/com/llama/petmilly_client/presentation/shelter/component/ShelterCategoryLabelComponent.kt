@@ -1,6 +1,7 @@
 package com.llama.petmilly_client.presentation.shelter.component
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Text
@@ -21,7 +22,7 @@ import com.llama.petmilly_client.utils.notosans_regular
 fun ShelterLabelComponent(
     text: String,
     isComplete: Boolean,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     Text(
         text = text,
@@ -46,9 +47,15 @@ fun ShelterLabelComponent(
 @Preview
 @Composable
 private fun PreviewShelterLabelComponent() {
-    ShelterLabelComponent(
-        text = "완료",
-        isComplete = true
-    )
+    Column(
+        modifier = Modifier
+            .background(color = Color.White)
+    ) {
+        ShelterLabelComponent(
+            text = "완료",
+            isComplete = true
+        )
+    }
+
 }
 

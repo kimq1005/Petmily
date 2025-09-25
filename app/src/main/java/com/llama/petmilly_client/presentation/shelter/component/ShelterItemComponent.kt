@@ -15,6 +15,7 @@ import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Text
@@ -65,10 +66,9 @@ fun ShelterItemComponent(
         ) {
             Image(
                 modifier = Modifier
-                    .width(80.dp)
-                    .height(80.dp)
-                    .align(Alignment.CenterStart)
-                    .padding(start = 15.dp, top = 10.dp),
+                    .padding(top = 5.dp, bottom = 5.dp, start = 5.dp)
+                    .background(color = Color.Blue)
+                    .size(80.dp),
                 painter = if (image.isNotEmpty())
                     rememberAsyncImagePainter(model = image)
                 else
@@ -87,7 +87,8 @@ fun ShelterItemComponent(
                 ShelterLabelComponent(
                     text = it,
                     isComplete = isComplete,
-                    modifier = modifier.offset(y = 15.dp, x = 5.dp)
+                    modifier = modifier
+                        .align(Alignment.TopStart)
                 )
             }
         }
@@ -167,14 +168,17 @@ fun ShelterItemComponent(
 @Preview
 @Composable
 private fun PreviewShelterItemComponent() {
+
     ShelterItemComponent(
+        modifier = Modifier
+            .background(color = Color.White),
         image = "periculis",
-        title = "nisl",
-        description = "deterruisset",
-        vaccination = "suas",
-        isComplete = false,
+        title = "승현",
+        description = "승현짱짱123",
+        vaccination = "7kg",
+        isComplete = true,
         isReceipt = false,
-        time = "curae",
+        time = "2025-09-23T12:00:00",
         onClick = {}
     )
 }

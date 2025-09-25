@@ -9,15 +9,15 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.llama.petmilly_client.data.model.post.postdto.PostDataDetail
+import com.llama.petmilly_client.domain.model.shelter.PostDetail
 import com.llama.petmilly_client.presentation.shelter.component.ShelterItemComponent
 
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun ShelterItem(
     modifier: Modifier = Modifier,
-    postDataList: List<PostDataDetail>,
-    onClick: (PostDataDetail) -> Unit,
+    postDataList: List<PostDetail>,
+    onClick: (PostDetail) -> Unit,
 ) {
     LazyColumn(
         modifier = modifier

@@ -1,4 +1,7 @@
 package com.llama.petmilly_client.presentation.shelter.model
 
-class ShelterSideEffect {
+
+sealed interface ShelterSideEffect {
+    class Error(val message: String): ShelterSideEffect
+    object NavigateToActivity: ShelterSideEffect
 }

@@ -6,7 +6,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.llama.petmilly_client.data.model.locationauthenticationResponse.LocationauthenticationResponse
+import com.llama.petmilly_client.data.model.locationauthenticationResponse.LocationAuthenticationRequest
 import com.llama.petmilly_client.domain.repository.PetMillyRepo
 import com.llama.petmilly_client.utils.Event
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -30,7 +30,7 @@ class CertificationViewModel @Inject constructor(
     fun posttownauth(){
         if(townadress.value != ""){
             viewModelScope.launch(Dispatchers.IO) {
-                petMillyRepo.postTownAuth(LocationauthenticationResponse(townadress.value)).let {
+                petMillyRepo.postTownAuth(LocationAuthenticationRequest(townadress.value)).let {
                     when(it.status){
                         RemoteResult.Status.SUCCESS->{
                             Log.d(TAG, "posttownauth SUCCESS: $it ")

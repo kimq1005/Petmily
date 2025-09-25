@@ -5,14 +5,14 @@ import com.llama.petmilly_client.data.model.accesstoken.AccessTokenDTO
 import com.llama.petmilly_client.data.model.additonal.AdditionalSuccessDTO
 import com.llama.petmilly_client.data.model.additonal.reponse.AdditionalResponse
 import com.llama.petmilly_client.data.model.findmypet.findmypetdetail.FindMyPetDetailDTO
-import com.llama.petmilly_client.data.model.locationauthenticationResponse.LocationauthenticationResponse
+import com.llama.petmilly_client.data.model.locationauthenticationResponse.LocationAuthenticationRequest
 import com.llama.petmilly_client.data.model.moveservice.moveservicedetail.MoveServiceDetailDTO
 import com.llama.petmilly_client.data.model.moveservice.patchmoveservicepost.patchmoveservicepostResponse
 import com.llama.petmilly_client.data.model.moveservice.postmoveservice.MoveServicePostDTO
 import com.llama.petmilly_client.data.model.post.postdto.PostDTO
 import com.llama.petmilly_client.data.model.refreshtoken.RefreshTokenDTO
-import com.llama.petmilly_client.data.model.temporary.TemporaryprotectionDTO
-import com.llama.petmilly_client.data.model.temporary.detail.TemporarydetailDTO
+import com.llama.petmilly_client.data.model.temporary.TemporaryProtectionDTO
+import com.llama.petmilly_client.data.model.temporary.detail.TemporaryDetailDTO
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Response
@@ -65,12 +65,12 @@ interface PetMillYApiService {
         @Part("temporaryProtectionCondition") temporaryProtectionCondition: List<RequestBody>?,
         @Part("temporaryProtectionHope") temporaryProtectionHope: List<RequestBody>?,
         @Part("temporaryProtectionNo") temporaryProtectionNo: List<RequestBody>?,
-    ): Response<TemporaryprotectionDTO>
+    ): Response<TemporaryProtectionDTO>
 
     @POST("/user/town-auth")
     suspend fun postTownAuth(
-        @Body locationAuthenticationResponse: LocationauthenticationResponse,
-    ): Response<TemporaryprotectionDTO>
+        @Body locationAuthenticationResponse: LocationAuthenticationRequest,
+    ): Response<TemporaryProtectionDTO>
 
     @GET("/post")
     suspend fun getPost(
@@ -86,29 +86,29 @@ interface PetMillYApiService {
     @GET("/post/temporary-protection/{id}")
     suspend fun getTemporaryDetail(
         @Path("id") id: Int,
-    ): Response<TemporarydetailDTO>
+    ): Response<TemporaryDetailDTO>
 
     @POST("post/temporary-protection/{id}/photos")
     suspend fun postTemporaryPhoto(
         @Path("id") id: Int,
         @Part files: List<MultipartBody.Part>?,
-    ): Response<TemporaryprotectionDTO>
+    ): Response<TemporaryProtectionDTO>
 
     @PATCH("post/temporary-protection/{id}")
     suspend fun patchTemporary(
         @Path("id") id: Int,
-    ): Response<TemporaryprotectionDTO>
+    ): Response<TemporaryProtectionDTO>
 
     @DELETE("post/temporary-protection/{id}")
     suspend fun deleteTemporary(
         @Path("id") id: Int,
-    ): Response<TemporaryprotectionDTO>
+    ): Response<TemporaryProtectionDTO>
 
     @DELETE("/post/temporary-protection/{id}/photos/{photoId}")
     suspend fun deleteTemporaryPhoto(
         @Path("id") id: Int,
         @Path("photoId") photoId: Int,
-    ): Response<TemporaryprotectionDTO>
+    ): Response<TemporaryProtectionDTO>
 
     @POST("/post/move-volunteer")
     @Multipart
@@ -125,7 +125,7 @@ interface PetMillYApiService {
         @Part("etc") etc: RequestBody,
         @Part("hopeDate") hopeDate: RequestBody,
         @Part files: List<MultipartBody.Part>?,
-    ): Response<TemporaryprotectionDTO>
+    ): Response<TemporaryProtectionDTO>
 
 
     @GET("/post")
@@ -148,24 +148,24 @@ interface PetMillYApiService {
     suspend fun postMoveServicePhoto(
         @Path("id") id: Int,
         @Part files: List<MultipartBody.Part>?,
-    ): Response<TemporaryprotectionDTO>
+    ): Response<TemporaryProtectionDTO>
 
     @PATCH("/post/move-volunteer/{id}")
     suspend fun patchMoveServicePost(
         @Path("id") id: Int,
         @Body patchMoveServicePostResponse: patchmoveservicepostResponse,
-    ): Response<TemporaryprotectionDTO>
+    ): Response<TemporaryProtectionDTO>
 
     @DELETE("post/move-volunteer/{id}")
     suspend fun deleteMoveServicePost(
         @Path("id") id: Int,
-    ): Response<TemporaryprotectionDTO>
+    ): Response<TemporaryProtectionDTO>
 
     @DELETE("post/move-volunteer/{id}/photos/{photoId}")
     suspend fun deleteMoveServicePhoto(
         @Path("id") id: Int,
         @Path("photoId") photoId: Int,
-    ): Response<TemporaryprotectionDTO>
+    ): Response<TemporaryProtectionDTO>
 
     @POST("/post/find-my-pet")
     @Multipart
@@ -184,7 +184,7 @@ interface PetMillYApiService {
         @Part("lead") lead: RequestBody?,
         @Part("etc") etc: RequestBody?,
         @Part("isPublic") isPublic: RequestBody,
-    ): Response<TemporaryprotectionDTO>
+    ): Response<TemporaryProtectionDTO>
 
 
     //우리 아이 찾아요 게시글 댓글 작성
@@ -197,7 +197,7 @@ interface PetMillYApiService {
         @Part("sightingAddress") sightingAddress: RequestBody,
         @Part("comment") comment: RequestBody,
         @Part("sightingDate") sightingDate: RequestBody,
-    ): Response<TemporaryprotectionDTO>
+    ): Response<TemporaryProtectionDTO>
 
     //우리 아이 찾아요 게시글 상세 조회
     @GET("post/find-my-pet/{id}")
@@ -211,11 +211,11 @@ interface PetMillYApiService {
     suspend fun deleteFindMyPetComment(
         @Path("id") id: Int,
         @Path("commentId") commentId: Int,
-    ) : Response<TemporaryprotectionDTO>
+    ) : Response<TemporaryProtectionDTO>
 
     //우리 아이 찾아요 게시글 삭제
     @DELETE("post/find-my-pet/{id}")
     suspend fun deleteFindPetPost(
         @Path("id") id: Int,
-    ) : Response<TemporaryprotectionDTO>
+    ) : Response<TemporaryProtectionDTO>
 }

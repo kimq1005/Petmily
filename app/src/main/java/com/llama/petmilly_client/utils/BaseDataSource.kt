@@ -7,7 +7,7 @@ import llama.test.jetpack_dagger_plz.utils.Common.TAG
 import retrofit2.Response
 
 /**
- * Abstract Base PostData source class with error handling
+ * Abstract Base PostDataDTO source class with error handling
  */
 abstract class BaseDataSource {
     private val gson = Gson()

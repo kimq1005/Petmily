@@ -63,7 +63,6 @@ fun AnimalInfoDetailScreen(
     viewModel: ShelterViewModel,
     id: String,
 ) {
-
     val context = LocalContext.current
     val scrollState = rememberScrollState()
 

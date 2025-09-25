@@ -72,7 +72,7 @@ class ShelterActivity : ComponentActivity() {
                         startDestination = ShelterSafeType.SAFE_SHELTER_COMPOSABLE.name
                     ) {
                         composable(ShelterSafeType.SAFE_SHELTER_COMPOSABLE.name) {
-                            SafeShelterScreen(navController = navController, viewModel)
+                            SafeShelterSuccessScreen(navController = navController)
                         }
 
                         composable("${ShelterSafeType.ANIMAL_INFO_DETAIL.name}/{id}") {

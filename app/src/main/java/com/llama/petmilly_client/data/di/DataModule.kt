@@ -5,6 +5,7 @@ import com.llama.petmilly_client.data.network.LibraryApiService
 import com.llama.petmilly_client.data.network.LoginService
 import com.llama.petmilly_client.data.network.PetMillYApiService
 import com.llama.petmilly_client.data.network.PetMilyInterceptor
+import com.llama.petmilly_client.data.network.ShelterService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -63,7 +64,6 @@ object DataModule {
             .create(PetMillYApiService::class.java)
     }
 
-
     @Provides
     fun provideRetrofit(
         client: OkHttpClient
@@ -79,5 +79,11 @@ object DataModule {
     @Singleton
     fun provideLoginService(retrofit: Retrofit): LoginService {
         return retrofit.create(LoginService::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideShelterService(retrofit: Retrofit): ShelterService {
+        return retrofit.create(ShelterService::class.java)
     }
 }
