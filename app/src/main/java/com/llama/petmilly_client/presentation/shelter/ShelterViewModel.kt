@@ -1,6 +1,5 @@
 package com.llama.petmilly_client.presentation.shelter
 
-//import com.llama.petmilly_client.presentation.home.component.ShelterListCategory
 import android.util.Log
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateListOf
@@ -217,16 +216,6 @@ class ShelterViewModel @Inject constructor(
                         Log.d(TAG, "gettemporarydetail ERROR: $it ")
                     }
                 }
-            }
-        }
-    }
-
-    private fun setProtectionCondition() {
-        viewModelScope.launch(Dispatchers.Main) {
-            temporarydetailDTO.value?.let {
-                ProtectionCondition.addAll(it.data.protectionCondition)
-                ProtectionHope.addAll(it.data.protectionHope)
-                ProtectionNo.addAll(it.data.protectionNo)
             }
         }
     }

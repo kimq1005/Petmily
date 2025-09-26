@@ -1,6 +1,5 @@
 package com.llama.petmilly_client.presentation.shelter
 
-import android.content.Intent
 import android.util.Log
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
@@ -10,7 +9,6 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
@@ -24,12 +22,12 @@ import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Divider
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -40,15 +38,13 @@ import androidx.compose.ui.text.PlatformTextStyle
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.navigation.NavController
+import androidx.hilt.navigation.compose.hiltViewModel
 import coil.compose.rememberImagePainter
 import com.llama.petmilly_client.R
-import com.llama.petmilly_client.presentation.certificationscreen.CertificationActivity
-import com.llama.petmilly_client.presentation.dialog.AdoptionApplicationDialog
+import com.llama.petmilly_client.domain.model.shelter.TemporaryDetail
 import com.llama.petmilly_client.presentation.dialog.AdoptionCompletedDialog
-import com.llama.petmilly_client.ui.theme.Background_FDFCE1
+import com.llama.petmilly_client.presentation.shelter.component.shelterDetail.ShelterDetailInfoComponent
 import com.llama.petmilly_client.ui.theme.Black_60_Transfer
-import com.llama.petmilly_client.ui.theme.Name_Speech_Bubble
 import com.llama.petmilly_client.ui.theme.Pink_5_Transfer
 import com.llama.petmilly_client.utils.SpacerHeight
 import com.llama.petmilly_client.utils.SpacerWidth
@@ -57,17 +53,32 @@ import com.llama.petmilly_client.utils.notosans_regular
 import llama.test.jetpack_dagger_plz.utils.Common.TAG
 
 @Composable
+fun ShelterDetailSuccessScreen(
+    modifier: Modifier = Modifier,
+    viewModel: ShelterDetailViewModel = hiltViewModel(),
+    id: Int
+) {
+    LaunchedEffect(Unit) {
+        viewModel.initData(id)
+    }
+
+    val state = viewModel.container.stateFlow.collectAsState().value
+
+}
+
+@Composable
 @ExperimentalFoundationApi
-fun AnimalInfoDetailScreen(
-    navController: NavController,
-    viewModel: ShelterViewModel,
+fun ShelterDetailScreen(
+    temporaryDetailItem: TemporaryDetail,
+    viewModel: ShelterViewModel = hiltViewModel(),
     id: String,
 ) {
     val context = LocalContext.current
     val scrollState = rememberScrollState()
 
-    Box(modifier = Modifier.fillMaxSize()) {
-
+    Box(
+        modifier = Modifier.fillMaxSize()
+    ) {
         LaunchedEffect(context) {
             viewModel.id.value = id.toInt()
             viewModel.getTemporaryDetail(id.toInt())
@@ -78,155 +89,11 @@ fun AnimalInfoDetailScreen(
                 .verticalScroll(scrollState)
                 .fillMaxSize()
         ) {
-
-
-            Row(
+            ShelterDetailInfoComponent(
                 modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(20.dp)
-            ) {
-                Box() {
-
-                    Image(
-                        painter = if (viewModel.thumbnail_detail.value != "") rememberImagePainter(
-                            data = viewModel.thumbnail_detail.value
-                        ) else painterResource(id = R.drawable.mainicon_png),
-                        contentDescription = null,
-                        modifier = Modifier
-                            .height(127.dp)
-                            .width(127.dp)
-                            .background(color = Color.Blue)
-                            .align(Alignment.CenterStart),
-                        contentScale = ContentScale.Crop
-                    )
-
-                    Image(
-                        painter = painterResource(id = R.drawable.img_test_dog4),
-                        contentDescription = null,
-                        modifier = Modifier
-                            .height(31.dp)
-                            .width(31.dp)
-                            .align(Alignment.TopStart)
-                            .padding(start = 8.dp, top = 8.dp),
-                        contentScale = ContentScale.Crop
-                    )
-                }
-
-
-                Column(
-                    modifier = Modifier
-                        .height(130.dp)
-                        .padding(start = 15.dp),
-                    verticalArrangement = Arrangement.SpaceBetween,
-                ) {
-
-
-                    Row(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(top = 15.dp)
-                    ) {
-                        Text(
-                            text = "\uD83D\uDC49 ${viewModel.charmAppeal_detail.value}",
-                            modifier = Modifier
-                                .background(
-                                    color = Name_Speech_Bubble,
-                                    shape = RoundedCornerShape(5.dp)
-                                )
-                                .padding(vertical = 5.dp, horizontal = 8.dp),
-                            fontSize = 12.sp,
-                            fontFamily = notosans_bold,
-                            style = TextStyle(
-                                platformStyle = PlatformTextStyle(
-                                    includeFontPadding = false
-                                )
-                            ),
-                            color = Color.Black
-                        )
-                    }
-
-                    Row(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(top = 15.dp),
-                        verticalAlignment = Alignment.CenterVertically
-                    ) {
-
-                        Text(
-                            text = if (viewModel.isCompleted_detail.value) viewModel.name_detail.value else "${viewModel.name_detail.value} ",
-                            fontSize = 16.sp,
-                            fontFamily = notosans_bold,
-                            style = TextStyle(
-                                platformStyle = PlatformTextStyle(
-                                    includeFontPadding = false
-                                )
-                            ),
-                            color = Color.Black
-                        )
-
-                        SpacerWidth(dp = 5.dp)
-                        Text(
-                            text = viewModel.gender_detail.value,
-                            fontSize = 13.sp,
-                            fontFamily = notosans_regular,
-                            style = TextStyle(
-                                platformStyle = PlatformTextStyle(
-                                    includeFontPadding = false
-                                )
-                            ),
-                            color = Black_60_Transfer,
-                            modifier = Modifier.align(Alignment.Bottom)
-                        )
-                    }
-
-
-                    Spacer(modifier = Modifier.height(5.dp))
-
-                    Text(
-                        text = "${viewModel.breed_detail.value} / ${viewModel.weight_detail.value}kg/ ${viewModel.age_detail.value}",
-                        fontFamily = notosans_regular,
-                        style = TextStyle(
-                            platformStyle = PlatformTextStyle(
-                                includeFontPadding = false
-                            )
-                        ),
-                        modifier = Modifier.background(color = Background_FDFCE1),
-                        color = Black_60_Transfer,
-                        fontSize = 13.sp
-
-                    )
-
-                    Row() {
-                        Text(
-                            text = "현재위치지역",
-                            fontFamily = notosans_regular,
-                            style = TextStyle(
-                                platformStyle = PlatformTextStyle(
-                                    includeFontPadding = false
-                                )
-                            ),
-                            fontSize = 13.sp,
-                            color = Black_60_Transfer,
-                            modifier = Modifier.padding(bottom = 5.dp)
-                        )
-                        Text(
-                            text = " ${viewModel.shortName_detail.value}",
-                            fontFamily = notosans_bold,
-                            style = TextStyle(
-                                platformStyle = PlatformTextStyle(
-                                    includeFontPadding = false
-                                )
-                            ),
-                            fontSize = 13.sp,
-                            color = Black_60_Transfer,
-                            modifier = Modifier.padding(bottom = 5.dp)
-                        )
-
-                    }
-
-                }
-            }//LibraryDetailDTO
-
+                    .padding(20.dp),
+                temporaryDetail = temporaryDetailItem
+            )
 
             Text(
                 text = "프로필", modifier = Modifier
@@ -288,8 +155,6 @@ fun AnimalInfoDetailScreen(
                         .fillMaxWidth()
                         .padding(bottom = 10.dp), color = Color.LightGray
                 )
-
-
 
                 Row(
                     modifier = Modifier

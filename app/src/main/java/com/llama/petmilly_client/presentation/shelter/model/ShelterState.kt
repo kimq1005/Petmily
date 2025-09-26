@@ -1,7 +1,6 @@
 package com.llama.petmilly_client.presentation.shelter.model
 
 import androidx.compose.runtime.Immutable
-import com.llama.petmilly_client.data.model.shelter.TemporaryDetailDTO
 import com.llama.petmilly_client.domain.model.shelter.PostDetail
 import com.llama.petmilly_client.domain.model.shelter.TemporaryDetail
 

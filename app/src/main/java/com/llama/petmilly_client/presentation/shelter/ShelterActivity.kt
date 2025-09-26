@@ -77,7 +77,10 @@ class ShelterActivity : ComponentActivity() {
 
                         composable("${ShelterSafeType.ANIMAL_INFO_DETAIL.name}/{id}") {
                             val id = it.arguments?.getString("id").toString()
-                            AnimalInfoDetailScreen(navController = navController, viewModel, id)
+//                            ShelterDetailScreen(
+//                                viewModel = viewModel,
+//                                id = id
+//                            )
                         }
                     }
                 }
