@@ -23,8 +23,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.llama.petmilly_client.R
+import com.llama.petmilly_client.presentation.common.compnent.TitleBarComponent
 import com.llama.petmilly_client.presentation.dialog.SetAlomostCompletedDialog
-import com.llama.petmilly_client.presentation.shelter.ShelterDetailTitleBar
 import com.llama.petmilly_client.ui.theme.TextField_BackgroudColor
 import com.llama.petmilly_client.utils.ButtonScreen
 import com.llama.petmilly_client.utils.SpacerHeight
@@ -50,12 +50,12 @@ fun ShelterDetail_6_conditons_Screen(
             .fillMaxSize()
             .background(Color.White)
     ) {
-        ShelterDetailTitleBar(
+        TitleBarComponent(
             title = "임보처구해요",
-            ismenu = false,
-            clickBack = { navController.popBackStack() }) {
-            viewModel.onShownAlmostCompetedDialog()
-        }
+            isMenu = false,
+            onClickBack = { navController.popBackStack() },
+            onClickMenu = { viewModel.onShownAlmostCompetedDialog() }
+        )
 
         ShelterDetailSuvTitle("임보조건을\n입력해주세요.")
 

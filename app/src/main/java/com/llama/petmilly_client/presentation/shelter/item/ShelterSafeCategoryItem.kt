@@ -1,4 +1,4 @@
-package com.llama.petmilly_client.presentation.shelter.items
+package com.llama.petmilly_client.presentation.shelter.item
 
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding

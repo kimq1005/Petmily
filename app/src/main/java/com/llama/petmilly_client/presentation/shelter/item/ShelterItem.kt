@@ -1,4 +1,4 @@
-package com.llama.petmilly_client.presentation.shelter.items
+package com.llama.petmilly_client.presentation.shelter.item
 
 import android.os.Build
 import androidx.annotation.RequiresApi

@@ -18,8 +18,8 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import com.llama.petmilly_client.presentation.common.compnent.TitleBarComponent
 import com.llama.petmilly_client.presentation.dialog.SetAlomostCompletedDialog
-import com.llama.petmilly_client.presentation.shelter.ShelterDetailTitleBar
 import com.llama.petmilly_client.ui.theme.Grey_50_CBC4C4
 import com.llama.petmilly_client.ui.theme.TextField_BackgroudColor
 import com.llama.petmilly_client.utils.*
@@ -44,12 +44,12 @@ fun ShelterDetail_2_profile_Screen(
             .background(Color.White)
     ) {
 
-        ShelterDetailTitleBar(
+        TitleBarComponent(
             title = "임보처구해요",
-            ismenu = false,
-            clickBack = { navController.popBackStack() }) {
-            viewModel.onShownAlmostCompetedDialog()
-        }
+            isMenu = false,
+            onClickBack = { navController.popBackStack() },
+            onClickMenu = { viewModel.onShownAlmostCompetedDialog() }
+        )
 
         ShelterDetailSuvTitle("주인공의 프로필을\n입력해주세요.")
 

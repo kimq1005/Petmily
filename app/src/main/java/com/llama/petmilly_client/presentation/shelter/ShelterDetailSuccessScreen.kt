@@ -1,62 +1,43 @@
 package com.llama.petmilly_client.presentation.shelter
 
-import android.util.Log
-import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.aspectRatio
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.heightIn
-import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.lazy.grid.GridCells
-import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
-import androidx.compose.foundation.lazy.grid.items
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.Divider
-import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.PlatformTextStyle
-import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
-import coil.compose.rememberImagePainter
 import com.llama.petmilly_client.R
+import com.llama.petmilly_client.domain.model.shelter.TemporaryAddressInfo
+import com.llama.petmilly_client.domain.model.shelter.TemporaryCompleteUser
 import com.llama.petmilly_client.domain.model.shelter.TemporaryDetail
+import com.llama.petmilly_client.domain.model.shelter.TemporaryUser
 import com.llama.petmilly_client.presentation.dialog.AdoptionCompletedDialog
 import com.llama.petmilly_client.presentation.shelter.component.shelterDetail.ShelterDetailInfoComponent
-import com.llama.petmilly_client.ui.theme.Black_60_Transfer
-import com.llama.petmilly_client.ui.theme.Pink_5_Transfer
-import com.llama.petmilly_client.utils.SpacerHeight
-import com.llama.petmilly_client.utils.SpacerWidth
-import com.llama.petmilly_client.utils.notosans_bold
-import com.llama.petmilly_client.utils.notosans_regular
-import llama.test.jetpack_dagger_plz.utils.Common.TAG
+import com.llama.petmilly_client.presentation.shelter.item.ShelterDetailAdoptionInfoItem
+import com.llama.petmilly_client.presentation.shelter.item.ShelterDetailPeriodItem
+import com.llama.petmilly_client.presentation.shelter.item.ShelterDetailProfileItem
 
 @Composable
 fun ShelterDetailSuccessScreen(
     modifier: Modifier = Modifier,
     viewModel: ShelterDetailViewModel = hiltViewModel(),
-    id: Int
+    id: Int,
 ) {
     LaunchedEffect(Unit) {
         viewModel.initData(id)
@@ -64,26 +45,27 @@ fun ShelterDetailSuccessScreen(
 
     val state = viewModel.container.stateFlow.collectAsState().value
 
+    state.temporaryDetail?.let {
+        ShelterDetailScreen(
+            temporaryDetail = state.temporaryDetail,
+            onAdoptionClick = viewModel::postAdoption
+        )
+    }
 }
 
 @Composable
-@ExperimentalFoundationApi
-fun ShelterDetailScreen(
-    temporaryDetailItem: TemporaryDetail,
-    viewModel: ShelterViewModel = hiltViewModel(),
-    id: String,
+private fun ShelterDetailScreen(
+    temporaryDetail: TemporaryDetail,
+    onAdoptionClick: () -> Unit,
 ) {
-    val context = LocalContext.current
     val scrollState = rememberScrollState()
+    var isAdoptionDialog by remember {
+        mutableStateOf(false)
+    }
 
     Box(
         modifier = Modifier.fillMaxSize()
     ) {
-        LaunchedEffect(context) {
-            viewModel.id.value = id.toInt()
-            viewModel.getTemporaryDetail(id.toInt())
-        }
-
         Column(
             modifier = Modifier
                 .verticalScroll(scrollState)
@@ -92,628 +74,92 @@ fun ShelterDetailScreen(
             ShelterDetailInfoComponent(
                 modifier = Modifier
                     .padding(20.dp),
-                temporaryDetail = temporaryDetailItem
+                temporaryDetail = temporaryDetail
             )
 
-            Text(
-                text = "프로필", modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(top = 20.dp, start = 30.dp),
-                fontSize = 16.sp,
-                fontFamily = notosans_bold,
-                style = TextStyle(
-                    platformStyle = PlatformTextStyle(
-                        includeFontPadding = false
-                    )
-                ),
-                color = Color.Black
-            )
-
-            Divider(
+            ShelterDetailProfileItem(
                 modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(top = 5.dp, start = 20.dp, end = 20.dp), color = Color.Black
+                    .padding(horizontal = 20.dp)
+                    .padding(top = 20.dp),
+                temporaryDetail = temporaryDetail
             )
 
-            Column(modifier = Modifier.padding(horizontal = 20.dp)) {
 
-                SpacerHeight(dp = 10.dp)
-                Row(
+            if (!temporaryDetail.isComplete) {
+                ShelterDetailPeriodItem(
                     modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(start = 10.dp, bottom = 10.dp)
-                ) {
-                    Text(
-                        text = "중성화/접종 ",
-                        color = Black_60_Transfer,
-                        fontSize = 13.sp,
-                        fontFamily = notosans_bold,
-                        style = TextStyle(
-                            platformStyle = PlatformTextStyle(
-                                includeFontPadding = false
-                            )
-                        ),
-                        modifier = Modifier.width(80.dp)
-                    )
-
-                    Text(
-                        text = "${viewModel.neutered_detail.value} / ${viewModel.inoculation_detail.value} ",
-                        color = Black_60_Transfer,
-                        fontSize = 13.sp,
-                        modifier = Modifier.padding(start = 15.dp),
-                        fontFamily = notosans_regular,
-                        style = TextStyle(
-                            platformStyle = PlatformTextStyle(
-                                includeFontPadding = false
-                            )
-                        )
-                    )
-                }
-
-                Divider(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(bottom = 10.dp), color = Color.LightGray
+                        .padding(top = 16.dp)
                 )
 
-                Row(
+                ShelterDetailAdoptionInfoItem(
                     modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(start = 10.dp, bottom = 10.dp)
-                ) {
-                    Text(
-                        text = "성격",
-                        fontFamily = notosans_bold,
-                        style = TextStyle(
-                            platformStyle = PlatformTextStyle(
-                                includeFontPadding = false
-                            )
-                        ),
-                        color = Black_60_Transfer,
-                        fontSize = 13.sp,
-                        modifier = Modifier.width(80.dp)
-                    )
-
-                    Text(
-                        text = viewModel.health_detail.value,
-                        fontFamily = notosans_regular,
-                        style = TextStyle(
-                            platformStyle = PlatformTextStyle(
-                                includeFontPadding = false
-                            )
-                        ),
-                        color = Black_60_Transfer,
-                        fontSize = 13.sp,
-                        modifier = Modifier.padding(start = 15.dp)
-                    )
-                }
-
-                Divider(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(bottom = 10.dp), color = Color.LightGray
+                        .padding(horizontal = 20.dp)
+                        .padding(top = 20.dp),
+                    temporaryDetail = temporaryDetail
                 )
-
-                Row(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(start = 10.dp, bottom = 10.dp)
-                ) {
-                    Text(
-                        text = "개인기",
-                        fontFamily = notosans_bold,
-                        style = TextStyle(
-                            platformStyle = PlatformTextStyle(
-                                includeFontPadding = false
-                            )
-                        ),
-                        color = Black_60_Transfer,
-                        fontSize = 13.sp,
-                        modifier = Modifier.width(80.dp)
-                    )
-
-                    Text(
-                        text = viewModel.skill_detail.value,
-                        fontFamily = notosans_regular,
-                        style = TextStyle(
-                            platformStyle = PlatformTextStyle(
-                                includeFontPadding = false
-                            )
-                        ),
-                        color = Black_60_Transfer,
-                        fontSize = 13.sp,
-                        modifier = Modifier.padding(start = 15.dp)
-                    )
-                }
-
-                Divider(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(bottom = 5.dp), color = Color.LightGray
-                )
-
-
-                Row(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(start = 10.dp, bottom = 10.dp)
-                ) {
-                    Text(
-                        text = "성격 및 특징",
-                        fontFamily = notosans_bold,
-                        style = TextStyle(
-                            platformStyle = PlatformTextStyle(
-                                includeFontPadding = false
-                            )
-                        ),
-                        color = Black_60_Transfer,
-                        fontSize = 13.sp,
-                        modifier = Modifier.width(80.dp)
-                    )
-
-                    Text(
-                        text = viewModel.character_detail.value,
-                        fontFamily = notosans_regular,
-                        style = TextStyle(
-                            platformStyle = PlatformTextStyle(
-                                includeFontPadding = false
-                            )
-                        ),
-                        color = Black_60_Transfer,
-                        fontSize = 13.sp,
-                        modifier = Modifier.padding(start = 15.dp)
-                    )
-                }
-
-            }//Column
-
-
-            if (!viewModel.isCompleted_detail.value) {
-                SpacerHeight(dp = 16.dp)
-
-                Row(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .height(90.dp)
-                        .background(color = Color(0xFFECF2FF)),
-                ) {
-                    Box(
-                        modifier = Modifier
-                            .fillMaxHeight()
-                            .padding(start = 25.dp)
-                    ) {
-
-                        Image(
-                            painter = painterResource(id = R.drawable.img_test_dog4),
-                            contentDescription = null,
-                            modifier = Modifier
-                                .width(50.dp)
-                                .height(40.dp)
-                                .align(Alignment.CenterStart)
-                        )
-
-                        Image(
-                            painter = painterResource(id = R.drawable.img_test_dog4),
-                            contentDescription = null,
-                            modifier = Modifier
-                                .height(10.dp)
-                                .width(10.dp)
-                                .align(Alignment.TopCenter)
-                                .offset(y = 20.dp)
-
-                        )
-
-
-                    }
-
-                    Column(
-                        modifier = Modifier
-                            .padding(start = 10.dp)
-                            .fillMaxHeight(), verticalArrangement = Arrangement.Center
-                    ) {
-
-
-                        Text(
-                            text = "신청서 접수기간 : 23.04.12 ~ 23.04.21",
-                            fontFamily = notosans_bold,
-                            style = TextStyle(
-                                platformStyle = PlatformTextStyle(
-                                    includeFontPadding = false
-                                )
-                            ),
-                            color = Color(0xFF3050F6),
-                            modifier = Modifier.padding(bottom = 5.dp)
-                        )
-                        Text(
-                            text = "신청서 심사기간 : 23.04.02 ~ 23.04.10",
-                            fontFamily = notosans_bold,
-                            style = TextStyle(
-                                platformStyle = PlatformTextStyle(
-                                    includeFontPadding = false
-                                )
-                            ),
-                            color = Color.Black,
-                            modifier = Modifier.padding(bottom = 5.dp)
-
-                        )
-                        Text(
-                            text = "* 임보신청서 심사 후 확정 시 앱 알림 및 채팅을 통해 안내드립니다.",
-                            fontFamily = notosans_regular,
-                            style = TextStyle(
-                                platformStyle = PlatformTextStyle(
-                                    includeFontPadding = false
-                                )
-                            ),
-                            color = Black_60_Transfer,
-                            fontSize = 11.sp
-                        )
-
-                    }//Column
-                }//LibraryDetailDTO
             }
+        }
 
-
-            if (!viewModel.isCompleted_detail.value) {
-                Column(
-                    modifier = Modifier.padding(20.dp)
-                ) {
-                    Text(
-                        text = "임보 정보", modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(top = 10.dp, start = 10.dp),
-                        fontSize = 16.sp,
-                        fontFamily = notosans_bold,
-                        style = TextStyle(
-                            platformStyle = PlatformTextStyle(
-                                includeFontPadding = false
-                            )
-                        ),
-                        color = Color.Black
-                    )
-
-                    SpacerHeight(dp = 6.dp)
-
-                    Divider(color = Color.Black)
-
-                    Column(
-                        modifier = Modifier
-                            .background(color = Pink_5_Transfer)
-
-                    ) {
-                        SpacerHeight(dp = 8.dp)
-
-                        Row(
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .padding(start = 10.dp, bottom = 10.dp)
-                        ) {
-                            Text(
-                                text = "픽업방법 ",
-                                fontSize = 13.sp,
-                                fontFamily = notosans_bold,
-                                style = TextStyle(
-                                    platformStyle = PlatformTextStyle(
-                                        includeFontPadding = false
-                                    )
-                                ),
-                                color = Black_60_Transfer,
-                                modifier = Modifier.width(80.dp)
-                            )
-
-                            Text(
-                                text = viewModel.pickUp_detail.value,
-                                fontFamily = notosans_regular,
-                                style = TextStyle(
-                                    platformStyle = PlatformTextStyle(
-                                        includeFontPadding = false
-                                    )
-                                ),
-                                color = Black_60_Transfer,
-                                fontSize = 13.sp,
-                                modifier = Modifier.padding(start = 15.dp)
-                            )
-                        }
-
-                        Divider(
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .padding(bottom = 10.dp), color = Color.LightGray
-                        )
-
-
-                        Row(
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .padding(start = 10.dp, bottom = 10.dp)
-                        ) {
-                            Text(
-                                text = "임보조건",
-                                fontFamily = notosans_bold,
-                                style = TextStyle(
-                                    platformStyle = PlatformTextStyle(
-                                        includeFontPadding = false
-                                    )
-                                ),
-                                color = Black_60_Transfer,
-                                fontSize = 13.sp,
-                                modifier = Modifier.width(80.dp)
-                            )
-
-                            Text(
-                                text = "✅ 출퇴근 용이하신 분",
-                                fontFamily = notosans_regular,
-                                style = TextStyle(
-                                    platformStyle = PlatformTextStyle(
-                                        includeFontPadding = false
-                                    )
-                                ),
-                                color = Black_60_Transfer,
-                                fontSize = 13.sp,
-                                modifier = Modifier.width(200.dp)
-                            )
-
-//                            LazyColumn(
-//                                modifier = Modifier
-//                                    .padding(start = 15.dp)
-//                                    .heightIn(0.dp, 100.dp)
-//                            ) {
-////                                ProtectionConditionItems()
-//                                items(viewModel.ProtectionConditionDTO) { items ->
-//                                    ProtectionConditionItems(items.content, true)
-//                                }
-//
-//                            }
-
-
-                        }
-
-                        Divider(
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .padding(bottom = 5.dp), color = Color.LightGray
-                        )
-
-
-                        Row(
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .padding(start = 10.dp, bottom = 10.dp)
-                        ) {
-                            Text(
-                                text = "이런분을\n희망해요",
-                                fontFamily = notosans_bold,
-                                style = TextStyle(
-                                    platformStyle = PlatformTextStyle(
-                                        includeFontPadding = false
-                                    )
-                                ),
-                                color = Black_60_Transfer,
-                                fontSize = 13.sp,
-                                modifier = Modifier.width(80.dp)
-                            )
-
-
-                            Text(
-                                text = "✅ 2주에 1회 병원통원 가능하신분",
-                                fontFamily = notosans_regular,
-                                style = TextStyle(
-                                    platformStyle = PlatformTextStyle(
-                                        includeFontPadding = false
-                                    )
-                                ),
-                                color = Black_60_Transfer,
-                                fontSize = 13.sp,
-                                modifier = Modifier.width(200.dp)
-                            )
-
-//                            LazyColumn(
-//                                modifier = Modifier
-//                                    .padding(start = 15.dp)
-//                                    .heightIn(0.dp, 100.dp)
-//                            ) {
-////
-//                                items(viewModel.ProtectionHopeDTO) { items ->
-//                                    ProtectionConditionItems(items.content, true)
-//                                }
-//
-//                            }
-
-                        }
-
-                        Divider(
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .padding(bottom = 5.dp), color = Color.LightGray
-                        )
-
-
-                        Row(
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .padding(start = 10.dp, bottom = 10.dp)
-                        ) {
-                            Text(
-                                text = "이런분은 안돼요",
-                                fontFamily = notosans_bold,
-                                style = TextStyle(
-                                    platformStyle = PlatformTextStyle(
-                                        includeFontPadding = false
-                                    )
-                                ),
-                                color = Black_60_Transfer,
-                                fontSize = 13.sp,
-                                modifier = Modifier.width(80.dp)
-                            )
-
-                            Text(
-                                text = "❌ 집을 비우는 시간이 너무 기신 분",
-                                fontFamily = notosans_regular,
-                                style = TextStyle(
-                                    platformStyle = PlatformTextStyle(
-                                        includeFontPadding = false
-                                    )
-                                ),
-                                color = Black_60_Transfer,
-                                fontSize = 13.sp,
-                                modifier = Modifier.width(200.dp)
-                            )
-//                            LazyColumn(
-//                                modifier = Modifier
-//                                    .padding(start = 15.dp)
-//                                    .heightIn(0.dp, 100.dp)
-//                            ) {
-////
-//                                items(viewModel.ProtectionNoDTO) { items ->
-//                                    ProtectionConditionItems(items.content, false)
-//                                }
-//
-//                            }
-
-                        }
-
-                    }//Column
-
-
-                }//Column
-
-            }
-
-            if (viewModel.photoUrl_detail.isNotEmpty()) {
-
-                Row(
-                    verticalAlignment = Alignment.CenterVertically,
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(top = 30.dp, start = 21.dp, bottom = 20.dp),
-                ) {
-
-                    Image(
-                        painter = painterResource(id = R.drawable.img_record),
-                        contentDescription = null,
-                        modifier = Modifier
-                            .height(23.dp)
-                            .width(23.dp),
-                        contentScale = ContentScale.Crop
-                    )
-                    
-                    SpacerWidth(dp = 12.dp)
-
-
-                    Text(
-                        text = "사진첩",
-                        fontSize = 16.sp,
-                        color = Color.Black,
-                        style = TextStyle(
-                            platformStyle = PlatformTextStyle(
-                                includeFontPadding = false
-                            )
-                        ),
-                        fontFamily = notosans_bold
-
-                    )
-                }
-
-
-                Divider(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(top = 5.dp, bottom = 7.dp, start = 20.dp, end = 20.dp),
-                    color = Color.Black
-                )
-
-
-
-                LazyVerticalGrid(
-                    columns = GridCells.Fixed(4),
-                    modifier = Modifier
-                        .heightIn(min = 0.dp, max = 200.dp)
-                        .padding(horizontal = 21.dp),
-                    verticalArrangement = Arrangement.spacedBy(8.dp),
-                    horizontalArrangement = Arrangement.spacedBy(8.dp)
-                ) {
-                    items(viewModel.photoUrl_detail) { item ->
-                        Image(
-                            painter = rememberImagePainter(data = item.photoUrl),
-                            contentDescription = null,
-                            modifier = Modifier
-                                .aspectRatio(1f)
-                                .height(70.dp)
-                                .width(70.dp),
-                            contentScale = ContentScale.Crop
-                        )
-
-                    }
-                }
-
-            }else{
-                SpacerHeight(dp = 20.dp)
-            }
-
-
-        }//Column
-
-        if (viewModel.isjudge.value == 0) {
+        if (!temporaryDetail.isComplete) {
             Image(
                 painter = painterResource(id = R.drawable.img_test_dog4),
                 contentDescription = null,
-
                 modifier = Modifier
                     .align(Alignment.BottomEnd)
                     .padding(bottom = 40.dp, end = 15.dp)
-                    .width(55.dp)
-                    .height(55.dp)
+                    .size(55.dp)
                     .clickable {
-//                        viewModel.onConfirmClick()
-                    }
-            )
-        } else if (viewModel.isjudge.value == 1) {
-            Image(
-                painter = painterResource(id = R.drawable.img_test_dog4),
-                contentDescription = null,
-
-                modifier = Modifier
-                    .align(Alignment.BottomEnd)
-                    .padding(bottom = 40.dp, end = 15.dp)
-                    .width(55.dp)
-                    .height(55.dp)
-                    .clickable {
-//                        viewModel.onConfirmClick()
+                        isAdoptionDialog = true
                     }
             )
         }
 
-        if (viewModel.isAdoptionApplicationDialogShown) {
+        if (isAdoptionDialog) {
             AdoptionCompletedDialog(
-                onDismiss = {  },
-                onConfirm = { Log.d(TAG, "AnimalInfoDetailScreen: wow") })
+                onDismiss = {
+                    isAdoptionDialog = false
+                },
+                onConfirm = onAdoptionClick
+            )
         }
     }
 }
 
+@Preview(showBackground = true)
 @Composable
-fun ProtectionConditionItems(
-    text: String,
-    yesorno: Boolean,
-) {
-    Row(modifier = Modifier.fillMaxSize(), verticalAlignment = Alignment.CenterVertically) {
-        Text(text = if (yesorno) "✅ " else "❌ ")
-
-        Text(
-            text = text,
-            fontFamily = notosans_regular,
-            style = TextStyle(
-                platformStyle = PlatformTextStyle(
-                    includeFontPadding = false
-                )
+private fun PreviewShelterDetailScreen() {
+    ShelterDetailScreen(
+        temporaryDetail = TemporaryDetail(
+            protectionCondition = listOf(),
+            protectionHope = listOf(),
+            protectionNo = listOf(),
+            addressInfo = TemporaryAddressInfo(
+                id = 4979,
+                longName = "Cary Snow",
+                shortName = "Lindsey Robinson"
             ),
-            fontSize = 13.sp,
-            color = Black_60_Transfer,
-            maxLines = 1,
-        )
-    }
+            age = 4.5,
+            animalTypes = "hinc",
+            breed = "appetere",
+            character = "sententiae",
+            charmAppeal = "platonem",
+            completeUser = TemporaryCompleteUser(id = 6615),
+            createdAt = "ex",
+            gender = "eripuit",
+            health = "dolores",
+            id = 9009,
+            inoculation = "electram",
+            isComplete = false,
+            isReceipt = false,
+            name = "Tracy Burt",
+            neutered = "alia",
+            photoUrls = listOf(),
+            pickUp = "eirmod",
+            receptionPeriod = "sumo",
+            skill = "habeo",
+            thumbnail = null,
+            user = TemporaryUser(id = 3313),
+            weight = 2984
+        ), onAdoptionClick = {}
+    )
 }
-
-
-
-
-

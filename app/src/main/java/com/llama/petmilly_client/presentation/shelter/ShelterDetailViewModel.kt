@@ -22,9 +22,9 @@ class ShelterDetailViewModel @Inject constructor(
         buildSettings = {
             this.exceptionHandler = CoroutineExceptionHandler { _, throwable ->
                 intent {
-                   postSideEffect(
-                       ShelterDetailSideEffect.Error(message = throwable.message.toString())
-                   )
+                    postSideEffect(
+                        ShelterDetailSideEffect.Error(message = throwable.message.toString())
+                    )
                 }
             }
         }
@@ -39,5 +39,9 @@ class ShelterDetailViewModel @Inject constructor(
                 temporaryDetail = data.data
             )
         }
+    }
+
+    fun postAdoption() = intent {
+
     }
 }

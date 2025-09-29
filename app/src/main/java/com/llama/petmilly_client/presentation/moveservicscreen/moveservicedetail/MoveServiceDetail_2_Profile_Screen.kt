@@ -34,8 +34,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.llama.petmilly_client.R
+import com.llama.petmilly_client.presentation.common.compnent.TitleBarComponent
 import com.llama.petmilly_client.presentation.dialog.SetAlomostCompletedDialog
-import com.llama.petmilly_client.presentation.shelter.ShelterDetailTitleBar
 import com.llama.petmilly_client.presentation.shelter.shelterdetailscreen.ImageTestUriData
 import com.llama.petmilly_client.presentation.shelter.shelterdetailscreen.ShelterDetailSuvTitle
 import com.llama.petmilly_client.ui.theme.Button_NoneClicked
@@ -72,12 +72,12 @@ fun MoveServiceDetail_2_Profile_1_Screen(
             .fillMaxSize()
             .background(color = Color.White)
     ) {
-        ShelterDetailTitleBar(
+        TitleBarComponent(
             title = "이동봉사 찾아요",
-            ismenu = false,
-            clickBack = { navController.popBackStack() }) {
-            viewModel.onShownAlmostCompetedDialog()
-        }
+            isMenu = false,
+            onClickBack = { navController.popBackStack() },
+            onClickMenu = { viewModel.onShownAlmostCompetedDialog()}
+        )
 
         MoveServiceDetailSuvTitle("주인공의 프로필을\n입력해주세요.")
 
@@ -342,13 +342,12 @@ fun MoveServiceDetail_2_Profile_2_Screen(
             .fillMaxSize()
             .background(Color.White)
     ) {
-
-        ShelterDetailTitleBar(
+        TitleBarComponent(
             title = "이동봉사 찾아요",
-            ismenu = false,
-            clickBack = { navController.popBackStack() }) {
-            viewModel.onShownAlmostCompetedDialog()
-        }
+            isMenu = false,
+            onClickBack = { navController.popBackStack() },
+            onClickMenu = { viewModel.onShownAlmostCompetedDialog() }
+        )
 
         ShelterDetailSuvTitle("주인공의 프로필을\n입력해주세요.")
 

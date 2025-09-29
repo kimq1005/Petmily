@@ -15,7 +15,7 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
-import com.llama.petmilly_client.presentation.shelter.ShelterDetailTitleBar
+import com.llama.petmilly_client.presentation.common.compnent.TitleBarComponent
 import com.llama.petmilly_client.ui.theme.TextField_BackgroudColor
 import com.llama.petmilly_client.utils.ButtonScreen
 import com.llama.petmilly_client.utils.notosans_bold
@@ -33,14 +33,12 @@ fun FADetailScreen_4_DetailInfo(
             .fillMaxSize()
             .background(color = Color.White)
     ) {
-
-        ShelterDetailTitleBar(
+        TitleBarComponent(
             title = "우리아이 찾아요",
-            ismenu = false,
-            clickBack = { navController.popBackStack() }
-        ) {
-            activity.finish()
-        }
+            isMenu = false,
+            onClickBack = { navController.popBackStack() },
+            onClickMenu = { activity.finish() }
+        )
 
         FADetailSuvTitle("실종 당시 정보를\n상세히 입력해주세요.")
 

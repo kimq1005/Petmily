@@ -10,7 +10,15 @@ import androidx.activity.compose.setContent
 import androidx.annotation.RequiresApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.Text
@@ -44,7 +52,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.llama.petmilly_client.R
-import com.llama.petmilly_client.presentation.shelter.ShelterDetailTitleBar
+import com.llama.petmilly_client.presentation.common.compnent.TitleBarComponent
 import com.llama.petmilly_client.ui.theme.Button_NoneClicked
 import com.llama.petmilly_client.ui.theme.Grey_100_CBC4C4
 import com.llama.petmilly_client.ui.theme.Grey_50_CBC4C4
@@ -136,12 +144,12 @@ fun MoveServiceDetailScreen_3_Input(
             .fillMaxSize()
             .background(color = Color.White)
     ) {
-        ShelterDetailTitleBar(
+        TitleBarComponent(
             title = "이동봉사 찾아요",
-            ismenu = false,
-            clickBack = { activity.finish() }) {
-            activity.finish()
-        }
+            isMenu = false,
+            onClickBack = { activity.finish() },
+            onClickMenu = { activity.finish() }
+        )
 
         MoveServiceDetailSuvTitle("이동봉사 정보를\n입력해주세요.")
 
@@ -335,13 +343,11 @@ fun MoveServiceDetailScreen_4_Input(
             .fillMaxSize()
             .background(color = Color.White)
     ) {
-
-        ShelterDetailTitleBar(
+        TitleBarComponent(
             title = "이동봉사 찾아요",
-            ismenu = false,
-            clickBack = { navController.popBackStack() }) {
-            activity.finish()
-        }
+            isMenu = false,
+            onClickBack = { navController.popBackStack() },
+            onClickMenu = { activity.finish() })
 
         MoveServiceDetailSuvTitle("이동봉사 정보를\n입력해주세요.")
 

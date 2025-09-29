@@ -2,7 +2,13 @@ package com.llama.petmilly_client.presentation.findanimalscreen.findanimaldetail
 
 import android.app.Activity
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.Text
@@ -26,7 +32,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.llama.petmilly_client.R
-import com.llama.petmilly_client.presentation.shelter.ShelterDetailTitleBar
+import com.llama.petmilly_client.presentation.common.compnent.TitleBarComponent
 import com.llama.petmilly_client.ui.theme.Button_NoneClicked
 import com.llama.petmilly_client.ui.theme.Grey_100_CBC4C4
 import com.llama.petmilly_client.ui.theme.TextField_BackgroudColor
@@ -54,14 +60,12 @@ fun FADetailScreen_3_DetailInfo(
             .fillMaxWidth()
             .background(color = Color.White)
     ) {
-
-        ShelterDetailTitleBar(
+        TitleBarComponent(
             title = "우리아이 찾아요",
-            ismenu = false,
-            clickBack = { activity.finish() }
-        ) {
-            activity.finish()
-        }
+            isMenu = false,
+            onClickBack = { activity.finish() },
+            onClickMenu = { activity.finish() }
+        )
 
         FADetailSuvTitle("실종 당시 정보를\n상세히 입력해주세요.")
 

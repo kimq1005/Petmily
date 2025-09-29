@@ -24,8 +24,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import com.llama.petmilly_client.presentation.common.compnent.TitleBarComponent
 import com.llama.petmilly_client.presentation.dialog.SetAlomostCompletedDialog
-import com.llama.petmilly_client.presentation.shelter.ShelterDetailTitleBar
 import com.llama.petmilly_client.ui.theme.Button_NoneClicked
 import com.llama.petmilly_client.ui.theme.Category_Cliked
 import com.llama.petmilly_client.ui.theme.Grey_50_CBC4C4
@@ -53,15 +53,14 @@ fun ShelterDetail_3_profile_Screen(
         .fillMaxSize()
         .background(color = Color.White)) {
 
-        ShelterDetailTitleBar(
+        TitleBarComponent(
             title = "임보처구해요",
-            ismenu = false,
-            clickBack = { navController.popBackStack() }) {
-           viewModel.onShownAlmostCompetedDialog()
-        }
+            isMenu = false,
+            onClickBack = { navController.popBackStack() },
+            onClickMenu = { viewModel.onShownAlmostCompetedDialog() }
+        )
 
         ShelterDetailSuvTitle("주인공의 프로필을\n완성해주세요.")
-        /////////////////////
 
         Spacer(modifier = Modifier.height(28.dp))
 

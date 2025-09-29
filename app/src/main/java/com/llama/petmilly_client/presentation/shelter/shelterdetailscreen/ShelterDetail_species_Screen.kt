@@ -1,7 +1,13 @@
 package com.llama.petmilly_client.presentation.shelter.shelterdetailscreen
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -10,12 +16,17 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import com.llama.petmilly_client.presentation.common.compnent.TitleBarComponent
 import com.llama.petmilly_client.presentation.dialog.SetAlomostCompletedDialog
-import com.llama.petmilly_client.presentation.shelter.ShelterDetailTitleBar
 import com.llama.petmilly_client.ui.theme.Button_Clicked
 import com.llama.petmilly_client.ui.theme.Button_NoneClicked
 import com.llama.petmilly_client.ui.theme.Category_Cliked
-import com.llama.petmilly_client.utils.*
+import com.llama.petmilly_client.utils.ButtonScreen
+import com.llama.petmilly_client.utils.ButtonShapeScreen
+import com.llama.petmilly_client.utils.CheckedCheckBox
+import com.llama.petmilly_client.utils.NoneCheckBox
+import com.llama.petmilly_client.utils.notosans_bold
+import com.llama.petmilly_client.utils.notosans_regular
 import llama.test.jetpack_dagger_plz.utils.Common
 
 @Composable
@@ -30,11 +41,12 @@ fun ShelterDetail_species_Screen(
             .fillMaxSize()
             .background(color = Color.White)
     ) {
-
-        ShelterDetailTitleBar(title = "임보처구해요", ismenu = false, clickBack = { activity.finish() }) {
-//            activity.finish()
-            viewModel.onShownAlmostCompetedDialog()
-        }
+        TitleBarComponent(
+            title = "임보처구해요",
+            isMenu = false,
+            onClickBack = { activity.finish() },
+            onClickMenu = { viewModel.onShownAlmostCompetedDialog() }
+        )
 
         ShelterDetailSuvTitle("주인공의 정보를\n입력해주세요.")
 

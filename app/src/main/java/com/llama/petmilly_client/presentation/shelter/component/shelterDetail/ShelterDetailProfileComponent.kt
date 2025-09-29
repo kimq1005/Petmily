@@ -18,18 +18,15 @@ import androidx.compose.ui.unit.sp
 import com.llama.petmilly_client.ui.theme.Black_60_Transfer
 import com.llama.petmilly_client.utils.SpacerHeight
 import com.llama.petmilly_client.utils.notosans_bold
-import com.llama.petmilly_client.utils.notosans_regular
-
-class ShelterDetailProfileComponent {
-}
 
 @Composable
 fun ShelterDetailProfileComponent(
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     Column {
         Text(
-            text = "프로필", modifier = Modifier
+            text = "프로필",
+            modifier = Modifier
                 .fillMaxWidth()
                 .padding(top = 20.dp, start = 30.dp),
             fontSize = 16.sp,
@@ -48,32 +45,39 @@ fun ShelterDetailProfileComponent(
                 .padding(top = 5.dp, start = 20.dp, end = 20.dp), color = Color.Black
         )
 
-
-
         Column(
             modifier = Modifier
                 .padding(horizontal = 20.dp)
         ) {
+            (0.. 3).forEach { i ->
+                ShelterDetailProfilePartComponent(
+                    modifier = Modifier
+                        .padding(vertical = 10.dp),
+                    title = "중성화/접종",
+                    content = ""
+                )
+            }
+
             SpacerHeight(dp = 10.dp)
 
-//            Row(
-//                modifier = Modifier
-//                    .fillMaxWidth()
-//                    .padding(start = 10.dp, bottom = 10.dp)
-//            ) {
-//                Text(
-//                    text = "중성화/접종 ",
-//                    color = Black_60_Transfer,
-//                    fontSize = 13.sp,
-//                    fontFamily = notosans_bold,
-//                    style = TextStyle(
-//                        platformStyle = PlatformTextStyle(
-//                            includeFontPadding = false
-//                        )
-//                    ),
-//                    modifier = Modifier.width(80.dp)
-//                )
-//
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(start = 10.dp, bottom = 10.dp)
+            ) {
+                Text(
+                    text = "중성화/접종 ",
+                    color = Black_60_Transfer,
+                    fontSize = 13.sp,
+                    fontFamily = notosans_bold,
+                    style = TextStyle(
+                        platformStyle = PlatformTextStyle(
+                            includeFontPadding = false
+                        )
+                    ),
+                    modifier = Modifier.width(80.dp)
+                )
+
 //                Text(
 //                    text = "${viewModel.neutered_detail.value} / ${viewModel.inoculation_detail.value} ",
 //                    color = Black_60_Transfer,
@@ -86,7 +90,7 @@ fun ShelterDetailProfileComponent(
 //                        )
 //                    )
 //                )
-//            }
+            }
 
             Divider(
                 modifier = Modifier
@@ -208,5 +212,5 @@ fun ShelterDetailProfileComponent(
 @Preview(showBackground = true)
 @Composable
 private fun PreviewShelterDetailProfileComponent() {
-
+    ShelterDetailProfileComponent()
 }

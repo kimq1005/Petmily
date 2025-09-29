@@ -26,8 +26,8 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.llama.petmilly_client.domain.model.shelter.PostDetail
 import com.llama.petmilly_client.presentation.certificationscreen.CertificationActivity
-import com.llama.petmilly_client.presentation.shelter.items.ShelterItem
-import com.llama.petmilly_client.presentation.shelter.items.ShelterSafeCategoryItem
+import com.llama.petmilly_client.presentation.shelter.item.ShelterItem
+import com.llama.petmilly_client.presentation.shelter.item.ShelterSafeCategoryItem
 import com.llama.petmilly_client.presentation.shelter.model.ShelterSafeCategoryType
 import com.llama.petmilly_client.presentation.shelter.model.ShelterSafeType
 import com.llama.petmilly_client.presentation.shelter.model.ShelterSideEffect

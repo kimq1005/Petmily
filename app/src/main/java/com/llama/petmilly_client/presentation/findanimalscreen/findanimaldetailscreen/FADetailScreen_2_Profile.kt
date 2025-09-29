@@ -7,7 +7,16 @@ import android.util.Log
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -30,14 +39,21 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import com.llama.petmilly_client.presentation.common.compnent.TitleBarComponent
 import com.llama.petmilly_client.presentation.dialog.SetAlomostCompletedDialog
-import com.llama.petmilly_client.presentation.shelter.ShelterDetailTitleBar
 import com.llama.petmilly_client.presentation.shelter.shelterdetailscreen.ImageTestUriData
 import com.llama.petmilly_client.ui.theme.Button_NoneClicked
 import com.llama.petmilly_client.ui.theme.Category_Cliked
 import com.llama.petmilly_client.ui.theme.Grey_50_CBC4C4
 import com.llama.petmilly_client.ui.theme.TextField_BackgroudColor
-import com.llama.petmilly_client.utils.*
+import com.llama.petmilly_client.utils.ButtonScreen
+import com.llama.petmilly_client.utils.ButtonScreen_HOUSE
+import com.llama.petmilly_client.utils.IDontKnowCheckBox
+import com.llama.petmilly_client.utils.PicktureUriItems
+import com.llama.petmilly_client.utils.SpacerHeight
+import com.llama.petmilly_client.utils.SpacerWidth
+import com.llama.petmilly_client.utils.notosans_bold
+import com.llama.petmilly_client.utils.notosans_regular
 import llama.test.jetpack_dagger_plz.utils.Common
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
@@ -67,12 +83,12 @@ fun FADetail_2_Profile_1_Screen(
             .fillMaxSize()
             .background(color = Color.White)
     ) {
-        ShelterDetailTitleBar(
+        TitleBarComponent(
             title = "우리아이 찾아요",
-            ismenu = false,
-            clickBack = { navController.popBackStack() }) {
-            viewModel.onShownAlmostCompetedDialog()
-        }
+            isMenu = false,
+            onClickBack = { navController.popBackStack() },
+            onClickMenu =  { viewModel.onShownAlmostCompetedDialog() }
+        )
 
         FADetailSuvTitle("주인공의 프로필을\n" +
                 "입력해주세요.")
@@ -337,13 +353,12 @@ fun FADetail_2_Profile_2_Screen(
             .fillMaxSize()
             .background(Color.White)
     ) {
-
-        ShelterDetailTitleBar(
+        TitleBarComponent(
             title = "우리아이 찾아요",
-            ismenu = false,
-            clickBack = { navController.popBackStack() }) {
-            viewModel.onShownAlmostCompetedDialog()
-        }
+            isMenu = false,
+            onClickBack = { navController.popBackStack() },
+            onClickMenu = { viewModel.onShownAlmostCompetedDialog() }
+        )
 
         FADetailSuvTitle("주인공의 프로필을\n" +
                 "입력해주세요.")

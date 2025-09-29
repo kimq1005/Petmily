@@ -17,8 +17,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import com.llama.petmilly_client.presentation.common.compnent.TitleBarComponent
 import com.llama.petmilly_client.presentation.dialog.SetAlomostCompletedDialog
-import com.llama.petmilly_client.presentation.shelter.ShelterDetailTitleBar
 import com.llama.petmilly_client.ui.theme.Button_Clicked
 import com.llama.petmilly_client.ui.theme.Button_NoneClicked
 import com.llama.petmilly_client.ui.theme.Category_Cliked
@@ -42,11 +42,12 @@ fun MoveServiceDetail_1_AnimalTypes_Screen(
             .fillMaxSize()
             .background(color = Color.White)
     ) {
-
-        ShelterDetailTitleBar(title = "이동봉사 찾아요", ismenu = false, clickBack = { activity.finish() }) {
-//            activity.finish()
-            viewModel.onShownAlmostCompetedDialog()
-        }
+        TitleBarComponent(
+            title = "이동봉사 찾아요",
+            isMenu = false,
+            onClickBack = { activity.finish() },
+            onClickMenu = { viewModel.onShownAlmostCompetedDialog() }
+        )
 
         MoveServiceDetailSuvTitle("주인공의 정보를\n입력해주세요.")
         Spacer(modifier = Modifier.height(50.dp))

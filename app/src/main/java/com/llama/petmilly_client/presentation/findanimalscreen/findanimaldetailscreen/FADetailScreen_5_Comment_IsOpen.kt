@@ -24,7 +24,7 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
 import androidx.navigation.NavController
 import com.llama.petmilly_client.R
-import com.llama.petmilly_client.presentation.shelter.ShelterDetailTitleBar
+import com.llama.petmilly_client.presentation.common.compnent.TitleBarComponent
 import com.llama.petmilly_client.ui.theme.Button_NoneClicked
 import com.llama.petmilly_client.ui.theme.Category_Cliked
 import com.llama.petmilly_client.utils.*
@@ -52,13 +52,12 @@ fun FADetailScreen_5_Comment_IsOpen(navController: NavController, viewModel: FAD
         progressDialog.setCanceledOnTouchOutside(false)
         progressDialog.setCancelable(false)
 
-        ShelterDetailTitleBar(
+        TitleBarComponent(
             title = "우리아이 찾아요",
-            ismenu = false,
-            clickBack = { navController.popBackStack() }
-        ) {
-            activity.finish()
-        }
+            isMenu = false,
+            onClickBack = { navController.popBackStack() },
+            onClickMenu = { activity.finish() }
+        )
 
         FADetailSuvTitle("제보(댓글) 공개 여부를\n설정해주세요.")
 

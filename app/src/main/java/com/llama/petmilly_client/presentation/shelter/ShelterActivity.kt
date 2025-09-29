@@ -38,7 +38,6 @@ import com.llama.petmilly_client.utils.notosans_bold
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-@OptIn(ExperimentalFoundationApi::class)
 class ShelterActivity : ComponentActivity() {
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -46,7 +45,7 @@ class ShelterActivity : ComponentActivity() {
         setContent {
             Surface {
                 val navController = rememberNavController()
-                val viewModel: ShelterViewModel = hiltViewModel()
+
                 Column {
                     TitleBarComponent(
                         title = "임보처 구해요",
@@ -77,10 +76,9 @@ class ShelterActivity : ComponentActivity() {
 
                         composable("${ShelterSafeType.ANIMAL_INFO_DETAIL.name}/{id}") {
                             val id = it.arguments?.getString("id").toString()
-//                            ShelterDetailScreen(
-//                                viewModel = viewModel,
-//                                id = id
-//                            )
+                            ShelterDetailSuccessScreen(
+                                id = id.toInt()
+                            )
                         }
                     }
                 }
@@ -88,55 +86,55 @@ class ShelterActivity : ComponentActivity() {
         }
     }
 }
-
-@Composable
-fun ShelterDetailTitleBar(
-    title: String,
-    ismenu: Boolean,
-    clickBack: () -> Unit,
-    clickcancle: () -> Unit,
-) {
-    Box(
-        modifier = Modifier
-            .fillMaxWidth()
-            .background(color = Color.White)
-            .padding(16.dp),
-    ) {
-        Image(
-            painter = painterResource(id = R.drawable.img_test_dog4),
-            contentDescription = null,
-            modifier = Modifier
-                .width(20.dp)
-                .height(20.dp)
-                .align(Alignment.CenterStart)
-                .clickable {
-                    clickBack()
-                }
-        )
-
-        Text(
-            text = title,
-            fontSize = 17.sp,
-            fontFamily = notosans_bold,
-            style = TextStyle(
-                platformStyle = PlatformTextStyle(
-                    includeFontPadding = false
-                )
-            ),
-            color = Color.Black,
-            modifier = Modifier.align(Alignment.Center),
-        )
-
-        Image(
-            painter = painterResource(id = R.drawable.img_test_dog4),
-            contentDescription = null,
-            modifier = Modifier
-                .height(35.dp)
-                .width(35.dp)
-                .align(Alignment.CenterEnd)
-                .padding(top = 16.dp, end = 16.dp)
-                .clickable { clickcancle() },
-            contentScale = ContentScale.Crop
-        )
-    }
-}
+//
+//@Composable
+//fun ShelterDetailTitleBar(
+//    title: String,
+//    ismenu: Boolean,
+//    clickBack: () -> Unit,
+//    clickcancle: () -> Unit,
+//) {
+//    Box(
+//        modifier = Modifier
+//            .fillMaxWidth()
+//            .background(color = Color.White)
+//            .padding(16.dp),
+//    ) {
+//        Image(
+//            painter = painterResource(id = R.drawable.img_test_dog4),
+//            contentDescription = null,
+//            modifier = Modifier
+//                .width(20.dp)
+//                .height(20.dp)
+//                .align(Alignment.CenterStart)
+//                .clickable {
+//                    clickBack()
+//                }
+//        )
+//
+//        Text(
+//            text = title,
+//            fontSize = 17.sp,
+//            fontFamily = notosans_bold,
+//            style = TextStyle(
+//                platformStyle = PlatformTextStyle(
+//                    includeFontPadding = false
+//                )
+//            ),
+//            color = Color.Black,
+//            modifier = Modifier.align(Alignment.Center),
+//        )
+//
+//        Image(
+//            painter = painterResource(id = R.drawable.img_test_dog4),
+//            contentDescription = null,
+//            modifier = Modifier
+//                .height(35.dp)
+//                .width(35.dp)
+//                .align(Alignment.CenterEnd)
+//                .padding(top = 16.dp, end = 16.dp)
+//                .clickable { clickcancle() },
+//            contentScale = ContentScale.Crop
+//        )
+//    }
+//}
