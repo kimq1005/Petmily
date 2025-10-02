@@ -1,4 +1,4 @@
-package com.llama.petmilly_client.presentation.shelter.shelterdetailscreen
+package com.llama.petmilly_client.presentation.shelterWrite
 
 import android.annotation.SuppressLint
 import android.graphics.Bitmap
@@ -36,6 +36,7 @@ import androidx.navigation.NavController
 import com.llama.petmilly_client.R
 import com.llama.petmilly_client.presentation.common.compnent.TitleBarComponent
 import com.llama.petmilly_client.presentation.dialog.SetAlomostCompletedDialog
+import com.llama.petmilly_client.presentation.shelterWrite.component.ShelterWriteSubTitleComponent
 import com.llama.petmilly_client.ui.theme.*
 import com.llama.petmilly_client.utils.*
 import llama.test.jetpack_dagger_plz.utils.Common
@@ -49,10 +50,9 @@ import java.io.IOException
 @Composable
 fun ShelterDetail_1_profile_Screen(
     navController: NavController,
-    viewModel: ShelterDetailViewModel,
-    activity: ShelterDetailActivity,
+    viewModel: ShelterWriteViewModel,
+    activity: ShelterWriteActivity,
 ) {
-
     SetAlomostCompletedDialog(
         viewModel.isAlmostCompletedDialog, onDismiss = {
             viewModel.onDismissAlmostCompetedDialog()
@@ -64,19 +64,13 @@ fun ShelterDetail_1_profile_Screen(
     val bitmapState = remember {
         mutableStateOf<Bitmap?>(null)
     }
+
     Column(
         Modifier
             .fillMaxSize()
             .background(color = Color.White)
     ) {
-        TitleBarComponent(
-            title = "임보처구해요",
-            isMenu = false,
-            onClickBack = { navController.popBackStack() },
-            onClickMenu = { viewModel.onShownAlmostCompetedDialog() }
-        )
-
-        ShelterDetailSuvTitle("주인공의 프로필을\n입력해주세요.")
+        ShelterWriteSubTitleComponent("주인공의 프로필을\n입력해주세요.")
 
         Spacer(modifier = Modifier.height(28.dp))
 
@@ -94,7 +88,6 @@ fun ShelterDetail_1_profile_Screen(
         )
 
         Spacer(modifier = Modifier.height(6.dp))
-
 
         TextField(
             value = viewModel.animalname.value,
@@ -115,7 +108,6 @@ fun ShelterDetail_1_profile_Screen(
             placeholder = { Text(text = "주인공의 이름을 적어주세요.") }
         )
 
-
         Spacer(modifier = Modifier.height(28.dp))
 
         Text(
@@ -134,6 +126,7 @@ fun ShelterDetail_1_profile_Screen(
         Spacer(modifier = Modifier.height(6.dp))
 
         val transparentGray = Color.Gray.copy(alpha = 0.2f)
+
         Row(
             modifier = Modifier
                 .fillMaxWidth()

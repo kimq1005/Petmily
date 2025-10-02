@@ -145,7 +145,9 @@ fun ShelterItemComponent(
                 .weight(1f)
         ) {
             Text(
-                text = convertTimetoHour(time),
+                //Todo: api 수정 후 변경 예정
+//                text = convertTimetoHour(time),
+                text = "지금",
                 modifier = Modifier
                     .align(Alignment.End)
                     .padding(end = 8.dp, top = 6.dp),

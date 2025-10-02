@@ -1,4 +1,4 @@
-package com.llama.petmilly_client.presentation.shelter.shelterdetailscreen
+package com.llama.petmilly_client.presentation.shelterWrite
 
 import android.app.Activity
 import androidx.compose.foundation.background
@@ -24,6 +24,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.llama.petmilly_client.presentation.common.compnent.TitleBarComponent
 import com.llama.petmilly_client.presentation.dialog.SetAlomostCompletedDialog
+import com.llama.petmilly_client.presentation.shelterWrite.component.ShelterWriteSubTitleComponent
 import com.llama.petmilly_client.ui.theme.TextField_BackgroudColor
 import com.llama.petmilly_client.utils.ButtonScreen
 import com.llama.petmilly_client.utils.notosans_bold
@@ -32,7 +33,7 @@ import llama.test.jetpack_dagger_plz.utils.Common
 @Composable
 fun ShelterDetail_4_profile_Screen(
     navController: NavController,
-    viewModel: ShelterDetailViewModel,
+    viewModel: ShelterWriteViewModel,
     activity:Activity
 ) {
 
@@ -51,7 +52,7 @@ fun ShelterDetail_4_profile_Screen(
             onClickMenu = { viewModel.onShownAlmostCompetedDialog()}
         )
 
-        ShelterDetailSuvTitle("주인공의 프로필을\n완성해주세요.")
+        ShelterWriteSubTitleComponent("주인공의 프로필을\n완성해주세요.")
 
         Spacer(modifier = Modifier.height(28.dp))
 

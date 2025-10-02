@@ -25,12 +25,12 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.llama.petmilly_client.domain.model.shelter.PostDetail
-import com.llama.petmilly_client.presentation.certificationscreen.CertificationActivity
 import com.llama.petmilly_client.presentation.shelter.item.ShelterItem
 import com.llama.petmilly_client.presentation.shelter.item.ShelterSafeCategoryItem
 import com.llama.petmilly_client.presentation.shelter.model.ShelterSafeCategoryType
 import com.llama.petmilly_client.presentation.shelter.model.ShelterSafeType
 import com.llama.petmilly_client.presentation.shelter.model.ShelterSideEffect
+import com.llama.petmilly_client.presentation.shelterWrite.ShelterWriteActivity
 import llama.test.jetpack_dagger_plz.utils.Common.TAG
 import org.orbitmvi.orbit.compose.collectSideEffect
 
@@ -47,7 +47,7 @@ fun SafeShelterSuccessScreen(
         when(sideEffect) {
             is ShelterSideEffect.Error -> Log.d(TAG, "SafeShelterSuccessScreen Error: ${sideEffect.message}")
             is ShelterSideEffect.NavigateToActivity -> {
-                val intent = Intent(context, CertificationActivity::class.java)
+                val intent = Intent(context, ShelterWriteActivity::class.java)
                 context.startActivity(intent)
             }
         }
@@ -115,7 +115,7 @@ fun SafeShelterScreen(
 }
 
 @RequiresApi(Build.VERSION_CODES.O)
-@Preview
+@Preview (showBackground = true)
 @Composable
 private fun PreviewSafeShelterScreen() {
     SafeShelterScreen(

@@ -26,7 +26,7 @@ import com.llama.petmilly_client.presentation.home.items.PetCategoryItem
 import com.llama.petmilly_client.presentation.home.items.ShelterCategoryItem
 import com.llama.petmilly_client.presentation.home.model.ClusterItem
 import com.llama.petmilly_client.presentation.home.model.HomeSideEffect
-import com.llama.petmilly_client.presentation.home.model.PetCategory
+import com.llama.petmilly_client.presentation.home.model.PetCategoryType
 import com.llama.petmilly_client.presentation.home.model.ShelterCategory
 import com.llama.petmilly_client.presentation.moveservicscreen.MoveServiceActivity
 import com.llama.petmilly_client.presentation.shelter.ShelterActivity
@@ -86,7 +86,7 @@ fun HomeMapSuccessScreen(
 
     HomeMapScreen(
         petData = state.petData,
-        selectedPetCategory = state.selectedPetCategory,
+        selectedPetCategoryType = state.selectedPetCategoryType,
         selectedShelterCategory = state.selectedShelterCategory,
         onClickPetCategory = viewModel::onClickPetCategory,
         onClickShelterCategory = viewModel::onClickShelterCategory,
@@ -98,9 +98,9 @@ fun HomeMapSuccessScreen(
 @Composable
 fun HomeMapScreen(
     petData: List<LibraryDetail>,
-    selectedPetCategory: List<PetCategory>,
+    selectedPetCategoryType: List<PetCategoryType>,
     selectedShelterCategory: List<ShelterCategory>,
-    onClickPetCategory: (PetCategory) -> Unit,
+    onClickPetCategory: (PetCategoryType) -> Unit,
     onClickShelterCategory: (ShelterCategory) -> Unit,
     onClusterClick: () -> Unit,
 ) {
@@ -157,7 +157,7 @@ fun HomeMapScreen(
                 modifier = Modifier
                     .padding(horizontal = 16.dp)
                     .padding(top = 10.dp),
-                selectedPetCategory = selectedPetCategory,
+                selectedPetCategoryType = selectedPetCategoryType,
                 onClick = onClickPetCategory
             )
 

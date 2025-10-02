@@ -9,6 +9,7 @@
 
     <string name="signup_top_description">아이들의 안전한 입양을 위해 기본정보가 필요합니다.\n입력하신 정보는 입양/임보 신청 시에만 사용됩니다.</string>
 
+    <string name="next">다음</string>
 
     <string name="modifiy"><u>수정하기</u></string>
     <string name="entity_read"><u>전체읽기</u></string>
@@ -29,6 +30,8 @@
     <string name="nav_notification">알림</string>
     <string name="nav_menu">메뉴</string>
 
+    <string name="shelter_bar_title">임보처 구해요</string>
+
     <string name="shelter_profile_title">프로필</string>
     <string name="shelter_profile_question_1">중성화/접종</string>
     <string name="shelter_profile_question_2">성격</string>
@@ -44,4 +47,6 @@
     <string name="shelter_detail_application_period">신청서 접수기간 : %s</string>
     <string name="shelter_detail_review_period">신청서 심사기간 : %s</string>
     <string name="shelter_detail_period_notification">* 임보신청서 심사 후 확정 시 앱 알림 및 채팅을 통해 안내드립니다.</string>
+
+    <string name="shelter_write_pet_info_title">주인공의 정보를\n입력해주세요.</string>
 </resources>

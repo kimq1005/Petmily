@@ -1,4 +1,4 @@
-package com.llama.petmilly_client.presentation.shelter.shelterdetailscreen
+package com.llama.petmilly_client.presentation.shelterWrite
 
 import android.net.Uri
 import android.os.Build
@@ -13,25 +13,48 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.llama.petmilly_client.domain.repository.PetMillyRepo
+import com.llama.petmilly_client.presentation.home.model.PetCategoryType
+import com.llama.petmilly_client.presentation.shelterWrite.model.ShelterWriteSideEffect
+import com.llama.petmilly_client.presentation.shelterWrite.model.ShelterWriteState
 import com.llama.petmilly_client.utils.Event
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import llama.test.jetpack_dagger_plz.utils.Common.TAG
 import com.llama.petmilly_client.utils.RemoteResult
+import kotlinx.coroutines.CoroutineExceptionHandler
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import okhttp3.RequestBody.Companion.toRequestBody
+import org.orbitmvi.orbit.Container
+import org.orbitmvi.orbit.ContainerHost
+import org.orbitmvi.orbit.syntax.simple.intent
+import org.orbitmvi.orbit.syntax.simple.postSideEffect
+import org.orbitmvi.orbit.syntax.simple.reduce
+import org.orbitmvi.orbit.viewmodel.container
 import java.time.LocalDateTime
 import java.time.LocalTime
 import java.time.format.DateTimeFormatter
 import javax.inject.Inject
 
 @HiltViewModel
-class ShelterDetailViewModel @Inject constructor(
+class ShelterWriteViewModel @Inject constructor(
     private val petMillyRepo: PetMillyRepo,
-) : ViewModel() {
+) : ViewModel(), ContainerHost<ShelterWriteState, ShelterWriteSideEffect> {
+
+    override val container: Container<ShelterWriteState, ShelterWriteSideEffect> = container(
+        initialState = ShelterWriteState(),
+        buildSettings = {
+            this.exceptionHandler = CoroutineExceptionHandler { _, throwable ->
+                intent {
+                    postSideEffect(
+                        ShelterWriteSideEffect.Error(message = throwable.message.orEmpty())
+                    )
+                }
+            }
+        }
+    )
 
     private val _setcompleted = MutableLiveData<Event<Unit>>()
     val setcompleted: LiveData<Event<Unit>> = _setcompleted
@@ -44,7 +67,6 @@ class ShelterDetailViewModel @Inject constructor(
 
     var isAlmostCompletedDialog by mutableStateOf(false)
         private set
-
 
     val files = mutableStateListOf<MultipartBody.Part>()
     val charmAppeal = mutableStateOf("")
@@ -79,10 +101,15 @@ class ShelterDetailViewModel @Inject constructor(
     val nopeople = mutableStateOf("")
 
     val apstartyear = mutableStateOf("")
-
-
     val apendyear = mutableStateOf("")
 
+    fun setPetSpecies(
+        species: PetCategoryType,
+    ) = intent {
+        reduce {
+            state.copy(petCategoryType = species)
+        }
+    }
 
     fun updateFiles(newFiles: MultipartBody.Part) {
         files.add(newFiles)
@@ -201,14 +228,16 @@ class ShelterDetailViewModel @Inject constructor(
                     val formatter = DateTimeFormatter.ofPattern("yy-MM-dd HH:mm:ss")
                     val dateString = "${apstartyear.value} 10:00:00"
                     val date = LocalDateTime.parse(dateString, formatter)
-                    val hopeapplicationperiod = RequestBody.create("text/plain".toMediaTypeOrNull(), date.toString())
+                    val hopeapplicationperiod =
+                        RequestBody.create("text/plain".toMediaTypeOrNull(), date.toString())
                     hopeapplicationperiod
                 } else null,
                 endReceptionPeriod = if (apendyear.value != "") {
                     val formatter = DateTimeFormatter.ofPattern("yy-MM-dd HH:mm:ss")
                     val dateString = "${apendyear.value} 10:00:00"
                     val date = LocalDateTime.parse(dateString, formatter)
-                    val hopeapplicationperiod = RequestBody.create("text/plain".toMediaTypeOrNull(), date.toString())
+                    val hopeapplicationperiod =
+                        RequestBody.create("text/plain".toMediaTypeOrNull(), date.toString())
                     hopeapplicationperiod
                 } else null,
                 temporaryProtectionCondition ?: null,
@@ -220,6 +249,7 @@ class ShelterDetailViewModel @Inject constructor(
                         Log.d(TAG, "posttemporaryprotection SUCCESS: $it")
                         _setcompleted.postValue(Event(Unit))
                     }
+
                     else -> {
                         Log.d(TAG, "posttemporaryprotection ERROR: $it")
 //                        _setnotcompleted.postValue(it.message)
@@ -229,5 +259,4 @@ class ShelterDetailViewModel @Inject constructor(
             }
         }
     }
-
 }

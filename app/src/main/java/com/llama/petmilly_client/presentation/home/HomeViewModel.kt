@@ -6,7 +6,7 @@ import com.llama.petmilly_client.BuildConfig
 import com.llama.petmilly_client.domain.usecase.home.GetLibraryUseCase
 import com.llama.petmilly_client.presentation.home.model.HomeSideEffect
 import com.llama.petmilly_client.presentation.home.model.HomeState
-import com.llama.petmilly_client.presentation.home.model.PetCategory
+import com.llama.petmilly_client.presentation.home.model.PetCategoryType
 import com.llama.petmilly_client.presentation.home.model.ShelterCategory
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineExceptionHandler
@@ -58,18 +58,18 @@ class HomeViewModel @Inject constructor(
     }
 
     fun onClickPetCategory(
-        petCategory: PetCategory,
+        petCategoryType: PetCategoryType,
     ) = intent {
         reduce {
             state.copy(
-                selectedPetCategory = state.selectedPetCategory.toMutableList().apply {
-                    val contains = state.selectedPetCategory.contains(petCategory)
+                selectedPetCategoryType = state.selectedPetCategoryType.toMutableList().apply {
+                    val contains = state.selectedPetCategoryType.contains(petCategoryType)
 
                     if (!contains) {
                         clear()
-                        add(petCategory)
+                        add(petCategoryType)
                     } else {
-                        remove(petCategory)
+                        remove(petCategoryType)
                     }
                 }
             )

@@ -1,4 +1,4 @@
-package com.llama.petmilly_client.presentation.shelter.shelterdetailscreen
+package com.llama.petmilly_client.presentation.shelterWrite
 
 import android.app.Activity
 import android.content.Context
@@ -13,7 +13,6 @@ import androidx.compose.material.TextField
 import androidx.compose.material.TextFieldDefaults
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
-import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
@@ -30,6 +29,7 @@ import androidx.navigation.NavController
 import com.llama.petmilly_client.R
 import com.llama.petmilly_client.presentation.common.compnent.TitleBarComponent
 import com.llama.petmilly_client.presentation.dialog.SetAlomostCompletedDialog
+import com.llama.petmilly_client.presentation.shelterWrite.component.ShelterWriteSubTitleComponent
 import com.llama.petmilly_client.ui.theme.Grey_100_CBC4C4
 import com.llama.petmilly_client.utils.ButtonScreen
 import com.llama.petmilly_client.utils.notosans_bold
@@ -39,7 +39,7 @@ import com.llama.petmilly_client.utils.notosans_regular
 @Composable
 fun ShelterDetail_8_Application_Period_Screen(
     navController: NavController,
-    viewModel: ShelterDetailViewModel,
+    viewModel: ShelterWriteViewModel,
     activity: Activity,
 ) {
 
@@ -65,7 +65,7 @@ fun ShelterDetail_8_Application_Period_Screen(
             onClickMenu = { viewModel.onShownAlmostCompetedDialog() }
         )
 
-        ShelterDetailSuvTitle("신청서 접수기간\n희망 시 입력해주세요.")
+        ShelterWriteSubTitleComponent("신청서 접수기간\n희망 시 입력해주세요.")
 
         Spacer(modifier = Modifier.height(28.dp))
 
@@ -344,7 +344,7 @@ fun ShelterDetail_8_Application_Period_Screen(
 }
 
 private fun setObserve(
-    viewModel: ShelterDetailViewModel,
+    viewModel: ShelterWriteViewModel,
     lifecycleOwner: LifecycleOwner,
     activity: Activity,
     context: Context,

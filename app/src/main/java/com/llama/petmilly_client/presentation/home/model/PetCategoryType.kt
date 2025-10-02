@@ -1,6 +1,6 @@
 package com.llama.petmilly_client.presentation.home.model
 
-enum class PetCategory(
+enum class PetCategoryType(
     val title: String,
     val code: String
 ) {

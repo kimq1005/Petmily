@@ -9,29 +9,29 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.llama.petmilly_client.presentation.home.component.CategoryComponent
-import com.llama.petmilly_client.presentation.home.model.PetCategory
+import com.llama.petmilly_client.presentation.home.model.PetCategoryType
 
 @Composable
 fun PetCategoryItem(
     modifier: Modifier = Modifier,
-    selectedPetCategory: List<PetCategory>,
-    onClick: (PetCategory) -> Unit,
+    selectedPetCategoryType: List<PetCategoryType>,
+    onClick: (PetCategoryType) -> Unit,
 ) {
-    val petCategoryItem = PetCategory.values()
+    val petCategoryTypeItem = PetCategoryType.values()
 
     LazyRow(
         modifier = modifier
             .fillMaxWidth()
     ) {
         items(
-            items = petCategoryItem,
+            items = petCategoryTypeItem,
             key = { i -> i.code }
         ) {
             CategoryComponent(
                 modifier = Modifier
                     .padding(end = 8.dp),
                 title = it.title,
-                isSelected = selectedPetCategory.contains(it),
+                isSelected = selectedPetCategoryType.contains(it),
                 onClick = {
                     onClick(it)
                 }
@@ -46,7 +46,7 @@ private fun PreviewPetCategoryItem() {
     PetCategoryItem(
         modifier = Modifier
             .fillMaxWidth(),
-        selectedPetCategory = listOf(PetCategory.PUPPY, PetCategory.CAT),
+        selectedPetCategoryType = listOf(PetCategoryType.PUPPY, PetCategoryType.CAT),
         onClick = {}
     )
 }

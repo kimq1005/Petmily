@@ -6,6 +6,6 @@ import com.llama.petmilly_client.domain.model.home.LibraryDetail
 @Immutable
 data class HomeState(
     val petData: List<LibraryDetail> = emptyList(),
-    val selectedPetCategory: List<PetCategory> = emptyList(),
+    val selectedPetCategoryType: List<PetCategoryType> = emptyList(),
     val selectedShelterCategory: List<ShelterCategory> = emptyList(),
 )
