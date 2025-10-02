@@ -10,6 +10,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.llama.petmilly_client.presentation.chatscreen.ChatEntityScreen
 import com.llama.petmilly_client.presentation.favoritescreen.FavoriteScreen
+import com.llama.petmilly_client.presentation.home.items.MainBottomBar
 import com.llama.petmilly_client.presentation.myprofilescreen.MyProfileScreen
 import com.llama.petmilly_client.presentation.notificationscreen.NotificationScreen
 
@@ -47,6 +48,11 @@ fun HomeNavHost() {
                     }
                 }
             },
+            bottomBar = {
+                MainBottomBar(
+                    navController = navController
+                )
+            }
         )
     }
 }
