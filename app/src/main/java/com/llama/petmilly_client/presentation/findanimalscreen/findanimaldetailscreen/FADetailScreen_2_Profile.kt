@@ -47,7 +47,7 @@ import com.llama.petmilly_client.ui.theme.Category_Cliked
 import com.llama.petmilly_client.ui.theme.Grey_50_CBC4C4
 import com.llama.petmilly_client.ui.theme.TextField_BackgroudColor
 import com.llama.petmilly_client.utils.ButtonScreen
-import com.llama.petmilly_client.utils.ButtonScreen_HOUSE
+import com.llama.petmilly_client.utils.CommonCategoryButtonComponent
 import com.llama.petmilly_client.utils.IDontKnowCheckBox
 import com.llama.petmilly_client.utils.PicktureUriItems
 import com.llama.petmilly_client.utils.SpacerHeight
@@ -154,15 +154,15 @@ fun FADetail_2_Profile_1_Screen(
                 .padding(horizontal = 26.dp),
             horizontalArrangement = Arrangement.SpaceAround
         ) {
-            ButtonScreen_HOUSE(
+            CommonCategoryButtonComponent(
                 title = "수컷",
-                textcolor = if (viewModel.gender.value == "수컷") Color.White else Color.Black,
+                textColor = if (viewModel.gender.value == "수컷") Color.White else Color.Black,
                 fontSize = 20,
                 modifier = Modifier
                     .weight(1f)
                     .padding(5.dp)
                     .height(55.dp),
-                backgroundcolor = if (viewModel.gender.value == "수컷") Category_Cliked else Button_NoneClicked,
+                backgroundColor = if (viewModel.gender.value == "수컷") Category_Cliked else Button_NoneClicked,
                 shape = RoundedCornerShape(19.dp),
                 textAlign = TextAlign.Center,
                 enabled = true
@@ -171,15 +171,15 @@ fun FADetail_2_Profile_1_Screen(
             }
 
 
-            ButtonScreen_HOUSE(
+            CommonCategoryButtonComponent(
                 title = "암컷",
-                textcolor = if (viewModel.gender.value == "암컷") Color.White else Color.Black,
+                textColor = if (viewModel.gender.value == "암컷") Color.White else Color.Black,
                 fontSize = 20,
                 modifier = Modifier
                     .weight(1f)
                     .padding(5.dp)
                     .height(55.dp),
-                backgroundcolor = if (viewModel.gender.value == "암컷") Category_Cliked else Button_NoneClicked,
+                backgroundColor = if (viewModel.gender.value == "암컷") Category_Cliked else Button_NoneClicked,
                 shape = RoundedCornerShape(19.dp),
                 textAlign = TextAlign.Center,
                 enabled = true
@@ -187,15 +187,15 @@ fun FADetail_2_Profile_1_Screen(
                 viewModel.gender.value = "암컷"
             }
 
-            ButtonScreen_HOUSE(
+            CommonCategoryButtonComponent(
                 title = "모름",
-                textcolor = if (viewModel.gender.value == "모름") Color.White else Color.Black,
+                textColor = if (viewModel.gender.value == "모름") Color.White else Color.Black,
                 fontSize = 20,
                 modifier = Modifier
                     .weight(1f)
                     .padding(5.dp)
                     .height(55.dp),
-                backgroundcolor = if (viewModel.gender.value == "모름") Category_Cliked else Button_NoneClicked,
+                backgroundColor = if (viewModel.gender.value == "모름") Category_Cliked else Button_NoneClicked,
                 shape = RoundedCornerShape(19.dp),
                 textAlign = TextAlign.Center,
                 enabled = true
@@ -222,9 +222,6 @@ fun FADetail_2_Profile_1_Screen(
         )
 
         SpacerHeight(dp = 8.dp)
-
-        val imageTestUriData = remember { mutableStateListOf<ImageTestUriData>() }
-
 
         val launcher = rememberLauncherForActivityResult(
             contract = ActivityResultContracts.GetContent(),

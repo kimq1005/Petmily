@@ -14,6 +14,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.llama.petmilly_client.domain.repository.PetMillyRepo
 import com.llama.petmilly_client.presentation.home.model.PetCategoryType
+import com.llama.petmilly_client.presentation.shelterWrite.model.GenderType
 import com.llama.petmilly_client.presentation.shelterWrite.model.ShelterWriteSideEffect
 import com.llama.petmilly_client.presentation.shelterWrite.model.ShelterWriteState
 import com.llama.petmilly_client.utils.Event
@@ -111,12 +112,44 @@ class ShelterWriteViewModel @Inject constructor(
         }
     }
 
-    fun updateFiles(newFiles: MultipartBody.Part) {
-        files.add(newFiles)
+    fun setPetName(
+        petName: String
+    ) = intent {
+        reduce {
+            state.copy(petName = petName)
+        }
     }
 
-    fun deleteFiles(newFiles: MultipartBody.Part) {
-        files.remove(newFiles)
+    fun setPetGender(
+        gender: GenderType
+    ) = intent {
+        reduce {
+            state.copy(gender = gender)
+        }
+    }
+
+    fun setUploadFile(file: MultipartBody.Part) = intent {
+        reduce {
+            state.copy(petPhotoFile = state.petPhotoFile + file)
+        }
+    }
+
+    fun setDeleteFile(file: MultipartBody.Part) = intent {
+        reduce {
+            state.copy(petPhotoFile = state.petPhotoFile - file)
+        }
+    }
+
+    fun setUploadUri(uri: Uri) = intent {
+        reduce {
+            state.copy(petPhotoUri = state.petPhotoUri + uri)
+        }
+    }
+
+    fun setDeleteUri(uri: Uri) = intent {
+        reduce {
+            state.copy(petPhotoUri = state.petPhotoUri - uri)
+        }
     }
 
     fun onShownAlmostCompetedDialog() {
@@ -126,15 +159,6 @@ class ShelterWriteViewModel @Inject constructor(
     fun onDismissAlmostCompetedDialog() {
         isAlmostCompletedDialog = false
     }
-
-    fun uploadimage(uri: Uri) {
-        imageTestUriData.add(ImageTestUriData(uri))
-    }
-
-    fun deleteimage(uri: Uri) {
-        imageTestUriData.remove(ImageTestUriData(uri))
-    }
-
 
     fun addtemporaryProtectionCondition(text: String) {
         temporaryProtectionCondition.add(text)

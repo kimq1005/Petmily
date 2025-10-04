@@ -1,6 +1,5 @@
 package com.llama.petmilly_client.presentation.findanimalscreen
 
-import android.net.Uri
 import android.os.Build
 import android.util.Log
 import androidx.annotation.RequiresApi
@@ -13,7 +12,6 @@ import androidx.lifecycle.viewModelScope
 import com.llama.petmilly_client.data.model.findmypet.findmypetdetail.Comment
 import com.llama.petmilly_client.domain.repository.PetMillyRepo
 import com.llama.petmilly_client.presentation.home.CategoryTest
-import com.llama.petmilly_client.presentation.shelterWrite.ImageTestUriData
 import com.llama.petmilly_client.utils.Event
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -74,27 +72,10 @@ class FindAnimalViewModel @Inject constructor(
     val missing_month = mutableStateOf("")
     val missing_day = mutableStateOf("")
 
-    val imageTestUriData = mutableStateListOf<ImageTestUriData>()
     val files = mutableStateListOf<MultipartBody.Part>()
     val sightingAddress = mutableStateOf("")
     val comment = mutableStateOf("")
     val sightingDate = mutableStateOf("")
-
-    fun uploadimage(uri: Uri) {
-        imageTestUriData.add(ImageTestUriData(uri))
-    }
-
-    fun deleteimage(uri: Uri) {
-        imageTestUriData.remove(ImageTestUriData(uri))
-    }
-
-    fun updateFiles(newFiles: MultipartBody.Part) {
-        files.add(newFiles)
-    }
-
-    fun deleteFiles(newFiles: MultipartBody.Part) {
-        files.remove(newFiles)
-    }
 
     fun setcategory() {
 

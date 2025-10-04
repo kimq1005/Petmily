@@ -1,4 +1,8 @@
 package com.llama.petmilly_client.presentation.shelterWrite
 
-class ShelterWriteRoute {
+enum class ShelterWriteRoute(
+    val route: String,
+) {
+    SPECIES(route = "SPECIES"),
+
 }

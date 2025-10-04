@@ -31,7 +31,7 @@ import com.llama.petmilly_client.ui.theme.Button_NoneClicked
 import com.llama.petmilly_client.ui.theme.Category_Cliked
 import com.llama.petmilly_client.ui.theme.Grey_50_CBC4C4
 import com.llama.petmilly_client.utils.ButtonScreen
-import com.llama.petmilly_client.utils.ButtonScreen_HOUSE
+import com.llama.petmilly_client.utils.CommonCategoryButtonComponent
 import com.llama.petmilly_client.utils.IDontKnowCheckBox
 import com.llama.petmilly_client.utils.notosans_bold
 import com.llama.petmilly_client.utils.notosans_regular
@@ -86,15 +86,15 @@ fun ShelterDetail_3_profile_Screen(
                 .padding(horizontal = 26.dp),
             horizontalArrangement = Arrangement.SpaceAround
         ) {
-            ButtonScreen_HOUSE(
+            CommonCategoryButtonComponent(
                 title = "중성화 O",
-                textcolor = if (viewModel.isneutered.value == "중성화 O") Color.White else Color.Black,
+                textColor = if (viewModel.isneutered.value == "중성화 O") Color.White else Color.Black,
                 fontSize = 20,
                 modifier = Modifier
                     .weight(1f)
                     .padding(5.dp)
                     .height(70.dp),
-                backgroundcolor = if (viewModel.isneutered.value == "중성화 O") Category_Cliked else Button_NoneClicked,
+                backgroundColor = if (viewModel.isneutered.value == "중성화 O") Category_Cliked else Button_NoneClicked,
                 shape = RoundedCornerShape(19.dp),
                 textAlign = TextAlign.Center,
                 enabled = viewModel.isneutered.value != "모르겠어요"
@@ -102,15 +102,15 @@ fun ShelterDetail_3_profile_Screen(
                 viewModel.isneutered.value = "중성화 O"
             }
 
-            ButtonScreen_HOUSE(
+            CommonCategoryButtonComponent(
                 title = "중성화 X",
-                textcolor = if (viewModel.isneutered.value == "중성화 X") Color.White else Color.Black,
+                textColor = if (viewModel.isneutered.value == "중성화 X") Color.White else Color.Black,
                 fontSize = 20,
                 modifier = Modifier
                     .weight(1f)
                     .padding(5.dp)
                     .height(70.dp),
-                backgroundcolor = if (viewModel.isneutered.value == "중성화 X") Category_Cliked else Button_NoneClicked,
+                backgroundColor = if (viewModel.isneutered.value == "중성화 X") Category_Cliked else Button_NoneClicked,
                 shape = RoundedCornerShape(19.dp),
                 enabled = viewModel.isneutered.value != "모르겠어요",
                 textAlign = TextAlign.Center,
@@ -160,15 +160,15 @@ fun ShelterDetail_3_profile_Screen(
                 .padding(horizontal = 26.dp),
             horizontalArrangement = Arrangement.SpaceAround
         ) {
-            ButtonScreen_HOUSE(
+            CommonCategoryButtonComponent(
                 title = "미접종",
-                textcolor = if (viewModel.isinoculation.value == "미접종") Color.White else Color.Black,
+                textColor = if (viewModel.isinoculation.value == "미접종") Color.White else Color.Black,
                 fontSize = 20,
                 modifier = Modifier
                     .weight(1f)
                     .padding(5.dp)
                     .height(100.dp),
-                backgroundcolor = if (viewModel.isinoculation.value == "미접종") Category_Cliked else Button_NoneClicked,
+                backgroundColor = if (viewModel.isinoculation.value == "미접종") Category_Cliked else Button_NoneClicked,
                 shape = RoundedCornerShape(19.dp),
                 textAlign = TextAlign.Center,
                 enabled = viewModel.isinoculation.value != "모르겠어요",
@@ -176,15 +176,15 @@ fun ShelterDetail_3_profile_Screen(
                 viewModel.isinoculation.value = "미접종"
             }
 
-            ButtonScreen_HOUSE(
+            CommonCategoryButtonComponent(
                 title = "1차완료",
-                textcolor = if (viewModel.isinoculation.value == "1차완료") Color.White else Color.Black,
+                textColor = if (viewModel.isinoculation.value == "1차완료") Color.White else Color.Black,
                 fontSize = 20,
                 modifier = Modifier
                     .weight(1f)
                     .padding(5.dp)
                     .height(100.dp),
-                backgroundcolor = if (viewModel.isinoculation.value == "1차완료") Category_Cliked else Button_NoneClicked,
+                backgroundColor = if (viewModel.isinoculation.value == "1차완료") Category_Cliked else Button_NoneClicked,
                 shape = RoundedCornerShape(19.dp),
                 textAlign = TextAlign.Center,
                 enabled = viewModel.isinoculation.value != "모르겠어요",
@@ -192,15 +192,15 @@ fun ShelterDetail_3_profile_Screen(
                 viewModel.isinoculation.value = "1차완료"
             }
 
-            ButtonScreen_HOUSE(
+            CommonCategoryButtonComponent(
                 title = "2차 완료",
-                textcolor = if (viewModel.isinoculation.value == "2차완료") Color.White else Color.Black,
+                textColor = if (viewModel.isinoculation.value == "2차완료") Color.White else Color.Black,
                 fontSize = 20,
                 modifier = Modifier
                     .weight(1f)
                     .padding(5.dp)
                     .height(100.dp),
-                backgroundcolor = if (viewModel.isinoculation.value == "2차완료") Category_Cliked else Button_NoneClicked,
+                backgroundColor = if (viewModel.isinoculation.value == "2차완료") Category_Cliked else Button_NoneClicked,
                 shape = RoundedCornerShape(19.dp),
                 textAlign = TextAlign.Center,
                 enabled = viewModel.isinoculation.value != "모르겠어요",

@@ -28,7 +28,7 @@ import com.llama.petmilly_client.ui.theme.Button_Clicked
 import com.llama.petmilly_client.ui.theme.Button_NoneClicked
 import com.llama.petmilly_client.ui.theme.Category_Cliked
 import com.llama.petmilly_client.utils.ButtonScreen
-import com.llama.petmilly_client.utils.ButtonScreen_HOUSE
+import com.llama.petmilly_client.utils.CommonCategoryButtonComponent
 import com.llama.petmilly_client.utils.notosans_bold
 import llama.test.jetpack_dagger_plz.utils.Common.SIGNUPSCREEN_8_CALLWORKINGTIME
 
@@ -63,14 +63,14 @@ fun SignUpScreen_7_callyourhouse(navController: NavController, viewModel: SignUp
                 .padding(start = 35.dp, end = 35.dp),
             horizontalArrangement = Arrangement.SpaceAround
         ) {
-            ButtonScreen_HOUSE(
+            CommonCategoryButtonComponent(
                 title = "아파트",
-                textcolor = if (viewModel.housekind.value == "아파트") Color.White else Color.Black,
+                textColor = if (viewModel.housekind.value == "아파트") Color.White else Color.Black,
                 fontSize = 15,
                 modifier = Modifier
                     .padding(2.dp)
                     .height(55.dp),
-                backgroundcolor = if (viewModel.housekind.value == "아파트") Category_Cliked else Button_NoneClicked,
+                backgroundColor = if (viewModel.housekind.value == "아파트") Category_Cliked else Button_NoneClicked,
                 shape = RoundedCornerShape(19.dp),
                 textAlign = TextAlign.Center,
                 enabled = true
@@ -78,14 +78,14 @@ fun SignUpScreen_7_callyourhouse(navController: NavController, viewModel: SignUp
                 viewModel.housekind.value = "아파트"
             }
 
-            ButtonScreen_HOUSE(
+            CommonCategoryButtonComponent(
                 title = "단독주택",
-                textcolor = if (viewModel.housekind.value == "단독주택") Color.White else Color.Black,
+                textColor = if (viewModel.housekind.value == "단독주택") Color.White else Color.Black,
                 fontSize = 15,
                 modifier = Modifier
                     .padding(2.dp)
                     .height(55.dp),
-                backgroundcolor = if (viewModel.housekind.value == "단독주택") Category_Cliked else Button_NoneClicked,
+                backgroundColor = if (viewModel.housekind.value == "단독주택") Category_Cliked else Button_NoneClicked,
                 shape = RoundedCornerShape(19.dp),
                 textAlign = TextAlign.Center,
                 enabled = true
@@ -93,14 +93,14 @@ fun SignUpScreen_7_callyourhouse(navController: NavController, viewModel: SignUp
                 viewModel.housekind.value = "단독주택"
             }
 
-            ButtonScreen_HOUSE(
+            CommonCategoryButtonComponent(
                 title = "오피스텔",
-                textcolor =  if (viewModel.housekind.value == "오피스텔") Color.White else Color.Black,
+                textColor =  if (viewModel.housekind.value == "오피스텔") Color.White else Color.Black,
                 fontSize = 15,
                 modifier = Modifier
                     .padding(2.dp)
                     .height(55.dp),
-                backgroundcolor = if (viewModel.housekind.value == "오피스텔") Category_Cliked else Button_NoneClicked,
+                backgroundColor = if (viewModel.housekind.value == "오피스텔") Category_Cliked else Button_NoneClicked,
                 shape = RoundedCornerShape(19.dp),
                 textAlign = TextAlign.Center,
                 enabled = true
@@ -118,14 +118,14 @@ fun SignUpScreen_7_callyourhouse(navController: NavController, viewModel: SignUp
                 .padding(start = 35.dp, end = 35.dp),
             horizontalArrangement = Arrangement.SpaceAround
         ) {
-            ButtonScreen_HOUSE(
+            CommonCategoryButtonComponent(
                 title = "다세대/다가구",
-                textcolor =  if (viewModel.housekind.value == "다세대/다가구") Color.White else Color.Black,
+                textColor =  if (viewModel.housekind.value == "다세대/다가구") Color.White else Color.Black,
                 fontSize = 15,
                 modifier = Modifier
                     .padding(2.dp)
                     .height(55.dp),
-                backgroundcolor = if (viewModel.housekind.value == "다세대/다가구") Category_Cliked else Button_NoneClicked,
+                backgroundColor = if (viewModel.housekind.value == "다세대/다가구") Category_Cliked else Button_NoneClicked,
                 shape = RoundedCornerShape(19.dp),
                 textAlign = TextAlign.Center,
                 enabled = true
@@ -133,14 +133,14 @@ fun SignUpScreen_7_callyourhouse(navController: NavController, viewModel: SignUp
                 viewModel.housekind.value = "다세대/다가구"
             }
 
-            ButtonScreen_HOUSE(
+            CommonCategoryButtonComponent(
                 title = "빌라",
-                textcolor = if (viewModel.housekind.value == "빌라") Color.White else Color.Black,
+                textColor = if (viewModel.housekind.value == "빌라") Color.White else Color.Black,
                 fontSize = 15,
                 modifier = Modifier
                     .padding(2.dp)
                     .height(55.dp),
-                backgroundcolor = if (viewModel.housekind.value == "빌라") Category_Cliked else Button_NoneClicked,
+                backgroundColor = if (viewModel.housekind.value == "빌라") Category_Cliked else Button_NoneClicked,
                 shape = RoundedCornerShape(19.dp),
                 textAlign = TextAlign.Center,
                 enabled = true
@@ -148,14 +148,14 @@ fun SignUpScreen_7_callyourhouse(navController: NavController, viewModel: SignUp
                 viewModel.housekind.value = "빌라"
             }
 
-            ButtonScreen_HOUSE(
+            CommonCategoryButtonComponent(
                 title = "원룸/투룸",
-                textcolor = if (viewModel.housekind.value == "원룸/투룸") Color.White else Color.Black,
+                textColor = if (viewModel.housekind.value == "원룸/투룸") Color.White else Color.Black,
                 fontSize = 15,
                 modifier = Modifier
                     .padding(2.dp)
                     .height(55.dp),
-                backgroundcolor = if (viewModel.housekind.value == "원룸/투룸") Category_Cliked else Button_NoneClicked,
+                backgroundColor = if (viewModel.housekind.value == "원룸/투룸") Category_Cliked else Button_NoneClicked,
                 shape = RoundedCornerShape(19.dp),
                 textAlign = TextAlign.Center,
                 enabled = true

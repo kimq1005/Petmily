@@ -6,7 +6,6 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.Column
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -35,7 +34,6 @@ class ShelterWriteActivity : ComponentActivity() {
             val navBackStackEntry by navController.currentBackStackEntryAsState()
             val currentRoute = navBackStackEntry?.destination?.route
 
-            val state = viewModel.container.stateFlow.collectAsState().value
             var isShowDialog by remember {
                 mutableStateOf(false)
             }
@@ -65,18 +63,16 @@ class ShelterWriteActivity : ComponentActivity() {
                     startDestination = SHELTERDETAIL_SPECIES_SCREEN
                 ) {
                     composable(SHELTERDETAIL_SPECIES_SCREEN) {
-                        ShelterWritePetInfoScreen(
-                            navController = navController,
-                            petCategoryType = state.petCategoryType,
-                            onCheckSpecies = viewModel::setPetSpecies
+                        ShelterWritePetInfoSuccessScreen(
+                            viewModel = viewModel,
+                            navController = navController
                         )
                     }
 
                     composable(Common.SHELTERDETAIL_1_PROFILE_SCREEN) {
-                        ShelterDetail_1_profile_Screen(
+                        ShelterWriteProfileSuccessScreen(
                             navController = navController,
                             viewModel = viewModel,
-                            activity = this@ShelterWriteActivity
                         )
                     }
 

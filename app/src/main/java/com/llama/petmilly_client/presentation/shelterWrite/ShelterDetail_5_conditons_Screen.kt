@@ -83,15 +83,15 @@ fun ShelterDetail_5_conditons_Screen(
                 .padding(horizontal = 26.dp),
             horizontalArrangement = Arrangement.SpaceAround
         ) {
-            ButtonScreen_HOUSE(
+            CommonCategoryButtonComponent(
                 title = "직접픽업",
-                textcolor = if (viewModel.pickup.value == "직접픽업") Color.White else Color.Black,
+                textColor = if (viewModel.pickup.value == "직접픽업") Color.White else Color.Black,
                 fontSize = 20,
                 modifier = Modifier
                     .weight(1f)
                     .padding(5.dp)
                     .height(65.dp),
-                backgroundcolor = if (viewModel.pickup.value == "직접픽업") Category_Cliked else Button_NoneClicked,
+                backgroundColor = if (viewModel.pickup.value == "직접픽업") Category_Cliked else Button_NoneClicked,
                 shape = RoundedCornerShape(19.dp),
                 textAlign = TextAlign.Center,
                 enabled = true
@@ -99,15 +99,15 @@ fun ShelterDetail_5_conditons_Screen(
                 viewModel.pickup.value = "직접픽업"
             }
 
-            ButtonScreen_HOUSE(
+            CommonCategoryButtonComponent(
                 title = "조율가능",
-                textcolor = if (viewModel.pickup.value == "조율가능") Color.White else Color.Black,
+                textColor = if (viewModel.pickup.value == "조율가능") Color.White else Color.Black,
                 fontSize = 20,
                 modifier = Modifier
                     .weight(1f)
                     .padding(5.dp)
                     .height(65.dp),
-                backgroundcolor = if (viewModel.pickup.value == "조율가능") Category_Cliked else Button_NoneClicked,
+                backgroundColor = if (viewModel.pickup.value == "조율가능") Category_Cliked else Button_NoneClicked,
                 shape = RoundedCornerShape(19.dp),
                 textAlign = TextAlign.Center,
                 enabled = true

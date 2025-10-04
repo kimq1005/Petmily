@@ -1,14 +1,11 @@
 package com.llama.petmilly_client.utils
 
 import android.net.Uri
-import android.util.Log
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.selection.selectable
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
@@ -21,33 +18,24 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.modifier.modifierLocalConsumer
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.PlatformTextStyle
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.compose.ui.unit.times
-import androidx.navigation.NavController
 import coil.compose.rememberImagePainter
 import com.google.accompanist.pager.ExperimentalPagerApi
-import com.google.accompanist.pager.HorizontalPager
 import com.google.accompanist.pager.PagerState
 import com.google.accompanist.pager.pagerTabIndicatorOffset
 import com.llama.petmilly_client.R
-import com.llama.petmilly_client.presentation.chatscreen.ChatTabScreen
-import com.llama.petmilly_client.presentation.chatscreen.FavoriteChatScreen
 import com.llama.petmilly_client.ui.theme.Black_30_Transfer
-import com.llama.petmilly_client.ui.theme.Button_NoneClicked
 import com.llama.petmilly_client.ui.theme.Category_Cliked
 import com.llama.petmilly_client.ui.theme.Grey_100_CBC4C4
 import kotlinx.coroutines.launch
-import llama.test.jetpack_dagger_plz.utils.Common.TAG
 
 
 @Composable
@@ -293,33 +281,31 @@ fun IDontKnowCheckBox(
 
 
 @Composable
-fun ButtonScreen_HOUSE(
+fun CommonCategoryButtonComponent(
     title: String,
-    textcolor: Color,
+    textColor: Color,
     fontSize: Int,
     modifier: Modifier,
-    backgroundcolor: Color,
+    backgroundColor: Color,
     textAlign: TextAlign,
     shape: Shape,
     enabled: Boolean,
     onclick: () -> Unit,
 ) {
-
     Button(
         onClick = { onclick() },
         modifier = modifier,
         colors = ButtonDefaults.buttonColors(
-            backgroundColor = backgroundcolor,
+            backgroundColor = backgroundColor,
             contentColor = Color.White
         ),
         shape = shape,
         elevation = null,
         enabled = enabled
-
     ) {
         Text(
             text = title,
-            color = textcolor,
+            color = textColor,
             fontSize = fontSize.sp,
             fontFamily = notosans_bold,
             style = TextStyle(
