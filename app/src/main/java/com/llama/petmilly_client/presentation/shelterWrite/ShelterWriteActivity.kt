@@ -65,22 +65,27 @@ class ShelterWriteActivity : ComponentActivity() {
                     composable(SHELTERDETAIL_SPECIES_SCREEN) {
                         ShelterWritePetInfoSuccessScreen(
                             viewModel = viewModel,
-                            navController = navController
+                            onNavigate = {
+                                navController.navigate(Common.SHELTERDETAIL_1_PROFILE_SCREEN)
+                            }
                         )
                     }
 
                     composable(Common.SHELTERDETAIL_1_PROFILE_SCREEN) {
                         ShelterWriteProfileSuccessScreen(
-                            navController = navController,
                             viewModel = viewModel,
+                            onNavigate = {
+                                navController.navigate(Common.SHELTERDETAIL_2_PROFILE_SCREEN)
+                            }
                         )
                     }
 
                     composable(Common.SHELTERDETAIL_2_PROFILE_SCREEN) {
-                        ShelterDetail_2_profile_Screen(
-                            navController = navController,
+                        ShelterWriteProfileDetailInfoSuccessScreen(
                             viewModel = viewModel,
-                            activity = this@ShelterWriteActivity
+                            onNavigate = {
+                                navController.navigate(Common.SHELTERDETAIL_3_PROFILE_SCREEN)
+                            }
                         )
                     }
 

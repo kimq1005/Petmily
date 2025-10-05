@@ -9,17 +9,11 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.navigation.NavController
-import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.llama.petmilly_client.R
 import com.llama.petmilly_client.presentation.home.model.PetCategoryType
@@ -28,27 +22,26 @@ import com.llama.petmilly_client.presentation.shelterWrite.component.ShelterWrit
 import com.llama.petmilly_client.ui.theme.Button_Clicked
 import com.llama.petmilly_client.ui.theme.Button_NoneClicked
 import com.llama.petmilly_client.utils.ButtonScreen
-import llama.test.jetpack_dagger_plz.utils.Common
 
 @Composable
 fun ShelterWritePetInfoSuccessScreen(
     viewModel: ShelterWriteViewModel,
-    navController: NavController,
+    onNavigate: () -> Unit
 ) {
     val state = viewModel.container.stateFlow.collectAsState().value
 
     ShelterWritePetInfoScreen(
-        navController = navController,
         petCategoryType = state.petCategoryType,
-        onCheckSpecies = viewModel::setPetSpecies
+        onCheckSpecies = viewModel::setPetSpecies,
+        onNavigate = onNavigate
     )
 }
 
 @Composable
 private fun ShelterWritePetInfoScreen(
-    navController: NavController,
     petCategoryType: PetCategoryType,
     onCheckSpecies: (PetCategoryType) -> Unit,
+    onNavigate: () -> Unit,
 ) {
     Column(
         modifier = Modifier
@@ -91,7 +84,7 @@ private fun ShelterWritePetInfoScreen(
                 .height(55.dp),
             backgroundcolor = if (petCategoryType != PetCategoryType.ENTITY) Button_Clicked else Button_NoneClicked
         ) {
-            if (petCategoryType != PetCategoryType.ENTITY) navController.navigate(Common.SHELTERDETAIL_1_PROFILE_SCREEN)
+            if (petCategoryType != PetCategoryType.ENTITY)  onNavigate()
         }
     }
 }
@@ -99,10 +92,9 @@ private fun ShelterWritePetInfoScreen(
 @Preview(showBackground = true)
 @Composable
 private fun PreviewShelterWritePetInfoScreen() {
-    val navController = rememberNavController()
     ShelterWritePetInfoScreen(
-        navController = navController,
         petCategoryType = PetCategoryType.CAT,
-        onCheckSpecies = {}
+        onCheckSpecies = {},
+        onNavigate = {}
     )
 }

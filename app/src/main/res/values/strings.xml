@@ -12,6 +12,10 @@
     <string name="next">다음</string>
     <string name="name">이름</string>
     <string name="gender">성별</string>
+    <string name="species">품종</string>
+    <string name="weight">몸무게</string>
+    <string name="age">나이</string>
+    <string name="not_know">모르겠어요</string>
 
     <string name="modifiy"><u>수정하기</u></string>
     <string name="entity_read"><u>전체읽기</u></string>
@@ -52,7 +56,10 @@
 
     <string name="shelter_write_pet_info_title">주인공의 정보를\n입력해주세요.</string>
 
-
     <string name="shelter_write_pet_profile_title">주인공의 프로필을\n입력해주세요.</string>
-    <string name="shelter_write_pet_profile_TextField_Hint">주인공의 이름을 적어주세요."</string>
+    <string name="shelter_write_pet_profile_textField_hint">주인공의 이름을 적어주세요."</string>
+    <string name="shelter_write_pet_profile_photo_subtitle">사진첨부</string>
+    <string name="shelter_write_pet_profile_weight_hint">몸무게를 적어주세요.</string>
+    <string name="shelter_write_pet_profile_species_hint">예) 믹스견 / 포메라니안 / 진도</string>
+    <string name="shelter_write_pet_profile_age_hint">예) 2개월 = 0.2 / 2살 = 2</string>
 </resources>

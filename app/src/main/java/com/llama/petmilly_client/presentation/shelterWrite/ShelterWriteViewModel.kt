@@ -18,18 +18,20 @@ import com.llama.petmilly_client.presentation.shelterWrite.model.GenderType
 import com.llama.petmilly_client.presentation.shelterWrite.model.ShelterWriteSideEffect
 import com.llama.petmilly_client.presentation.shelterWrite.model.ShelterWriteState
 import com.llama.petmilly_client.utils.Event
+import com.llama.petmilly_client.utils.RemoteResult
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import llama.test.jetpack_dagger_plz.utils.Common.TAG
-import com.llama.petmilly_client.utils.RemoteResult
-import kotlinx.coroutines.CoroutineExceptionHandler
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import okhttp3.RequestBody.Companion.toRequestBody
 import org.orbitmvi.orbit.Container
 import org.orbitmvi.orbit.ContainerHost
+import org.orbitmvi.orbit.annotation.OrbitExperimental
+import org.orbitmvi.orbit.syntax.simple.blockingIntent
 import org.orbitmvi.orbit.syntax.simple.intent
 import org.orbitmvi.orbit.syntax.simple.postSideEffect
 import org.orbitmvi.orbit.syntax.simple.reduce
@@ -39,6 +41,7 @@ import java.time.LocalTime
 import java.time.format.DateTimeFormatter
 import javax.inject.Inject
 
+@OptIn(OrbitExperimental::class)
 @HiltViewModel
 class ShelterWriteViewModel @Inject constructor(
     private val petMillyRepo: PetMillyRepo,
@@ -60,23 +63,12 @@ class ShelterWriteViewModel @Inject constructor(
     private val _setcompleted = MutableLiveData<Event<Unit>>()
     val setcompleted: LiveData<Event<Unit>> = _setcompleted
 
-    private val _setnotcompleted = MutableLiveData<String>()
-    val setnotcompleted: LiveData<String> = _setnotcompleted
-
-    val myuri = mutableStateOf<Uri?>(null)
-    val imageTestUriData = mutableStateListOf<ImageTestUriData>()
 
     var isAlmostCompletedDialog by mutableStateOf(false)
         private set
 
     val files = mutableStateListOf<MultipartBody.Part>()
     val charmAppeal = mutableStateOf("")
-    val species = mutableStateOf("")
-    val animalname = mutableStateOf("")
-    val animalsex = mutableStateOf("")
-    val animalkg = mutableStateOf("")
-    val animaldetailspecies = mutableStateOf("")
-    val animalage = mutableStateOf("")
     val isneutered = mutableStateOf("")
     val isinoculation = mutableStateOf("")
     val animalhealth = mutableStateOf("")
@@ -152,6 +144,24 @@ class ShelterWriteViewModel @Inject constructor(
         }
     }
 
+    fun setWeight(weight: String) = blockingIntent {
+        reduce {
+            state.copy(weight = weight)
+        }
+    }
+
+    fun setAge(age: String) = blockingIntent {
+        reduce {
+            state.copy(age = age)
+        }
+    }
+
+    fun setSpecies(species: String) = blockingIntent {
+        reduce {
+            state.copy(species = species)
+        }
+    }
+
     fun onShownAlmostCompetedDialog() {
         isAlmostCompletedDialog = true
     }
@@ -198,89 +208,74 @@ class ShelterWriteViewModel @Inject constructor(
         temporaryProtectionNoList.remove(text)
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
-    fun posttemporaryprotection() {
-
-
-//        val dateString = hopeapplicationperiod.value
-
-        val charmAppeal = charmAppeal.value.toRequestBody("text/plain".toMediaTypeOrNull())
-        val species = species.value.toRequestBody("text/plain".toMediaTypeOrNull())
-        val animalname = animalname.value.toRequestBody("text/plain".toMediaTypeOrNull())
-        val animalsex = animalsex.value.toRequestBody("text/plain".toMediaTypeOrNull())
-        val animalkg = animalkg.value.toRequestBody("text/plain".toMediaTypeOrNull())
-        val animaldetailspecies =
-            animaldetailspecies.value.toRequestBody("text/plain".toMediaTypeOrNull())
-        val animalage = animalage.value.toRequestBody("text/plain".toMediaTypeOrNull())
-        val isneutered = isneutered.value.toRequestBody("text/plain".toMediaTypeOrNull())
-        val isinoculation = isinoculation.value.toRequestBody("text/plain".toMediaTypeOrNull())
-        val animalhealth = animalhealth.value.toRequestBody("text/plain".toMediaTypeOrNull())
-        val animalskill = animalskill.value.toRequestBody("text/plain".toMediaTypeOrNull())
-        val animalpersonality =
-            animalpersonality.value.toRequestBody("text/plain".toMediaTypeOrNull())
-        val pickup = pickup.value.toRequestBody("text/plain".toMediaTypeOrNull())
-
-        val temporaryProtectionCondition: List<RequestBody> = temporaryProtectionConditionList.map {
-            RequestBody.create("text/plain".toMediaTypeOrNull(), it)
-        }
-        val temporaryProtectionHope: List<RequestBody> = temporaryProtectionHopeList.map {
-            RequestBody.create("text/plain".toMediaTypeOrNull(), it)
-        }
-        val temporaryProtectionNo: List<RequestBody> =
-            temporaryProtectionNoList.map {
-                RequestBody.create("text/plain".toMediaTypeOrNull(), it)
-            }
-        val now = LocalTime.now()
-
-        viewModelScope.launch(Dispatchers.IO) {
-            petMillyRepo.postTemporaryProtection(
-                files ?: null,
-                charmAppeal,
-                species,
-                animalname,
-                animalsex,
-                animalkg,
-                animaldetailspecies,
-                animalage,
-                isneutered,
-                isinoculation,
-                animalhealth,
-                animalskill,
-                animalpersonality,
-                pickup,
-                startReceptionPeriod = if (apstartyear.value != "") {
-                    val formatter = DateTimeFormatter.ofPattern("yy-MM-dd HH:mm:ss")
-                    val dateString = "${apstartyear.value} 10:00:00"
-                    val date = LocalDateTime.parse(dateString, formatter)
-                    val hopeapplicationperiod =
-                        RequestBody.create("text/plain".toMediaTypeOrNull(), date.toString())
-                    hopeapplicationperiod
-                } else null,
-                endReceptionPeriod = if (apendyear.value != "") {
-                    val formatter = DateTimeFormatter.ofPattern("yy-MM-dd HH:mm:ss")
-                    val dateString = "${apendyear.value} 10:00:00"
-                    val date = LocalDateTime.parse(dateString, formatter)
-                    val hopeapplicationperiod =
-                        RequestBody.create("text/plain".toMediaTypeOrNull(), date.toString())
-                    hopeapplicationperiod
-                } else null,
-                temporaryProtectionCondition ?: null,
-                temporaryProtectionHope ?: null,
-                temporaryProtectionNo ?: null
-            ).let {
-                when (it.status) {
-                    RemoteResult.Status.SUCCESS -> {
-                        Log.d(TAG, "posttemporaryprotection SUCCESS: $it")
-                        _setcompleted.postValue(Event(Unit))
-                    }
-
-                    else -> {
-                        Log.d(TAG, "posttemporaryprotection ERROR: $it")
-//                        _setnotcompleted.postValue(it.message)
-                    }
-
-                }
-            }
-        }
-    }
+//    fun posttemporaryprotection() {
+//
+//
+////        val dateString = hopeapplicationperiod.value
+//
+//        val temporaryProtectionCondition: List<RequestBody> = temporaryProtectionConditionList.map {
+//            RequestBody.create("text/plain".toMediaTypeOrNull(), it)
+//        }
+//
+//        val temporaryProtectionHope: List<RequestBody> = temporaryProtectionHopeList.map {
+//            RequestBody.create("text/plain".toMediaTypeOrNull(), it)
+//        }
+//
+//        val temporaryProtectionNo: List<RequestBody> =
+//            temporaryProtectionNoList.map {
+//                RequestBody.create("text/plain".toMediaTypeOrNull(), it)
+//            }
+//        val now = LocalTime.now()
+//
+//        viewModelScope.launch(Dispatchers.IO) {
+//            petMillyRepo.postTemporaryProtection(
+//                files ?: null,
+//                charmAppeal.value,
+//                state,
+//                animalname,
+//                animalsex,
+//                animalkg,
+//                animaldetailspecies,
+//                animalage,
+//                isneutered,
+//                isinoculation,
+//                animalhealth,
+//                animalskill,
+//                animalpersonality,
+//                pickup,
+//                startReceptionPeriod = if (apstartyear.value != "") {
+//                    val formatter = DateTimeFormatter.ofPattern("yy-MM-dd HH:mm:ss")
+//                    val dateString = "${apstartyear.value} 10:00:00"
+//                    val date = LocalDateTime.parse(dateString, formatter)
+//                    val hopeapplicationperiod =
+//                        RequestBody.create("text/plain".toMediaTypeOrNull(), date.toString())
+//                    hopeapplicationperiod
+//                } else null,
+//                endReceptionPeriod = if (apendyear.value != "") {
+//                    val formatter = DateTimeFormatter.ofPattern("yy-MM-dd HH:mm:ss")
+//                    val dateString = "${apendyear.value} 10:00:00"
+//                    val date = LocalDateTime.parse(dateString, formatter)
+//                    val hopeapplicationperiod =
+//                        RequestBody.create("text/plain".toMediaTypeOrNull(), date.toString())
+//                    hopeapplicationperiod
+//                } else null,
+//                temporaryProtectionCondition ?: null,
+//                temporaryProtectionHope ?: null,
+//                temporaryProtectionNo ?: null
+//            ).let {
+//                when (it.status) {
+//                    RemoteResult.Status.SUCCESS -> {
+//                        Log.d(TAG, "posttemporaryprotection SUCCESS: $it")
+//                        _setcompleted.postValue(Event(Unit))
+//                    }
+//
+//                    else -> {
+//                        Log.d(TAG, "posttemporaryprotection ERROR: $it")
+////                        _setnotcompleted.postValue(it.message)
+//                    }
+//
+//                }
+//            }
+//        }
+//    }
 }

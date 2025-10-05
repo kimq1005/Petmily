@@ -23,7 +23,6 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.llama.petmilly_client.R
-import com.llama.petmilly_client.presentation.shelterWrite.ImageTestUriData
 import com.llama.petmilly_client.utils.PicktureUriItems
 import com.llama.petmilly_client.utils.SpacerWidth
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
@@ -34,7 +33,7 @@ import java.io.IOException
 @Composable
 fun ShelterWriteProfilePhotoItem(
     modifier: Modifier = Modifier,
-    imageUriData: List<ImageTestUriData>,
+    imageUriData: List<Uri>,
     onUploadUri: (Uri) -> Unit,
     onUploadFile: (MultipartBody.Part) -> Unit,
     onDeletedImage: (Uri) -> Unit,
@@ -86,12 +85,12 @@ fun ShelterWriteProfilePhotoItem(
                 key = { it }
             ) { items ->
                 PicktureUriItems(
-                    items.uri,
+                    items,
                     modifier = Modifier
                         .width(50.dp)
                         .height(50.dp),
                     ondelete = {
-                        val inputStream = context.contentResolver.openInputStream(items.uri)
+                        val inputStream = context.contentResolver.openInputStream(items)
                         val requestBody = RequestBody.create(
                             "image/*".toMediaTypeOrNull(),
                             inputStream!!.readBytes()
@@ -99,7 +98,7 @@ fun ShelterWriteProfilePhotoItem(
                         val multipleBody =
                             MultipartBody.Part.createFormData("files", "image", requestBody)
 
-                        onDeletedImage(items.uri)
+                        onDeletedImage(items)
                         onDeleteFile(multipleBody)
                     }
                 )

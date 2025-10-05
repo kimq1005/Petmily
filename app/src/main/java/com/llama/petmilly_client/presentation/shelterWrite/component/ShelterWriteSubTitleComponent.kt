@@ -28,11 +28,10 @@ fun ShelterWriteSubTitleComponent(
     text: String,
     modifier: Modifier = Modifier,
 ) {
-    Column {
-        Row(
-            modifier = modifier
-                .fillMaxWidth()
-        ) {
+    Column(
+        modifier = modifier
+    ) {
+        Row {
             Image(
                 painter = painterResource(id = R.drawable.img_test_dog4),
                 contentDescription = null,
@@ -55,11 +54,10 @@ fun ShelterWriteSubTitleComponent(
             )
         }
 
-        Spacer(modifier = Modifier.height(35.dp))
-
         Text(
             text = text,
-            modifier = Modifier.padding(start = 40.dp),
+            modifier = Modifier.
+                padding(top = 35.dp),
             fontSize = 30.sp,
             fontFamily = notosans_bold,
             style = TextStyle(

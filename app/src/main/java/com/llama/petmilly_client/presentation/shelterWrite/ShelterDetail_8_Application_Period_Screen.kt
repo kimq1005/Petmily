@@ -330,7 +330,7 @@ fun ShelterDetail_8_Application_Period_Screen(
                     .height(55.dp),
                 backgroundcolor = Color.Black
             ) {
-                viewModel.posttemporaryprotection()
+//                viewModel.posttemporaryprotection()
                 activity.finish()
             }
 

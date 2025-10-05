@@ -41,27 +41,28 @@ import okhttp3.MultipartBody
 @Composable
 fun ShelterWriteProfileSuccessScreen(
     viewModel: ShelterWriteViewModel,
-    navController: NavController,
+    onNavigate: () -> Unit
 ) {
     val state = viewModel.container.stateFlow.collectAsState().value
     ShelterWriteProfileScreen(
-        navController = navController,
         petName = state.petName,
+        petPhotoUri = state.petPhotoUri,
         selectedGenderType = state.gender,
         onPetName = viewModel::setPetName,
         onSelectedGender = viewModel::setPetGender,
         onUploadFile = viewModel::setUploadFile,
         onDeleteFile = viewModel::setDeleteFile,
         onUploadUri = viewModel::setUploadUri,
-        onDeleteUri = viewModel::setDeleteUri
+        onDeleteUri = viewModel::setDeleteUri,
+        onNavigate = onNavigate
     )
 }
 
 @SuppressLint("Recycle")
 @Composable
 private fun ShelterWriteProfileScreen(
-    navController: NavController,
     petName: String,
+    petPhotoUri: List<Uri>,
     selectedGenderType: GenderType?,
     onPetName: (String) -> Unit,
     onSelectedGender: (GenderType) -> Unit,
@@ -69,6 +70,7 @@ private fun ShelterWriteProfileScreen(
     onUploadUri: (Uri) -> Unit,
     onDeleteFile: (MultipartBody.Part) -> Unit,
     onDeleteUri: (Uri) -> Unit,
+    onNavigate: () -> Unit,
 ) {
     Column(
         Modifier
@@ -81,13 +83,12 @@ private fun ShelterWriteProfileScreen(
             text = stringResource(R.string.shelter_write_pet_profile_title)
         )
 
-        Spacer(modifier = Modifier.height(28.dp))
-
         Text(
             text = stringResource(R.string.name),
             color = Color.Black,
             fontSize = 13.sp,
-            modifier = Modifier.padding(start = 30.dp),
+            modifier = Modifier
+                .padding(start = 30.dp, top = 28.dp),
             fontFamily = notosans_bold,
             style = TextStyle(
                 platformStyle = PlatformTextStyle(
@@ -111,7 +112,7 @@ private fun ShelterWriteProfileScreen(
                 unfocusedIndicatorColor = Color.Transparent,
                 focusedLabelColor = Color.White,
                 cursorColor = Color.Black,),
-            placeholder = { Text(text = stringResource(R.string.shelter_write_pet_profile_TextField_Hint)) }
+            placeholder = { Text(text = stringResource(R.string.shelter_write_pet_profile_textField_hint)) }
         )
 
         Text(
@@ -139,7 +140,7 @@ private fun ShelterWriteProfileScreen(
         Text(
             modifier = Modifier
                 .padding(start = 30.dp, top = 35.dp),
-            text = "사진첨부",
+            text = stringResource(R.string.shelter_write_pet_profile_photo_subtitle),
             color = Color.Black,
             fontSize = 13.sp,
             fontFamily = notosans_bold,
@@ -153,7 +154,7 @@ private fun ShelterWriteProfileScreen(
         ShelterWriteProfilePhotoItem(
             modifier = Modifier
                 .padding(top = 8.dp),
-            imageUriData = emptyList(),
+            imageUriData = petPhotoUri,
             onUploadUri = onUploadUri,
             onUploadFile = onUploadFile,
             onDeletedImage = onDeleteUri,
@@ -175,7 +176,7 @@ private fun ShelterWriteProfileScreen(
                 .height(55.dp),
             backgroundcolor = if (btnCheck) Button_Clicked else Button_NoneClicked
         ) {
-            if (btnCheck) navController.navigate(Common.SHELTERDETAIL_2_PROFILE_SCREEN)
+            if (btnCheck) onNavigate()
         }
     }
 }
@@ -183,17 +184,17 @@ private fun ShelterWriteProfileScreen(
 @Preview
 @Composable
 private fun PreviewShelterWriteProfileScreen() {
-    val navController = rememberNavController()
     ShelterWriteProfileScreen(
-        navController = navController,
-        petName = "Stan Decker",
+        petName = "금순이",
+        petPhotoUri = emptyList(),
         selectedGenderType = GenderType.MALE,
         onPetName = {},
         onSelectedGender = {},
         onUploadFile = {},
         onUploadUri = {},
         onDeleteFile = {},
-        onDeleteUri = {}
+        onDeleteUri = {},
+        onNavigate = {}
     )
 }
 
