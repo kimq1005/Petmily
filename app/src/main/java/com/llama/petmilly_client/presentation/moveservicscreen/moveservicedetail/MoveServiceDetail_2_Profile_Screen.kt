@@ -449,7 +449,7 @@ fun MoveServiceDetail_2_Profile_2_Screen(
 
         Row(modifier = Modifier.padding(start = 27.dp)) {
 //            CheckedCheckBox(clickcolor = Category_Cliked)
-            IDontKnowCheckBox(onclick = { string ->
+            UnKnownCheckBoxComponent(onclick = { string ->
                 viewModel.breed.value = string
             })
             Spacer(modifier = Modifier.width(5.dp))
@@ -527,7 +527,7 @@ fun MoveServiceDetail_2_Profile_2_Screen(
         Row(modifier = Modifier.padding(start = 27.dp)) {
 
 //            CheckedCheckBox(clickcolor = Category_Cliked)
-            IDontKnowCheckBox(onclick = { string ->
+            UnKnownCheckBoxComponent(onclick = { string ->
                 viewModel.age.value = string
             })
             Spacer(modifier = Modifier.width(5.dp))

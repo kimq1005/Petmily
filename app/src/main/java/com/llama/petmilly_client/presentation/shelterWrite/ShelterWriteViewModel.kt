@@ -15,8 +15,10 @@ import androidx.lifecycle.viewModelScope
 import com.llama.petmilly_client.domain.repository.PetMillyRepo
 import com.llama.petmilly_client.presentation.home.model.PetCategoryType
 import com.llama.petmilly_client.presentation.shelterWrite.model.GenderType
+import com.llama.petmilly_client.presentation.shelterWrite.model.NeuteringType
 import com.llama.petmilly_client.presentation.shelterWrite.model.ShelterWriteSideEffect
 import com.llama.petmilly_client.presentation.shelterWrite.model.ShelterWriteState
+import com.llama.petmilly_client.presentation.shelterWrite.model.VaccinationType
 import com.llama.petmilly_client.utils.Event
 import com.llama.petmilly_client.utils.RemoteResult
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -159,6 +161,18 @@ class ShelterWriteViewModel @Inject constructor(
     fun setSpecies(species: String) = blockingIntent {
         reduce {
             state.copy(species = species)
+        }
+    }
+
+    fun setNeuteredType(neuteringType: NeuteringType?) = intent {
+        reduce {
+            state.copy(neuteredType = neuteringType)
+        }
+    }
+
+    fun setVaccinationType(vaccinationType: VaccinationType?) = intent {
+        reduce {
+            state.copy(vaccinationType = vaccinationType)
         }
     }
 

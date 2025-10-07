@@ -28,7 +28,7 @@ import com.llama.petmilly_client.presentation.shelterWrite.component.ShelterWrit
 import com.llama.petmilly_client.presentation.shelterWrite.component.ShelterWriteSubTitleComponent
 import com.llama.petmilly_client.ui.theme.Grey_50_CBC4C4
 import com.llama.petmilly_client.utils.ButtonScreen
-import com.llama.petmilly_client.utils.IDontKnowCheckBox
+import com.llama.petmilly_client.utils.UnKnownCheckBoxComponent
 import com.llama.petmilly_client.utils.notosans_bold
 import com.llama.petmilly_client.utils.notosans_regular
 
@@ -139,7 +139,7 @@ private fun ShelterWriteProfileDetailInfoScreen(
             modifier = Modifier
                 .padding(start = 27.dp, top = 10.dp)
         ) {
-            IDontKnowCheckBox(onclick = onSpecies)
+            UnKnownCheckBoxComponent(onclick = onSpecies)
 
             Text(
                 modifier = Modifier
@@ -201,7 +201,7 @@ private fun ShelterWriteProfileDetailInfoScreen(
             modifier = Modifier
                 .padding(start = 27.dp, top = 10.dp)
         ) {
-            IDontKnowCheckBox(onclick = onAge)
+            UnKnownCheckBoxComponent(onclick = onAge)
 
             Text(
                 modifier = Modifier

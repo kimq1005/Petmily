@@ -220,21 +220,21 @@ fun NoneCheckBox(nonecheckcolor: Color) {
 }
 
 @Composable
-fun IDontKnowCheckBox(
+fun UnKnownCheckBoxComponent(
     onclick: (String) -> Unit,
 ) {
     var check by remember {
         mutableStateOf(false)
     }
 
-    Box(modifier = Modifier.clickable {
+    Box(
+        modifier = Modifier.clickable {
         check = !check
         if(check){
             onclick("모르겠어요")
         }else{
             onclick("")
         }
-
     }) {
         Canvas(
             modifier = if (check) Modifier
@@ -289,7 +289,7 @@ fun CommonCategoryButtonComponent(
     backgroundColor: Color,
     textAlign: TextAlign,
     shape: Shape,
-    enabled: Boolean,
+    enabled: Boolean = true,
     onclick: () -> Unit,
 ) {
     Button(

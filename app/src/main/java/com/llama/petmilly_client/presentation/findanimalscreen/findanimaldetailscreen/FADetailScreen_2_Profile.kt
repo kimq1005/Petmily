@@ -25,7 +25,6 @@ import androidx.compose.material.Text
 import androidx.compose.material.TextField
 import androidx.compose.material.TextFieldDefaults
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -41,14 +40,13 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.llama.petmilly_client.presentation.common.compnent.TitleBarComponent
 import com.llama.petmilly_client.presentation.dialog.SetAlomostCompletedDialog
-import com.llama.petmilly_client.presentation.shelterWrite.ImageTestUriData
 import com.llama.petmilly_client.ui.theme.Button_NoneClicked
 import com.llama.petmilly_client.ui.theme.Category_Cliked
 import com.llama.petmilly_client.ui.theme.Grey_50_CBC4C4
 import com.llama.petmilly_client.ui.theme.TextField_BackgroudColor
 import com.llama.petmilly_client.utils.ButtonScreen
 import com.llama.petmilly_client.utils.CommonCategoryButtonComponent
-import com.llama.petmilly_client.utils.IDontKnowCheckBox
+import com.llama.petmilly_client.utils.UnKnownCheckBoxComponent
 import com.llama.petmilly_client.utils.PicktureUriItems
 import com.llama.petmilly_client.utils.SpacerHeight
 import com.llama.petmilly_client.utils.SpacerWidth
@@ -457,7 +455,7 @@ fun FADetail_2_Profile_2_Screen(
 
         Row(modifier = Modifier.padding(start = 27.dp)) {
 //            CheckedCheckBox(clickcolor = Category_Cliked)
-            IDontKnowCheckBox(onclick = { string ->
+            UnKnownCheckBoxComponent(onclick = { string ->
                 viewModel.breed.value = string
             })
             Spacer(modifier = Modifier.width(5.dp))
@@ -535,7 +533,7 @@ fun FADetail_2_Profile_2_Screen(
         Row(modifier = Modifier.padding(start = 27.dp)) {
 
 //            CheckedCheckBox(clickcolor = Category_Cliked)
-            IDontKnowCheckBox(onclick = { string ->
+            UnKnownCheckBoxComponent(onclick = { string ->
                 viewModel.age.value = string
             })
             Spacer(modifier = Modifier.width(5.dp))

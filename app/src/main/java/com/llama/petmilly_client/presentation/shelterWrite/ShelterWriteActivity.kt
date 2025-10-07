@@ -90,10 +90,11 @@ class ShelterWriteActivity : ComponentActivity() {
                     }
 
                     composable(Common.SHELTERDETAIL_3_PROFILE_SCREEN) {
-                        ShelterDetail_3_profile_Screen(
-                            navController = navController,
+                        ShelterWriteProfileLastSuccessScreen(
                             viewModel = viewModel,
-                            activity = this@ShelterWriteActivity
+                            onNavigate = {
+                                navController.navigate(Common.SHELTERDETAIL_4_PROFILE_SCREEN)
+                            }
                         )
                     }
 

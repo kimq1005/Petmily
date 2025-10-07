@@ -13,6 +13,8 @@ data class ShelterWriteState(
     val weight: String = "",
     val species: String = "",
     val age: String = "",
+    val neuteredType: NeuteringType? = null,
+    val vaccinationType: VaccinationType? = null,
     val petPhotoFile: List<MultipartBody.Part> = emptyList(),
     val petPhotoUri: List<Uri> = emptyList()
 )

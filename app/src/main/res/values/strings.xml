@@ -62,4 +62,8 @@
     <string name="shelter_write_pet_profile_weight_hint">몸무게를 적어주세요.</string>
     <string name="shelter_write_pet_profile_species_hint">예) 믹스견 / 포메라니안 / 진도</string>
     <string name="shelter_write_pet_profile_age_hint">예) 2개월 = 0.2 / 2살 = 2</string>
+
+    <string name="shelter_write_pet_profile_last_title">주인공의 프로필을\n완성해주세요.</string>
+    <string name="shelter_write_pet_profile_last_first_question_title">중성화 여부</string>
+    <string name="shelter_write_pet_profile_last_second_question_title">접종 여부</string>
 </resources>

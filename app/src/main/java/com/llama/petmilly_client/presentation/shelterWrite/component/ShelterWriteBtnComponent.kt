@@ -13,7 +13,6 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.llama.petmilly_client.presentation.home.model.PetCategoryType
-import com.llama.petmilly_client.presentation.shelterWrite.ShelterWriteViewModel
 import com.llama.petmilly_client.ui.theme.Button_NoneClicked
 import com.llama.petmilly_client.ui.theme.Category_Cliked
 import com.llama.petmilly_client.utils.ButtonShapeScreen
@@ -66,39 +65,4 @@ private fun PreviewShelterWriteBtnComponent() {
         isCheck = false,
         onCheckSpecies = {}
     )
-}
-
-@Composable
-fun ShelterBtn(
-    species: String,
-    viewModel: ShelterWriteViewModel,
-) {
-    Row(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(start = 35.dp, end = 50.dp),
-        verticalAlignment = Alignment.CenterVertically
-    ) {
-        if (viewModel.species.value == species) {
-            CheckedCheckBox(clickcolor = Category_Cliked)
-        } else {
-            NoneCheckBox(nonecheckcolor = Color.White)
-        }
-
-        ButtonShapeScreen(
-            title = species,
-            textcolor = if (viewModel.species.value == species) Color.White else Color.Black,
-            fontSize = 15,
-            modifier = Modifier
-                .padding(start = 10.dp)
-                .height(55.dp)
-                .fillMaxWidth(),
-            backgroundcolor = if (viewModel.species.value == species) Category_Cliked else Button_NoneClicked,
-            shape = RoundedCornerShape(19.dp),
-            textAlign = TextAlign.Start,
-            fontFamily = if (viewModel.pickup.value == species) notosans_bold else notosans_regular
-        ) {
-            viewModel.species.value = species
-        }
-    }
 }
