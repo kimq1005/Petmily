@@ -1,6 +1,5 @@
 package com.llama.petmilly_client.presentation.shelterWrite.component
 
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
@@ -26,8 +25,7 @@ fun ShelterWriteProfileTextFieldComponent(
     TextField(
         value = value,
         onValueChange = onValue,
-        modifier = modifier
-            .height(55.dp),
+        modifier = modifier,
         shape = RoundedCornerShape(10.dp),
         enabled = enable,
         colors = TextFieldDefaults.textFieldColors(
@@ -47,6 +45,8 @@ fun ShelterWriteProfileTextFieldComponent(
 @Composable
 private fun PreviewShelterWriteProfileTextFieldComponent() {
     ShelterWriteProfileTextFieldComponent(
+        modifier = Modifier
+            .height(80.dp),
         value = "",
         onValue = {},
         hint = "hint",

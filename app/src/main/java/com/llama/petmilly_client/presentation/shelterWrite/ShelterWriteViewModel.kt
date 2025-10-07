@@ -107,7 +107,7 @@ class ShelterWriteViewModel @Inject constructor(
     }
 
     fun setPetName(
-        petName: String
+        petName: String,
     ) = intent {
         reduce {
             state.copy(petName = petName)
@@ -115,7 +115,7 @@ class ShelterWriteViewModel @Inject constructor(
     }
 
     fun setPetGender(
-        gender: GenderType
+        gender: GenderType,
     ) = intent {
         reduce {
             state.copy(gender = gender)
@@ -173,6 +173,30 @@ class ShelterWriteViewModel @Inject constructor(
     fun setVaccinationType(vaccinationType: VaccinationType?) = intent {
         reduce {
             state.copy(vaccinationType = vaccinationType)
+        }
+    }
+
+    fun setHealth(value: String) = blockingIntent {
+        reduce {
+            state.copy(
+                health = value
+            )
+        }
+    }
+
+    fun setSkill(value: String) = blockingIntent {
+        reduce {
+            state.copy(
+                skill = value
+            )
+        }
+    }
+
+    fun setPersonality(value: String) = blockingIntent {
+        reduce {
+            state.copy(
+                personality = value
+            )
         }
     }
 

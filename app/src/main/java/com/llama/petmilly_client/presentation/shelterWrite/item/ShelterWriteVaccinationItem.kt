@@ -37,7 +37,7 @@ fun ShelterWriteVaccinationItem(
         modifier = modifier
     ) {
         Text(
-            text = stringResource(R.string.shelter_write_pet_profile_last_second_question_title),
+            text = stringResource(R.string.shelter_write_pet_profile_third_second_question_title),
             color = Color.Black,
             fontSize = 13.sp,
             modifier = Modifier

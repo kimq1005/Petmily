@@ -1,5 +1,3 @@
-@file:Suppress("UNCHECKED_CAST")
-
 package com.llama.petmilly_client.presentation.shelterWrite
 
 import androidx.compose.foundation.background
@@ -27,61 +25,65 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.llama.petmilly_client.R
 import com.llama.petmilly_client.presentation.shelterWrite.component.ShelterWriteSubTitleComponent
-import com.llama.petmilly_client.presentation.shelterWrite.item.ShelterWriteProfileTextFieldItem
+import com.llama.petmilly_client.presentation.shelterWrite.item.ShelterWriteNeuteredItem
+import com.llama.petmilly_client.presentation.shelterWrite.item.ShelterWriteVaccinationItem
+import com.llama.petmilly_client.presentation.shelterWrite.model.NeuteringType
+import com.llama.petmilly_client.presentation.shelterWrite.model.VaccinationType
+import com.llama.petmilly_client.ui.theme.Grey_50_CBC4C4
 import com.llama.petmilly_client.utils.ButtonScreen
 import com.llama.petmilly_client.utils.notosans_bold
 
 @Composable
-fun ShelterWriteProfileLastSuccess(
+fun ShelterWriteProfileThirdSuccessScreen(
     viewModel: ShelterWriteViewModel,
-    onNavigate: () -> Unit
+    onNavigate: () -> Unit,
 ) {
     val state = viewModel.container.stateFlow.collectAsState().value
 
-    ShelterWriteProfileLastScreen(
-        health = state.health,
-        skill = state.skill,
-        personality = state.personality,
-        onHealth = viewModel::setHealth,
-        onSkill = viewModel::setSkill,
-        onPersonality = viewModel::setPersonality,
+    ShelterWriteProfileThirdScreen(
+        neuteringType = state.neuteredType,
+        vaccinationType = state.vaccinationType,
+        onSetNeuteringType = viewModel::setNeuteredType,
+        onSetVaccinationType = viewModel::setVaccinationType,
         onNavigate = onNavigate
     )
 }
 
 @Composable
-fun ShelterWriteProfileLastScreen(
-    health: String,
-    skill: String,
-    personality: String,
-    onHealth: (String) -> Unit,
-    onSkill: (String) -> Unit,
-    onPersonality: (String) -> Unit,
-    onNavigate: () -> Unit
+private fun ShelterWriteProfileThirdScreen(
+    neuteringType: NeuteringType?,
+    vaccinationType: VaccinationType?,
+    onSetNeuteringType: (NeuteringType?) -> Unit,
+    onSetVaccinationType: (VaccinationType?) -> Unit,
+    onNavigate: () -> Unit,
 ) {
-    val isCheck by remember(health, skill, personality) {
-        derivedStateOf { health != "" && skill != "" && personality != "" }
+    val isCheck by remember(vaccinationType, neuteringType) {
+        derivedStateOf { vaccinationType != null && neuteringType != null }
     }
 
-    Column(Modifier
-        .fillMaxSize()
-        .background(Color.White)
-     ) {
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(color = Color.White)
+    ) {
         ShelterWriteSubTitleComponent(
             modifier = Modifier
                 .padding(horizontal = 24.dp),
             text = stringResource(R.string.shelter_write_pet_profile_last_title)
         )
 
-        ShelterWriteProfileTextFieldItem(
+        ShelterWriteNeuteredItem(
             modifier = Modifier
                 .padding(top = 28.dp),
-            health = health,
-            skill = skill,
-            personality = personality,
-            onHealth = onHealth,
-            onSkill = onSkill,
-            onPersonality = onPersonality
+            neuteringType = neuteringType,
+            onSetNeuteringType = onSetNeuteringType
+        )
+
+        ShelterWriteVaccinationItem(
+            modifier = Modifier
+                .padding(top = 65.dp),
+            vaccinationType = vaccinationType,
+            onSetVaccinationType = onSetVaccinationType
         )
 
         Spacer(modifier = Modifier.weight(1f))
@@ -101,18 +103,18 @@ fun ShelterWriteProfileLastScreen(
                 backgroundcolor = if (isCheck) Color.Black else Color.LightGray
 
             ) {
-                if (isCheck) onNavigate
+                if (isCheck) onNavigate()
             }
 
             Text(
-                text = "4/8", fontSize = 13.sp,
+                text = "3/8", fontSize = 13.sp,
                 fontFamily = notosans_bold,
                 style = TextStyle(
                     platformStyle = PlatformTextStyle(
                         includeFontPadding = false
                     )
                 ),
-                color = Color.White,
+                color = if (isCheck) Color.White else Grey_50_CBC4C4,
                 modifier = Modifier
                     .align(Alignment.CenterEnd)
                     .padding(end = 18.dp)
@@ -121,16 +123,14 @@ fun ShelterWriteProfileLastScreen(
     }
 }
 
-@Preview
+@Preview(showBackground = true)
 @Composable
-private fun PreviewShelterWriteProfileLastScreen() {
-    ShelterWriteProfileLastScreen(
-        health = "mandamus",
-        skill = "tempus",
-        personality = "natum",
-        onHealth = {},
-        onSkill = {},
-        onPersonality = {},
+private fun PreviewShelterWriteProfileThirdScreen() {
+    ShelterWriteProfileThirdScreen(
+        neuteringType = NeuteringType.NEUTERED,
+        vaccinationType = null,
+        onSetNeuteringType = {},
+        onSetVaccinationType = {},
         onNavigate = {}
     )
 }

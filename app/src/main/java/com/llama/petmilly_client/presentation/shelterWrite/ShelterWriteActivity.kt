@@ -90,7 +90,7 @@ class ShelterWriteActivity : ComponentActivity() {
                     }
 
                     composable(Common.SHELTERDETAIL_3_PROFILE_SCREEN) {
-                        ShelterWriteProfileLastSuccessScreen(
+                        ShelterWriteProfileThirdSuccessScreen(
                             viewModel = viewModel,
                             onNavigate = {
                                 navController.navigate(Common.SHELTERDETAIL_4_PROFILE_SCREEN)
@@ -99,10 +99,11 @@ class ShelterWriteActivity : ComponentActivity() {
                     }
 
                     composable(Common.SHELTERDETAIL_4_PROFILE_SCREEN) {
-                        ShelterDetail_4_profile_Screen(
-                            navController = navController,
+                        ShelterWriteProfileLastSuccess(
                             viewModel = viewModel,
-                            activity = this@ShelterWriteActivity
+                            onNavigate = {
+                                navController.navigate(Common.SHELTERDETAIL_5_CONDITION_SCREEN)
+                            }
                         )
                     }
 

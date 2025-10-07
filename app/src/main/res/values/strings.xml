@@ -64,6 +64,14 @@
     <string name="shelter_write_pet_profile_age_hint">예) 2개월 = 0.2 / 2살 = 2</string>
 
     <string name="shelter_write_pet_profile_last_title">주인공의 프로필을\n완성해주세요.</string>
-    <string name="shelter_write_pet_profile_last_first_question_title">중성화 여부</string>
-    <string name="shelter_write_pet_profile_last_second_question_title">접종 여부</string>
+    <string name="shelter_write_pet_profile_third_first_question_title">중성화 여부</string>
+    <string name="shelter_write_pet_profile_third_second_question_title">접종 여부</string>
+
+    <string name="shelter_write_pet_profile_last_first_question_title">건강상태</string>
+    <string name="shelter_write_pet_profile_last_second_question_title">개인기</string>
+    <string name="shelter_write_pet_profile_last_third_question_title">성격 및 특징</string>
+
+    <string name="shelter_write_pet_profile_last_first_question_hint">피부/스케일링/기침여부/다리/아파보이는 곳 등\n건강상태를 입력해주세요.</string>
+    <string name="shelter_write_pet_profile_last_second_question_hint">앉아 / 손 / 돌아 등 개인기를 입력해주시면 좋아요!</string>
+    <string name="shelter_write_pet_profile_last_third_question_hint">소심 / 발랄 / 용맹 / 까불 등 성격\n그리고 특징을 적어주세요.</string>
 </resources>

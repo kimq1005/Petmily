@@ -91,6 +91,8 @@ private fun ShelterWriteProfileDetailInfoScreen(
                 .padding(horizontal = 26.dp)
         ) {
             ShelterWriteProfileTextFieldComponent(
+                modifier = Modifier
+                    .height(55.dp),
                 value = weight,
                 onValue = onWeight,
                 hint = stringResource(R.string.shelter_write_pet_profile_weight_hint),
@@ -128,6 +130,7 @@ private fun ShelterWriteProfileDetailInfoScreen(
         ShelterWriteProfileTextFieldComponent(
             modifier = Modifier
                 .fillMaxWidth()
+                .height(55.dp)
                 .padding(horizontal = 26.dp),
             value = species,
             onValue = onSpecies,
@@ -176,6 +179,8 @@ private fun ShelterWriteProfileDetailInfoScreen(
                 .padding(horizontal = 26.dp)
         ) {
             ShelterWriteProfileTextFieldComponent(
+                modifier = Modifier
+                    .height(55.dp),
                 value = age,
                 onValue = onAge,
                 hint = stringResource(R.string.shelter_write_pet_profile_age_hint),
