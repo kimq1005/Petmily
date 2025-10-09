@@ -195,6 +195,14 @@ class ShelterWriteViewModel @Inject constructor(
         }
     }
 
+    fun setCharmAppeal(value: String) = blockingIntent {
+        reduce {
+            state.copy(
+                charmAppeal = value
+            )
+        }
+    }
+
     //    fun posttemporaryprotection() {
 //
 //

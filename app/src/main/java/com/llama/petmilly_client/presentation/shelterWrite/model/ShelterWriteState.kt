@@ -16,6 +16,7 @@ data class ShelterWriteState(
     val health: String = "건강",
     val skill: String = "스킬풀",
     val personality: String = "오호",
+    val charmAppeal: String = "테스트",
     val hopePeoples: List<String> = emptyList(),
     val noPeoples: List<String> = emptyList(),
     val neuteredType: NeuteringType? = null,

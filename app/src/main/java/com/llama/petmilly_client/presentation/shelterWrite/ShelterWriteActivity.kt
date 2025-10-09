@@ -14,7 +14,6 @@ import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.llama.petmilly_client.R
 import com.llama.petmilly_client.presentation.common.compnent.TitleBarComponent
@@ -39,7 +38,7 @@ class ShelterWriteActivity : ComponentActivity() {
             Column {
                 TitleBarComponent(
                     title = stringResource(R.string.shelter_bar_title),
-                    isMenu = false,
+                    isMenu = true,
                     onClickBack = {
                         val popped = navController.popBackStack()
                         if (!popped) finish()
@@ -122,10 +121,11 @@ class ShelterWriteActivity : ComponentActivity() {
                     }
 
                     composable(Common.SHELTERDETAIL_7_CHARMAPPEAL_SCREEN) {
-                        ShelterDetail_CharmAppeal_7_Screen(
-                            navController = navController,
+                        ShelterWriteCharmAppealSuccessScreen(
                             viewModel = viewModel,
-                            activity = this@ShelterWriteActivity
+                            onNavigate = {
+                                navController.navigate(Common.SHELTERDETAIL_8_APPLICATION_SCREEN)
+                            }
                         )
                     }
 

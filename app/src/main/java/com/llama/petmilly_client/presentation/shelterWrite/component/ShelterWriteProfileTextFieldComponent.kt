@@ -20,6 +20,7 @@ fun ShelterWriteProfileTextFieldComponent(
     onValue: (String) -> Unit,
     hint: String,
     enable: Boolean = true,
+    maxLines: Int = Int.MAX_VALUE,
     keyboardOption: KeyboardOptions = KeyboardOptions.Default,
 ) {
     TextField(
@@ -28,6 +29,7 @@ fun ShelterWriteProfileTextFieldComponent(
         modifier = modifier,
         shape = RoundedCornerShape(10.dp),
         enabled = enable,
+        maxLines = maxLines,
         colors = TextFieldDefaults.textFieldColors(
             backgroundColor = TextField_BackgroudColor,
             focusedIndicatorColor = Color.Transparent,

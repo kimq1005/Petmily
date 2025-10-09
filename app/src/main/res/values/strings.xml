@@ -84,4 +84,9 @@
 
     <string name="shelter_write_last_condition_text_field_second_title">✋‍ 이런분은 안돼요</string>
     <string name="shelter_write_last_condition_text_field_second_hint">예) 집을 비우는 시간이 너무 기신 분</string>
+
+    <string name="shelter_write_charm_appeal_title">주인공의 매력어필을\n한줄로 표현 해주세요.</string>
+
+    <string name="shelter_write_charm_appeal_text_field_title">매력어필</string>
+    <string name="shelter_write_charm_appeal_text_field_hint">예)미소가 이쁜 감자에요.</string>
 </resources>
