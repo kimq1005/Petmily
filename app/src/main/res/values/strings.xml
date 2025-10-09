@@ -75,6 +75,13 @@
     <string name="shelter_write_pet_profile_last_second_question_hint">앉아 / 손 / 돌아 등 개인기를 입력해주시면 좋아요!</string>
     <string name="shelter_write_pet_profile_last_third_question_hint">소심 / 발랄 / 용맹 / 까불 등 성격\n그리고 특징을 적어주세요.</string>
 
-    <string name="shelter_write_condition_category_title">임보조건</string>
+    <string name="shelter_write_condition_title">임보조건을\n입력 해주세요.</string>
+    <string name="shelter_write_condition_text_field_title">임보조건</string>
     <string name="shelter_write_condition_text_field_hint">예) 2주에1회 병원 통원 가능하신 분</string>
+
+    <string name="shelter_write_last_condition_text_field_first_title">💁‍ 이런분을 희망해요</string>
+    <string name="shelter_write_last_condition_text_field_first_hint">예) 출퇴근 유연하신 분</string>
+
+    <string name="shelter_write_last_condition_text_field_second_title">✋‍ 이런분은 안돼요</string>
+    <string name="shelter_write_last_condition_text_field_second_hint">예) 집을 비우는 시간이 너무 기신 분</string>
 </resources>

@@ -8,6 +8,8 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -28,48 +30,52 @@ import androidx.compose.ui.unit.sp
 import com.llama.petmilly_client.R
 import com.llama.petmilly_client.presentation.shelterWrite.component.ShelterWriteSubTitleComponent
 import com.llama.petmilly_client.presentation.shelterWrite.item.ShelterConditionTextFieldItem
-import com.llama.petmilly_client.presentation.shelterWrite.item.ShelterWritePickUpCategoryItem
-import com.llama.petmilly_client.presentation.shelterWrite.model.PickUpType
-import com.llama.petmilly_client.ui.theme.Button_NoneClicked
 import com.llama.petmilly_client.utils.ButtonScreen
 import com.llama.petmilly_client.utils.notosans_bold
 
 @Composable
-fun ShelterWriteConditionSuccessScreen(
+fun ShelterWriteConditionLastSuccessScreen(
     viewModel: ShelterWriteViewModel,
     onNavigate: () -> Unit,
 ) {
     val state = viewModel.container.stateFlow.collectAsState().value
 
-    ShelterWriteConditionScreen(
-        pickUpType = state.pickUpType,
-        tenancyCondition = state.tenancyCondition,
-        onSetTenancyCondition = viewModel::setTemporaryCondition,
-        onPickUpType = viewModel::setPickUpType,
+    ShelterWriteConditionLastScreen(
+        hopePeoples = state.hopePeoples,
+        noPeoples = state.noPeoples,
+        onHopePeoples = viewModel::setHopePeoples,
+        onNoPeoples = viewModel::setNoPeoples,
         onNavigate = onNavigate
     )
 }
 
 @Composable
-private fun ShelterWriteConditionScreen(
-    pickUpType: PickUpType?,
-    tenancyCondition: List<String>,
-    onSetTenancyCondition: (String) -> Unit,
-    onPickUpType: (PickUpType) -> Unit,
+private fun ShelterWriteConditionLastScreen(
+    hopePeoples: List<String>,
+    noPeoples: List<String>,
+    onHopePeoples: (String) -> Unit,
+    onNoPeoples: (String) -> Unit,
     onNavigate: () -> Unit,
 ) {
-    val isCheck by remember(pickUpType) {
-        derivedStateOf { pickUpType != null }
+    val isCheck by remember(hopePeoples, noPeoples) {
+        derivedStateOf { hopePeoples.isNotEmpty() && noPeoples.isNotEmpty() }
     }
 
-    var value by remember {
+    var hopeValue by remember {
         mutableStateOf("")
     }
+
+    var noValue by remember {
+        mutableStateOf("")
+    }
+
+    val scrollState = rememberScrollState()
 
     Column(
         Modifier
             .fillMaxSize()
-            .background(color = Color.White)
+            .background(Color.White)
+            .verticalScroll(scrollState)
     ) {
         ShelterWriteSubTitleComponent(
             modifier = Modifier
@@ -77,22 +83,26 @@ private fun ShelterWriteConditionScreen(
             text = stringResource(R.string.shelter_write_condition_title)
         )
 
-        ShelterWritePickUpCategoryItem(
+        ShelterConditionTextFieldItem(
             modifier = Modifier
                 .padding(top = 28.dp),
-            pickUpType = pickUpType,
-            onPickUpType = onPickUpType
+            title = stringResource(R.string.shelter_write_last_condition_text_field_first_title),
+            hint = stringResource(R.string.shelter_write_last_condition_text_field_first_hint),
+            value = hopeValue,
+            onValue = { hopeValue = it },
+            valueList = hopePeoples,
+            onSetValue = onHopePeoples
         )
 
         ShelterConditionTextFieldItem(
-            title = stringResource(R.string.shelter_write_condition_text_field_title),
-            hint = stringResource(R.string.shelter_write_condition_text_field_hint),
-            value = value,
-            onValue = {
-                value = it
-            },
-            valueList = tenancyCondition,
-            onSetValue = onSetTenancyCondition
+            modifier = Modifier
+                .padding(top = 20.dp),
+            title = stringResource(R.string.shelter_write_last_condition_text_field_second_title),
+            hint = stringResource(R.string.shelter_write_last_condition_text_field_second_hint),
+            value = noValue,
+            onValue = { noValue = it },
+            valueList = noPeoples,
+            onSetValue = onNoPeoples
         )
 
         Spacer(modifier = Modifier.weight(1f))
@@ -109,16 +119,13 @@ private fun ShelterWriteConditionScreen(
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(55.dp),
-                backgroundcolor = if (isCheck) Color.Black else Button_NoneClicked
-
+                backgroundcolor = Color.Black
             ) {
-                if (isCheck) {
-                    onNavigate()
-                }
+                if (isCheck) onNavigate()
             }
 
             Text(
-                text = "5/8", fontSize = 13.sp,
+                text = "6/8", fontSize = 13.sp,
                 fontFamily = notosans_bold,
                 style = TextStyle(
                     platformStyle = PlatformTextStyle(
@@ -136,12 +143,12 @@ private fun ShelterWriteConditionScreen(
 
 @Preview(showBackground = true)
 @Composable
-private fun PreviewShelterWriteConditionScreen() {
-    ShelterWriteConditionScreen(
-        pickUpType = PickUpType.DIRECT_PICKUP,
-        tenancyCondition = listOf(),
-        onSetTenancyCondition = {},
-        onPickUpType = {},
+private fun PreviewShelterWriteConditionLastScreen() {
+    ShelterWriteConditionLastScreen(
+        hopePeoples = listOf(),
+        noPeoples = listOf(),
+        onHopePeoples = {},
+        onNoPeoples = {},
         onNavigate = {}
     )
 }

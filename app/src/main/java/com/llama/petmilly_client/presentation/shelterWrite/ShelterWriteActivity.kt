@@ -31,8 +31,6 @@ class ShelterWriteActivity : ComponentActivity() {
         setContent {
             val navController = rememberNavController()
             val viewModel: ShelterWriteViewModel = hiltViewModel()
-            val navBackStackEntry by navController.currentBackStackEntryAsState()
-            val currentRoute = navBackStackEntry?.destination?.route
 
             var isShowDialog by remember {
                 mutableStateOf(false)
@@ -42,19 +40,17 @@ class ShelterWriteActivity : ComponentActivity() {
                 TitleBarComponent(
                     title = stringResource(R.string.shelter_bar_title),
                     isMenu = false,
-                    onClickBack = { finish() },
+                    onClickBack = {
+                        val popped = navController.popBackStack()
+                        if (!popped) finish()
+                    },
                     onClickMenu = { isShowDialog = true }
                 )
 
                 if (isShowDialog) {
                     AlmostCompletedDialog(
                         onDismiss = { isShowDialog = false },
-                        onExit = {
-                            if (currentRoute == SHELTERDETAIL_SPECIES_SCREEN)
-                                finish()
-                            else
-                                navController.popBackStack()
-                        }
+                        onExit = { finish() }
                     )
                 }
 
@@ -117,10 +113,11 @@ class ShelterWriteActivity : ComponentActivity() {
                     }
 
                     composable(Common.SHELTERDETAIL_6_CONDITION_SCREEN) {
-                        ShelterDetail_6_conditons_Screen(
-                            navController = navController,
+                        ShelterWriteConditionLastSuccessScreen(
                             viewModel = viewModel,
-                            activity = this@ShelterWriteActivity
+                            onNavigate = {
+                                navController.navigate(Common.SHELTERDETAIL_7_CHARMAPPEAL_SCREEN)
+                            }
                         )
                     }
 
@@ -131,7 +128,6 @@ class ShelterWriteActivity : ComponentActivity() {
                             activity = this@ShelterWriteActivity
                         )
                     }
-
 
                     composable(Common.SHELTERDETAIL_8_APPLICATION_SCREEN) {
                         ShelterDetail_8_Application_Period_Screen(

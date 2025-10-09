@@ -45,26 +45,12 @@ fun ShelterDetail_8_Application_Period_Screen(
 
     val lifecycleOwner = LocalLifecycleOwner.current
     val context = LocalContext.current
-    SetAlomostCompletedDialog(
-        viewModel.isAlmostCompletedDialog, onDismiss = {
-            viewModel.onDismissAlmostCompetedDialog()
-        },
-        activity = activity
-    )
-
 
     Column(
         modifier = Modifier
             .fillMaxSize()
             .background(Color.White)
     ) {
-        TitleBarComponent(
-            title = "임보처구해요",
-            isMenu = false,
-            onClickBack = { navController.popBackStack() },
-            onClickMenu = { viewModel.onShownAlmostCompetedDialog() }
-        )
-
         ShelterWriteSubTitleComponent("신청서 접수기간\n희망 시 입력해주세요.")
 
         Spacer(modifier = Modifier.height(28.dp))

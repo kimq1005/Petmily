@@ -31,25 +31,11 @@ fun ShelterDetail_CharmAppeal_7_Screen(
     viewModel: ShelterWriteViewModel,
     activity: Activity,
 ) {
-    SetAlomostCompletedDialog(
-        viewModel.isAlmostCompletedDialog, onDismiss = {
-            viewModel.onDismissAlmostCompetedDialog()
-        },
-        activity = activity
-    )
-
     Column(
         Modifier
             .fillMaxSize()
             .background(Color.White)
     ) {
-        TitleBarComponent(
-            title = "임보처구해요",
-            isMenu = false,
-            onClickBack = { navController.popBackStack() },
-            onClickMenu = { viewModel.onShownAlmostCompetedDialog() }
-        )
-
         ShelterWriteSubTitleComponent("주인공의 매력어필을\n한줄로 해주세요.")
 
         Spacer(modifier = Modifier.height(28.dp))

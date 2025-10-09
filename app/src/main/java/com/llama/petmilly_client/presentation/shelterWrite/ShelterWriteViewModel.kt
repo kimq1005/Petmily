@@ -1,11 +1,7 @@
 package com.llama.petmilly_client.presentation.shelterWrite
 
 import android.net.Uri
-import android.util.Log
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.setValue
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -20,7 +16,6 @@ import com.llama.petmilly_client.presentation.shelterWrite.model.VaccinationType
 import com.llama.petmilly_client.utils.Event
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineExceptionHandler
-import llama.test.jetpack_dagger_plz.utils.Common.TAG
 import okhttp3.MultipartBody
 import org.orbitmvi.orbit.Container
 import org.orbitmvi.orbit.ContainerHost
@@ -54,34 +49,7 @@ class ShelterWriteViewModel @Inject constructor(
     private val _setcompleted = MutableLiveData<Event<Unit>>()
     val setcompleted: LiveData<Event<Unit>> = _setcompleted
 
-    var isAlmostCompletedDialog by mutableStateOf(false)
-        private set
-
-    val files = mutableStateListOf<MultipartBody.Part>()
     val charmAppeal = mutableStateOf("")
-    val isneutered = mutableStateOf("")
-    val isinoculation = mutableStateOf("")
-    val animalhealth = mutableStateOf("")
-    val animalskill = mutableStateOf("")
-    val animalpersonality = mutableStateOf("")
-
-    val pickup = mutableStateOf("")
-
-    val contions = mutableStateOf("")
-
-
-    //    var temporaryProtectionCondition: MutableList<String> = arrayListOf()
-    val temporaryProtectionCondition = mutableStateListOf<String>()
-    val temporaryProtectionConditionList: MutableList<String> = arrayListOf()
-
-    val temporaryProtectionHope = mutableStateListOf<String>()
-    val temporaryProtectionHopeList: MutableList<String> = arrayListOf()
-
-    val temporaryProtectionNo = mutableStateListOf<String>()
-    val temporaryProtectionNoList: MutableList<String> = arrayListOf()
-
-    val hopepeople = mutableStateOf("")
-    val nopeople = mutableStateOf("")
 
     val apstartyear = mutableStateOf("")
     val apendyear = mutableStateOf("")
@@ -205,53 +173,29 @@ class ShelterWriteViewModel @Inject constructor(
         }
     }
 
-    fun onShownAlmostCompetedDialog() {
-        isAlmostCompletedDialog = true
+    fun setHopePeoples(value: String) = intent {
+        reduce {
+            state.copy(
+                hopePeoples = if (state.hopePeoples.contains(value))
+                    state.hopePeoples - value
+                else
+                    state.hopePeoples + value
+            )
+        }
     }
 
-    fun onDismissAlmostCompetedDialog() {
-        isAlmostCompletedDialog = false
+    fun setNoPeoples(value: String) = intent {
+        reduce {
+            state.copy(
+                noPeoples = if (state.noPeoples.contains(value))
+                    state.noPeoples - value
+                else
+                    state.noPeoples + value
+            )
+        }
     }
 
-    fun addtemporaryProtectionCondition(text: String) {
-        temporaryProtectionCondition.add(text)
-        temporaryProtectionConditionList.add(text)
-        Log.d(TAG, "addtemporaryProtectionCondition: $temporaryProtectionConditionList")
-
-    }
-
-    fun deletetemporaryProtectionCondition(text: String) {
-        temporaryProtectionCondition.remove(text)
-        temporaryProtectionConditionList.remove(text)
-    }
-
-
-    fun addtemporaryProtectionHope(text: String) {
-        temporaryProtectionHope.add(text)
-        temporaryProtectionHopeList.add(text)
-
-        Log.d(TAG, "addtemporaryProtectionHope: $temporaryProtectionHopeList")
-    }
-
-    fun deletetemporaryProtectionHope(text: String) {
-        temporaryProtectionHope.remove(text)
-        temporaryProtectionHopeList.remove(text)
-
-
-    }
-
-    fun addtemporaryProtectionNo(text: String) {
-        temporaryProtectionNo.add(text)
-        temporaryProtectionNoList.add(text)
-        Log.d(TAG, "addtemporaryProtectionNo: $temporaryProtectionNoList")
-    }
-
-    fun deletetemporaryProtectionNo(text: String) {
-        temporaryProtectionNo.remove(text)
-        temporaryProtectionNoList.remove(text)
-    }
-
-//    fun posttemporaryprotection() {
+    //    fun posttemporaryprotection() {
 //
 //
 ////        val dateString = hopeapplicationperiod.value
