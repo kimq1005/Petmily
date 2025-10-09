@@ -108,10 +108,11 @@ class ShelterWriteActivity : ComponentActivity() {
                     }
 
                     composable(Common.SHELTERDETAIL_5_CONDITION_SCREEN) {
-                        ShelterDetail_5_conditons_Screen(
-                            navController = navController,
+                        ShelterWriteConditionSuccessScreen(
                             viewModel = viewModel,
-                            activity = this@ShelterWriteActivity
+                            onNavigate = {
+                                navController.navigate(Common.SHELTERDETAIL_6_CONDITION_SCREEN)
+                            }
                         )
                     }
 

@@ -74,4 +74,7 @@
     <string name="shelter_write_pet_profile_last_first_question_hint">피부/스케일링/기침여부/다리/아파보이는 곳 등\n건강상태를 입력해주세요.</string>
     <string name="shelter_write_pet_profile_last_second_question_hint">앉아 / 손 / 돌아 등 개인기를 입력해주시면 좋아요!</string>
     <string name="shelter_write_pet_profile_last_third_question_hint">소심 / 발랄 / 용맹 / 까불 등 성격\n그리고 특징을 적어주세요.</string>
+
+    <string name="shelter_write_condition_category_title">임보조건</string>
+    <string name="shelter_write_condition_text_field_hint">예) 2주에1회 병원 통원 가능하신 분</string>
 </resources>

@@ -4,7 +4,15 @@ import android.app.Activity
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -26,6 +34,7 @@ import com.llama.petmilly_client.R
 import com.llama.petmilly_client.presentation.common.compnent.TitleBarComponent
 import com.llama.petmilly_client.presentation.dialog.SetAlomostCompletedDialog
 import com.llama.petmilly_client.presentation.shelterWrite.component.ShelterWriteSubTitleComponent
+import com.llama.petmilly_client.presentation.shelterWrite.item.TemporaryProtectionCondition
 import com.llama.petmilly_client.ui.theme.TextField_BackgroudColor
 import com.llama.petmilly_client.utils.ButtonScreen
 import com.llama.petmilly_client.utils.SpacerHeight
@@ -126,7 +135,10 @@ fun ShelterDetail_6_conditons_Screen(
             modifier = Modifier.padding(horizontal = 28.dp)
         ) {
             items(viewModel.temporaryProtectionHope) { item ->
-                TemporaryProtectionCondition(true, item, ondelete = {
+                TemporaryProtectionCondition(
+                    yesOrNo = true,
+                    item,
+                    onDelete = {
                     viewModel.deletetemporaryProtectionHope(item)
                 })
 
@@ -203,7 +215,7 @@ fun ShelterDetail_6_conditons_Screen(
             modifier = Modifier.padding(horizontal = 28.dp)
         ) {
             items(viewModel.temporaryProtectionNo) { item ->
-                TemporaryProtectionCondition(false, item, ondelete = {
+                TemporaryProtectionCondition(false, item, onDelete = {
                     viewModel.deletetemporaryProtectionNo(item)
                 })
 

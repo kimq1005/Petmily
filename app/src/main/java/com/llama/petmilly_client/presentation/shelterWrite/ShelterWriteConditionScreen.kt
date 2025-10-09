@@ -1,5 +1,3 @@
-@file:Suppress("UNCHECKED_CAST")
-
 package com.llama.petmilly_client.presentation.shelterWrite
 
 import androidx.compose.foundation.background
@@ -15,7 +13,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -27,61 +27,72 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.llama.petmilly_client.R
 import com.llama.petmilly_client.presentation.shelterWrite.component.ShelterWriteSubTitleComponent
-import com.llama.petmilly_client.presentation.shelterWrite.item.ShelterWriteProfileTextFieldItem
+import com.llama.petmilly_client.presentation.shelterWrite.item.ShelterConditionTextFieldItem
+import com.llama.petmilly_client.presentation.shelterWrite.item.ShelterWritePickUpCategoryItem
+import com.llama.petmilly_client.presentation.shelterWrite.model.PickUpType
+import com.llama.petmilly_client.ui.theme.Button_NoneClicked
 import com.llama.petmilly_client.utils.ButtonScreen
 import com.llama.petmilly_client.utils.notosans_bold
 
 @Composable
-fun ShelterWriteProfileLastSuccess(
+fun ShelterWriteConditionSuccessScreen(
     viewModel: ShelterWriteViewModel,
-    onNavigate: () -> Unit
+    onNavigate: () -> Unit,
 ) {
     val state = viewModel.container.stateFlow.collectAsState().value
 
-    ShelterWriteProfileLastScreen(
-        health = state.health,
-        skill = state.skill,
-        personality = state.personality,
-        onHealth = viewModel::setHealth,
-        onSkill = viewModel::setSkill,
-        onPersonality = viewModel::setPersonality,
+    ShelterWriteConditionScreen(
+        pickUpType = state.pickUpType,
+        tenancyCondition = state.tenancyCondition,
+        onSetTenancyCondition = viewModel::setTemporaryCondition,
+        onPickUpType = viewModel::setPickUpType,
         onNavigate = onNavigate
     )
 }
 
 @Composable
-fun ShelterWriteProfileLastScreen(
-    health: String,
-    skill: String,
-    personality: String,
-    onHealth: (String) -> Unit,
-    onSkill: (String) -> Unit,
-    onPersonality: (String) -> Unit,
-    onNavigate: () -> Unit
+fun ShelterWriteConditionScreen(
+    pickUpType: PickUpType?,
+    tenancyCondition: List<String>,
+    onSetTenancyCondition: (String) -> Unit,
+    onPickUpType: (PickUpType) -> Unit,
+    onNavigate: () -> Unit,
 ) {
-    val isCheck by remember(health, skill, personality) {
-        derivedStateOf { health != "" && skill != "" && personality != "" }
+    val isCheck by remember(pickUpType) {
+        derivedStateOf { pickUpType != null }
     }
 
-    Column(Modifier
-        .fillMaxSize()
-        .background(Color.White)
-     ) {
+    var value by remember {
+        mutableStateOf("")
+    }
+
+    Column(
+        Modifier
+            .fillMaxSize()
+            .background(color = Color.White)
+    ) {
         ShelterWriteSubTitleComponent(
             modifier = Modifier
                 .padding(horizontal = 24.dp),
             text = stringResource(R.string.shelter_write_pet_profile_last_title)
         )
 
-        ShelterWriteProfileTextFieldItem(
+        ShelterWritePickUpCategoryItem(
             modifier = Modifier
                 .padding(top = 28.dp),
-            health = health,
-            skill = skill,
-            personality = personality,
-            onHealth = onHealth,
-            onSkill = onSkill,
-            onPersonality = onPersonality
+            pickUpType = pickUpType,
+            onPickUpType = onPickUpType
+        )
+        val hi = R.string.next
+        ShelterConditionTextFieldItem(
+            title = stringResource(R.string.shelter_write_condition_category_title),
+            hint = stringResource(R.string.shelter_write_condition_text_field_hint),
+            value = value,
+            onValue = {
+                value = it
+            },
+            valueList = tenancyCondition,
+            onSetValue = onSetTenancyCondition
         )
 
         Spacer(modifier = Modifier.weight(1f))
@@ -92,20 +103,22 @@ fun ShelterWriteProfileLastScreen(
                 .padding(start = 24.dp, end = 24.dp, bottom = 20.dp)
         ) {
             ButtonScreen(
-                title = "다음",
+                title = stringResource(R.string.next),
                 textcolor = Color.White,
                 fontSize = 15,
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(55.dp),
-                backgroundcolor = if (isCheck) Color.Black else Color.LightGray
+                backgroundcolor = if (isCheck) Color.Black else Button_NoneClicked
 
             ) {
-                if (isCheck) onNavigate()
+                if (isCheck) {
+                    onNavigate()
+                }
             }
 
             Text(
-                text = "4/8", fontSize = 13.sp,
+                text = "5/8", fontSize = 13.sp,
                 fontFamily = notosans_bold,
                 style = TextStyle(
                     platformStyle = PlatformTextStyle(
@@ -121,16 +134,14 @@ fun ShelterWriteProfileLastScreen(
     }
 }
 
-@Preview
+@Preview(showBackground = true)
 @Composable
-private fun PreviewShelterWriteProfileLastScreen() {
-    ShelterWriteProfileLastScreen(
-        health = "mandamus",
-        skill = "tempus",
-        personality = "natum",
-        onHealth = {},
-        onSkill = {},
-        onPersonality = {},
+private fun PreviewShelterWriteConditionScreen() {
+    ShelterWriteConditionScreen(
+        pickUpType = PickUpType.DIRECT_PICKUP,
+        tenancyCondition = listOf(),
+        onSetTenancyCondition = {},
+        onPickUpType = {},
         onNavigate = {}
     )
 }
