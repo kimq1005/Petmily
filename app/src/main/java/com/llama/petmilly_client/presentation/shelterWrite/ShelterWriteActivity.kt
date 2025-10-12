@@ -130,10 +130,8 @@ class ShelterWriteActivity : ComponentActivity() {
                     }
 
                     composable(Common.SHELTERDETAIL_8_APPLICATION_SCREEN) {
-                        ShelterDetail_8_Application_Period_Screen(
-                            navController = navController,
-                            viewModel = viewModel,
-                            activity = this@ShelterWriteActivity
+                        ShelterWriteApplicationPeriodSuccessScreen(
+                            viewModel = viewModel
                         )
                     }
                 }
@@ -141,5 +139,3 @@ class ShelterWriteActivity : ComponentActivity() {
         }
     }
 }
-
-

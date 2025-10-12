@@ -1,7 +1,6 @@
 package com.llama.petmilly_client.presentation.shelterWrite
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -13,6 +12,9 @@ import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.derivedStateOf
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -24,10 +26,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.llama.petmilly_client.R
+import com.llama.petmilly_client.presentation.common.compnent.BottomBtnComponent
 import com.llama.petmilly_client.presentation.shelterWrite.component.ShelterWriteProfileTextFieldComponent
 import com.llama.petmilly_client.presentation.shelterWrite.component.ShelterWriteSubTitleComponent
-import com.llama.petmilly_client.ui.theme.Grey_50_CBC4C4
-import com.llama.petmilly_client.utils.ButtonScreen
 import com.llama.petmilly_client.utils.UnKnownCheckBoxComponent
 import com.llama.petmilly_client.utils.notosans_bold
 import com.llama.petmilly_client.utils.notosans_regular
@@ -60,6 +61,12 @@ private fun ShelterWriteProfileDetailInfoScreen(
     onWeight: (String) -> Unit,
     onNavigate: () -> Unit
 ) {
+    val isCheck by remember(weight, age, species) {
+        derivedStateOf {
+            weight != "" && age != "" && species != ""
+        }
+    }
+
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -225,40 +232,16 @@ private fun ShelterWriteProfileDetailInfoScreen(
 
         Spacer(modifier = Modifier.weight(1f))
 
-        Box(
+        BottomBtnComponent(
             modifier = Modifier
-                .fillMaxWidth()
-                .padding(start = 24.dp, end = 24.dp, bottom = 20.dp)
-        ) {
-            val isCheck = weight != "" && age != "" && species != ""
-
-            ButtonScreen(
-                title = stringResource(R.string.next),
-                textcolor = Color.White,
-                fontSize = 15,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(55.dp),
-                backgroundcolor = if (isCheck) Color.Black else Color.LightGray
-
-            ) {
+                .padding(10.dp),
+            title = stringResource(R.string.next),
+            isCheck = isCheck,
+            page = "2/8",
+            onClick = {
                 if (isCheck) onNavigate()
             }
-
-            Text(
-                text = "2/8", fontSize = 13.sp,
-                fontFamily = notosans_bold,
-                style = TextStyle(
-                    platformStyle = PlatformTextStyle(
-                        includeFontPadding = false
-                    )
-                ),
-                color = if (isCheck) Color.White else Grey_50_CBC4C4,
-                modifier = Modifier
-                    .align(Alignment.CenterEnd)
-                    .padding(end = 18.dp)
-            )
-        }
+        )
     }
 }
 

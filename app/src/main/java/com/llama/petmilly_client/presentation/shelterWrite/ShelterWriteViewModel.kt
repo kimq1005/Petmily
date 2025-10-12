@@ -46,14 +46,6 @@ class ShelterWriteViewModel @Inject constructor(
         }
     )
 
-    private val _setcompleted = MutableLiveData<Event<Unit>>()
-    val setcompleted: LiveData<Event<Unit>> = _setcompleted
-
-    val charmAppeal = mutableStateOf("")
-
-    val apstartyear = mutableStateOf("")
-    val apendyear = mutableStateOf("")
-
     fun setPetSpecies(
         species: PetCategoryType,
     ) = intent {
@@ -199,6 +191,22 @@ class ShelterWriteViewModel @Inject constructor(
         reduce {
             state.copy(
                 charmAppeal = value
+            )
+        }
+    }
+
+    fun setStartReceptionPeriod(value: String) = blockingIntent {
+        reduce {
+            state.copy(
+                startReceptionPeriod = value
+            )
+        }
+    }
+
+    fun setEndReceptionPeriod(value: String) = blockingIntent {
+        reduce {
+            state.copy(
+                endReceptionPeriod = value
             )
         }
     }

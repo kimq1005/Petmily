@@ -7,7 +7,7 @@ import okhttp3.MultipartBody
 
 @Immutable
 data class ShelterWriteState(
-    val petCategoryType: PetCategoryType = PetCategoryType.ENTITY,
+    val petCategoryType: PetCategoryType? = null,
     val petName: String = "테스트",
     val gender: GenderType? = null,
     val weight: String = "1",
@@ -17,6 +17,8 @@ data class ShelterWriteState(
     val skill: String = "스킬풀",
     val personality: String = "오호",
     val charmAppeal: String = "테스트",
+    val startReceptionPeriod: String = "",
+    val endReceptionPeriod: String = "",
     val hopePeoples: List<String> = emptyList(),
     val noPeoples: List<String> = emptyList(),
     val neuteredType: NeuteringType? = null,

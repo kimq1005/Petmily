@@ -10,6 +10,7 @@
     <string name="signup_top_description">아이들의 안전한 입양을 위해 기본정보가 필요합니다.\n입력하신 정보는 입양/임보 신청 시에만 사용됩니다.</string>
 
     <string name="next">다음</string>
+    <string name="completed">완료</string>
     <string name="name">이름</string>
     <string name="gender">성별</string>
     <string name="species">품종</string>
@@ -89,4 +90,7 @@
 
     <string name="shelter_write_charm_appeal_text_field_title">매력어필</string>
     <string name="shelter_write_charm_appeal_text_field_hint">예)미소가 이쁜 감자에요.</string>
+
+    <string name="shelter_write_application_period_title">신청서 접수기간\n희망 시 입력해주세요.</string>
+    <string name="shelter_write_application_period_subtitle">신청서 접수기간(선택)</string>
 </resources>

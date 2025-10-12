@@ -22,7 +22,7 @@ import com.llama.petmilly_client.utils.notosans_bold
 import com.llama.petmilly_client.utils.notosans_regular
 
 @Composable
-fun ShelterWriteBtnComponent(
+fun ShelterWriteCategoryBtnComponent(
     modifier: Modifier = Modifier,
     species: PetCategoryType,
     isCheck: Boolean,
@@ -60,7 +60,7 @@ fun ShelterWriteBtnComponent(
 @Preview(showBackground = true)
 @Composable
 private fun PreviewShelterWriteBtnComponent() {
-    ShelterWriteBtnComponent(
+    ShelterWriteCategoryBtnComponent(
         species = PetCategoryType.CAT,
         isCheck = false,
         onCheckSpecies = {}

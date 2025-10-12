@@ -4,24 +4,22 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.derivedStateOf
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.navigation.compose.rememberNavController
 import com.llama.petmilly_client.R
+import com.llama.petmilly_client.presentation.common.compnent.BottomBtnComponent
 import com.llama.petmilly_client.presentation.home.model.PetCategoryType
-import com.llama.petmilly_client.presentation.shelterWrite.component.ShelterWriteBtnComponent
+import com.llama.petmilly_client.presentation.shelterWrite.component.ShelterWriteCategoryBtnComponent
 import com.llama.petmilly_client.presentation.shelterWrite.component.ShelterWriteSubTitleComponent
-import com.llama.petmilly_client.ui.theme.Button_Clicked
-import com.llama.petmilly_client.ui.theme.Button_NoneClicked
-import com.llama.petmilly_client.utils.ButtonScreen
 
 @Composable
 fun ShelterWritePetInfoSuccessScreen(
@@ -39,10 +37,16 @@ fun ShelterWritePetInfoSuccessScreen(
 
 @Composable
 private fun ShelterWritePetInfoScreen(
-    petCategoryType: PetCategoryType,
+    petCategoryType: PetCategoryType?,
     onCheckSpecies: (PetCategoryType) -> Unit,
     onNavigate: () -> Unit,
 ) {
+    val isCheck by remember(petCategoryType) {
+        derivedStateOf {
+            petCategoryType != null
+        }
+    }
+
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -54,7 +58,7 @@ private fun ShelterWritePetInfoScreen(
             text = stringResource(R.string.shelter_write_pet_info_title)
         )
 
-        ShelterWriteBtnComponent(
+        ShelterWriteCategoryBtnComponent(
             modifier = Modifier
                 .padding(top = 50.dp)
                 .padding(start = 35.dp, end = 50.dp),
@@ -63,7 +67,7 @@ private fun ShelterWritePetInfoScreen(
             onCheckSpecies = onCheckSpecies
         )
 
-        ShelterWriteBtnComponent(
+        ShelterWriteCategoryBtnComponent(
             modifier = Modifier
                 .padding(top = 16.dp)
                 .padding(start = 35.dp, end = 50.dp),
@@ -74,18 +78,15 @@ private fun ShelterWritePetInfoScreen(
 
         Spacer(modifier = Modifier.weight(1f))
 
-        ButtonScreen(
-            title = stringResource(R.string.next),
-            textcolor = Color.White,
-            fontSize = 15,
+        BottomBtnComponent(
             modifier = Modifier
-                .fillMaxWidth()
-                .padding(20.dp)
-                .height(55.dp),
-            backgroundcolor = if (petCategoryType != PetCategoryType.ENTITY) Button_Clicked else Button_NoneClicked
-        ) {
-            if (petCategoryType != PetCategoryType.ENTITY)  onNavigate()
-        }
+                .padding(20.dp),
+            title = stringResource(R.string.next),
+            isCheck = isCheck,
+            onClick = {
+                onNavigate()
+            }
+        )
     }
 }
 
