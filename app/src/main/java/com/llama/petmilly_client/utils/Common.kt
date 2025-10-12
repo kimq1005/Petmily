@@ -54,17 +54,6 @@ object Common {
     const val ADOPTION_LIST_SCREEN = "adptionlistscreen"
     const val ADOPTION_Detail_SCREEN = "adoptiondetailscreen"
 
-    //임보처 구해요
-    const val SHELTERDETAIL_SPECIES_SCREEN ="ShelterDetail_species_Screen "
-    const val SHELTERDETAIL_1_PROFILE_SCREEN ="ShelterDetail_1_profile_Screen"
-    const val SHELTERDETAIL_2_PROFILE_SCREEN ="ShelterDetail_2_profile_Screen"
-    const val SHELTERDETAIL_3_PROFILE_SCREEN ="ShelterDetail_3_profile_Screen"
-    const val SHELTERDETAIL_4_PROFILE_SCREEN ="ShelterDetail_4_profile_Screen"
-    const val SHELTERDETAIL_5_CONDITION_SCREEN ="ShelterDetail_5_condition_Screen"
-    const val SHELTERDETAIL_6_CONDITION_SCREEN ="ShelterDetail_6_condition_Screen"
-    const val SHELTERDETAIL_7_CHARMAPPEAL_SCREEN ="SHELTERDETAIL_7_CHARMAPPEAL_SCREEN"
-    const val SHELTERDETAIL_8_APPLICATION_SCREEN ="ShelterDetail_7_application_Screen"
-
     //이동봉사 구해요
     const val MOVESERVICEDETAILSCREEN_1_ANIMALTYPE = "MoveServiceDetail_1_AnimalTypes_Screen"
     const val MOVESERVICEDETAILSCREEN_2_PROFILE_1 = "MoveServiceDetail_2_Profile_1_Screen"

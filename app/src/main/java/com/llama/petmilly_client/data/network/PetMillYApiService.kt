@@ -42,31 +42,6 @@ interface PetMillYApiService {
         @Body tokenResponse: TokenResponse,
     ): Response<RefreshTokenDTO>
 
-    @POST("post/temporary-protection")
-    @Multipart
-    @JvmSuppressWildcards
-    suspend fun postTemporaryProtection(
-        @Part files: List<MultipartBody.Part>?,
-        @Part("charmAppeal") charmAppeal: String,
-        @Part("animalTypes") animalTypes: String,
-        @Part("name") name: String,
-        @Part("gender") gender: String,
-        @Part("weight") weight: String,
-        @Part("breed") breed: String,
-        @Part("age") age: String,
-        @Part("neutered") neutered: String,
-        @Part("inoculation") inoculation: String,
-        @Part("health") health: String?,
-        @Part("skill") skill: String?,
-        @Part("character") character: String?,
-        @Part("pickUp") pickUp: String,
-        @Part("startReceptionPeriod") startReceptionPeriod: String?,
-        @Part("endReceptionPeriod") endReceptionPeriod: String?,
-        @Part("temporaryProtectionCondition") temporaryProtectionCondition: List<String>?,
-        @Part("temporaryProtectionHope") temporaryProtectionHope: List<String>?,
-        @Part("temporaryProtectionNo") temporaryProtectionNo: List<String>?,
-    ): Response<TemporaryProtectionDTO>
-
     @POST("/user/town-auth")
     suspend fun postTownAuth(
         @Body locationAuthenticationResponse: LocationAuthenticationRequest,

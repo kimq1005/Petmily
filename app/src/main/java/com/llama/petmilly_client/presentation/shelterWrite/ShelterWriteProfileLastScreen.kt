@@ -23,7 +23,7 @@ import com.llama.petmilly_client.presentation.shelterWrite.component.ShelterWrit
 import com.llama.petmilly_client.presentation.shelterWrite.item.ShelterWriteProfileTextFieldItem
 
 @Composable
-fun ShelterWriteProfileLastSuccess(
+fun ShelterWriteProfileLastSuccessScreen(
     viewModel: ShelterWriteViewModel,
     onNavigate: () -> Unit
 ) {

@@ -38,54 +38,9 @@ class PetMillyRepoImpl @Inject constructor(private val petMillYApiService: PetMi
 
     override suspend fun postUserRefreshToken(
         tokenResponse: TokenResponse,
-    ): RemoteResult<RefreshTokenDTO> =
-        getResult {
+    ): RemoteResult<RefreshTokenDTO> = getResult {
             petMillYApiService.postUserRefreshToken(tokenResponse)
         }
-
-    override suspend fun postTemporaryProtection(
-        files: List<MultipartBody.Part>?,
-        charmAppeal: String,
-        animalTypes: String,
-        name: String,
-        gender: String,
-        weight: String,
-        breed: String,
-        age: String,
-        neutered: String,
-        inoculation: String,
-        health: String?,
-        skill: String?,
-        character: String?,
-        pickUp: String,
-        startReceptionPeriod: String?,
-        endReceptionPeriod: String?,
-        temporaryProtectionCondition: List<String>?,
-        temporaryProtectionHope: List<String>?,
-        temporaryProtectionNo: List<String>?,
-    ): RemoteResult<TemporaryProtectionDTO> = getResult {
-        petMillYApiService.postTemporaryProtection(
-            files,
-            charmAppeal,
-            animalTypes,
-            name,
-            gender,
-            weight,
-            breed,
-            age,
-            neutered,
-            inoculation,
-            health,
-            skill,
-            character,
-            pickUp,
-            startReceptionPeriod,
-            endReceptionPeriod,
-            temporaryProtectionCondition,
-            temporaryProtectionHope,
-            temporaryProtectionNo
-        )
-    }
 
     override suspend fun postTownAuth(
         locationAuthenticationResponse: LocationAuthenticationRequest,

@@ -2,6 +2,7 @@ package com.llama.petmilly_client.presentation.shelterWrite
 
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.annotation.RequiresApi
@@ -18,9 +19,9 @@ import androidx.navigation.compose.rememberNavController
 import com.llama.petmilly_client.R
 import com.llama.petmilly_client.presentation.common.compnent.TitleBarComponent
 import com.llama.petmilly_client.presentation.dialog.AlmostCompletedDialog
+import com.llama.petmilly_client.presentation.shelterWrite.model.ShelterWriteSideEffect
 import dagger.hilt.android.AndroidEntryPoint
-import llama.test.jetpack_dagger_plz.utils.Common
-import llama.test.jetpack_dagger_plz.utils.Common.SHELTERDETAIL_SPECIES_SCREEN
+import org.orbitmvi.orbit.compose.collectSideEffect
 
 @AndroidEntryPoint
 class ShelterWriteActivity : ComponentActivity() {
@@ -33,6 +34,18 @@ class ShelterWriteActivity : ComponentActivity() {
 
             var isShowDialog by remember {
                 mutableStateOf(false)
+            }
+
+            viewModel.collectSideEffect { sideEffect ->
+                when (sideEffect) {
+                    is ShelterWriteSideEffect.Error -> {
+                        Log.e("TAG", "ShelterWriteSideEffect: ${sideEffect.message}")
+                    }
+
+                    is ShelterWriteSideEffect.Finish -> {
+                        finish()
+                    }
+                }
             }
 
             Column {
@@ -55,81 +68,81 @@ class ShelterWriteActivity : ComponentActivity() {
 
                 NavHost(
                     navController = navController,
-                    startDestination = SHELTERDETAIL_SPECIES_SCREEN
+                    startDestination = ShelterRoute.SHELTER_WRITE_PET_INFO.route
                 ) {
-                    composable(SHELTERDETAIL_SPECIES_SCREEN) {
+                    composable(ShelterRoute.SHELTER_WRITE_PET_INFO.route) {
                         ShelterWritePetInfoSuccessScreen(
                             viewModel = viewModel,
                             onNavigate = {
-                                navController.navigate(Common.SHELTERDETAIL_1_PROFILE_SCREEN)
+                                navController.navigate(ShelterRoute.SHELTER_WRITE_PROFILE.route)
                             }
                         )
                     }
 
-                    composable(Common.SHELTERDETAIL_1_PROFILE_SCREEN) {
+                    composable(ShelterRoute.SHELTER_WRITE_PROFILE.route) {
                         ShelterWriteProfileSuccessScreen(
                             viewModel = viewModel,
                             onNavigate = {
-                                navController.navigate(Common.SHELTERDETAIL_2_PROFILE_SCREEN)
+                                navController.navigate(ShelterRoute.SHELTER_WRITE_PROFILE_DETAIL_INFO.route)
                             }
                         )
                     }
 
-                    composable(Common.SHELTERDETAIL_2_PROFILE_SCREEN) {
+                    composable(ShelterRoute.SHELTER_WRITE_PROFILE_DETAIL_INFO.route) {
                         ShelterWriteProfileDetailInfoSuccessScreen(
                             viewModel = viewModel,
                             onNavigate = {
-                                navController.navigate(Common.SHELTERDETAIL_3_PROFILE_SCREEN)
+                                navController.navigate(ShelterRoute.SHELTER_WRITE_PROFILE_THIRD.route)
                             }
                         )
                     }
 
-                    composable(Common.SHELTERDETAIL_3_PROFILE_SCREEN) {
+                    composable(ShelterRoute.SHELTER_WRITE_PROFILE_THIRD.route) {
                         ShelterWriteProfileThirdSuccessScreen(
                             viewModel = viewModel,
                             onNavigate = {
-                                navController.navigate(Common.SHELTERDETAIL_4_PROFILE_SCREEN)
+                                navController.navigate(ShelterRoute.SHELTER_WRITE_PROFILE_LAST.route)
                             }
                         )
                     }
 
-                    composable(Common.SHELTERDETAIL_4_PROFILE_SCREEN) {
-                        ShelterWriteProfileLastSuccess(
+                    composable(ShelterRoute.SHELTER_WRITE_PROFILE_LAST.route) {
+                        ShelterWriteProfileLastSuccessScreen(
                             viewModel = viewModel,
                             onNavigate = {
-                                navController.navigate(Common.SHELTERDETAIL_5_CONDITION_SCREEN)
+                                navController.navigate(ShelterRoute.SHELTER_WRITE_CONDITION.route)
                             }
                         )
                     }
 
-                    composable(Common.SHELTERDETAIL_5_CONDITION_SCREEN) {
+                    composable(ShelterRoute.SHELTER_WRITE_CONDITION.route) {
                         ShelterWriteConditionSuccessScreen(
                             viewModel = viewModel,
                             onNavigate = {
-                                navController.navigate(Common.SHELTERDETAIL_6_CONDITION_SCREEN)
+                                navController.navigate(ShelterRoute.SHELTER_WRITE_CONDITION_LAST.route)
                             }
                         )
                     }
 
-                    composable(Common.SHELTERDETAIL_6_CONDITION_SCREEN) {
+                    composable(ShelterRoute.SHELTER_WRITE_CONDITION_LAST.route) {
                         ShelterWriteConditionLastSuccessScreen(
                             viewModel = viewModel,
                             onNavigate = {
-                                navController.navigate(Common.SHELTERDETAIL_7_CHARMAPPEAL_SCREEN)
+                                navController.navigate(ShelterRoute.SHELTER_WRITE_CHARM_APPEAL.route)
                             }
                         )
                     }
 
-                    composable(Common.SHELTERDETAIL_7_CHARMAPPEAL_SCREEN) {
+                    composable(ShelterRoute.SHELTER_WRITE_CHARM_APPEAL.route) {
                         ShelterWriteCharmAppealSuccessScreen(
                             viewModel = viewModel,
                             onNavigate = {
-                                navController.navigate(Common.SHELTERDETAIL_8_APPLICATION_SCREEN)
+                                navController.navigate(ShelterRoute.SHELTER_WRITE_APPLICATION_PERIOD.route)
                             }
                         )
                     }
 
-                    composable(Common.SHELTERDETAIL_8_APPLICATION_SCREEN) {
+                    composable(ShelterRoute.SHELTER_WRITE_APPLICATION_PERIOD.route) {
                         ShelterWriteApplicationPeriodSuccessScreen(
                             viewModel = viewModel
                         )

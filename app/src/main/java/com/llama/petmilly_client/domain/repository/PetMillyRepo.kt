@@ -30,28 +30,6 @@ interface PetMillyRepo {
         tokenResponse: TokenResponse,
     ): RemoteResult<RefreshTokenDTO>
 
-    suspend fun postTemporaryProtection(
-        files: List<MultipartBody.Part>?,
-        charmAppeal: String,
-        animalTypes: String,
-        name: String,
-        gender: String,
-        weight: String,
-        breed: String,
-        age: String,
-        neutered: String,
-        inoculation: String,
-        health: String?,
-        skill: String?,
-        character: String?,
-        pickUp: String,
-        startReceptionPeriod: String?,
-        endReceptionPeriod: String?,
-        temporaryProtectionCondition: List<String>?,
-        temporaryProtectionHope: List<String>?,
-        temporaryProtectionNo: List<String>?,
-    ): RemoteResult<TemporaryProtectionDTO>
-
     suspend fun postTownAuth(
         locationAuthenticationResponse: LocationAuthenticationRequest,
     ): RemoteResult<TemporaryProtectionDTO>

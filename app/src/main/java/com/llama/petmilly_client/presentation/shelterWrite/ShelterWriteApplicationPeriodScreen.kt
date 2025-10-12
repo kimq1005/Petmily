@@ -29,18 +29,21 @@ fun ShelterWriteApplicationPeriodSuccessScreen(
     viewModel: ShelterWriteViewModel,
 ) {
     val state = viewModel.container.stateFlow.collectAsState().value
+
     ShelterWriteApplicationPeriodScreen(
         startReceptionPeriod = state.startReceptionPeriod,
         endReceptionPeriod = state.endReceptionPeriod,
         onStartReceptionPeriod = viewModel::setStartReceptionPeriod,
         onEndReceptionPeriod = viewModel::setEndReceptionPeriod,
-        onPost = {}
+        onPost = {
+            viewModel.postTemporaryProtection()
+        }
     )
 }
 
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
-fun ShelterWriteApplicationPeriodScreen(
+private fun ShelterWriteApplicationPeriodScreen(
     startReceptionPeriod: String,
     endReceptionPeriod: String,
     onStartReceptionPeriod: (String) -> Unit,

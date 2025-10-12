@@ -1,11 +1,10 @@
 package com.llama.petmilly_client.presentation.shelterWrite
 
 import android.net.Uri
-import androidx.compose.runtime.mutableStateOf
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.lifecycle.ViewModel
-import com.llama.petmilly_client.domain.repository.PetMillyRepo
+import com.llama.petmilly_client.domain.usecase.shelter.PostTemporaryProtectionUseCase
 import com.llama.petmilly_client.presentation.home.model.PetCategoryType
 import com.llama.petmilly_client.presentation.shelterWrite.model.GenderType
 import com.llama.petmilly_client.presentation.shelterWrite.model.NeuteringType
@@ -13,7 +12,6 @@ import com.llama.petmilly_client.presentation.shelterWrite.model.PickUpType
 import com.llama.petmilly_client.presentation.shelterWrite.model.ShelterWriteSideEffect
 import com.llama.petmilly_client.presentation.shelterWrite.model.ShelterWriteState
 import com.llama.petmilly_client.presentation.shelterWrite.model.VaccinationType
-import com.llama.petmilly_client.utils.Event
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineExceptionHandler
 import okhttp3.MultipartBody
@@ -30,9 +28,10 @@ import javax.inject.Inject
 @OptIn(OrbitExperimental::class)
 @HiltViewModel
 class ShelterWriteViewModel @Inject constructor(
-    private val petMillyRepo: PetMillyRepo,
+    private val postTemporaryProtectionUseCase: PostTemporaryProtectionUseCase,
 ) : ViewModel(), ContainerHost<ShelterWriteState, ShelterWriteSideEffect> {
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override val container: Container<ShelterWriteState, ShelterWriteSideEffect> = container(
         initialState = ShelterWriteState(),
         buildSettings = {
@@ -46,25 +45,19 @@ class ShelterWriteViewModel @Inject constructor(
         }
     )
 
-    fun setPetSpecies(
-        species: PetCategoryType,
-    ) = intent {
+    fun setPetSpecies(species: PetCategoryType) = intent {
         reduce {
             state.copy(petCategoryType = species)
         }
     }
 
-    fun setPetName(
-        petName: String,
-    ) = intent {
+    fun setPetName(petName: String) = intent {
         reduce {
             state.copy(petName = petName)
         }
     }
 
-    fun setPetGender(
-        gender: GenderType,
-    ) = intent {
+    fun setPetGender(gender: GenderType) = intent {
         reduce {
             state.copy(gender = gender)
         }
@@ -211,74 +204,30 @@ class ShelterWriteViewModel @Inject constructor(
         }
     }
 
-    //    fun posttemporaryprotection() {
-//
-//
-////        val dateString = hopeapplicationperiod.value
-//
-//        val temporaryProtectionCondition: List<RequestBody> = temporaryProtectionConditionList.map {
-//            RequestBody.create("text/plain".toMediaTypeOrNull(), it)
-//        }
-//
-//        val temporaryProtectionHope: List<RequestBody> = temporaryProtectionHopeList.map {
-//            RequestBody.create("text/plain".toMediaTypeOrNull(), it)
-//        }
-//
-//        val temporaryProtectionNo: List<RequestBody> =
-//            temporaryProtectionNoList.map {
-//                RequestBody.create("text/plain".toMediaTypeOrNull(), it)
-//            }
-//        val now = LocalTime.now()
-//
-//        viewModelScope.launch(Dispatchers.IO) {
-//            petMillyRepo.postTemporaryProtection(
-//                files ?: null,
-//                charmAppeal.value,
-//                state,
-//                animalname,
-//                animalsex,
-//                animalkg,
-//                animaldetailspecies,
-//                animalage,
-//                isneutered,
-//                isinoculation,
-//                animalhealth,
-//                animalskill,
-//                animalpersonality,
-//                pickup,
-//                startReceptionPeriod = if (apstartyear.value != "") {
-//                    val formatter = DateTimeFormatter.ofPattern("yy-MM-dd HH:mm:ss")
-//                    val dateString = "${apstartyear.value} 10:00:00"
-//                    val date = LocalDateTime.parse(dateString, formatter)
-//                    val hopeapplicationperiod =
-//                        RequestBody.create("text/plain".toMediaTypeOrNull(), date.toString())
-//                    hopeapplicationperiod
-//                } else null,
-//                endReceptionPeriod = if (apendyear.value != "") {
-//                    val formatter = DateTimeFormatter.ofPattern("yy-MM-dd HH:mm:ss")
-//                    val dateString = "${apendyear.value} 10:00:00"
-//                    val date = LocalDateTime.parse(dateString, formatter)
-//                    val hopeapplicationperiod =
-//                        RequestBody.create("text/plain".toMediaTypeOrNull(), date.toString())
-//                    hopeapplicationperiod
-//                } else null,
-//                temporaryProtectionCondition ?: null,
-//                temporaryProtectionHope ?: null,
-//                temporaryProtectionNo ?: null
-//            ).let {
-//                when (it.status) {
-//                    RemoteResult.Status.SUCCESS -> {
-//                        Log.d(TAG, "posttemporaryprotection SUCCESS: $it")
-//                        _setcompleted.postValue(Event(Unit))
-//                    }
-//
-//                    else -> {
-//                        Log.d(TAG, "posttemporaryprotection ERROR: $it")
-////                        _setnotcompleted.postValue(it.message)
-//                    }
-//
-//                }
-//            }
-//        }
-//    }
+    @RequiresApi(Build.VERSION_CODES.O)
+    fun postTemporaryProtection() = intent {
+        postTemporaryProtectionUseCase(
+            files = state.petPhotoFile,
+            charmAppeal = state.charmAppeal,
+            animalTypes = state.petCategoryType ?: PetCategoryType.PUPPY,
+            name = state.petName,
+            gender = state.gender ?: GenderType.MALE,
+            weight = state.weight,
+            breed = state.species,
+            age = state.age,
+            neutered = state.neuteredType ?: NeuteringType.NEUTERED,
+            inoculation = state.vaccinationType ?: VaccinationType.UN_VACCINATED,
+            health = state.health,
+            skill = state.skill,
+            character = state.personality,
+            pickUp = state.pickUpType ?: PickUpType.DIRECT_PICKUP,
+            startReceptionPeriod = state.startReceptionPeriodToLocalDateTime(),
+            endReceptionPeriod = state.endReceptionPeriodToLocalDateTime(),
+            temporaryProtectionCondition = state.tenancyCondition,
+            temporaryProtectionHope = state.hopePeoples,
+            temporaryProtectionNo = state.noPeoples,
+        )
+
+        postSideEffect(ShelterWriteSideEffect.Finish)
+    }
 }
