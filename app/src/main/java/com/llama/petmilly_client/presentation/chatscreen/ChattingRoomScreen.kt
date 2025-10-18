@@ -38,7 +38,7 @@ import com.llama.petmilly_client.presentation.chatscreen.items.EntityChatModel
 import com.llama.petmilly_client.presentation.chatscreen.items.PlzChatModel
 import com.llama.petmilly_client.presentation.dialog.AdoptionApplicationDialog
 import com.llama.petmilly_client.presentation.dialog.ChatRoomDialog
-import com.llama.petmilly_client.presentation.myprofilescreen.ProfileActivity
+import com.llama.petmilly_client.presentation.myProfile.ProfileActivity
 import com.llama.petmilly_client.presentation.common.compnent.TitleBarComponent
 import com.llama.petmilly_client.ui.theme.Black_60_Transfer
 import com.llama.petmilly_client.ui.theme.Black_Half_Transfer

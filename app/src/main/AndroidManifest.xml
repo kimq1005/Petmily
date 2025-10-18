@@ -85,7 +85,7 @@
             android:label="ShelterActivity"
             android:theme="@style/Theme.PET_MILLY_CLIENT" />
         <activity
-            android:name=".presentation.myprofilescreen.ProfileActivity"
+            android:name=".presentation.myProfile.ProfileActivity"
             android:exported="false"
             android:label="ProfileActivity"
             android:theme="@style/Theme.PET_MILLY_CLIENT" />

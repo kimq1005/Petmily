@@ -28,9 +28,9 @@ import com.llama.petmilly_client.utils.notosans_bold
 fun TitleBarComponent(
     modifier: Modifier = Modifier,
     title: String,
-    isMenu: Boolean,
-    onClickBack: () -> Unit,
-    onClickMenu: () -> Unit,
+    isMenu: Boolean = false,
+    onClickBack: () -> Unit = {},
+    onClickMenu: () -> Unit = {},
 ) {
     Box(
         modifier = modifier

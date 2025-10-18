@@ -1,4 +1,4 @@
-package com.llama.petmilly_client.presentation.myprofilescreen
+package com.llama.petmilly_client.presentation.myProfile
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity

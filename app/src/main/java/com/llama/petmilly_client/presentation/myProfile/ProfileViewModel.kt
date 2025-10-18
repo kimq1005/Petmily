@@ -1,4 +1,4 @@
-package com.llama.petmilly_client.presentation.myprofilescreen
+package com.llama.petmilly_client.presentation.myProfile
 
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel

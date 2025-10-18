@@ -1,4 +1,4 @@
-package com.llama.petmilly_client.presentation.myprofilescreen
+package com.llama.petmilly_client.presentation.myProfile
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -12,8 +12,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.PlatformTextStyle
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
@@ -27,276 +27,61 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.llama.petmilly_client.R
 import com.llama.petmilly_client.presentation.common.compnent.TitleBarComponent
+import com.llama.petmilly_client.presentation.myProfile.item.MyProfileInfoItem
+import com.llama.petmilly_client.presentation.myProfile.item.ProfileAdoptionStatusItem
 import com.llama.petmilly_client.ui.theme.Black_30_Transfer
 import com.llama.petmilly_client.ui.theme.Button_NoneClicked
 import com.llama.petmilly_client.utils.*
 
+@Composable
+fun MyProfileSuccessScreen() {
+    MyProfileScreen()
+}
 
 @Composable
-fun MyProfileScreen(navController: NavController) {
-
-    val context = LocalContext.current
-
+fun MyProfileScreen(
+    modifier: Modifier = Modifier,
+) {
     Column(
-        Modifier
+        modifier = modifier
             .fillMaxSize()
             .background(color = Color.White)
     ) {
-        Spacer(
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(40.dp)
-                .background(color = Color.White)
-        )
-
         TitleBarComponent(
-            title = "",
-            isMenu = true,
-            onClickBack = { },
-            onClickMenu = { }
+            modifier = Modifier
+                .padding(top = 40.dp),
+            title = stringResource(R.string.profile),
+            isMenu = false,
         )
 
-        Row(
+        MyProfileInfoItem(
             modifier = Modifier
-                .fillMaxWidth(), verticalAlignment = Alignment.CenterVertically
-        ) {
+                .padding(start = 29.dp),
+            title = "쪼꼬",
+            caution = "입양 수가 많으면 애니멀호더로 의심될 수 있습니다.",
+            isCertification = true,
+            onClickProfile = {}
+        )
 
-            SpacerWidth(dp = 29.dp)
-
-            Image(
-                painter = painterResource(id = R.drawable.img_testcat_2),
-                contentDescription = null,
-                modifier = Modifier
-                    .height(70.dp)
-                    .width(70.dp)
-                    .align(Alignment.CenterVertically),
-                contentScale = ContentScale.Crop
-            )
-            SpacerWidth(dp = 16.dp)
-
-            Column(
-                verticalArrangement = Arrangement.Center
-            ) {
-
-                Row(verticalAlignment = Alignment.CenterVertically) {
-                    Text(
-                        text = "llama",
-                        fontSize = 20.sp,
-                        fontFamily = notosans_bold,
-                        style = TextStyle(
-                            platformStyle = PlatformTextStyle(
-                                includeFontPadding = false
-                            )
-                        ),
-                        color = Color.Black
-                    )
-
-                    SpacerWidth(dp = 10.dp)
-
-                    Image(
-                        painter = painterResource(id = R.drawable.img_go),
-                        contentDescription = null,
-                        modifier = Modifier
-                            .height(15.dp)
-                            .width(15.dp),
-                    )
-                }
-
-                SpacerHeight(dp = 3.dp)
-
-                Row(verticalAlignment = Alignment.CenterVertically) {
-                    Text(
-                        text = "동네인증", color = Color.Black,
-                        fontFamily = notosans_regular,
-                        style = TextStyle(
-                            platformStyle = PlatformTextStyle(
-                                includeFontPadding = false
-                            )
-                        ),
-                        fontSize = 13.sp
-                    )
-
-                    SpacerWidth(dp = 5.dp)
-
-                    Image(
-                        painter = painterResource(id = R.drawable.img_checkcircle_green),
-                        contentDescription = null,
-                        modifier = Modifier
-                            .height(18.dp)
-                            .width(18.dp)
-                    )
-
-                }
-                SpacerHeight(dp = 13.dp)
-
-                Text(
-                    text = "입양 수가 많으면 애니멀호더로 의심될 수 있습니다.",
-                    modifier = Modifier
-                        .background(
-                            color = Color(0xFFF5F5F5),
-                            shape = RoundedCornerShape(5.dp)
-                        )
-                        .padding(horizontal = 7.dp, vertical = 3.dp),
-                    fontFamily = notosans_regular,
-                    style = TextStyle(
-                        platformStyle = PlatformTextStyle(
-                            includeFontPadding = false
-                        )
-                    ),
-                    color = Color.Black,
-                    fontSize = 10.sp
-                )
-
-
-            }//Column
-
-        }//LibraryDetailDTO
-
-        SpacerHeight(dp = 20.dp)
-
-        Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
-            Divider(modifier = Modifier.weight(1.5f), color = Color.Black)
-
-            Box(
-                modifier = Modifier
-                    .weight(9f)
-                    .height(62.dp)
-                    .background(color = Color(0xFFECF2FF), shape = RoundedCornerShape(2.dp)),
-            ) {
-                CircleView(
-                    modifier = Modifier
-                        .align(Alignment.CenterStart)
-                        .offset(x = (-3).dp), color = Color.Black
-                )
-
-                Row(
-                    Modifier
-                        .align(Alignment.Center)
-                        .fillMaxWidth(),
-                    horizontalArrangement = Arrangement.SpaceEvenly
-                ) {
-                    Column(
-                        horizontalAlignment = Alignment.CenterHorizontally,
-                        verticalArrangement = Arrangement.Center
-                    ) {
-                        Text(
-                            text = "입양",
-                            fontFamily = notosans_bold,
-                            style = TextStyle(
-                                platformStyle = PlatformTextStyle(
-                                    includeFontPadding = false
-                                )
-                            ),
-                            color = Color.Black,
-                            fontSize = 13.sp
-                        )
-
-                        Text(
-                            text = "0건",
-                            fontFamily = notosans_regular,
-                            style = TextStyle(
-                                platformStyle = PlatformTextStyle(
-                                    includeFontPadding = false
-                                )
-                            ),
-                            color = Color.Black,
-                            fontSize = 13.sp
-                        )
-
-                    }//Column
-
-                    Column(
-                        horizontalAlignment = Alignment.CenterHorizontally,
-                        verticalArrangement = Arrangement.Center
-                    ) {
-                        Text(
-                            text = "임보",
-                            fontFamily = notosans_bold,
-                            style = TextStyle(
-                                platformStyle = PlatformTextStyle(
-                                    includeFontPadding = false
-                                )
-                            ),
-                            color = Color.Black,
-                            fontSize = 13.sp
-                        )
-
-                        Text(
-                            text = "0건",
-                            fontFamily = notosans_regular,
-                            style = TextStyle(
-                                platformStyle = PlatformTextStyle(
-                                    includeFontPadding = false
-                                )
-                            ),
-                            color = Color.Black,
-                            fontSize = 13.sp
-                        )
-
-                    }//Column
-
-                    Column(
-                        horizontalAlignment = Alignment.CenterHorizontally,
-                        verticalArrangement = Arrangement.Center
-                    ) {
-                        Text(
-                            text = "이동봉사",
-                            fontFamily = notosans_bold,
-                            style = TextStyle(
-                                platformStyle = PlatformTextStyle(
-                                    includeFontPadding = false
-                                )
-                            ),
-                            color = Color.Black,
-                            fontSize = 13.sp
-                        )
-
-                        Text(
-                            text = "0건",
-                            fontFamily = notosans_regular,
-                            style = TextStyle(
-                                platformStyle = PlatformTextStyle(
-                                    includeFontPadding = false
-                                )
-                            ),
-                            color = Color.Black,
-                            fontSize = 13.sp
-                        )
-
-                    }//Column
-                }
-
-                Image(
-                    painter = painterResource(id = R.drawable.img_test_dog4),
-                    contentDescription = null,
-                    modifier = Modifier
-                        .height(15.dp)
-                        .width(15.dp)
-                        .align(Alignment.TopEnd)
-                        .padding(top = 4.dp, end = 4.dp),
-                    contentScale = ContentScale.Crop
-
-                )
-
-                CircleView(
-                    modifier = Modifier
-                        .align(Alignment.CenterEnd)
-                        .offset(x = 3.dp), color = Color.Black
-                )
-            }
-
-            Divider(modifier = Modifier.weight(1.5f), color = Color.Black)
-
-        }//LibraryDetailDTO
+        ProfileAdoptionStatusItem(
+            modifier = Modifier
+                .padding(top = 20.dp),
+            adoptionCount = 10,
+            temporaryProtectionCount = 2,
+            moveServiceCount = 0
+        )
 
         SpacerHeight(dp = 20.dp)
 
         Row(
             verticalAlignment = Alignment.CenterVertically,
-            modifier = Modifier.padding(horizontal = 50.dp)
+            modifier = Modifier
+                .padding(top = 20.dp)
+                .padding(horizontal = 50.dp)
         ) {
             Text(
-                text = "펫밀리", color = Color.Black, fontFamily = notosans_regular,
+                text = "펫밀리",
+                color = Color.Black, fontFamily = notosans_regular,
                 style = TextStyle(
                     platformStyle = PlatformTextStyle(
                         includeFontPadding = false
@@ -519,7 +304,10 @@ fun NickNameChangeScreen(navController: NavController, viewModel: ProfileViewMod
             .fillMaxSize()
             .background(color = Color.White)
     ) {
-        TitleBarComponent(title = "닉네임 수정", isMenu = false, onClickBack = { navController.popBackStack() }) {
+        TitleBarComponent(
+            title = "닉네임 수정",
+            isMenu = false,
+            onClickBack = { navController.popBackStack() }) {
 
         }
 
@@ -546,7 +334,6 @@ fun NickNameChangeScreen(navController: NavController, viewModel: ProfileViewMod
         )
 
         Spacer(modifier = Modifier.weight(1f))
-
 
 
         val ischeck = viewModel.changenickname.value != ""

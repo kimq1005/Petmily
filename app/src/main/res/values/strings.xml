@@ -17,6 +17,10 @@
     <string name="weight">몸무게</string>
     <string name="age">나이</string>
     <string name="not_know">모르겠어요</string>
+    <string name="profile">프로필</string>
+    <string name="adoption">입양</string>
+    <string name="temporary_protection">임보</string>
+    <string name="move_service">이동봉사</string>
 
     <string name="modifiy"><u>수정하기</u></string>
     <string name="entity_read"><u>전체읽기</u></string>
@@ -93,4 +97,6 @@
 
     <string name="shelter_write_application_period_title">신청서 접수기간\n희망 시 입력해주세요.</string>
     <string name="shelter_write_application_period_subtitle">신청서 접수기간(선택)</string>
+
+    <string name="profile_town_certification">동네 인증</string>
 </resources>
